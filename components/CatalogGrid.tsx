@@ -62,8 +62,8 @@ export default function CatalogGrid({ products }: { products: Product[] }) {
                   source="catalog"
                   triggerClassName={
                     p.is_digital
-                      ? "border border-ink text-ink rounded-lg px-3.5 py-3.5 text-[12.5px] font-semibold min-h-11"
-                      : "bg-accent text-accent-ink rounded-lg px-3.5 py-3.5 text-[12.5px] font-semibold min-h-11"
+                      ? "border border-ink text-ink rounded-lg px-3.5 py-3.5 text-[12.5px] font-semibold min-h-[44px]"
+                      : "bg-accent text-accent-ink rounded-lg px-3.5 py-3.5 text-[12.5px] font-semibold min-h-[44px]"
                   }
                 />
               </div>

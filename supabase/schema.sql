@@ -46,5 +46,5 @@ insert into products (id, name, description, price_display, category, is_digital
   ('van-phong-tri-an', 'Set Văn Phòng Tri Ân', 'Sổ tay da, bút kim loại khắc tên, hộp quà sang trọng.', '600.000đ - 900.000đ', 'doi-tac', false, 'oklch(0.62 0.1 80)'),
   ('thiep-tet', 'File Thiệp Chúc Tết Thiết Kế Riêng', 'File in thiệp tuỳ chỉnh tên công ty.', '89.000đ', 'qua-so', true, 'oklch(0.6 0.14 350)'),
   ('tui-qua-tet', 'Túi Quà Tết Sáng Tạo', 'Mứt thủ công, trà, thiệp chúc Tết thiết kế riêng.', '500.000đ - 800.000đ', 'vat-ly', false, 'oklch(0.6 0.12 300)'),
-  ('cham-soc-ca-nhan', 'Set Chăm Sóc Cá Nhân', 'Tinh dầu, xà phòng handmade, khăn cotton hữu cơ.', '550.000đ - 750.000đ', 'ca-nhan', false, 'oklch(0.6 0.16 130)')
+  ('cham-soc-ca-nhan', 'Set Chăm Sóc Cá Nhân', 'Tinh dầu, xà phòng handmade, khăn cotton hữu cơ.', '550.000đ - 750.000đ', 'vat-ly', false, 'oklch(0.6 0.16 130)')
 on conflict (id) do nothing;

@@ -81,7 +81,7 @@ export const seedProducts: Product[] = [
     name: "Set Chăm Sóc Cá Nhân",
     description: "Tinh dầu, xà phòng handmade, khăn cotton hữu cơ.",
     price_display: "550.000đ - 750.000đ",
-    category: "ca-nhan",
+    category: "vat-ly",
     is_digital: false,
     color: "oklch(0.6 0.16 130)",
   },

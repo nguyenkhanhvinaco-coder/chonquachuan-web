@@ -64,7 +64,7 @@ export default async function ResultsPage({
                     productLabel={`${g.name} · ${g.price_display}`}
                     triggerLabel="Chọn set này"
                     source="ket-qua-wizard"
-                    triggerClassName="bg-accent text-accent-ink rounded-lg px-[18px] py-3.5 text-[13.5px] font-semibold min-h-11"
+                    triggerClassName="bg-accent text-accent-ink rounded-lg px-[18px] py-3.5 text-[13.5px] font-semibold min-h-[44px]"
                   />
                 </div>
               </div>
