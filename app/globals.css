@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: oklch(0.97 0.015 75);
+  --surface: oklch(0.995 0.004 75);
+  --surface-2: oklch(0.945 0.02 60);
+  --line: oklch(0.88 0.02 60);
+  --ink: oklch(0.27 0.02 50);
+  --ink-soft: oklch(0.48 0.02 50);
+  --accent: oklch(0.62 0.16 40);
+  --accent-ink: oklch(0.99 0.01 40);
+  --accent-soft: oklch(0.93 0.045 40);
+  --sage: oklch(0.62 0.16 150);
+  --sage-soft: oklch(0.93 0.045 150);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+a {
+  color: var(--accent);
+}
+a:hover {
+  color: oklch(0.5 0.16 40);
+}
