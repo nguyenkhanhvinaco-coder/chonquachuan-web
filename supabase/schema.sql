@@ -36,6 +36,12 @@ create policy "anyone can submit a lead"
   on leads for insert
   with check (true);
 
+-- RLS chỉ lọc DÒNG, còn cần GRANT quyền BẢNG cho role ẩn danh trước
+-- (bảng tạo qua SQL Editor không tự có GRANT như bảng tạo qua Table Editor).
+grant usage on schema public to anon, authenticated;
+grant select on products to anon, authenticated;
+grant insert on leads to anon, authenticated;
+
 -- Dữ liệu mẫu ban đầu — khớp với lib/products.ts trong code.
 -- Sau này sửa/thêm sản phẩm trực tiếp trong Table Editor của Supabase, không cần sửa code.
 insert into products (id, name, description, price_display, category, is_digital, color) values
