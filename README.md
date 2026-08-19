@@ -8,7 +8,7 @@ wizard tìm quà + thu thông tin liên hệ (chưa có giỏ hàng/thanh toán 
 ### Mốc A — Supabase (database)
 1. Tạo tài khoản + project free tại [supabase.com](https://supabase.com).
 2. Vào **SQL Editor** → **New query**, dán toàn bộ nội dung file `supabase/schema.sql` → **Run**.
-3. Vào **Project Settings → API**, lấy `Project URL` và khoá `anon public` — gửi lại 2 giá trị này.
+3. Bấm nút **"Kết nối"** → tab **"Khung"** (chọn Next.js) — copy 2 dòng trong ô `.env.local` hiện ra (`NEXT_PUBLIC_SUPABASE_URL` và `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) — gửi lại 2 giá trị này.
 
 ### Mốc B — GitHub (lưu mã nguồn)
 1. Tạo 1 repository rỗng, ví dụ `chonquachuan-web` (không cần README/license khi tạo).
@@ -25,7 +25,7 @@ git push -u origin main
 2. **Add New → Project** → chọn repo `chonquachuan-web`.
 3. Ở mục **Environment Variables**, thêm đúng 2 biến (giá trị lấy từ Mốc A):
    - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 4. Bấm **Deploy**. Xong sẽ có link dạng `https://chonquachuan-web.vercel.app`.
 
 ### Mốc D — Gắn tên miền riêng
