@@ -62,6 +62,12 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo-icon.png`,
   taxID: "0319221275",
+  email: "nguyenkhanhvina.co@gmail.com",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "nguyenkhanhvina.co@gmail.com",
+    contactType: "customer service",
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "244/29 Huỳnh Văn Bánh",

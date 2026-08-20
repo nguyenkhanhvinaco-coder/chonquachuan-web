@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const SITE_URL = "https://chonquachuan.vn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/danh-muc", "/tim-qua"];
+  const routes = ["", "/danh-muc", "/tim-qua", "/lien-he"];
 
   return routes.map((route) => ({
     url: `${SITE_URL}${route}`,

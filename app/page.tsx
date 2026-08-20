@@ -170,9 +170,14 @@ export default async function HomePage() {
         </a>
       </section>
 
-      <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between">
+      <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
-        <span className="text-ink-soft text-[13px]">© 2026 Nguyên Khánh Vina · chonquachuan.vn</span>
+        <div className="flex items-center gap-4">
+          <Link href="/lien-he" className="text-ink-soft text-[13px] font-medium">
+            Liên hệ
+          </Link>
+          <span className="text-ink-soft text-[13px]">© 2026 Nguyên Khánh Vina · chonquachuan.vn</span>
+        </div>
       </footer>
     </div>
   );
