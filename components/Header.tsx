@@ -2,14 +2,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { CartIcon } from "./icons";
 
+function Brand() {
+  return (
+    <Link href="/" className="flex items-center gap-2.5">
+      <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={48} height={48} />
+      <div className="flex flex-col">
+        <span className="font-serif font-bold text-lg leading-tight">Chọn Quà Chuẩn</span>
+        <span className="text-[10px] font-semibold tracking-wide text-ink-soft leading-tight">
+          SÁNG TẠO - TRAO GIÁ TRỊ
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default function Header({ minimal = false }: { minimal?: boolean }) {
   if (minimal) {
     return (
       <header className="flex items-center justify-between px-9 py-6 border-b border-line md:px-[72px]">
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={48} height={48} />
-          <span className="font-serif font-bold text-lg">Chọn Quà Chuẩn</span>
-        </Link>
+        <Brand />
         <Link href="/" className="text-ink-soft text-sm">
           Thoát
         </Link>
@@ -19,10 +30,7 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
 
   return (
     <header className="flex items-center justify-between px-9 py-6 border-b border-line md:px-[72px]">
-      <Link href="/" className="flex items-center gap-2.5">
-        <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={48} height={48} />
-        <span className="font-serif font-bold text-lg">Chọn Quà Chuẩn</span>
-      </Link>
+      <Brand />
       <nav className="flex items-center gap-8">
         <Link href="/danh-muc" className="text-ink-soft text-[15px] font-medium hidden md:inline">
           Danh mục
