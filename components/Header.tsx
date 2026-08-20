@@ -4,7 +4,7 @@ import { CartIcon } from "./icons";
 
 function Brand() {
   return (
-    <Link href="/" className="flex items-center gap-2 sm:gap-2.5 min-w-0">
+    <Link href="/" className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
       <Image
         src="/logo-icon.png"
         alt="Chọn Quà Chuẩn"
@@ -13,10 +13,10 @@ function Brand() {
         className="w-9 h-9 sm:w-12 sm:h-12 flex-shrink-0"
       />
       <div className="flex flex-col min-w-0">
-        <span className="font-serif font-bold text-base sm:text-lg leading-tight truncate">
+        <span className="font-serif font-bold text-[15px] sm:text-lg leading-tight truncate">
           Chọn Quà Chuẩn
         </span>
-        <span className="hidden sm:block text-[10px] font-semibold tracking-wide text-ink-soft leading-tight">
+        <span className="text-[8.5px] sm:text-[10px] font-semibold tracking-wide text-ink-soft leading-tight whitespace-nowrap">
           SÁNG TẠO - TRAO GIÁ TRỊ
         </span>
       </div>
@@ -27,7 +27,7 @@ function Brand() {
 export default function Header({ minimal = false }: { minimal?: boolean }) {
   if (minimal) {
     return (
-      <header className="flex items-center justify-between px-4 sm:px-9 md:px-[72px] py-4 sm:py-6 border-b border-line gap-3">
+      <header className="flex items-center justify-between px-3 sm:px-9 md:px-[72px] py-3 sm:py-6 border-b border-line gap-3">
         <Brand />
         <Link href="/" className="text-ink-soft text-sm flex-shrink-0">
           Thoát
@@ -37,7 +37,7 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
   }
 
   return (
-    <header className="flex items-center justify-between px-4 sm:px-9 md:px-[72px] py-4 sm:py-6 border-b border-line gap-3">
+    <header className="flex items-center justify-between px-3 sm:px-9 md:px-[72px] py-3 sm:py-6 border-b border-line gap-2">
       <Brand />
       <nav className="flex items-center gap-3 md:gap-8 flex-shrink-0">
         <Link href="/danh-muc" className="text-ink-soft text-[15px] font-medium hidden md:inline">
@@ -57,7 +57,7 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
         </div>
         <Link
           href="/tim-qua"
-          className="bg-accent text-accent-ink rounded-lg px-3.5 py-2.5 text-[13px] sm:px-6 sm:py-3 sm:text-[15px] font-semibold whitespace-nowrap"
+          className="bg-accent text-accent-ink rounded-lg px-2.5 py-1.5 text-[11px] sm:px-6 sm:py-3 sm:text-[15px] font-semibold whitespace-nowrap flex-shrink-0"
         >
           Tìm quà ngay
         </Link>
