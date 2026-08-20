@@ -16,10 +16,66 @@ const beVietnamPro = Be_Vietnam_Pro({
   display: "swap",
 });
 
+const SITE_URL = "https://chonquachuan.vn";
+const SITE_TITLE = "Chọn Quà Chuẩn — Tìm quà tặng phù hợp, nhanh và ý nghĩa";
+const SITE_DESCRIPTION =
+  "Chọn Quà Chuẩn giúp doanh nghiệp và cá nhân tìm quà tặng phù hợp — quà tri ân đối tác, quà cá nhân, set quà handmade, và quà tặng số.";
+
 export const metadata: Metadata = {
-  title: "Chọn Quà Chuẩn — Tìm quà tặng phù hợp, nhanh và ý nghĩa",
-  description:
-    "Chọn Quà Chuẩn giúp doanh nghiệp và cá nhân tìm quà tặng phù hợp — quà tri ân đối tác, quà cá nhân, set quà handmade, và quà tặng số.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: "%s — Chọn Quà Chuẩn",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "quà tặng doanh nghiệp",
+    "quà tri ân đối tác",
+    "quà tặng cá nhân",
+    "set quà handmade",
+    "quà tặng số",
+    "tìm quà tặng",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    url: SITE_URL,
+    siteName: "Chọn Quà Chuẩn",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Chọn Quà Chuẩn",
+  legalName: "Công ty TNHH Nguyên Khánh Vina",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo-icon.png`,
+  taxID: "0319221275",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "244/29 Huỳnh Văn Bánh",
+    addressLocality: "Phường Phú Nhuận",
+    addressRegion: "TP. Hồ Chí Minh",
+    addressCountry: "VN",
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Chọn Quà Chuẩn",
+  url: SITE_URL,
 };
 
 export default function RootLayout({
@@ -27,7 +83,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi" className={`${lora.variable} ${beVietnamPro.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </body>
     </html>
   );
 }

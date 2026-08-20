@@ -1,8 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import LeadFormTrigger from "@/components/LeadForm";
 import { GiftIcon } from "@/components/icons";
 import { getProducts } from "@/lib/products";
+
+export const metadata: Metadata = {
+  title: "Gợi ý quà tặng cho bạn",
+  description: "Kết quả gợi ý quà tặng theo tiêu chí bạn đã chọn tại Chọn Quà Chuẩn.",
+  robots: { index: false, follow: true },
+};
 
 const STEP_ORDER = ["doi-tuong", "dip-tang", "ngan-sach", "so-luong", "phong-cach"] as const;
 

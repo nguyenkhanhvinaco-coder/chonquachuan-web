@@ -1,15 +1,36 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import CatalogGrid from "@/components/CatalogGrid";
 import { CATEGORY_ICONS } from "@/components/icons";
 import { categories } from "@/lib/categories";
 import { getProducts } from "@/lib/products";
 
+export const metadata: Metadata = {
+  title: "Danh mục quà tặng",
+  description:
+    "Duyệt danh mục quà tặng doanh nghiệp, quà tri ân đối tác, quà cá nhân, set handmade và quà tặng số tại Chọn Quà Chuẩn.",
+  alternates: { canonical: "/danh-muc" },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Trang chủ", item: "https://chonquachuan.vn" },
+    { "@type": "ListItem", position: 2, name: "Danh mục", item: "https://chonquachuan.vn/danh-muc" },
+  ],
+};
+
 export default async function CatalogPage() {
   const products = await getProducts();
 
   return (
     <div className="flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
 
       <section className="px-9 pt-12 pb-2 md:px-[72px] flex flex-col gap-2">
