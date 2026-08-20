@@ -7,7 +7,7 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
     return (
       <header className="flex items-center justify-between px-9 py-6 border-b border-line md:px-[72px]">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={32} height={32} />
+          <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={48} height={48} />
           <span className="font-serif font-bold text-lg">Chọn Quà Chuẩn</span>
         </Link>
         <Link href="/" className="text-ink-soft text-sm">
@@ -20,7 +20,7 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
   return (
     <header className="flex items-center justify-between px-9 py-6 border-b border-line md:px-[72px]">
       <Link href="/" className="flex items-center gap-2.5">
-        <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={32} height={32} />
+        <Image src="/logo-icon.png" alt="Chọn Quà Chuẩn" width={48} height={48} />
         <span className="font-serif font-bold text-lg">Chọn Quà Chuẩn</span>
       </Link>
       <nav className="flex items-center gap-8">
