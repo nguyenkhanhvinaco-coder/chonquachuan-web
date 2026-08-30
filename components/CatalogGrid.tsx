@@ -58,7 +58,7 @@ export default function CatalogGrid({ products }: { products: Product[] }) {
                 <LeadFormTrigger
                   productId={p.id}
                   productLabel={`${p.name} · ${p.price_display}`}
-                  triggerLabel={p.is_digital ? "Mua ngay" : "Thêm vào giỏ"}
+                  triggerLabel={p.is_digital ? "Đặt mua" : "Nhận tư vấn"}
                   source="catalog"
                   triggerClassName={
                     p.is_digital
