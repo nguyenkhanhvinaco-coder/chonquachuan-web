@@ -68,10 +68,13 @@ const organizationJsonLd = {
   logo: `${SITE_URL}/logo-icon.png`,
   taxID: "0319221275",
   email: "nguyenkhanhvina.co@gmail.com",
+  telephone: "+84827288286",
   contactPoint: {
     "@type": "ContactPoint",
     email: "nguyenkhanhvina.co@gmail.com",
+    telephone: "+84827288286",
     contactType: "customer service",
+    availableLanguage: "Vietnamese",
   },
   address: {
     "@type": "PostalAddress",
