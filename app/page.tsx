@@ -27,16 +27,34 @@ export default async function HomePage() {
             tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số (ebook, khóa học,
             file thiết kế) nhận ngay tức thì.
           </p>
-          <div className="flex items-center gap-5 mt-2">
-            <Link
-              href="/tim-qua"
-              className="bg-accent text-accent-ink rounded-[10px] px-[30px] py-4 text-base font-semibold flex items-center gap-2.5"
-            >
-              Bắt đầu tìm quà
-              <ArrowRightIcon size={18} />
-            </Link>
-            <Link href="#cach-hoat-dong" className="text-[15px] font-semibold">
-              Xem cách hoạt động →
+          <div className="flex flex-col gap-3 mt-2">
+            <span className="text-[13px] font-semibold uppercase tracking-wide text-ink-soft">
+              Bạn tìm quà cho ai?
+            </span>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/tim-qua/ket-qua?doi-tuong=ca-nhan"
+                className="flex-1 bg-accent text-accent-ink rounded-[10px] px-6 py-4 text-base font-semibold flex items-center justify-between gap-3 min-h-[44px]"
+              >
+                <span className="flex items-center gap-3">
+                  <PersonIcon size={22} color="var(--accent-ink)" strokeWidth={1.8} />
+                  Cá nhân, người thân
+                </span>
+                <ArrowRightIcon size={17} />
+              </Link>
+              <Link
+                href="/tim-qua/ket-qua?doi-tuong=doanh-nghiep"
+                className="flex-1 border-[1.5px] border-line bg-surface rounded-[10px] px-6 py-4 text-base font-semibold flex items-center justify-between gap-3 min-h-[44px]"
+              >
+                <span className="flex items-center gap-3">
+                  <BriefcaseIcon size={22} color="var(--ink)" strokeWidth={1.8} />
+                  Doanh nghiệp, đối tác
+                </span>
+                <ArrowRightIcon size={17} />
+              </Link>
+            </div>
+            <Link href="/tim-qua" className="text-[14px] font-semibold w-fit">
+              Muốn tư vấn kỹ hơn? Trả lời vài câu hỏi →
             </Link>
           </div>
         </div>

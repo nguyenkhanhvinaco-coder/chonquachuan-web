@@ -13,16 +13,47 @@ export const metadata: Metadata = {
 
 const STEP_ORDER = ["doi-tuong", "dip-tang", "ngan-sach", "so-luong", "phong-cach"] as const;
 
+// Hai lối vào nhanh từ trang chủ (1 click). Danh sách sản phẩm hiện còn ít nên
+// ta XẾP THỨ TỰ theo mức phù hợp thay vì lọc bỏ — lọc cứng sẽ ra trang gần trống
+// (chỉ 1 sản phẩm mang nhãn "doi-tac"). Khi có đủ sản phẩm thật thì đổi sang lọc.
+const AUDIENCES = {
+  "ca-nhan": {
+    label: "Cá nhân & người thân",
+    priority: ["vat-ly", "qua-so", "doi-tac"],
+  },
+  "doanh-nghiep": {
+    label: "Doanh nghiệp & đối tác",
+    priority: ["doi-tac", "vat-ly", "qua-so"],
+  },
+} as const;
+
 export default async function ResultsPage({
   searchParams,
 }: {
   searchParams: Record<string, string | string[] | undefined>;
 }) {
-  const products = await getProducts();
+  const all = await getProducts();
 
-  const tags = STEP_ORDER.map((key) => searchParams[key]).filter(
-    (v): v is string => typeof v === "string" && v.length > 0
-  );
+  const doiTuong = searchParams["doi-tuong"];
+  const audienceKey = typeof doiTuong === "string" ? doiTuong : "";
+  const audience = AUDIENCES[audienceKey as keyof typeof AUDIENCES];
+
+  const products = audience
+    ? [...all].sort((a, b) => {
+        const rank = (c: string) => {
+          const i = audience.priority.indexOf(c as never);
+          return i === -1 ? 99 : i;
+        };
+        return rank(a.category) - rank(b.category);
+      })
+    : all;
+
+  // Lối vào nhanh chỉ có 1 tiêu chí; lối wizard cũ vẫn hiển thị đủ các nhãn đã chọn.
+  const tags = audience
+    ? [audience.label]
+    : STEP_ORDER.map((key) => searchParams[key]).filter(
+        (v): v is string => typeof v === "string" && v.length > 0
+      );
 
   return (
     <div className="flex flex-col">
@@ -54,7 +85,14 @@ export default async function ResultsPage({
       </div>
 
       <section className="px-9 pt-11 pb-20 md:px-[72px] flex flex-col gap-7">
-        <h1 className="text-[26px]">{products.length} set quà phù hợp với bạn</h1>
+        <div className="flex flex-col gap-1.5">
+          <h1 className="text-[26px]">
+            {audience ? `Gợi ý quà cho ${audience.label.toLowerCase()}` : "Gợi ý quà cho bạn"}
+          </h1>
+          <p className="text-ink-soft text-[14.5px]">
+            {products.length} set quà đang có — xếp theo mức phù hợp với nhu cầu của bạn.
+          </p>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {products.map((g) => (
             <div key={g.id} className="bg-surface border border-line rounded-2xl overflow-hidden flex flex-col">
