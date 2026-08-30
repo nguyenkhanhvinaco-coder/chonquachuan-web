@@ -107,25 +107,20 @@ export default function ChinhSachDuLieuCaNhanPage() {
                   <td className="px-4 py-3 text-ink-soft">Bắt buộc</td>
                 </tr>
                 <tr className="border-t border-line">
-                  <td className="px-4 py-3">Số điện thoại</td>
+                  <td className="px-4 py-3">Số điện thoại / Zalo</td>
                   <td className="px-4 py-3 text-ink-soft">Bắt buộc</td>
-                </tr>
-                <tr className="border-t border-line">
-                  <td className="px-4 py-3">Email</td>
-                  <td className="px-4 py-3 text-ink-soft">Tuỳ chọn</td>
-                </tr>
-                <tr className="border-t border-line">
-                  <td className="px-4 py-3">Ghi chú / nội dung yêu cầu bạn tự nhập</td>
-                  <td className="px-4 py-3 text-ink-soft">Tuỳ chọn</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p>
+            Chúng tôi cố ý giữ biểu mẫu <strong>chỉ hai trường</strong> — đúng mức tối thiểu cần để
+            liên hệ lại tư vấn cho bạn, không hỏi thêm bất cứ thông tin nào khác.
+          </p>
+          <p>
             Đây đều là <strong>dữ liệu cá nhân cơ bản</strong>. Chúng tôi{" "}
             <strong>không thu thập dữ liệu cá nhân nhạy cảm</strong> (tình trạng sức khỏe, dữ liệu
-            sinh trắc học, thông tin tài khoản ngân hàng, quan điểm chính trị, dữ liệu vị trí…). Vui
-            lòng không điền những thông tin này vào ô ghi chú.
+            sinh trắc học, thông tin tài khoản ngân hàng, quan điểm chính trị, dữ liệu vị trí…).
           </p>
         </Section>
 

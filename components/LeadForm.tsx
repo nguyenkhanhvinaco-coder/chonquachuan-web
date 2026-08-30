@@ -25,8 +25,6 @@ export default function LeadFormTrigger({
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [note, setNote] = useState("");
   const [consent, setConsent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -45,8 +43,6 @@ export default function LeadFormTrigger({
     const { error } = await supabase.from("leads").insert({
       name,
       phone,
-      email: email || null,
-      note: note || null,
       product_ref: productId,
       source,
       consent_at: new Date().toISOString(),
@@ -61,8 +57,6 @@ export default function LeadFormTrigger({
     setStatus("idle");
     setName("");
     setPhone("");
-    setEmail("");
-    setNote("");
     setConsent(false);
   }
 
@@ -121,36 +115,15 @@ export default function LeadFormTrigger({
                 </div>
                 <div>
                   <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                    Số điện thoại
+                    Số điện thoại / Zalo
                   </label>
                   <input
                     required
+                    type="tel"
+                    inputMode="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="09xx xxx xxx"
-                    className="w-full border border-line rounded-[9px] px-3.5 py-3 bg-surface text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                    Email (tuỳ chọn)
-                  </label>
-                  <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="ban@congty.vn"
-                    className="w-full border border-line rounded-[9px] px-3.5 py-3 bg-surface text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                    Ghi chú thêm (tuỳ chọn)
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    placeholder="Yêu cầu in logo, thời hạn giao hàng..."
                     className="w-full border border-line rounded-[9px] px-3.5 py-3 bg-surface text-sm"
                   />
                 </div>
