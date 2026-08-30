@@ -2,10 +2,12 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { CATEGORY_ICONS, ArrowRightIcon, GiftIcon, PersonIcon, BriefcaseIcon } from "@/components/icons";
 import { categories } from "@/lib/categories";
-import { getProducts } from "@/lib/products";
+import LeadFormTrigger from "@/components/LeadForm";
+import { getProducts, getFeaturedProducts } from "@/lib/products";
 
 export default async function HomePage() {
   const products = (await getProducts()).slice(0, 4);
+  const featured = await getFeaturedProducts();
 
   return (
     <div className="flex flex-col">
@@ -59,23 +61,45 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="flex-1 grid grid-cols-2 gap-5 w-full">
-          <div className="row-span-2 bg-accent rounded-[20px] p-7 flex flex-col justify-end min-h-[420px]">
-            <GiftIcon size={46} color="var(--accent-ink)" strokeWidth={1.5} />
-            <p className="text-accent-ink font-serif text-xl font-semibold mt-4">
-              Set Trà Thảo Mộc Thủ Công
-            </p>
-            <p className="text-sm mt-1.5" style={{ color: "oklch(0.97 0.02 40)" }}>
-              Handmade · Quà tri ân
-            </p>
-          </div>
-          <div className="bg-sage-soft rounded-[20px] p-6 flex flex-col justify-end min-h-[200px]">
-            <PersonIcon size={34} color="oklch(0.4 0.1 150)" strokeWidth={1.6} />
-            <p className="font-serif text-base font-semibold mt-2.5">Quà cá nhân</p>
-          </div>
-          <div className="bg-surface-2 rounded-[20px] p-6 flex flex-col justify-end min-h-[200px]">
-            <BriefcaseIcon size={34} color="var(--ink-soft)" strokeWidth={1.6} />
-            <p className="font-serif text-base font-semibold mt-2.5">Quà đối tác</p>
-          </div>
+          {featured.map((g, i) => {
+            const isHero = i === 0;
+            return (
+              <LeadFormTrigger
+                key={g.id}
+                productId={g.id}
+                productLabel={`${g.name} · ${g.price_display}`}
+                source="trang-chu-noi-bat"
+                triggerClassName={`rounded-[20px] text-left flex overflow-hidden ${
+                  isHero ? "row-span-2 min-h-[420px]" : "min-h-[200px]"
+                }`}
+                triggerLabel={
+                  <span
+                    className={`flex flex-col justify-end w-full rounded-[20px] ${
+                      isHero ? "p-7" : "p-6"
+                    }`}
+                    style={{ background: g.color }}
+                  >
+                    <GiftIcon
+                      size={isHero ? 46 : 34}
+                      color="white"
+                      strokeWidth={isHero ? 1.5 : 1.6}
+                    />
+                    <span
+                      className={`font-serif font-semibold text-white ${
+                        isHero ? "text-xl mt-4" : "text-base mt-2.5"
+                      }`}
+                    >
+                      {g.name}
+                    </span>
+                    <span className="text-sm mt-1.5 text-white/85">{g.price_display}</span>
+                    <span className="text-[13px] font-semibold mt-3 text-white/90">
+                      Nhận tư vấn →
+                    </span>
+                  </span>
+                }
+              />
+            );
+          })}
         </div>
       </section>
 

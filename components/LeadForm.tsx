@@ -9,7 +9,10 @@ import { XIcon } from "./icons";
 type Props = {
   productId: string;
   productLabel: string;
-  triggerLabel: string;
+  // ReactNode chứ không chỉ string: khu sản phẩm nổi bật ở trang chủ dùng cả
+  // thẻ sản phẩm làm nút bấm (chỉ dùng <span>, không dùng <div>, để HTML hợp lệ
+  // bên trong <button>).
+  triggerLabel: React.ReactNode;
   triggerClassName: string;
   source: string;
 };
