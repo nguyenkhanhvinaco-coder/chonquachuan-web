@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
+import { ZALO_URL } from "@/lib/contact";
 import { XIcon } from "./icons";
 
 type Props = {
@@ -90,14 +91,28 @@ export default function LeadFormTrigger({
             </div>
 
             {status === "done" ? (
+              // Lead đã lưu xong ở bước này. Đưa luôn nút Zalo để khách nào muốn
+              // chốt ngay thì chat liền, không phải chờ gọi lại — nhưng thông tin
+              // đã nằm trong CSDL rồi nên khách không nhắn cũng không mất dấu.
               <div className="flex flex-col gap-2 py-4">
                 <p className="font-semibold">Đã gửi yêu cầu thành công!</p>
                 <p className="text-ink-soft text-sm">
                   Chúng tôi sẽ liên hệ lại bạn sớm nhất qua số điện thoại đã cung cấp.
                 </p>
+                <p className="text-ink-soft text-sm">
+                  Cần tư vấn ngay? Nhắn Zalo cho chúng tôi, phản hồi nhanh hơn.
+                </p>
+                <a
+                  href={ZALO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 bg-accent text-accent-ink rounded-[10px] py-3.5 font-semibold text-[15px] text-center min-h-[44px]"
+                >
+                  Nhắn Zalo ngay →
+                </a>
                 <button
                   onClick={closeAndReset}
-                  className="mt-3 bg-accent text-accent-ink rounded-[10px] py-3.5 font-semibold text-[15px]"
+                  className="text-ink-soft py-3 font-semibold text-[14px] min-h-[44px]"
                 >
                   Đóng
                 </button>

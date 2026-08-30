@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import LeadFormTrigger from "@/components/LeadForm";
+import { ZALO_URL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Về chúng tôi & Liên hệ",
@@ -92,7 +93,7 @@ export default function ContactPage() {
             source="lien-he"
           />
           <a
-            href="https://zalo.me/0827288286"
+            href={ZALO_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="border-[1.5px] border-line rounded-lg px-6 py-3.5 text-[15px] font-semibold min-h-[44px] flex items-center"
