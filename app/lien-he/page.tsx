@@ -66,10 +66,10 @@ export default function ContactPage() {
             <dt className="text-ink-soft sm:w-32 flex-shrink-0">Email</dt>
             <dd>
               <a
-                href="mailto:nguyenkhanhvina.co@gmail.com"
+                href="mailto:lienhe@chonquachuan.vn"
                 className="text-accent font-semibold"
               >
-                nguyenkhanhvina.co@gmail.com
+                lienhe@chonquachuan.vn
               </a>
             </dd>
           </div>

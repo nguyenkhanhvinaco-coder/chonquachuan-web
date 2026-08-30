@@ -163,7 +163,7 @@ export default async function HomePage() {
           </p>
         </div>
         <a
-          href="mailto:nguyenkhanhvina.co@gmail.com?subject=Đăng ký nhà cung cấp Chọn Quà Chuẩn"
+          href="mailto:lienhe@chonquachuan.vn?subject=Đăng ký nhà cung cấp Chọn Quà Chuẩn"
           className="flex-shrink-0 bg-bg text-ink rounded-[10px] px-[26px] py-3.5 text-[15px] font-semibold"
         >
           Trở thành nhà cung cấp

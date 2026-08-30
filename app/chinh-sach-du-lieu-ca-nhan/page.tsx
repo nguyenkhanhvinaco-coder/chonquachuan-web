@@ -81,8 +81,8 @@ export default function ChinhSachDuLieuCaNhanPage() {
             <li>Trụ sở: 244/29 Huỳnh Văn Bánh, Phường Phú Nhuận, TP. Hồ Chí Minh</li>
             <li>
               Đầu mối tiếp nhận yêu cầu về dữ liệu cá nhân:{" "}
-              <a href="mailto:nguyenkhanhvina.co@gmail.com" className="font-semibold">
-                nguyenkhanhvina.co@gmail.com
+              <a href="mailto:lienhe@chonquachuan.vn" className="font-semibold">
+                lienhe@chonquachuan.vn
               </a>
             </li>
           </ul>
@@ -241,8 +241,8 @@ export default function ChinhSachDuLieuCaNhanPage() {
           </ul>
           <p className="bg-surface-2 border border-line rounded-xl px-5 py-4">
             Để thực hiện bất kỳ quyền nào ở trên, gửi email tới{" "}
-            <a href="mailto:nguyenkhanhvina.co@gmail.com" className="font-semibold">
-              nguyenkhanhvina.co@gmail.com
+            <a href="mailto:lienhe@chonquachuan.vn" className="font-semibold">
+              lienhe@chonquachuan.vn
             </a>{" "}
             với tiêu đề &ldquo;Yêu cầu về dữ liệu cá nhân&rdquo;. Chúng tôi phản hồi trong vòng{" "}
             <strong>72 giờ</strong> kể từ khi nhận được yêu cầu.
