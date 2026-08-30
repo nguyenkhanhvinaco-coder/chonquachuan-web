@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
 import { XIcon } from "./icons";
 
 type Props = {
@@ -25,10 +27,11 @@ export default function LeadFormTrigger({
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
+  const [consent, setConsent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !phone) return;
+    if (!name || !phone || !consent) return;
     setStatus("submitting");
 
     if (!supabase) {
@@ -36,6 +39,9 @@ export default function LeadFormTrigger({
       return;
     }
 
+    // consent_at / consent_policy_version: bằng chứng khách đã đồng ý, vào lúc nào,
+    // với phiên bản chính sách nào — xem supabase/schema.sql (phải chạy migration
+    // thêm 2 cột này trước khi deploy, nếu không insert sẽ lỗi).
     const { error } = await supabase.from("leads").insert({
       name,
       phone,
@@ -43,6 +49,8 @@ export default function LeadFormTrigger({
       note: note || null,
       product_ref: productId,
       source,
+      consent_at: new Date().toISOString(),
+      consent_policy_version: PRIVACY_POLICY_VERSION,
     });
 
     setStatus(error ? "error" : "done");
@@ -55,6 +63,7 @@ export default function LeadFormTrigger({
     setPhone("");
     setEmail("");
     setNote("");
+    setConsent(false);
   }
 
   return (
@@ -146,9 +155,31 @@ export default function LeadFormTrigger({
                   />
                 </div>
 
+                <label className="flex items-start gap-3 cursor-pointer py-1">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-0.5 w-[18px] h-[18px] flex-shrink-0 accent-[oklch(0.62_0.16_40)]"
+                  />
+                  <span className="text-ink-soft text-[12.5px] leading-relaxed">
+                    Tôi đồng ý để Chọn Quà Chuẩn thu thập và sử dụng thông tin trên nhằm liên hệ tư
+                    vấn, theo{" "}
+                    <Link
+                      href="/chinh-sach-du-lieu-ca-nhan"
+                      target="_blank"
+                      className="font-semibold underline"
+                    >
+                      Chính sách bảo vệ dữ liệu cá nhân
+                    </Link>
+                    .
+                  </span>
+                </label>
+
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
+                  disabled={status === "submitting" || !consent}
                   className="bg-accent text-accent-ink rounded-[10px] py-[15px] text-[15px] font-semibold w-full mt-1 disabled:opacity-60"
                 >
                   {status === "submitting" ? "Đang gửi..." : "Gửi yêu cầu"}

@@ -54,3 +54,15 @@ insert into products (id, name, description, price_display, category, is_digital
   ('tui-qua-tet', 'Túi Quà Tết Sáng Tạo', 'Mứt thủ công, trà, thiệp chúc Tết thiết kế riêng.', '500.000đ - 800.000đ', 'vat-ly', false, 'oklch(0.6 0.12 300)'),
   ('cham-soc-ca-nhan', 'Set Chăm Sóc Cá Nhân', 'Tinh dầu, xà phòng handmade, khăn cotton hữu cơ.', '550.000đ - 750.000đ', 'vat-ly', false, 'oklch(0.6 0.16 130)')
 on conflict (id) do nothing;
+
+-- ============================================================
+-- BỔ SUNG 30/08/2026 — Ghi nhận sự đồng ý xử lý dữ liệu cá nhân
+-- ============================================================
+-- Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15 yêu cầu sự đồng ý phải
+-- "kiểm chứng được" — nghĩa là phải lưu lại được BẰNG CHỨNG rằng
+-- khách đã đồng ý, vào lúc nào, theo phiên bản chính sách nào.
+--
+-- ⚠️ CHẠY SQL NÀY TRƯỚC KHI merge nhánh có phần ghi nhận đồng ý,
+--    nếu không lệnh insert sẽ lỗi vì thiếu cột.
+alter table leads add column if not exists consent_at timestamptz;
+alter table leads add column if not exists consent_policy_version text;
