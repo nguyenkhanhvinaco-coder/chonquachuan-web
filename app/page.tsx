@@ -2,10 +2,12 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { CATEGORY_ICONS, ArrowRightIcon, GiftIcon, PersonIcon, BriefcaseIcon } from "@/components/icons";
 import { categories } from "@/lib/categories";
-import { getProducts } from "@/lib/products";
+import LeadFormTrigger from "@/components/LeadForm";
+import { getProducts, getFeaturedProducts } from "@/lib/products";
 
 export default async function HomePage() {
   const products = (await getProducts()).slice(0, 4);
+  const featured = await getFeaturedProducts();
 
   return (
     <div className="flex flex-col">
@@ -27,37 +29,77 @@ export default async function HomePage() {
             tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số (ebook, khóa học,
             file thiết kế) nhận ngay tức thì.
           </p>
-          <div className="flex items-center gap-5 mt-2">
-            <Link
-              href="/tim-qua"
-              className="bg-accent text-accent-ink rounded-[10px] px-[30px] py-4 text-base font-semibold flex items-center gap-2.5"
-            >
-              Bắt đầu tìm quà
-              <ArrowRightIcon size={18} />
-            </Link>
-            <Link href="#cach-hoat-dong" className="text-[15px] font-semibold">
-              Xem cách hoạt động →
+          <div className="flex flex-col gap-3 mt-2">
+            <span className="text-[13px] font-semibold uppercase tracking-wide text-ink-soft">
+              Bạn tìm quà cho ai?
+            </span>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/tim-qua/ket-qua?doi-tuong=ca-nhan"
+                className="flex-1 bg-accent text-accent-ink rounded-[10px] px-6 py-4 text-base font-semibold flex items-center justify-between gap-3 min-h-[44px]"
+              >
+                <span className="flex items-center gap-3">
+                  <PersonIcon size={22} color="var(--accent-ink)" strokeWidth={1.8} />
+                  Cá nhân, người thân
+                </span>
+                <ArrowRightIcon size={17} />
+              </Link>
+              <Link
+                href="/tim-qua/ket-qua?doi-tuong=doanh-nghiep"
+                className="flex-1 border-[1.5px] border-line bg-surface rounded-[10px] px-6 py-4 text-base font-semibold flex items-center justify-between gap-3 min-h-[44px]"
+              >
+                <span className="flex items-center gap-3">
+                  <BriefcaseIcon size={22} color="var(--ink)" strokeWidth={1.8} />
+                  Doanh nghiệp, đối tác
+                </span>
+                <ArrowRightIcon size={17} />
+              </Link>
+            </div>
+            <Link href="/tim-qua" className="text-[14px] font-semibold w-fit">
+              Muốn tư vấn kỹ hơn? Trả lời vài câu hỏi →
             </Link>
           </div>
         </div>
         <div className="flex-1 grid grid-cols-2 gap-5 w-full">
-          <div className="row-span-2 bg-accent rounded-[20px] p-7 flex flex-col justify-end min-h-[420px]">
-            <GiftIcon size={46} color="var(--accent-ink)" strokeWidth={1.5} />
-            <p className="text-accent-ink font-serif text-xl font-semibold mt-4">
-              Set Trà Thảo Mộc Thủ Công
-            </p>
-            <p className="text-sm mt-1.5" style={{ color: "oklch(0.97 0.02 40)" }}>
-              Handmade · Quà tri ân
-            </p>
-          </div>
-          <div className="bg-sage-soft rounded-[20px] p-6 flex flex-col justify-end min-h-[200px]">
-            <PersonIcon size={34} color="oklch(0.4 0.1 150)" strokeWidth={1.6} />
-            <p className="font-serif text-base font-semibold mt-2.5">Quà cá nhân</p>
-          </div>
-          <div className="bg-surface-2 rounded-[20px] p-6 flex flex-col justify-end min-h-[200px]">
-            <BriefcaseIcon size={34} color="var(--ink-soft)" strokeWidth={1.6} />
-            <p className="font-serif text-base font-semibold mt-2.5">Quà đối tác</p>
-          </div>
+          {featured.map((g, i) => {
+            const isHero = i === 0;
+            return (
+              <LeadFormTrigger
+                key={g.id}
+                productId={g.id}
+                productLabel={`${g.name} · ${g.price_display}`}
+                source="trang-chu-noi-bat"
+                triggerClassName={`rounded-[20px] text-left flex overflow-hidden ${
+                  isHero ? "row-span-2 min-h-[420px]" : "min-h-[200px]"
+                }`}
+                triggerLabel={
+                  <span
+                    className={`flex flex-col justify-end w-full rounded-[20px] ${
+                      isHero ? "p-7" : "p-6"
+                    }`}
+                    style={{ background: g.color }}
+                  >
+                    <GiftIcon
+                      size={isHero ? 46 : 34}
+                      color="white"
+                      strokeWidth={isHero ? 1.5 : 1.6}
+                    />
+                    <span
+                      className={`font-serif font-semibold text-white ${
+                        isHero ? "text-xl mt-4" : "text-base mt-2.5"
+                      }`}
+                    >
+                      {g.name}
+                    </span>
+                    <span className="text-sm mt-1.5 text-white/85">{g.price_display}</span>
+                    <span className="text-[13px] font-semibold mt-3 text-white/90">
+                      Nhận tư vấn →
+                    </span>
+                  </span>
+                }
+              />
+            );
+          })}
         </div>
       </section>
 
@@ -163,7 +205,7 @@ export default async function HomePage() {
           </p>
         </div>
         <a
-          href="mailto:nguyenkhanhvina.co@gmail.com?subject=Đăng ký nhà cung cấp Chọn Quà Chuẩn"
+          href="mailto:lienhe@chonquachuan.vn?subject=Đăng ký nhà cung cấp Chọn Quà Chuẩn"
           className="flex-shrink-0 bg-bg text-ink rounded-[10px] px-[26px] py-3.5 text-[15px] font-semibold"
         >
           Trở thành nhà cung cấp
@@ -172,9 +214,12 @@ export default async function HomePage() {
 
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-wrap">
           <Link href="/lien-he" className="text-ink-soft text-[13px] font-medium">
             Liên hệ
+          </Link>
+          <Link href="/chinh-sach-du-lieu-ca-nhan" className="text-ink-soft text-[13px] font-medium">
+            Chính sách dữ liệu cá nhân
           </Link>
           <span className="text-ink-soft text-[13px]">© 2026 Nguyên Khánh Vina · chonquachuan.vn</span>
         </div>

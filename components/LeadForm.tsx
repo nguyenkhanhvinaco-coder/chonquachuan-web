@@ -1,13 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
+import { ZALO_URL } from "@/lib/contact";
 import { XIcon } from "./icons";
 
 type Props = {
   productId: string;
   productLabel: string;
-  triggerLabel: string;
+  // ReactNode chứ không chỉ string: khu sản phẩm nổi bật ở trang chủ dùng cả
+  // thẻ sản phẩm làm nút bấm (chỉ dùng <span>, không dùng <div>, để HTML hợp lệ
+  // bên trong <button>).
+  triggerLabel: React.ReactNode;
   triggerClassName: string;
   source: string;
 };
@@ -23,12 +29,11 @@ export default function LeadFormTrigger({
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [note, setNote] = useState("");
+  const [consent, setConsent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !phone) return;
+    if (!name || !phone || !consent) return;
     setStatus("submitting");
 
     if (!supabase) {
@@ -36,13 +41,16 @@ export default function LeadFormTrigger({
       return;
     }
 
+    // consent_at / consent_policy_version: bằng chứng khách đã đồng ý, vào lúc nào,
+    // với phiên bản chính sách nào — xem supabase/schema.sql (phải chạy migration
+    // thêm 2 cột này trước khi deploy, nếu không insert sẽ lỗi).
     const { error } = await supabase.from("leads").insert({
       name,
       phone,
-      email: email || null,
-      note: note || null,
       product_ref: productId,
       source,
+      consent_at: new Date().toISOString(),
+      consent_policy_version: PRIVACY_POLICY_VERSION,
     });
 
     setStatus(error ? "error" : "done");
@@ -53,8 +61,7 @@ export default function LeadFormTrigger({
     setStatus("idle");
     setName("");
     setPhone("");
-    setEmail("");
-    setNote("");
+    setConsent(false);
   }
 
   return (
@@ -71,7 +78,7 @@ export default function LeadFormTrigger({
           <div className="w-full max-w-[460px] bg-surface rounded-2xl p-8 flex flex-col gap-5 shadow-2xl">
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-1">
-                <h2 className="font-serif text-xl">Gửi yêu cầu đặt hàng</h2>
+                <h2 className="font-serif text-xl">Gửi yêu cầu</h2>
                 <p className="text-ink-soft text-[13.5px]">{productLabel}</p>
               </div>
               <button
@@ -84,14 +91,28 @@ export default function LeadFormTrigger({
             </div>
 
             {status === "done" ? (
+              // Lead đã lưu xong ở bước này. Đưa luôn nút Zalo để khách nào muốn
+              // chốt ngay thì chat liền, không phải chờ gọi lại — nhưng thông tin
+              // đã nằm trong CSDL rồi nên khách không nhắn cũng không mất dấu.
               <div className="flex flex-col gap-2 py-4">
                 <p className="font-semibold">Đã gửi yêu cầu thành công!</p>
                 <p className="text-ink-soft text-sm">
                   Chúng tôi sẽ liên hệ lại bạn sớm nhất qua số điện thoại đã cung cấp.
                 </p>
+                <p className="text-ink-soft text-sm">
+                  Cần tư vấn ngay? Nhắn Zalo cho chúng tôi, phản hồi nhanh hơn.
+                </p>
+                <a
+                  href={ZALO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 bg-accent text-accent-ink rounded-[10px] py-3.5 font-semibold text-[15px] text-center min-h-[44px]"
+                >
+                  Nhắn Zalo ngay →
+                </a>
                 <button
                   onClick={closeAndReset}
-                  className="mt-3 bg-accent text-accent-ink rounded-[10px] py-3.5 font-semibold text-[15px]"
+                  className="text-ink-soft py-3 font-semibold text-[14px] min-h-[44px]"
                 >
                   Đóng
                 </button>
@@ -112,43 +133,44 @@ export default function LeadFormTrigger({
                 </div>
                 <div>
                   <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                    Số điện thoại
+                    Số điện thoại / Zalo
                   </label>
                   <input
                     required
+                    type="tel"
+                    inputMode="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="09xx xxx xxx"
                     className="w-full border border-line rounded-[9px] px-3.5 py-3 bg-surface text-sm"
                   />
                 </div>
-                <div>
-                  <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                    Email (tuỳ chọn)
-                  </label>
+
+                <label className="flex items-start gap-3 cursor-pointer py-1">
                   <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="ban@congty.vn"
-                    className="w-full border border-line rounded-[9px] px-3.5 py-3 bg-surface text-sm"
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-0.5 w-[18px] h-[18px] flex-shrink-0 accent-[oklch(0.62_0.16_40)]"
                   />
-                </div>
-                <div>
-                  <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                    Ghi chú thêm (tuỳ chọn)
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    placeholder="Yêu cầu in logo, thời hạn giao hàng..."
-                    className="w-full border border-line rounded-[9px] px-3.5 py-3 bg-surface text-sm"
-                  />
-                </div>
+                  <span className="text-ink-soft text-[12.5px] leading-relaxed">
+                    Tôi đồng ý để Chọn Quà Chuẩn thu thập và sử dụng thông tin trên nhằm liên hệ tư
+                    vấn, theo{" "}
+                    <Link
+                      href="/chinh-sach-du-lieu-ca-nhan"
+                      target="_blank"
+                      className="font-semibold underline"
+                    >
+                      Chính sách bảo vệ dữ liệu cá nhân
+                    </Link>
+                    .
+                  </span>
+                </label>
 
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
+                  disabled={status === "submitting" || !consent}
                   className="bg-accent text-accent-ink rounded-[10px] py-[15px] text-[15px] font-semibold w-full mt-1 disabled:opacity-60"
                 >
                   {status === "submitting" ? "Đang gửi..." : "Gửi yêu cầu"}

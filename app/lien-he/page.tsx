@@ -1,6 +1,8 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import LeadFormTrigger from "@/components/LeadForm";
+import { ZALO_URL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Về chúng tôi & Liên hệ",
@@ -60,26 +62,55 @@ export default function ContactPage() {
           Có câu hỏi hoặc muốn được tư vấn quà tặng? Gửi yêu cầu cho chúng tôi, đội ngũ Chọn Quà
           Chuẩn sẽ liên hệ lại sớm nhất.
         </p>
-        <a
-          href="mailto:nguyenkhanhvina.co@gmail.com"
-          className="text-accent font-semibold text-[15px] w-fit"
-        >
-          nguyenkhanhvina.co@gmail.com
-        </a>
-        <div>
+        <dl className="flex flex-col gap-2.5 text-[15px]">
+          <div className="flex flex-col sm:flex-row sm:gap-2">
+            <dt className="text-ink-soft sm:w-32 flex-shrink-0">Email</dt>
+            <dd>
+              <a
+                href="mailto:lienhe@chonquachuan.vn"
+                className="text-accent font-semibold"
+              >
+                lienhe@chonquachuan.vn
+              </a>
+            </dd>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:gap-2">
+            <dt className="text-ink-soft sm:w-32 flex-shrink-0">Điện thoại / Zalo</dt>
+            <dd>
+              <a href="tel:+84827288286" className="text-accent font-semibold">
+                082 728 8286
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <div className="flex items-center gap-3 flex-wrap">
           <LeadFormTrigger
             productId="lien-he-chung"
             productLabel="Liên hệ chung"
             triggerLabel="Gửi yêu cầu tư vấn"
-            triggerClassName="bg-accent text-accent-ink rounded-lg px-6 py-3.5 text-[15px] font-semibold w-fit"
+            triggerClassName="bg-accent text-accent-ink rounded-lg px-6 py-3.5 text-[15px] font-semibold min-h-[44px]"
             source="lien-he"
           />
+          <a
+            href={ZALO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-[1.5px] border-line rounded-lg px-6 py-3.5 text-[15px] font-semibold min-h-[44px] flex items-center"
+          >
+            Nhắn tin Zalo
+          </a>
         </div>
       </section>
 
-      <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between">
+      <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3 flex-wrap">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
-        <span className="text-ink-soft text-[13px]">© 2026 Nguyên Khánh Vina · chonquachuan.vn</span>
+        <div className="flex items-center gap-4 flex-wrap">
+          <Link href="/chinh-sach-du-lieu-ca-nhan" className="text-ink-soft text-[13px] font-medium">
+            Chính sách dữ liệu cá nhân
+          </Link>
+          <span className="text-ink-soft text-[13px]">© 2026 Nguyên Khánh Vina · chonquachuan.vn</span>
+        </div>
       </footer>
     </div>
   );

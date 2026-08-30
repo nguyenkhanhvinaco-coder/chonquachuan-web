@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CartIcon } from "./icons";
 
 function Brand() {
   return (
@@ -49,12 +48,9 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
         <Link href="/#nha-cung-cap" className="text-ink-soft text-[15px] font-medium hidden md:inline">
           Trở thành nhà cung cấp
         </Link>
-        <div className="relative hidden md:flex items-center">
-          <CartIcon size={22} color="var(--ink)" />
-          <span className="absolute -top-2 -right-2.5 bg-accent text-accent-ink text-[10.5px] font-bold rounded-full w-[17px] h-[17px] flex items-center justify-center">
-            0
-          </span>
-        </div>
+        {/* Giỏ hàng đã gỡ khỏi header: website chưa có giỏ hàng/thanh toán thật,
+            biểu tượng giỏ kèm số 0 khiến khách tưởng có mà bấm vào không làm gì.
+            Gắn lại khi làm xong luồng mua hàng — CartIcon vẫn còn trong icons.tsx. */}
         <Link
           href="/tim-qua"
           className="bg-accent text-accent-ink rounded-lg px-2.5 py-1.5 text-[11px] sm:px-6 sm:py-3 sm:text-[15px] font-semibold whitespace-nowrap flex-shrink-0"

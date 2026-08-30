@@ -98,3 +98,20 @@ export async function getProducts(): Promise<Product[]> {
   if (error || !data || data.length === 0) return seedProducts;
   return data as Product[];
 }
+
+// Sản phẩm ghim lên khu nổi bật ở trang chủ — nơi muốn đẩy mạnh bán hàng.
+// ĐỔI SẢN PHẨM NỔI BẬT: chỉ cần sửa 3 id dưới đây, không phải đụng giao diện.
+// Thứ tự có ý nghĩa: id đầu tiên chiếm ô LỚN, hai id sau nằm ở hai ô nhỏ.
+export const FEATURED_IDS = ["tra-thao-moc", "van-phong-tri-an", "tui-qua-tet"];
+
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const all = await getProducts();
+  const picked = FEATURED_IDS.map((id) => all.find((p) => p.id === id)).filter(
+    (p): p is Product => Boolean(p)
+  );
+
+  // Nếu id ghim không còn tồn tại (sản phẩm bị xoá/đổi tên), lấp bằng sản phẩm
+  // đầu danh sách để khu nổi bật không bao giờ trống.
+  const fallback = all.filter((p) => !picked.some((q) => q.id === p.id));
+  return [...picked, ...fallback].slice(0, 3);
+}

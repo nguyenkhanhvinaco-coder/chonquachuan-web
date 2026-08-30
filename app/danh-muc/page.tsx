@@ -36,8 +36,8 @@ export default async function CatalogPage() {
       <section className="px-9 pt-12 pb-2 md:px-[72px] flex flex-col gap-2">
         <h1 className="font-serif text-[32px]">Danh mục quà tặng</h1>
         <p className="text-ink-soft text-[15px]">
-          Mua ngay quà có sẵn — quà số nhận link tức thì, quà vật lý giao trong vài ngày. Cần số
-          lượng lớn hoặc in logo riêng?{" "}
+          Chọn món bạn quan tâm, để lại số điện thoại — chúng tôi báo giá và tư vấn trong ngày. Cần
+          số lượng lớn hoặc in logo riêng?{" "}
           <Link href="/tim-qua" className="font-semibold">
             Yêu cầu báo giá →
           </Link>
@@ -81,9 +81,12 @@ export default async function CatalogPage() {
 
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-wrap">
           <Link href="/lien-he" className="text-ink-soft text-[13px] font-medium">
             Liên hệ
+          </Link>
+          <Link href="/chinh-sach-du-lieu-ca-nhan" className="text-ink-soft text-[13px] font-medium">
+            Chính sách dữ liệu cá nhân
           </Link>
           <span className="text-ink-soft text-[13px]">© 2026 Nguyên Khánh Vina · chonquachuan.vn</span>
         </div>
