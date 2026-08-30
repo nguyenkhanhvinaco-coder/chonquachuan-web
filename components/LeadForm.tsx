@@ -74,7 +74,7 @@ export default function LeadFormTrigger({
           <div className="w-full max-w-[460px] bg-surface rounded-2xl p-8 flex flex-col gap-5 shadow-2xl">
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-1">
-                <h2 className="font-serif text-xl">Gửi yêu cầu đặt hàng</h2>
+                <h2 className="font-serif text-xl">Gửi yêu cầu</h2>
                 <p className="text-ink-soft text-[13.5px]">{productLabel}</p>
               </div>
               <button
