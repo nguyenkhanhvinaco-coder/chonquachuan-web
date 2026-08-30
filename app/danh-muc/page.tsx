@@ -36,8 +36,8 @@ export default async function CatalogPage() {
       <section className="px-9 pt-12 pb-2 md:px-[72px] flex flex-col gap-2">
         <h1 className="font-serif text-[32px]">Danh mục quà tặng</h1>
         <p className="text-ink-soft text-[15px]">
-          Mua ngay quà có sẵn — quà số nhận link tức thì, quà vật lý giao trong vài ngày. Cần số
-          lượng lớn hoặc in logo riêng?{" "}
+          Chọn món bạn quan tâm, để lại số điện thoại — chúng tôi báo giá và tư vấn trong ngày. Cần
+          số lượng lớn hoặc in logo riêng?{" "}
           <Link href="/tim-qua" className="font-semibold">
             Yêu cầu báo giá →
           </Link>
