@@ -1,4 +1,5 @@
-// Bộ thiệp Trung Thu 2026 — Đợt 1: 12 tranh thật do Nguyên Khánh (con gái nhà sáng lập) vẽ.
+// Bộ thiệp tranh vẽ tay thật, dùng quanh năm (không giới hạn dịp Trung Thu) — Đợt 1:
+// 12 tranh thật do Nguyên Khánh (con gái nhà sáng lập) vẽ.
 // Đây KHÔNG phải minh hoạ AI hay ảnh mua — là tranh gốc, chỉ Chọn Quà Chuẩn có.
 //
 // Đã CỐ Ý loại bỏ tranh có nhân vật thuộc bản quyền người khác (vd: Pikachu/Pokémon)
@@ -18,7 +19,7 @@ export const TRUNG_THU_CARDS: TrungThuCard[] = [
     id: "co-tien",
     name: "Cô Tiên Đêm Sao",
     image: "/trung-thu/co-tien.jpg",
-    defaultMessage: "Chúc Trung Thu này, mọi điều ước của bạn lấp lánh như trời sao đêm nay.",
+    defaultMessage: "Chúc mọi điều ước của bạn lấp lánh như trời sao đêm nay.",
   },
   {
     id: "nha-nam-tho",
@@ -36,19 +37,19 @@ export const TRUNG_THU_CARDS: TrungThuCard[] = [
     id: "dan-meo",
     name: "Đàn Mèo Quây Quần",
     image: "/trung-thu/dan-meo.jpg",
-    defaultMessage: "Trung Thu là dịp để quây quần — chúc bạn và những người thân yêu luôn bên nhau.",
+    defaultMessage: "Chúc bạn và những người thân yêu luôn quây quần, gắn bó bên nhau.",
   },
   {
     id: "ma",
     name: "Bạn Ma Dễ Thương",
     image: "/trung-thu/ma.jpg",
-    defaultMessage: "Chúc bạn một mùa Trung Thu vui nhộn, đầy những bất ngờ thú vị.",
+    defaultMessage: "Chúc bạn những ngày vui nhộn, đầy những bất ngờ thú vị.",
   },
   {
     id: "ca-koi",
     name: "Cá Koi May Mắn",
     image: "/trung-thu/ca-koi.jpg",
-    defaultMessage: "Chúc bạn một mùa Trung Thu an lành, mọi điều hanh thông như cá gặp nước.",
+    defaultMessage: "Chúc bạn luôn an lành, mọi điều hanh thông như cá gặp nước.",
   },
   {
     id: "hoa-anh-dao",
@@ -60,13 +61,13 @@ export const TRUNG_THU_CARDS: TrungThuCard[] = [
     id: "qua-bo",
     name: "Quả Bơ Tươi Mới",
     image: "/trung-thu/qua-bo.jpg",
-    defaultMessage: "Chúc bạn luôn tươi mới, tràn đầy năng lượng trong mùa Trung Thu này.",
+    defaultMessage: "Chúc bạn luôn tươi mới, tràn đầy năng lượng mỗi ngày.",
   },
   {
     id: "cuu-cham-bi",
     name: "Cừu Chấm Bi",
     image: "/trung-thu/cuu-cham-bi.jpg",
-    defaultMessage: "Chúc bạn một mùa Trung Thu nhẹ nhàng, đáng yêu như những ngày thơ bé.",
+    defaultMessage: "Chúc bạn những ngày nhẹ nhàng, đáng yêu như tuổi thơ.",
   },
   {
     id: "binh-hoa",

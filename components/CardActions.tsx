@@ -71,7 +71,7 @@ export default function CardActions({
     }
 
     const file = new File([blob], fileName, { type: blob.type || "image/png" });
-    const shareText = `Gửi tới ${den} một lời chúc Trung Thu 🏮 — chonquachuan.vn`;
+    const shareText = `Gửi tới ${den} một lời chúc 🎁 — chonquachuan.vn`;
 
     // Uu tien gui thang tam ANH thay vi gui link — de nguoi nhan thay ngay
     // tam thiep, khong phai mot duong link dai xau.
@@ -80,7 +80,7 @@ export default function CardActions({
         if (navigator.canShare?.({ files: [file] })) {
           await navigator.share({
             files: [file],
-            title: "Thiệp Trung Thu từ chonquachuan.vn",
+            title: "Thiệp tranh vẽ từ chonquachuan.vn",
             text: shareText,
           });
           setStatus("shared");
@@ -156,7 +156,7 @@ export default function CardActions({
           className="rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px]"
           style={{ background: "var(--sage-soft)", color: "oklch(0.4 0.1 150)" }}
         >
-          Kết bạn Zalo OA — nhận ưu đãi Trung Thu &amp; Tết
+          Kết bạn Zalo OA — nhận ưu đãi dành riêng cho bạn
         </a>
       )}
 

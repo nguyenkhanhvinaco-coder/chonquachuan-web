@@ -36,9 +36,9 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   // Dung thang anh tranh goc lam anh preview khi chia se link (khong qua
   // route sinh anh dong nua — route do hay bi loi may chu luc chay, da bo).
   const imageUrl = `${SITE_URL}${card.image}`;
-  const title = `${tu} gửi thiệp "${card.name}" tới ${den} 🏮`;
+  const title = `${tu} gửi thiệp "${card.name}" tới ${den} 🎁`;
   const description =
-    "Thiệp Trung Thu vẽ bởi một bạn nhỏ thật — xem và gửi lời chúc của riêng bạn, miễn phí, từ Chọn Quà Chuẩn.";
+    "Thiệp tranh vẽ bởi một bạn nhỏ thật — xem và gửi lời chúc của riêng bạn, miễn phí, từ Chọn Quà Chuẩn.";
 
   return {
     title,

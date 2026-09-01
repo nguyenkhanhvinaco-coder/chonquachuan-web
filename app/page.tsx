@@ -25,7 +25,7 @@ export default async function HomePage() {
               className="inline-flex items-center gap-1.5 bg-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
               style={{ color: "#B3441F" }}
             >
-              🏮 Thiệp tranh vẽ tặng miễn phí
+              🎁 Thiệp tranh vẽ tặng miễn phí
             </span>
             <h2 className="font-serif text-[28px] md:text-[36px] leading-[1.15]" style={{ color: "#3A2A1D" }}>
               Thiệp tranh vẽ của bé.
@@ -36,9 +36,12 @@ export default async function HomePage() {
               Chọn 1 trong 12 bức tranh thật do một bạn nhỏ vẽ tay, thêm lời chúc, gửi ngay cho
               người thân — không mất phí, không cần đăng ký.
             </p>
-            <span className="inline-flex items-center gap-2 w-fit bg-ink text-bg rounded-[10px] px-6 py-3.5 text-[15px] font-semibold mt-1.5">
+            <span
+              className="inline-flex items-center gap-2 w-fit rounded-[10px] px-6 py-3.5 text-[15px] font-bold mt-1.5"
+              style={{ background: "#FFD400", color: "#2A1F0F", boxShadow: "0 6px 20px rgba(255,212,0,0.55)" }}
+            >
               Bấm để tạo thiệp
-              <ArrowRightIcon size={16} color="var(--bg)" />
+              <ArrowRightIcon size={16} color="#2A1F0F" />
             </span>
           </div>
           <div className="relative w-full max-w-[300px] h-[190px] md:h-[240px] md:max-w-[340px] shrink-0">

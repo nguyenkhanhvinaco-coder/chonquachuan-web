@@ -40,7 +40,7 @@ export default function ThiepTrungThuPage() {
       await supabase.from("leads").insert({
         name: tu,
         phone,
-        note: `Thiệp Trung Thu (tranh bé vẽ) — tranh: ${card?.name ?? tranh} | gửi tới: ${den}${
+        note: `Thiệp tranh vẽ (tranh bé vẽ) — tranh: ${card?.name ?? tranh} | gửi tới: ${den}${
           loiNhan ? ` | lời nhắn: ${loiNhan}` : ""
         }`,
         product_ref: `thiep-trung-thu-${tranh}`,
@@ -66,7 +66,7 @@ export default function ThiepTrungThuPage() {
               Thiệp tranh vẽ tặng miễn phí
             </span>
             <h1 className="font-serif text-[28px] md:text-[32px] leading-snug">
-              Thiệp Trung Thu vẽ bởi một bạn nhỏ thật
+              Thiệp tranh vẽ bởi một bạn nhỏ thật
             </h1>
             <p className="text-ink-soft text-[15px] leading-relaxed">
               Mỗi bức dưới đây là tranh thật — không phải minh hoạ máy vẽ — do chính con gái nhà
@@ -197,8 +197,7 @@ export default function ThiepTrungThuPage() {
                 className="w-full border border-line rounded-[9px] px-3.5 py-3.5 bg-surface text-[15px]"
               />
               <p className="text-ink-soft text-xs mt-1.5">
-                Dùng để gửi ưu đãi Trung Thu &amp; Tết dành riêng cho bạn — không dùng vào việc
-                khác.
+                Dùng để gửi ưu đãi dành riêng cho bạn — không dùng vào việc khác.
               </p>
             </div>
 

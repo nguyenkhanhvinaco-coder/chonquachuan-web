@@ -22,7 +22,7 @@ export default function PaintingCard({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={card.image} alt={card.name} className="art" crossOrigin="anonymous" />
         <div className="scrim" />
-        <div className="brand-badge">🏮 chonquachuan.vn</div>
+        <div className="brand-badge">🎁 chonquachuan.vn</div>
         <div className="text-block">
           <p className="to">
             Gửi tới <strong>{den}</strong>
