@@ -28,8 +28,6 @@ export default function PaintingCard({
         <div className="scrim" />
         <div className="brand-badge">🏮 chonquachuan.vn</div>
         <div className="text-block">
-          <span className="kicker">Chọn Quà Chuẩn · Tranh vẽ tay thật</span>
-          <h1 className="headline">{card.name}</h1>
           <p className="to">
             Gửi tới <strong>{den}</strong>
           </p>
@@ -93,22 +91,9 @@ export default function PaintingCard({
           gap: 5px;
           text-align: left;
         }
-        .kicker {
-          color: #F0B27A;
-          font-size: 10.5px;
-          font-weight: 600;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-        }
-        .headline {
-          font-family: var(--font-lora), Georgia, serif;
-          font-size: 23px;
-          font-weight: 600;
-          color: #FFFFFF;
-          margin: 4px 0 2px;
-        }
         .to {
-          font-size: 14.5px;
+          font-size: 15.5px;
+          font-weight: 600;
           color: #F3EAE0;
         }
         .msg {

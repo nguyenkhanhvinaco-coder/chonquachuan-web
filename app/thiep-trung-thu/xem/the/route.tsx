@@ -80,22 +80,8 @@ export async function GET(request: Request) {
             gap: 10,
           }}
         >
-          <div
-            style={{
-              fontSize: 21,
-              fontWeight: 600,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: "#F0B27A",
-            }}
-          >
-            Chọn Quà Chuẩn · Tranh vẽ tay thật
-          </div>
-          <div style={{ fontSize: 52, fontWeight: 700, color: "#FFFFFF", lineHeight: 1.15 }}>
-            {card.name}
-          </div>
-          <div style={{ fontSize: 28, color: "#F3EAE0", display: "flex", marginTop: 4 }}>
-            Gửi tới&nbsp;<span style={{ fontWeight: 700 }}>{den}</span>
+          <div style={{ fontSize: 34, fontWeight: 700, color: "#FFFFFF", display: "flex" }}>
+            Gửi tới&nbsp;<span style={{ color: "#F0B27A" }}>{den}</span>
           </div>
           <div
             style={{
