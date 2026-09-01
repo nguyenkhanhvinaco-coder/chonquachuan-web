@@ -13,6 +13,15 @@ export default async function HomePage() {
     <div className="flex flex-col">
       <Header />
 
+      {/* Seasonal promo — Trung Thu */}
+      <Link
+        href="/thiep-trung-thu"
+        className="flex items-center justify-center gap-2 text-center px-4 py-3 text-[13.5px] font-semibold"
+        style={{ background: "#00409A", color: "#F5EFDD" }}
+      >
+        🏮 Trung Thu 2026 — Thiệp vẽ bởi một bạn nhỏ thật, gửi miễn phí. Bấm để tạo ngay →
+      </Link>
+
       {/* Hero */}
       <section className="flex flex-col md:flex-row items-center gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
         <div className="flex-1 flex flex-col gap-6">
