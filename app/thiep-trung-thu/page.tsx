@@ -63,7 +63,7 @@ export default function ThiepTrungThuPage() {
         <div className="w-full max-w-[640px] flex flex-col gap-9">
           <div className="flex flex-col gap-3">
             <span className="text-ink-soft text-[13px] font-semibold uppercase tracking-wide">
-              Trung Thu 2026 · Miễn phí
+              Thiệp tranh vẽ tặng miễn phí
             </span>
             <h1 className="font-serif text-[28px] md:text-[32px] leading-snug">
               Thiệp Trung Thu vẽ bởi một bạn nhỏ thật

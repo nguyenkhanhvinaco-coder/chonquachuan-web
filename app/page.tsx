@@ -25,7 +25,7 @@ export default async function HomePage() {
               className="inline-flex items-center gap-1.5 bg-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
               style={{ color: "#B3441F" }}
             >
-              🏮 Trung Thu 2026
+              🏮 Thiệp tranh vẽ tặng miễn phí
             </span>
             <h2 className="font-serif text-[28px] md:text-[36px] leading-[1.15]" style={{ color: "#3A2A1D" }}>
               Thiệp tranh vẽ của bé.
