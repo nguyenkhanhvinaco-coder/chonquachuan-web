@@ -91,7 +91,7 @@ export const TRUNG_THU_CARDS: TrungThuCard[] = [
     id: "quoc-khanh",
     name: "Diễu Hành Mừng Quốc Khánh",
     image: "/trung-thu/quoc-khanh.jpg",
-    defaultMessage: "Chúc bạn một ngày Quốc Khánh thật tự hào và ý nghĩa.",
+    defaultMessage: "Thật tự hào ngày Quốc Khánh 2/9, chúc bạn và gia đình một ngày nghỉ lễ ý nghĩa và nhiều niềm vui.",
   },
   {
     id: "nui-suoi",
