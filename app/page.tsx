@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { CATEGORY_ICONS, ArrowRightIcon, GiftIcon, PersonIcon, BriefcaseIcon } from "@/components/icons";
@@ -14,13 +15,45 @@ export default async function HomePage() {
       <Header />
 
       {/* Seasonal promo — Trung Thu */}
-      <Link
-        href="/thiep-trung-thu"
-        className="flex items-center justify-center gap-2 text-center px-4 py-3 text-[13.5px] font-semibold"
-        style={{ background: "#00409A", color: "#F5EFDD" }}
-      >
-        🏮 Trung Thu 2026 — Thiệp vẽ bởi một bạn nhỏ thật, gửi miễn phí. Bấm để tạo ngay →
-      </Link>
+      <section style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}>
+        <Link
+          href="/thiep-trung-thu"
+          className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 px-9 py-12 md:px-[72px] md:py-14"
+        >
+          <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left">
+            <span
+              className="inline-flex items-center gap-1.5 bg-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
+              style={{ color: "#B3441F" }}
+            >
+              🏮 Trung Thu 2026
+            </span>
+            <h2 className="font-serif text-[28px] md:text-[36px] leading-[1.15]" style={{ color: "#3A2A1D" }}>
+              Thiệp tranh vẽ của bé.
+              <br />
+              Gửi tặng bạn miễn phí.
+            </h2>
+            <p className="text-[15px] leading-relaxed max-w-[420px]" style={{ color: "#6B5643" }}>
+              Chọn 1 trong 12 bức tranh thật do một bạn nhỏ vẽ tay, thêm lời chúc, gửi ngay cho
+              người thân — không mất phí, không cần đăng ký.
+            </p>
+            <span className="inline-flex items-center gap-2 w-fit bg-ink text-bg rounded-[10px] px-6 py-3.5 text-[15px] font-semibold mt-1.5">
+              Bấm để tạo thiệp
+              <ArrowRightIcon size={16} color="var(--bg)" />
+            </span>
+          </div>
+          <div className="relative w-full max-w-[300px] h-[190px] md:h-[240px] md:max-w-[340px] shrink-0">
+            <div className="absolute left-[6%] top-[8%] w-[52%] aspect-[3/4] rotate-[-7deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
+              <Image src="/trung-thu/co-tien.jpg" alt="Tranh Cô Tiên Đêm Sao" fill sizes="200px" className="object-cover" />
+            </div>
+            <div className="absolute right-[4%] top-0 w-[46%] aspect-[3/4] rotate-[6deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
+              <Image src="/trung-thu/ca-koi.jpg" alt="Tranh Cá Koi May Mắn" fill sizes="180px" className="object-cover" />
+            </div>
+            <div className="absolute left-[26%] bottom-0 w-[48%] aspect-[3/4] rotate-[3deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
+              <Image src="/trung-thu/dan-meo.jpg" alt="Tranh Đàn Mèo Quây Quần" fill sizes="190px" className="object-cover" />
+            </div>
+          </div>
+        </Link>
+      </section>
 
       {/* Hero */}
       <section className="flex flex-col md:flex-row items-center gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
