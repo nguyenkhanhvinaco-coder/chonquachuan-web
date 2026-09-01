@@ -38,13 +38,15 @@ export default function CardActions({
         }
         await navigator.share({ title: "Thiệp Trung Thu từ chonquachuan.vn", text: shareText, url: shareUrl });
         return;
-      } catch (err) {
-        if (err instanceof DOMException && err.name === "AbortError") return;
-        // fetch/share lỗi vì lý do khác (vd. mạng yếu) — rơi xuống tải ảnh trực tiếp bên dưới
+      } catch {
+        // Hộp thoại chia sẻ của máy không có ứng dụng phù hợp (vd. máy tính không
+        // cài Zalo) hoặc người dùng đóng hộp thoại — dù lý do gì, vẫn luôn đảm bảo
+        // người dùng nhận được tấm ảnh bằng cách tải trực tiếp bên dưới, không để
+        // màn hình im lặng như không có chuyện gì xảy ra.
       }
     }
 
-    // Không có Web Share API (thường là máy tính): tải thẳng ảnh về thay vì copy link dài.
+    // Không chia sẻ được ảnh trực tiếp: tải thẳng ảnh về máy thay vì copy link dài.
     try {
       const a = document.createElement("a");
       a.href = imageUrl;
