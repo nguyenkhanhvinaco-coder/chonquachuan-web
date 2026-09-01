@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { TrungThuCard } from "@/lib/trungThuCards";
 
 export default function PaintingCard({
@@ -16,15 +15,12 @@ export default function PaintingCard({
 
   return (
     <div className="painting-card">
-      <div className="frame">
-        <Image
-          src={card.image}
-          alt={card.name}
-          width={720}
-          height={960}
-          className="art"
-          priority
-        />
+      <div className="frame" id="thiep-capture-frame">
+        {/* Dung the img thuong (khong qua next/image) de dam bao chup anh
+            bang html-to-image luon lay dung file goc, khong qua endpoint
+            toi uu hoa anh cua Next co the gay tre/loi khi chup. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={card.image} alt={card.name} className="art" crossOrigin="anonymous" />
         <div className="scrim" />
         <div className="brand-badge">🏮 chonquachuan.vn</div>
         <div className="text-block">
