@@ -25,17 +25,15 @@ export default function PaintingCard({
           className="art"
           priority
         />
-      </div>
-
-      <div className="text-block">
-        <span className="kicker">Chọn Quà Chuẩn · Tranh vẽ tay thật</span>
-        <h1 className="headline">{card.name}</h1>
-        <p className="to">
-          Gửi tới <strong>{den}</strong>
-        </p>
-        <p className="msg">&ldquo;{message}&rdquo;</p>
-        <p className="from">— Từ {tu}</p>
-        <p className="brand">chonquachuan.vn</p>
+        <div className="scrim" />
+        <div className="brand-badge">🏮 chonquachuan.vn</div>
+        <div className="text-block">
+          <p className="to">
+            Gửi tới <strong>{den}</strong>
+          </p>
+          <p className="msg">&ldquo;{message}&rdquo;</p>
+          <p className="from">— Từ {tu}</p>
+        </div>
       </div>
 
       <style>{`
@@ -49,69 +47,68 @@ export default function PaintingCard({
           animation: rise 0.8s ease-out both;
         }
         .frame {
+          position: relative;
           width: 100%;
           border-radius: 20px;
           overflow: hidden;
           box-shadow: 0 18px 44px rgba(58, 47, 38, 0.18);
           background: #fff;
-          padding: 10px;
-          border: 1px solid var(--line);
         }
         .art {
           width: 100%;
           height: auto;
           display: block;
-          border-radius: 12px;
+        }
+        .scrim {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 62%;
+          background: linear-gradient(to top, rgba(20,15,10,0.92) 0%, rgba(20,15,10,0.75) 32%, rgba(20,15,10,0) 100%);
+          pointer-events: none;
+        }
+        .brand-badge {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          padding: 6px 12px;
+          border-radius: 999px;
+          background: rgba(20,15,10,0.5);
+          color: #fff;
+          font-size: 11.5px;
+          font-weight: 700;
+          letter-spacing: 0.02em;
         }
         .text-block {
-          width: 100%;
-          padding: 24px 10px 4px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 20px 20px 22px;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
-          gap: 6px;
-        }
-        .kicker {
-          color: var(--accent);
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-        }
-        .headline {
-          font-family: var(--font-lora), Georgia, serif;
-          font-size: 24px;
-          font-weight: 600;
-          color: var(--ink);
-          margin: 6px 0 4px;
+          gap: 5px;
+          text-align: left;
         }
         .to {
-          font-size: 15px;
-          color: var(--ink);
+          font-size: 15.5px;
+          font-weight: 600;
+          color: #F3EAE0;
         }
         .msg {
           font-family: var(--font-lora), Georgia, serif;
           font-style: italic;
-          font-size: 13.5px;
-          color: var(--ink-soft);
-          max-width: 320px;
-          line-height: 1.6;
+          font-size: 13px;
+          color: #D9CFC4;
+          line-height: 1.55;
           margin-top: 6px;
         }
         .from {
           font-size: 13px;
           font-weight: 600;
-          color: var(--accent);
+          color: #F0B27A;
           margin-top: 8px;
-        }
-        .brand {
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.04em;
-          color: var(--ink-soft);
-          margin-top: 10px;
-          opacity: 0.75;
         }
         @keyframes rise {
           from { opacity: 0; transform: translateY(14px); }

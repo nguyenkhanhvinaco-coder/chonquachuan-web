@@ -53,14 +53,16 @@ export default function XemThiepPage({ searchParams }: { searchParams: SP }) {
   const card = findCard(tranh);
   const qs = buildQuery(searchParams);
   const shareUrl = `${SITE_URL}/thiep-trung-thu/xem?${qs.toString()}`;
-  const imageUrl = `/thiep-trung-thu/xem/anh?${qs.toString()}`;
+  // Anh dung de gui/tai ve: dang doc, chu de thang len tranh — giong mot san
+  // pham thiep hoan chinh. Khac voi anh /anh (ngang, dung rieng cho OG preview).
+  const cardImageUrl = `/thiep-trung-thu/xem/the?${qs.toString()}`;
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header minimal />
       <div className="flex-1 flex flex-col items-center gap-8 px-6 py-12 bg-surface-2">
         <PaintingCard card={card} tu={tu} den={den} loiNhan={loiNhan} />
-        <CardActions shareUrl={shareUrl} imageUrl={imageUrl} den={den} />
+        <CardActions shareUrl={shareUrl} imageUrl={cardImageUrl} den={den} />
       </div>
     </div>
   );
