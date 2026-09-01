@@ -6,6 +6,7 @@ import { findCard } from "@/lib/trungThuCards";
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
+  try {
   const { searchParams } = new URL(request.url);
   const tranh = searchParams.get("tranh")?.trim() || "";
   const tu = searchParams.get("tu")?.trim() || "Một người bạn";
@@ -123,4 +124,10 @@ export async function GET(request: Request) {
       ],
     }
   );
+  } catch (err) {
+    // CHAN DOAN TAM THOI: tra ve chi tiet loi that thay vi trang 500 chung
+    // chung, de xac dinh dung nguyen nhan roi go bo sau.
+    const message = err instanceof Error ? `${err.name}: ${err.message}\n${err.stack}` : String(err);
+    return new Response(message, { status: 500, headers: { "content-type": "text/plain; charset=utf-8" } });
+  }
 }
