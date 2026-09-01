@@ -21,7 +21,6 @@ export default function PaintingCard({
             toi uu hoa anh cua Next co the gay tre/loi khi chup. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={card.image} alt={card.name} className="art" crossOrigin="anonymous" />
-        <div className="scrim" />
         <div className="brand-badge">🎁 chonquachuan.vn</div>
         <div className="text-block">
           <p className="to">
@@ -55,15 +54,6 @@ export default function PaintingCard({
           height: auto;
           display: block;
         }
-        .scrim {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 62%;
-          background: linear-gradient(to top, rgba(20,15,10,0.92) 0%, rgba(20,15,10,0.75) 32%, rgba(20,15,10,0) 100%);
-          pointer-events: none;
-        }
         .brand-badge {
           position: absolute;
           top: 14px;
@@ -81,11 +71,12 @@ export default function PaintingCard({
           left: 0;
           right: 0;
           bottom: 0;
-          padding: 20px 20px 22px;
+          padding: 34px 20px 22px;
           display: flex;
           flex-direction: column;
           gap: 5px;
           text-align: left;
+          background: linear-gradient(to top, rgba(20,15,10,0.88) 0%, rgba(20,15,10,0.82) 62%, rgba(20,15,10,0) 100%);
         }
         .to {
           font-size: 15.5px;
