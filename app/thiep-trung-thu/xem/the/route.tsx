@@ -1,4 +1,3 @@
-import { ImageResponse } from "next/og";
 import fs from "node:fs";
 import path from "node:path";
 import { findCard } from "@/lib/trungThuCards";
@@ -7,6 +6,9 @@ export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   try {
+  // Dung dynamic import de bat duoc loi neu chinh viec nap thu vien nay
+  // that bai (khac voi static import, loi luc nap se khong bi try/catch bat).
+  const { ImageResponse } = await import("next/og");
   const { searchParams } = new URL(request.url);
   const tranh = searchParams.get("tranh")?.trim() || "";
   const tu = searchParams.get("tu")?.trim() || "Một người bạn";
