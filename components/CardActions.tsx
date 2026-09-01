@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ShareIcon, DownloadIcon, ArrowRightIcon } from "@/components/icons";
+import { ShareIcon, DownloadIcon, ArrowRightIcon, XIcon } from "@/components/icons";
 import { ZALO_URL } from "@/lib/contact";
 
 function buildFileName(tu: string) {
@@ -27,18 +27,16 @@ async function captureCardAsBlob(): Promise<Blob> {
   return blob;
 }
 
-function downloadBlob(blob: Blob, name: string) {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = name;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+function blobToDataUrl(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error ?? new Error("Không đọc được ảnh"));
+    reader.readAsDataURL(blob);
+  });
 }
 
-type Status = "idle" | "working" | "downloaded" | "shared" | "error";
+type Status = "idle" | "working" | "shared" | "error";
 
 export default function CardActions({
   shareUrl,
@@ -51,6 +49,7 @@ export default function CardActions({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorDetail, setErrorDetail] = useState("");
+  const [savedImageUrl, setSavedImageUrl] = useState<string | null>(null);
   const fileName = buildFileName(tu);
 
   function reportError(prefix: string, err: unknown) {
@@ -91,27 +90,34 @@ export default function CardActions({
           setStatus("idle");
           return;
         }
-        // canShare/share bao loi vi ly do khac (khong phai huy) - roi xuong tai anh ben duoi
+        // canShare/share bao loi vi ly do khac (khong phai huy) - roi xuong hien anh de luu ben duoi
       }
     }
 
+    // Khong chia se duoc anh truc tiep: nhieu trinh duyet trong app (Zalo,
+    // Facebook...) chan luon ca viec tai anh bang code (a.click() im lang
+    // khong loi nhung khong co file nao duoc luu that). Cach chac chan
+    // hoat dong o moi noi: hien anh len man hinh de nguoi dung tu nhan giu
+    // va luu bang tinh nang co san cua dien thoai.
     try {
-      downloadBlob(blob, fileName);
-      setStatus("downloaded");
+      const dataUrl = await blobToDataUrl(blob);
+      setSavedImageUrl(dataUrl);
+      setStatus("idle");
     } catch (err) {
-      reportError("Lỗi khi tải ảnh", err);
+      reportError("Lỗi khi tạo ảnh để lưu", err);
     }
   }
 
-  async function handleDownload() {
+  async function handleShowToSave() {
     setStatus("working");
     setErrorDetail("");
     try {
       const blob = await captureCardAsBlob();
-      downloadBlob(blob, fileName);
-      setStatus("downloaded");
+      const dataUrl = await blobToDataUrl(blob);
+      setSavedImageUrl(dataUrl);
+      setStatus("idle");
     } catch (err) {
-      reportError("Lỗi khi tải ảnh", err);
+      reportError("Lỗi khi tạo ảnh để lưu", err);
     }
   }
 
@@ -125,14 +131,13 @@ export default function CardActions({
         <ShareIcon size={18} />
         {status === "working" && "Đang tạo ảnh..."}
         {status === "shared" && "Đã mở hộp thoại chia sẻ"}
-        {status === "downloaded" && "Đã tải ảnh — gửi ảnh đó cho người nhận nhé"}
         {status === "error" && "Có lỗi, xem chi tiết bên dưới"}
         {status === "idle" && "Gửi ảnh thiệp qua Zalo"}
       </button>
 
       <button
         type="button"
-        onClick={handleDownload}
+        onClick={handleShowToSave}
         disabled={status === "working"}
         className="border-[1.5px] border-line rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-60"
       >
@@ -167,6 +172,32 @@ export default function CardActions({
         Tự tạo thiệp cho người thân của bạn
         <ArrowRightIcon size={15} />
       </Link>
+
+      {savedImageUrl && (
+        <div
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 p-6"
+          style={{ background: "rgba(20,15,10,0.9)" }}
+        >
+          <button
+            type="button"
+            onClick={() => setSavedImageUrl(null)}
+            className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: "rgba(255,255,255,0.15)" }}
+            aria-label="Đóng"
+          >
+            <XIcon size={20} color="#FFFFFF" />
+          </button>
+          <p className="text-white text-center text-[15px] font-semibold max-w-[320px] leading-relaxed">
+            Nhấn giữ vào ảnh bên dưới rồi chọn &ldquo;Lưu ảnh&rdquo; để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo.
+          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={savedImageUrl}
+            alt={fileName}
+            className="max-w-full max-h-[65vh] rounded-xl shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 }
