@@ -33,8 +33,9 @@ function buildQuery(searchParams: SP) {
 export async function generateMetadata({ searchParams }: { searchParams: SP }): Promise<Metadata> {
   const { tranh, tu, den } = readParams(searchParams);
   const card = findCard(tranh);
-  const qs = buildQuery(searchParams);
-  const imageUrl = `${SITE_URL}/thiep-trung-thu/xem/anh?${qs.toString()}`;
+  // Dung thang anh tranh goc lam anh preview khi chia se link (khong qua
+  // route sinh anh dong nua — route do hay bi loi may chu luc chay, da bo).
+  const imageUrl = `${SITE_URL}${card.image}`;
   const title = `${tu} gửi thiệp "${card.name}" tới ${den} 🏮`;
   const description =
     "Thiệp Trung Thu vẽ bởi một bạn nhỏ thật — xem và gửi lời chúc của riêng bạn, miễn phí, từ Chọn Quà Chuẩn.";
@@ -43,7 +44,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
     title,
     description,
     robots: { index: false, follow: true },
-    openGraph: { title, description, images: [{ url: imageUrl, width: 1200, height: 630 }] },
+    openGraph: { title, description, images: [{ url: imageUrl }] },
     twitter: { card: "summary_large_image", title, description, images: [imageUrl] },
   };
 }
@@ -53,16 +54,13 @@ export default function XemThiepPage({ searchParams }: { searchParams: SP }) {
   const card = findCard(tranh);
   const qs = buildQuery(searchParams);
   const shareUrl = `${SITE_URL}/thiep-trung-thu/xem?${qs.toString()}`;
-  // Anh dung de gui/tai ve: dang doc, chu de thang len tranh — giong mot san
-  // pham thiep hoan chinh. Khac voi anh /anh (ngang, dung rieng cho OG preview).
-  const cardImageUrl = `/thiep-trung-thu/xem/the?${qs.toString()}`;
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header minimal />
       <div className="flex-1 flex flex-col items-center gap-8 px-6 py-12 bg-surface-2">
         <PaintingCard card={card} tu={tu} den={den} loiNhan={loiNhan} />
-        <CardActions shareUrl={shareUrl} imageUrl={cardImageUrl} tu={tu} den={den} />
+        <CardActions shareUrl={shareUrl} tu={tu} den={den} />
       </div>
     </div>
   );

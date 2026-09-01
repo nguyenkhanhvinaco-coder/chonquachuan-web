@@ -10,6 +10,9 @@ export const contentType = "image/png";
 export default async function Image() {
   const logoData = fs.readFileSync(path.join(process.cwd(), "public/logo-icon.png"));
   const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`;
+  // Nap font tuong minh thay vi de next/og tu tai font mac dinh — buoc tai
+  // font mac dinh tung gay crash khi dung sinh anh nay luc build.
+  const fontRegular = fs.readFileSync(path.join(process.cwd(), "public/fonts/NotoSans-Regular.ttf"));
 
   return new ImageResponse(
     (
@@ -34,6 +37,9 @@ export default async function Image() {
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [{ name: "Noto Sans", data: fontRegular, weight: 400, style: "normal" }],
+    }
   );
 }
