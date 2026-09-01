@@ -1,5 +1,5 @@
 // Bộ thiệp tranh vẽ tay thật, dùng quanh năm (không giới hạn dịp Trung Thu) — Đợt 1:
-// 12 tranh thật do Nguyên Khánh (con gái nhà sáng lập) vẽ.
+// 15 tranh thật do Nguyên Khánh (con gái nhà sáng lập) vẽ.
 // Đây KHÔNG phải minh hoạ AI hay ảnh mua — là tranh gốc, chỉ Chọn Quà Chuẩn có.
 //
 // Đã CỐ Ý loại bỏ tranh có nhân vật thuộc bản quyền người khác (vd: Pikachu/Pokémon)
@@ -86,6 +86,24 @@ export const TRUNG_THU_CARDS: TrungThuCard[] = [
     name: "Chú Tuyết & Bạn Nhỏ",
     image: "/trung-thu/chu-tuyet.jpg",
     defaultMessage: "Chúc gia đình bạn một mùa đoàn viên thật ấm áp, dù muôn nơi vẫn chung một vầng trăng.",
+  },
+  {
+    id: "quoc-khanh",
+    name: "Diễu Hành Mừng Quốc Khánh",
+    image: "/trung-thu/quoc-khanh.jpg",
+    defaultMessage: "Chúc bạn một ngày Quốc Khánh thật tự hào và ý nghĩa.",
+  },
+  {
+    id: "nui-suoi",
+    name: "Suối Nguồn Bình Yên",
+    image: "/trung-thu/nui-suoi.jpg",
+    defaultMessage: "Chúc bạn luôn bình yên và an nhiên, như dòng suối nhỏ giữa núi rừng.",
+  },
+  {
+    id: "ky-lan-cau-vong",
+    name: "Kỳ Lân Cầu Vồng",
+    image: "/trung-thu/ky-lan-cau-vong.jpg",
+    defaultMessage: "Chúc cuộc sống của bạn luôn rực rỡ sắc màu như cầu vồng sau mưa.",
   },
 ];
 

@@ -33,7 +33,7 @@ export default async function HomePage() {
               Gửi tặng bạn miễn phí.
             </h2>
             <p className="text-[15px] leading-relaxed max-w-[420px]" style={{ color: "#6B5643" }}>
-              Chọn 1 trong 12 bức tranh thật do một bạn nhỏ vẽ tay, thêm lời chúc, gửi ngay cho
+              Chọn 1 trong 15 bức tranh thật do một bạn nhỏ vẽ tay, thêm lời chúc, gửi ngay cho
               người thân — không mất phí, không cần đăng ký.
             </p>
             <span
