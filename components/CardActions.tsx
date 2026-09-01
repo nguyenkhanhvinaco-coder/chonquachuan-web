@@ -27,6 +27,16 @@ async function captureCardAsBlob(): Promise<Blob> {
   return blob;
 }
 
+// May tinh (khong co man hinh cam ung) hau nhu khong co ung dung nao dang ky
+// nhan chia se qua navigator.share (Zalo desktop khong dang ky), nen hop
+// thoai chia se cua Windows mo ra nhung khong co Zalo — nguoi dung tuong da
+// gui xong nhung thuc ra chua gui di dau ca. Tren may tinh, bo qua buoc nay
+// va dua thang sang cach luu anh chac chan (bam chuot phai > Luu anh).
+function isTouchDevice(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return navigator.maxTouchPoints > 0;
+}
+
 function blobToDataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -73,8 +83,10 @@ export default function CardActions({
     const shareText = `Gửi tới ${den} một lời chúc 🎁 — chonquachuan.vn`;
 
     // Uu tien gui thang tam ANH thay vi gui link — de nguoi nhan thay ngay
-    // tam thiep, khong phai mot duong link dai xau.
-    if (typeof navigator !== "undefined" && navigator.share) {
+    // tam thiep, khong phai mot duong link dai xau. Chi thu tren thiet bi
+    // cam ung (dien thoai/may tinh bang) — tren may tinh gan nhu chac chan
+    // khong co Zalo trong hop thoai chia se cua he dieu hanh.
+    if (isTouchDevice() && typeof navigator !== "undefined" && navigator.share) {
       try {
         if (navigator.canShare?.({ files: [file] })) {
           await navigator.share({
@@ -188,7 +200,9 @@ export default function CardActions({
             <XIcon size={20} color="#FFFFFF" />
           </button>
           <p className="text-white text-center text-[15px] font-semibold max-w-[320px] leading-relaxed">
-            Nhấn giữ vào ảnh bên dưới rồi chọn &ldquo;Lưu ảnh&rdquo; để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo.
+            {isTouchDevice()
+              ? "Nhấn giữ vào ảnh bên dưới rồi chọn “Lưu ảnh” để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo."
+              : "Bấm chuột phải vào ảnh bên dưới rồi chọn “Lưu hình ảnh dưới dạng...” để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo."}
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
