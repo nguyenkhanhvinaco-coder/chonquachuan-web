@@ -102,7 +102,15 @@ export async function GET(request: Request) {
             borderTop: "1px solid #E0CDA6",
           }}
         >
-          <div style={{ fontSize: 20, display: "flex" }}>🏮</div>
+          <div
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: 999,
+              backgroundColor: "#C1543C",
+              display: "flex",
+            }}
+          />
           <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: 0.5, color: "#8A5A2B" }}>
             chonquachuan.vn
           </div>

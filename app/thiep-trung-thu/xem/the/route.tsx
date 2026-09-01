@@ -55,7 +55,15 @@ export async function GET(request: Request) {
             backgroundColor: "rgba(20,15,10,0.55)",
           }}
         >
-          <div style={{ fontSize: 22, display: "flex" }}>🏮</div>
+          <div
+            style={{
+              width: 12,
+              height: 12,
+              borderRadius: 999,
+              backgroundColor: "#F0B27A",
+              display: "flex",
+            }}
+          />
           <div style={{ fontSize: 22, fontWeight: 700, color: "#FFFFFF", letterSpacing: 0.3 }}>
             chonquachuan.vn
           </div>
