@@ -62,7 +62,7 @@ export default function XemThiepPage({ searchParams }: { searchParams: SP }) {
       <Header minimal />
       <div className="flex-1 flex flex-col items-center gap-8 px-6 py-12 bg-surface-2">
         <PaintingCard card={card} tu={tu} den={den} loiNhan={loiNhan} />
-        <CardActions shareUrl={shareUrl} imageUrl={cardImageUrl} den={den} />
+        <CardActions shareUrl={shareUrl} imageUrl={cardImageUrl} tu={tu} den={den} />
       </div>
     </div>
   );

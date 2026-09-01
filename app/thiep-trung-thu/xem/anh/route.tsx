@@ -16,6 +16,12 @@ export async function GET(request: Request) {
   const imgData = fs.readFileSync(path.join(process.cwd(), "public", card.image));
   const imgSrc = `data:image/jpeg;base64,${imgData.toString("base64")}`;
 
+  // Nap font tuong minh (Noto Sans, co day du dau tieng Viet) thay vi de
+  // next/og tu tai font mac dinh — co font mac dinh tung gay loi 500 ngau
+  // nhien tren mot so moi truong.
+  const fontRegular = fs.readFileSync(path.join(process.cwd(), "public/fonts/NotoSans-Regular.ttf"));
+  const fontBold = fs.readFileSync(path.join(process.cwd(), "public/fonts/NotoSans-Bold.ttf"));
+
   return new ImageResponse(
     (
       <div
@@ -106,6 +112,13 @@ export async function GET(request: Request) {
         </div>
       </div>
     ),
-    { width: 1200, height: 630 }
+    {
+      width: 1200,
+      height: 630,
+      fonts: [
+        { name: "Noto Sans", data: fontRegular, weight: 400, style: "normal" },
+        { name: "Noto Sans", data: fontBold, weight: 700, style: "normal" },
+      ],
+    }
   );
 }

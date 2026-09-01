@@ -5,16 +5,24 @@ import Link from "next/link";
 import { ShareIcon, DownloadIcon, ArrowRightIcon } from "@/components/icons";
 import { ZALO_URL } from "@/lib/contact";
 
+function buildFileName(tu: string) {
+  const safeTu = tu.replace(/[\\/:*?"<>|]/g, "").trim() || "ban";
+  return `Thiep tang - ${safeTu}.png`;
+}
+
 export default function CardActions({
   shareUrl,
   imageUrl,
+  tu,
   den,
 }: {
   shareUrl: string;
   imageUrl: string;
+  tu: string;
   den: string;
 }) {
   const [feedback, setFeedback] = useState<"idle" | "copied" | "downloaded">("idle");
+  const fileName = buildFileName(tu);
 
   async function handleShare() {
     const shareText = `Gửi tới ${den} một lời chúc Trung Thu 🏮 — chonquachuan.vn`;
@@ -25,7 +33,7 @@ export default function CardActions({
       try {
         const res = await fetch(imageUrl);
         const blob = await res.blob();
-        const file = new File([blob], "thiep-trung-thu-chonquachuan.png", {
+        const file = new File([blob], fileName, {
           type: blob.type || "image/png",
         });
         if (navigator.canShare?.({ files: [file] })) {
@@ -50,7 +58,7 @@ export default function CardActions({
     try {
       const a = document.createElement("a");
       a.href = imageUrl;
-      a.download = "thiep-trung-thu-chonquachuan.png";
+      a.download = fileName;
       a.click();
       setFeedback("downloaded");
       setTimeout(() => setFeedback("idle"), 3000);
@@ -79,7 +87,7 @@ export default function CardActions({
 
       <a
         href={imageUrl}
-        download="thiep-trung-thu-chonquachuan.png"
+        download={fileName}
         className="border-[1.5px] border-line rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px]"
       >
         <DownloadIcon size={18} />
