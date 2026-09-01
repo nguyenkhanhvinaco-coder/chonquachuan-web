@@ -164,9 +164,24 @@ export default function ThiepTrungThuPage() {
                 placeholder="Chọn một bức tranh ở trên để có gợi ý lời chúc phù hợp"
                 className="w-full border border-line rounded-[9px] px-3.5 py-3.5 bg-surface text-[15px]"
               />
-              <p className="text-ink-soft text-xs mt-1.5">
-                Đã điền sẵn lời chúc gợi ý theo tranh bạn chọn — sửa lại thoải mái.
-              </p>
+              {card ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLoiNhan(card.defaultMessage);
+                    setLoiNhanTouched(true);
+                  }}
+                  className="text-left text-ink-soft text-xs mt-1.5 leading-relaxed"
+                >
+                  💡 Gợi ý theo tranh &ldquo;{card.name}&rdquo;:{" "}
+                  <span className="italic">{card.defaultMessage}</span>{" — "}
+                  <span className="font-semibold underline">dùng câu này</span>
+                </button>
+              ) : (
+                <p className="text-ink-soft text-xs mt-1.5">
+                  Chọn một bức tranh ở trên để xem gợi ý lời chúc phù hợp.
+                </p>
+              )}
             </div>
             <div>
               <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
