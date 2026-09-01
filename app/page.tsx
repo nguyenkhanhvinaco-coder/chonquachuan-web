@@ -27,7 +27,7 @@ export default async function HomePage() {
             >
               🎁 Thiệp tranh vẽ tặng miễn phí
             </span>
-            <h2 className="font-serif text-[28px] md:text-[36px] leading-[1.15]" style={{ color: "#3A2A1D" }}>
+            <h2 className="font-serif text-[22px] md:text-[36px] leading-[1.2]" style={{ color: "#3A2A1D" }}>
               Thiệp tranh vẽ của bé.
               <br />
               Gửi tặng bạn miễn phí.
@@ -38,10 +38,10 @@ export default async function HomePage() {
             </p>
             <span
               className="inline-flex items-center gap-2 w-fit rounded-[10px] px-6 py-3.5 text-[15px] font-bold mt-1.5"
-              style={{ background: "#FFD400", color: "#2A1F0F", boxShadow: "0 6px 20px rgba(255,212,0,0.55)" }}
+              style={{ background: "#16A34A", color: "#FFFFFF", boxShadow: "0 6px 20px rgba(22,163,74,0.45)" }}
             >
               Bấm để tạo thiệp
-              <ArrowRightIcon size={16} color="#2A1F0F" />
+              <ArrowRightIcon size={16} color="#FFFFFF" />
             </span>
           </div>
           <div className="relative w-full max-w-[300px] h-[190px] md:h-[240px] md:max-w-[340px] shrink-0">
@@ -52,7 +52,7 @@ export default async function HomePage() {
               <Image src="/trung-thu/ca-koi.jpg" alt="Tranh Cá Koi May Mắn" fill sizes="180px" className="object-cover" />
             </div>
             <div className="absolute left-[26%] bottom-0 w-[48%] aspect-[3/4] rotate-[3deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
-              <Image src="/trung-thu/dan-meo.jpg" alt="Tranh Đàn Mèo Quây Quần" fill sizes="190px" className="object-cover" />
+              <Image src="/trung-thu/quoc-khanh.jpg" alt="Tranh Diễu Hành Mừng Quốc Khánh" fill sizes="190px" className="object-cover" />
             </div>
           </div>
         </Link>
