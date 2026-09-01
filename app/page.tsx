@@ -17,7 +17,7 @@ export default async function HomePage() {
       {/* Seasonal promo — Trung Thu */}
       <section style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}>
         <Link
-          href="/thiep-trung-thu"
+          href="/thiep-mien-phi"
           className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 px-9 py-12 md:px-[72px] md:py-14"
         >
           <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left">

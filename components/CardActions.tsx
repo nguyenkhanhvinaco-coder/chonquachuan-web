@@ -178,7 +178,7 @@ export default function CardActions({
       )}
 
       <Link
-        href="/thiep-trung-thu"
+        href="/thiep-mien-phi"
         className="text-center text-[14px] font-semibold mt-1 flex items-center justify-center gap-1.5"
       >
         Tự tạo thiệp cho người thân của bạn

@@ -53,7 +53,7 @@ export default function XemThiepPage({ searchParams }: { searchParams: SP }) {
   const { tranh, tu, den, loiNhan } = readParams(searchParams);
   const card = findCard(tranh);
   const qs = buildQuery(searchParams);
-  const shareUrl = `${SITE_URL}/thiep-trung-thu/xem?${qs.toString()}`;
+  const shareUrl = `${SITE_URL}/thiep-mien-phi/xem?${qs.toString()}`;
 
   return (
     <div className="flex flex-col min-h-screen">

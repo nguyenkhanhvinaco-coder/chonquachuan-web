@@ -52,7 +52,7 @@ export default function ThiepTrungThuPage() {
 
     const params = new URLSearchParams({ tranh, tu, den });
     if (loiNhan) params.set("loi-nhan", loiNhan);
-    router.push(`/thiep-trung-thu/xem?${params.toString()}`);
+    router.push(`/thiep-mien-phi/xem?${params.toString()}`);
   }
 
   return (
