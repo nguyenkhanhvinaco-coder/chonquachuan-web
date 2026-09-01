@@ -14,27 +14,52 @@ export default function CardActions({
   imageUrl: string;
   den: string;
 }) {
-  const [copied, setCopied] = useState(false);
+  const [feedback, setFeedback] = useState<"idle" | "copied" | "downloaded">("idle");
 
   async function handleShare() {
+    const shareText = `Gửi tới ${den} một lời chúc Trung Thu 🏮 — chonquachuan.vn`;
+
+    // Ưu tiên gửi thẳng tấm ẢNH (đã có sẵn chữ chonquachuan.vn trên ảnh) thay vì
+    // gửi link — để người nhận thấy ngay tấm thiệp, không phải một đường link dài xấu.
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
-        await navigator.share({
-          title: "Thiệp Trung Thu từ Chọn Quà Chuẩn",
-          text: `Gửi tới ${den} một lời chúc Trung Thu 🏮`,
-          url: shareUrl,
+        const res = await fetch(imageUrl);
+        const blob = await res.blob();
+        const file = new File([blob], "thiep-trung-thu-chonquachuan.png", {
+          type: blob.type || "image/png",
         });
+        if (navigator.canShare?.({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: "Thiệp Trung Thu từ chonquachuan.vn",
+            text: shareText,
+          });
+          return;
+        }
+        await navigator.share({ title: "Thiệp Trung Thu từ chonquachuan.vn", text: shareText, url: shareUrl });
         return;
-      } catch {
-        // người dùng huỷ chia sẻ — không cần xử lý gì thêm
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        // fetch/share lỗi vì lý do khác (vd. mạng yếu) — rơi xuống tải ảnh trực tiếp bên dưới
       }
     }
+
+    // Không có Web Share API (thường là máy tính): tải thẳng ảnh về thay vì copy link dài.
     try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      const a = document.createElement("a");
+      a.href = imageUrl;
+      a.download = "thiep-trung-thu-chonquachuan.png";
+      a.click();
+      setFeedback("downloaded");
+      setTimeout(() => setFeedback("idle"), 3000);
     } catch {
-      // clipboard không khả dụng — bỏ qua, người dùng vẫn thấy link trong thanh địa chỉ
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setFeedback("copied");
+        setTimeout(() => setFeedback("idle"), 3000);
+      } catch {
+        // clipboard không khả dụng — bỏ qua, người dùng vẫn thấy link trong thanh địa chỉ
+      }
     }
   }
 
@@ -45,7 +70,9 @@ export default function CardActions({
         className="bg-accent text-accent-ink rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px]"
       >
         <ShareIcon size={18} />
-        {copied ? "Đã copy link — gửi qua Zalo ngay" : "Gửi qua Zalo / chia sẻ"}
+        {feedback === "copied" && "Đã copy link — gửi qua Zalo ngay"}
+        {feedback === "downloaded" && "Đã tải ảnh — gửi ảnh đó cho người nhận nhé"}
+        {feedback === "idle" && "Gửi ảnh thiệp qua Zalo"}
       </button>
 
       <a

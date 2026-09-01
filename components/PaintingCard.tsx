@@ -35,6 +35,7 @@ export default function PaintingCard({
         </p>
         <p className="msg">&ldquo;{message}&rdquo;</p>
         <p className="from">— Từ {tu}</p>
+        <p className="brand">chonquachuan.vn</p>
       </div>
 
       <style>{`
@@ -103,6 +104,14 @@ export default function PaintingCard({
           font-weight: 600;
           color: var(--accent);
           margin-top: 8px;
+        }
+        .brand {
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          color: var(--ink-soft);
+          margin-top: 10px;
+          opacity: 0.75;
         }
         @keyframes rise {
           from { opacity: 0; transform: translateY(14px); }

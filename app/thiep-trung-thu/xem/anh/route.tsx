@@ -23,69 +23,97 @@ export async function GET(request: Request) {
           height: "100%",
           width: "100%",
           display: "flex",
-          alignItems: "center",
-          padding: 50,
-          gap: 46,
+          flexDirection: "column",
           backgroundColor: "#F8F3EA",
         }}
       >
         <div
           style={{
+            flex: 1,
             display: "flex",
-            flexShrink: 0,
-            width: 386,
-            height: 530,
-            borderRadius: 20,
-            overflow: "hidden",
-            backgroundColor: "#FFFFFF",
-            boxShadow: "0 10px 30px rgba(58,47,38,0.2)",
+            alignItems: "center",
+            padding: "42px 50px 20px",
+            gap: 46,
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={imgSrc}
-            width={386}
-            height={530}
-            style={{ objectFit: "cover" }}
-          />
+          <div
+            style={{
+              display: "flex",
+              flexShrink: 0,
+              width: 386,
+              height: 500,
+              borderRadius: 20,
+              overflow: "hidden",
+              backgroundColor: "#FFFFFF",
+              boxShadow: "0 10px 30px rgba(58,47,38,0.2)",
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imgSrc}
+              width={386}
+              height={500}
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              gap: 10,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 18,
+                fontWeight: 600,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                color: "#C1543C",
+              }}
+            >
+              Chọn Quà Chuẩn · Tranh vẽ tay thật
+            </div>
+            <div style={{ fontSize: 44, fontWeight: 700, color: "#2F241E" }}>{card.name}</div>
+            <div style={{ fontSize: 26, color: "#2F241E", display: "flex" }}>
+              Gửi tới&nbsp;<span style={{ fontWeight: 700 }}>{den}</span>
+            </div>
+            <div
+              style={{
+                fontSize: 21,
+                fontStyle: "italic",
+                color: "#675B54",
+                maxWidth: 620,
+                marginTop: 6,
+              }}
+            >
+              &ldquo;{loiNhan}&rdquo;
+            </div>
+            <div style={{ fontSize: 21, fontWeight: 600, color: "#C1543C", marginTop: 10 }}>
+              — Từ {tu}
+            </div>
+          </div>
         </div>
 
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
             gap: 10,
+            padding: "16px 0",
+            backgroundColor: "#EFE1C7",
+            borderTop: "1px solid #E0CDA6",
           }}
         >
-          <div
-            style={{
-              fontSize: 18,
-              fontWeight: 600,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: "#C1543C",
-            }}
-          >
-            Chọn Quà Chuẩn · Tranh vẽ tay thật
+          <div style={{ fontSize: 20, display: "flex" }}>🏮</div>
+          <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: 0.5, color: "#8A5A2B" }}>
+            chonquachuan.vn
           </div>
-          <div style={{ fontSize: 44, fontWeight: 700, color: "#2F241E" }}>{card.name}</div>
-          <div style={{ fontSize: 26, color: "#2F241E", display: "flex" }}>
-            Gửi tới&nbsp;<span style={{ fontWeight: 700 }}>{den}</span>
-          </div>
-          <div
-            style={{
-              fontSize: 21,
-              fontStyle: "italic",
-              color: "#675B54",
-              maxWidth: 620,
-              marginTop: 6,
-            }}
-          >
-            &ldquo;{loiNhan}&rdquo;
-          </div>
-          <div style={{ fontSize: 21, fontWeight: 600, color: "#C1543C", marginTop: 10 }}>
-            — Từ {tu}
+          <div style={{ fontSize: 16, color: "#A98757", display: "flex" }}>
+            · Thiệp Trung Thu vẽ bởi một bạn nhỏ thật
           </div>
         </div>
       </div>
