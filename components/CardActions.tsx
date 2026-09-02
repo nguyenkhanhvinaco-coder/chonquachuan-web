@@ -121,15 +121,32 @@ export default function CardActions({
       }
     }
 
-    await fallbackSaveImage(blob);
+    // Nut nay la de GUI, khong phai TAI VE - neu khong chia se truc tiep
+    // duoc thi hien anh de nguoi dung tu luu roi tu gui, chu khong tu dong
+    // tai file xuong (bam "gui" ma ra file tai ve la vo ly).
+    try {
+      const dataUrl = await blobToDataUrl(blob);
+      setSavedImageUrl(dataUrl);
+      setStatus("idle");
+    } catch (err) {
+      reportError("Lỗi khi tạo ảnh để lưu", err);
+    }
   }
 
-  // May tinh: tai file binh thuong (a.click() luon dang tin cay o day).
-  // Dien thoai/may tinh bang: hien anh de nguoi dung tu nhan giu > luu anh —
-  // vi trinh duyet trong app (Zalo, Facebook...) hay lam ngo lenh tai file
-  // ma khong bao loi, khien nguoi dung tuong da luu nhung thuc ra khong co
-  // file nao duoc tao ca.
-  async function fallbackSaveImage(blob: Blob) {
+  // Nut "Tai anh thiep": may tinh tai file binh thuong (a.click() luon dang
+  // tin cay o day). Dien thoai/may tinh bang: hien anh de nguoi dung tu
+  // nhan giu > luu anh - vi trinh duyet trong app (Zalo, Facebook...) hay
+  // lam ngo lenh tai file ma khong bao loi.
+  async function handleShowToSave() {
+    setStatus("working");
+    setErrorDetail("");
+    let blob: Blob;
+    try {
+      blob = await captureCardAsBlob();
+    } catch (err) {
+      reportError("Lỗi khi chụp ảnh thiệp", err);
+      return;
+    }
     if (!isTouchDevice()) {
       try {
         downloadBlob(blob, fileName);
@@ -146,19 +163,6 @@ export default function CardActions({
     } catch (err) {
       reportError("Lỗi khi tạo ảnh để lưu", err);
     }
-  }
-
-  async function handleShowToSave() {
-    setStatus("working");
-    setErrorDetail("");
-    let blob: Blob;
-    try {
-      blob = await captureCardAsBlob();
-    } catch (err) {
-      reportError("Lỗi khi chụp ảnh thiệp", err);
-      return;
-    }
-    await fallbackSaveImage(blob);
   }
 
   return (

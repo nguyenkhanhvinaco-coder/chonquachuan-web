@@ -71,12 +71,12 @@ export default function PaintingCard({
           left: 0;
           right: 0;
           bottom: 0;
-          padding: 34px 20px 22px;
+          padding: 18px 20px 22px;
           display: flex;
           flex-direction: column;
           gap: 5px;
           text-align: left;
-          background: linear-gradient(to top, rgba(20,15,10,0.88) 0%, rgba(20,15,10,0.82) 62%, rgba(20,15,10,0) 100%);
+          background: #241C15;
         }
         .to {
           font-size: 15.5px;
