@@ -20,7 +20,7 @@ export default async function HomePage() {
           href="/thiep-mien-phi"
           className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 px-9 py-12 md:px-[72px] md:py-14"
         >
-          <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left">
+          <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left max-w-[440px]">
             <span
               className="inline-flex items-center gap-1.5 bg-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
               style={{ color: "#B3441F" }}
@@ -43,6 +43,18 @@ export default async function HomePage() {
               Bấm để tạo thiệp
               <ArrowRightIcon size={16} color="#FFFFFF" />
             </span>
+          </div>
+          <div className="hidden md:block flex-1 h-[240px] rounded-2xl overflow-hidden border-4 border-white shadow-lg">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/videos/gioi-thieu-poster.jpg"
+              className="w-full h-full object-cover"
+            >
+              <source src="/videos/gioi-thieu.mp4" type="video/mp4" />
+            </video>
           </div>
           <div className="relative w-full max-w-[300px] h-[190px] md:h-[240px] md:max-w-[340px] shrink-0">
             <div className="absolute left-[6%] top-[8%] w-[52%] aspect-[3/4] rotate-[-7deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
