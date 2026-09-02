@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ShareIcon, DownloadIcon, ArrowRightIcon, XIcon } from "@/components/icons";
+import { ShareIcon, ArrowRightIcon, XIcon } from "@/components/icons";
 import { ZALO_URL } from "@/lib/contact";
 
 function buildFileName(tu: string) {
@@ -27,8 +27,7 @@ async function captureCardAsBlob(): Promise<Blob> {
   return blob;
 }
 
-// Dung de chon loi huong dan phu hop (nhan giu vs bam chuot phai) va cach
-// tai anh o nut "Tai anh thiep".
+// Dung de chon loi huong dan/hanh vi luu anh phu hop cho tung loai thiet bi.
 function isTouchDevice(): boolean {
   if (typeof navigator === "undefined") return false;
   return navigator.maxTouchPoints > 0;
@@ -44,9 +43,8 @@ function blobToDataUrl(blob: Blob): Promise<string> {
 }
 
 // Tren trinh duyet may tinh binh thuong, tai file bang the <a download> luon
-// hoat dong tot va la trai nghiem quen thuoc nhat — chi rieng trinh duyet
-// trong app tren dien thoai (Zalo, Facebook...) moi lam ngo lenh nay ma
-// khong bao loi, nen chi dung cach "hien anh de tu luu" cho thiet bi cam ung.
+// hoat dong tot — chi rieng trinh duyet trong app tren dien thoai (Zalo,
+// Facebook...) moi lam ngo lenh nay ma khong bao loi.
 function downloadBlob(blob: Blob, name: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -58,7 +56,7 @@ function downloadBlob(blob: Blob, name: string) {
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
 }
 
-type Status = "idle" | "working" | "shared" | "error";
+type Status = "idle" | "working" | "shared" | "downloaded" | "error";
 
 export default function CardActions({
   shareUrl,
@@ -80,6 +78,12 @@ export default function CardActions({
     setStatus("error");
   }
 
+  // Mot nut duy nhat: uu tien gui thang tam ANH qua Zalo (hoat dong tot tren
+  // dien thoai/may tinh bang thuc su, vi Zalo mobile co dang ky nhan chia
+  // se). Tren may tinh, Zalo desktop KHONG dang ky nhan chia se qua trinh
+  // duyet (gioi han cua Windows/Zalo, khong sua duoc tu phia web) - neu
+  // khong gui truc tiep duoc, tu dong tai anh ve may de nguoi dung tu dinh
+  // kem gui qua Zalo.
   async function handleShare() {
     setStatus("working");
     setErrorDetail("");
@@ -94,10 +98,6 @@ export default function CardActions({
     const file = new File([blob], fileName, { type: blob.type || "image/png" });
     const shareText = `Gửi tới ${den} một lời chúc 🎁 — chonquachuan.vn`;
 
-    // Uu tien gui thang tam ANH thay vi gui link — de nguoi nhan thay ngay
-    // tam thiep, khong phai mot duong link dai xau. Thu tren moi thiet bi,
-    // ke ca may tinh - neu Zalo (app hoac web) dang chay va co dang ky
-    // nhan chia se thi se xuat hien trong hop thoai nay.
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
         if (navigator.canShare?.({ files: [file] })) {
@@ -114,45 +114,23 @@ export default function CardActions({
           setStatus("idle");
           return;
         }
-        // canShare/share bao loi vi ly do khac (khong phai huy) - roi xuong hien anh de luu ben duoi
+        // canShare/share bao loi vi ly do khac (khong phai huy) - roi xuong luu anh ben duoi
       }
     }
 
-    // Nut nay la de GUI, khong phai TAI VE - neu khong chia se truc tiep
-    // duoc thi hien anh de nguoi dung tu luu roi tu gui, chu khong tu dong
-    // tai file xuong (bam "gui" ma ra file tai ve la vo ly).
-    try {
-      const dataUrl = await blobToDataUrl(blob);
-      setSavedImageUrl(dataUrl);
-      setStatus("idle");
-    } catch (err) {
-      reportError("Lỗi khi tạo ảnh để lưu", err);
-    }
-  }
-
-  // Nut "Tai anh thiep": may tinh tai file binh thuong (a.click() luon dang
-  // tin cay o day). Dien thoai/may tinh bang: hien anh de nguoi dung tu
-  // nhan giu > luu anh - vi trinh duyet trong app (Zalo, Facebook...) hay
-  // lam ngo lenh tai file ma khong bao loi.
-  async function handleShowToSave() {
-    setStatus("working");
-    setErrorDetail("");
-    let blob: Blob;
-    try {
-      blob = await captureCardAsBlob();
-    } catch (err) {
-      reportError("Lỗi khi chụp ảnh thiệp", err);
-      return;
-    }
     if (!isTouchDevice()) {
       try {
         downloadBlob(blob, fileName);
-        setStatus("idle");
+        setStatus("downloaded");
       } catch (err) {
         reportError("Lỗi khi tải ảnh", err);
       }
       return;
     }
+
+    // Dien thoai/may tinh bang khong chia se truc tiep duoc: hien anh de
+    // nguoi dung tu nhan giu > luu anh - vi trinh duyet trong app (Zalo,
+    // Facebook...) hay lam ngo lenh tai file ma khong bao loi.
     try {
       const dataUrl = await blobToDataUrl(blob);
       setSavedImageUrl(dataUrl);
@@ -172,18 +150,9 @@ export default function CardActions({
         <ShareIcon size={18} />
         {status === "working" && "Đang tạo ảnh..."}
         {status === "shared" && "Đã mở hộp thoại chia sẻ"}
+        {status === "downloaded" && "Đã tải ảnh — gửi ảnh đó qua Zalo nhé"}
         {status === "error" && "Có lỗi, xem chi tiết bên dưới"}
         {status === "idle" && "Gửi ảnh thiệp qua Zalo"}
-      </button>
-
-      <button
-        type="button"
-        onClick={handleShowToSave}
-        disabled={status === "working"}
-        className="border-[1.5px] border-line rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-60"
-      >
-        <DownloadIcon size={18} />
-        Tải ảnh thiệp
       </button>
 
       {status === "error" && errorDetail && (
@@ -229,9 +198,7 @@ export default function CardActions({
             <XIcon size={20} color="#FFFFFF" />
           </button>
           <p className="text-white text-center text-[15px] font-semibold max-w-[320px] leading-relaxed">
-            {isTouchDevice()
-              ? "Nhấn giữ vào ảnh bên dưới rồi chọn “Lưu ảnh” để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo."
-              : "Bấm chuột phải vào ảnh bên dưới rồi chọn “Lưu hình ảnh dưới dạng...” để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo."}
+            Nhấn giữ vào ảnh bên dưới rồi chọn &ldquo;Lưu ảnh&rdquo; để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo.
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

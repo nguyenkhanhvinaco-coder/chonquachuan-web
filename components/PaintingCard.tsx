@@ -22,7 +22,7 @@ export default function PaintingCard({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={card.image} alt={card.name} className="art" crossOrigin="anonymous" />
         <div className="brand-badge">🎁 chonquachuan.vn</div>
-        <div className="text-block">
+        <div className="text-panel">
           <p className="to">
             Gửi tới <strong>{den}</strong>
           </p>
@@ -65,40 +65,49 @@ export default function PaintingCard({
           font-size: 11.5px;
           font-weight: 700;
           letter-spacing: 0.02em;
-          text-shadow: none;
         }
-        .text-block {
+        .text-panel {
           position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: 20px 20px 22px;
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+          padding: 18px 20px 20px;
           display: flex;
           flex-direction: column;
-          gap: 5px;
+          gap: 4px;
           text-align: left;
-        }
-        .to, .msg, .from {
-          text-shadow: 0 1px 4px rgba(0,0,0,0.85), 0 1px 14px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.9);
+          border-radius: 16px;
+          background: rgba(35, 26, 18, 0.42);
+          border: 1px solid rgba(255,255,255,0.28);
+          box-shadow: 0 8px 28px rgba(20,15,10,0.28), inset 0 1px 0 rgba(255,255,255,0.15);
         }
         .to {
-          font-size: 15.5px;
-          font-weight: 600;
+          font-family: var(--font-lora), Georgia, serif;
+          font-size: 15px;
+          font-weight: 500;
           color: #FFFFFF;
+          text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+        }
+        .to strong {
+          font-weight: 700;
         }
         .msg {
           font-family: var(--font-lora), Georgia, serif;
           font-style: italic;
+          font-weight: 500;
           font-size: 13.5px;
-          color: #F4EFE8;
-          line-height: 1.55;
-          margin-top: 6px;
+          color: #FBF6EE;
+          line-height: 1.6;
+          margin-top: 7px;
+          text-shadow: 0 1px 6px rgba(0,0,0,0.5);
         }
         .from {
+          font-family: var(--font-lora), Georgia, serif;
           font-size: 13px;
-          font-weight: 700;
+          font-weight: 600;
           color: #FFD8A8;
-          margin-top: 8px;
+          margin-top: 9px;
+          text-shadow: 0 1px 6px rgba(0,0,0,0.5);
         }
         @keyframes rise {
           from { opacity: 0; transform: translateY(14px); }

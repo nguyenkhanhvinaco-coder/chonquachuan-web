@@ -15,7 +15,6 @@ export default function ThiepTrungThuPage() {
   const [tranh, setTranh] = useState<string>("");
   const [tu, setTu] = useState("");
   const [den, setDen] = useState("");
-  const [phone, setPhone] = useState("");
   const [loiNhan, setLoiNhan] = useState("");
   const [loiNhanTouched, setLoiNhanTouched] = useState(false);
   const [consent, setConsent] = useState(false);
@@ -39,7 +38,7 @@ export default function ThiepTrungThuPage() {
     if (supabase) {
       await supabase.from("leads").insert({
         name: tu,
-        phone,
+        phone: "", // cot phone dang NOT NULL trong Supabase - form nay khong con hoi SDT nua
         note: `Thiệp tranh vẽ (tranh bé vẽ) — tranh: ${card?.name ?? tranh} | gửi tới: ${den}${
           loiNhan ? ` | lời nhắn: ${loiNhan}` : ""
         }`,
@@ -183,23 +182,6 @@ export default function ThiepTrungThuPage() {
                 </p>
               )}
             </div>
-            <div>
-              <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                Số điện thoại / Zalo của bạn <span className="text-ink-soft font-normal">(không bắt buộc)</span>
-              </label>
-              <input
-                type="tel"
-                inputMode="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="09xx xxx xxx"
-                className="w-full border border-line rounded-[9px] px-3.5 py-3.5 bg-surface text-[15px]"
-              />
-              <p className="text-ink-soft text-xs mt-1.5">
-                Để lại nếu muốn nhận ưu đãi dành riêng cho bạn — không dùng vào việc khác.
-              </p>
-            </div>
-
             <label className="flex items-start gap-3 cursor-pointer py-1">
               <input
                 type="checkbox"
