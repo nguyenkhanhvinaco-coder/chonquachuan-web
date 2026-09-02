@@ -69,7 +69,20 @@ function downloadBlob(blob: Blob, name: string) {
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
 }
 
-type Status = "idle" | "working" | "shared" | "downloaded" | "error";
+// Sao chep anh vao bo nho tam de nguoi dung mo Zalo va dan (Ctrl+V) thang
+// vao khung chat - nhanh hon nhieu so voi phai tim file vua tai ve roi
+// dinh kem thu cong. Tra ve true neu sao chep thanh cong.
+async function copyImageToClipboard(blob: Blob): Promise<boolean> {
+  try {
+    if (typeof ClipboardItem === "undefined" || !navigator.clipboard?.write) return false;
+    await navigator.clipboard.write([new ClipboardItem({ [blob.type || "image/png"]: blob })]);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+type Status = "idle" | "working" | "shared" | "copied" | "downloaded" | "error";
 
 export default function CardActions({
   shareUrl,
@@ -91,12 +104,19 @@ export default function CardActions({
     setStatus("error");
   }
 
-  // Mot nut duy nhat: uu tien gui thang tam ANH qua Zalo (hoat dong tot tren
-  // dien thoai/may tinh bang thuc su, vi Zalo mobile co dang ky nhan chia
-  // se). Tren may tinh, Zalo desktop KHONG dang ky nhan chia se qua trinh
-  // duyet (gioi han cua Windows/Zalo, khong sua duoc tu phia web) - neu
-  // khong gui truc tiep duoc, tu dong tai anh ve may de nguoi dung tu dinh
-  // kem gui qua Zalo.
+  // Mot nut duy nhat, chia lam 2 nhanh theo thiet bi:
+  //
+  // - DIEN THOAI/MAY TINH BANG: thu navigator.share() truoc (mo dung hop
+  //   thoai chia se that cua Zalo mobile, da xac nhan hoat dong tot).
+  //
+  // - MAY TINH: KHONG thu navigator.share() nua - da xac nhan hop thoai
+  //   chia se cua Windows tra ve "thanh cong" ngay khi vua mo len (chua can
+  //   nguoi dung chon gi), nen truoc gio bi hieu nham la da gui xong trong
+  //   khi Zalo desktop khong he nhan duoc gi (Zalo desktop khong dang ky
+  //   nhan chia se qua trinh duyet - gioi han cua Windows/Zalo, khong sua
+  //   duoc tu phia web). Thay vao do, SAO CHEP anh vao bo nho tam de nguoi
+  //   dung mo Zalo va dan (Ctrl+V) thang vao khung chat; neu trinh duyet
+  //   khong ho tro sao chep anh thi tai file ve nhu phuong an cuoi.
   async function handleShare() {
     setStatus("working");
     setErrorDetail("");
@@ -105,6 +125,20 @@ export default function CardActions({
       blob = await captureCardAsBlob();
     } catch (err) {
       reportError("Lỗi khi chụp ảnh thiệp", err);
+      return;
+    }
+
+    if (!isTouchDevice()) {
+      if (await copyImageToClipboard(blob)) {
+        setStatus("copied");
+        return;
+      }
+      try {
+        downloadBlob(blob, fileName);
+        setStatus("downloaded");
+      } catch (err) {
+        reportError("Lỗi khi tải ảnh", err);
+      }
       return;
     }
 
@@ -124,8 +158,7 @@ export default function CardActions({
         }
         // May khong ho tro chia se FILE nhung van co the ho tro chia se
         // link+chu thuong - thu buoc nay truoc khi danh phai hien anh de
-        // tu luu (day chinh la buoc bi bo sot lan gop nut truoc, khien
-        // trinh duyet trong app Zalo roi thang xuong man hinh luu anh).
+        // tu luu.
         await navigator.share({
           title: "Thiệp tranh vẽ từ chonquachuan.vn",
           text: shareText,
@@ -142,19 +175,9 @@ export default function CardActions({
       }
     }
 
-    if (!isTouchDevice()) {
-      try {
-        downloadBlob(blob, fileName);
-        setStatus("downloaded");
-      } catch (err) {
-        reportError("Lỗi khi tải ảnh", err);
-      }
-      return;
-    }
-
-    // Dien thoai/may tinh bang khong chia se truc tiep duoc: hien anh de
-    // nguoi dung tu nhan giu > luu anh - vi trinh duyet trong app (Zalo,
-    // Facebook...) hay lam ngo lenh tai file ma khong bao loi.
+    // Khong chia se truc tiep duoc: hien anh de nguoi dung tu nhan giu >
+    // luu anh - vi trinh duyet trong app (Zalo, Facebook...) hay lam ngo
+    // lenh tai file ma khong bao loi.
     try {
       const dataUrl = await blobToDataUrl(blob);
       setSavedImageUrl(dataUrl);
@@ -174,6 +197,7 @@ export default function CardActions({
         <ShareIcon size={18} />
         {status === "working" && "Đang tạo ảnh..."}
         {status === "shared" && "Đã mở hộp thoại chia sẻ"}
+        {status === "copied" && "Đã sao chép ảnh — mở Zalo và dán (Ctrl+V) để gửi"}
         {status === "downloaded" && "Đã tải ảnh — gửi ảnh đó qua Zalo nhé"}
         {status === "error" && "Có lỗi, xem chi tiết bên dưới"}
         {status === "idle" && "Gửi ảnh thiệp qua Zalo"}
