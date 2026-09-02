@@ -17,6 +17,19 @@ function buildFileName(tu: string) {
 async function captureCardAsBlob(): Promise<Blob> {
   const node = document.getElementById("thiep-capture-frame");
   if (!node) throw new Error("Không tìm thấy khung thiệp trong trang");
+
+  // Dam bao anh tranh da tai xong het truoc khi chup - neu bam gui qua
+  // nhanh (hoac mang cham), html-to-image co the chup phai luc anh chua
+  // sang, ra ket qua trang/xam.
+  const img = node.querySelector("img");
+  if (img && !img.complete) {
+    await new Promise<void>((resolve) => {
+      img.addEventListener("load", () => resolve(), { once: true });
+      img.addEventListener("error", () => resolve(), { once: true });
+      setTimeout(resolve, 5000);
+    });
+  }
+
   const { toBlob } = await import("html-to-image");
 
   const timeout = new Promise<never>((_, reject) =>

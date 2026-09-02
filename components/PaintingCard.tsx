@@ -18,9 +18,12 @@ export default function PaintingCard({
       <div className="frame" id="thiep-capture-frame">
         {/* Dung the img thuong (khong qua next/image) de dam bao chup anh
             bang html-to-image luon lay dung file goc, khong qua endpoint
-            toi uu hoa anh cua Next co the gay tre/loi khi chup. */}
+            toi uu hoa anh cua Next co the gay tre/loi khi chup. KHONG dat
+            crossOrigin vi anh la cung goc (/public) — vai trinh duyet trong
+            app (Zalo) xu ly nghiem ngat che do CORS nay, khien anh bi coi
+            la "nhiem ban" va xuat ra trang/xam khi chup thanh PNG. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={card.image} alt={card.name} className="art" crossOrigin="anonymous" />
+        <img src={card.image} alt={card.name} className="art" />
         <div className="brand-badge">🎁 chonquachuan.vn</div>
         <div className="text-panel">
           <p className="to">
