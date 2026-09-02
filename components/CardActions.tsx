@@ -27,11 +27,8 @@ async function captureCardAsBlob(): Promise<Blob> {
   return blob;
 }
 
-// May tinh (khong co man hinh cam ung) hau nhu khong co ung dung nao dang ky
-// nhan chia se qua navigator.share (Zalo desktop khong dang ky), nen hop
-// thoai chia se cua Windows mo ra nhung khong co Zalo — nguoi dung tuong da
-// gui xong nhung thuc ra chua gui di dau ca. Tren may tinh, bo qua buoc nay
-// va dua thang sang cach luu anh chac chan (bam chuot phai > Luu anh).
+// Dung de chon loi huong dan phu hop (nhan giu vs bam chuot phai) va cach
+// tai anh o nut "Tai anh thiep".
 function isTouchDevice(): boolean {
   if (typeof navigator === "undefined") return false;
   return navigator.maxTouchPoints > 0;
@@ -98,10 +95,10 @@ export default function CardActions({
     const shareText = `Gửi tới ${den} một lời chúc 🎁 — chonquachuan.vn`;
 
     // Uu tien gui thang tam ANH thay vi gui link — de nguoi nhan thay ngay
-    // tam thiep, khong phai mot duong link dai xau. Chi thu tren thiet bi
-    // cam ung (dien thoai/may tinh bang) — tren may tinh gan nhu chac chan
-    // khong co Zalo trong hop thoai chia se cua he dieu hanh.
-    if (isTouchDevice() && typeof navigator !== "undefined" && navigator.share) {
+    // tam thiep, khong phai mot duong link dai xau. Thu tren moi thiet bi,
+    // ke ca may tinh - neu Zalo (app hoac web) dang chay va co dang ky
+    // nhan chia se thi se xuat hien trong hop thoai nay.
+    if (typeof navigator !== "undefined" && navigator.share) {
       try {
         if (navigator.canShare?.({ files: [file] })) {
           await navigator.share({

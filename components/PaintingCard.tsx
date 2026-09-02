@@ -65,36 +65,39 @@ export default function PaintingCard({
           font-size: 11.5px;
           font-weight: 700;
           letter-spacing: 0.02em;
+          text-shadow: none;
         }
         .text-block {
           position: absolute;
           left: 0;
           right: 0;
           bottom: 0;
-          padding: 18px 20px 22px;
+          padding: 20px 20px 22px;
           display: flex;
           flex-direction: column;
           gap: 5px;
           text-align: left;
-          background: #241C15;
+        }
+        .to, .msg, .from {
+          text-shadow: 0 1px 4px rgba(0,0,0,0.85), 0 1px 14px rgba(0,0,0,0.6), 0 0 2px rgba(0,0,0,0.9);
         }
         .to {
           font-size: 15.5px;
           font-weight: 600;
-          color: #F3EAE0;
+          color: #FFFFFF;
         }
         .msg {
           font-family: var(--font-lora), Georgia, serif;
           font-style: italic;
-          font-size: 13px;
-          color: #D9CFC4;
+          font-size: 13.5px;
+          color: #F4EFE8;
           line-height: 1.55;
           margin-top: 6px;
         }
         .from {
           font-size: 13px;
-          font-weight: 600;
-          color: #F0B27A;
+          font-weight: 700;
+          color: #FFD8A8;
           margin-top: 8px;
         }
         @keyframes rise {
