@@ -46,6 +46,21 @@ function blobToDataUrl(blob: Blob): Promise<string> {
   });
 }
 
+// Tren trinh duyet may tinh binh thuong, tai file bang the <a download> luon
+// hoat dong tot va la trai nghiem quen thuoc nhat — chi rieng trinh duyet
+// trong app tren dien thoai (Zalo, Facebook...) moi lam ngo lenh nay ma
+// khong bao loi, nen chi dung cach "hien anh de tu luu" cho thiet bi cam ung.
+function downloadBlob(blob: Blob, name: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+}
+
 type Status = "idle" | "working" | "shared" | "error";
 
 export default function CardActions({
@@ -106,11 +121,24 @@ export default function CardActions({
       }
     }
 
-    // Khong chia se duoc anh truc tiep: nhieu trinh duyet trong app (Zalo,
-    // Facebook...) chan luon ca viec tai anh bang code (a.click() im lang
-    // khong loi nhung khong co file nao duoc luu that). Cach chac chan
-    // hoat dong o moi noi: hien anh len man hinh de nguoi dung tu nhan giu
-    // va luu bang tinh nang co san cua dien thoai.
+    await fallbackSaveImage(blob);
+  }
+
+  // May tinh: tai file binh thuong (a.click() luon dang tin cay o day).
+  // Dien thoai/may tinh bang: hien anh de nguoi dung tu nhan giu > luu anh —
+  // vi trinh duyet trong app (Zalo, Facebook...) hay lam ngo lenh tai file
+  // ma khong bao loi, khien nguoi dung tuong da luu nhung thuc ra khong co
+  // file nao duoc tao ca.
+  async function fallbackSaveImage(blob: Blob) {
+    if (!isTouchDevice()) {
+      try {
+        downloadBlob(blob, fileName);
+        setStatus("idle");
+      } catch (err) {
+        reportError("Lỗi khi tải ảnh", err);
+      }
+      return;
+    }
     try {
       const dataUrl = await blobToDataUrl(blob);
       setSavedImageUrl(dataUrl);
@@ -123,14 +151,14 @@ export default function CardActions({
   async function handleShowToSave() {
     setStatus("working");
     setErrorDetail("");
+    let blob: Blob;
     try {
-      const blob = await captureCardAsBlob();
-      const dataUrl = await blobToDataUrl(blob);
-      setSavedImageUrl(dataUrl);
-      setStatus("idle");
+      blob = await captureCardAsBlob();
     } catch (err) {
-      reportError("Lỗi khi tạo ảnh để lưu", err);
+      reportError("Lỗi khi chụp ảnh thiệp", err);
+      return;
     }
+    await fallbackSaveImage(blob);
   }
 
   return (

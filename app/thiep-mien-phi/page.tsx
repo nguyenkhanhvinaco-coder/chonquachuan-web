@@ -33,7 +33,7 @@ export default function ThiepTrungThuPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!tranh || !tu || !den || !phone || !consent) return;
+    if (!tranh || !tu || !den || !consent) return;
     setStatus("submitting");
 
     if (supabase) {
@@ -185,10 +185,9 @@ export default function ThiepTrungThuPage() {
             </div>
             <div>
               <label className="text-[13px] font-semibold text-ink-soft mb-1.5 block">
-                Số điện thoại / Zalo của bạn
+                Số điện thoại / Zalo của bạn <span className="text-ink-soft font-normal">(không bắt buộc)</span>
               </label>
               <input
-                required
                 type="tel"
                 inputMode="tel"
                 value={phone}
@@ -197,7 +196,7 @@ export default function ThiepTrungThuPage() {
                 className="w-full border border-line rounded-[9px] px-3.5 py-3.5 bg-surface text-[15px]"
               />
               <p className="text-ink-soft text-xs mt-1.5">
-                Dùng để gửi ưu đãi dành riêng cho bạn — không dùng vào việc khác.
+                Để lại nếu muốn nhận ưu đãi dành riêng cho bạn — không dùng vào việc khác.
               </p>
             </div>
 
