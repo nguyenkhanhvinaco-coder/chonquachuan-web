@@ -109,6 +109,17 @@ export default function CardActions({
           setStatus("shared");
           return;
         }
+        // May khong ho tro chia se FILE nhung van co the ho tro chia se
+        // link+chu thuong - thu buoc nay truoc khi danh phai hien anh de
+        // tu luu (day chinh la buoc bi bo sot lan gop nut truoc, khien
+        // trinh duyet trong app Zalo roi thang xuong man hinh luu anh).
+        await navigator.share({
+          title: "Thiệp tranh vẽ từ chonquachuan.vn",
+          text: shareText,
+          url: shareUrl,
+        });
+        setStatus("shared");
+        return;
       } catch (err) {
         if (err instanceof DOMException && err.name === "AbortError") {
           setStatus("idle");
