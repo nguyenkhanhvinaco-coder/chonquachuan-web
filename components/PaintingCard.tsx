@@ -68,22 +68,22 @@ export default function PaintingCard({
         }
         .text-panel {
           position: absolute;
-          left: 16px;
-          right: 16px;
-          bottom: 16px;
-          padding: 18px 20px 20px;
+          left: 14px;
+          right: 14px;
+          bottom: 14px;
+          padding: 11px 16px 13px;
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 2px;
           text-align: left;
-          border-radius: 16px;
+          border-radius: 14px;
           background: rgba(35, 26, 18, 0.42);
           border: 1px solid rgba(255,255,255,0.28);
           box-shadow: 0 8px 28px rgba(20,15,10,0.28), inset 0 1px 0 rgba(255,255,255,0.15);
         }
         .to {
           font-family: var(--font-lora), Georgia, serif;
-          font-size: 15px;
+          font-size: 13.5px;
           font-weight: 500;
           color: #FFFFFF;
           text-shadow: 0 1px 6px rgba(0,0,0,0.5);
@@ -95,18 +95,18 @@ export default function PaintingCard({
           font-family: var(--font-lora), Georgia, serif;
           font-style: italic;
           font-weight: 500;
-          font-size: 13.5px;
+          font-size: 12px;
           color: #FBF6EE;
-          line-height: 1.6;
-          margin-top: 7px;
+          line-height: 1.5;
+          margin-top: 4px;
           text-shadow: 0 1px 6px rgba(0,0,0,0.5);
         }
         .from {
           font-family: var(--font-lora), Georgia, serif;
-          font-size: 13px;
+          font-size: 11.5px;
           font-weight: 600;
           color: #FFD8A8;
-          margin-top: 9px;
+          margin-top: 6px;
           text-shadow: 0 1px 6px rgba(0,0,0,0.5);
         }
         @keyframes rise {
