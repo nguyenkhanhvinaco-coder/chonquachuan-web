@@ -209,19 +209,15 @@ export default function CardActions({
         </p>
       )}
 
-      {/* Nút Zalo OA đang tạm ẩn — chờ NEXT_PUBLIC_ZALO_OA_URL. Nhắn Zalo tạm thời
-          đi qua nút "Gửi qua Zalo / chia sẻ" ở trên (chia sẻ link, không phải chat OA). */}
-      {process.env.NEXT_PUBLIC_ZALO_OA_URL && (
-        <a
-          href={ZALO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px]"
-          style={{ background: "var(--sage-soft)", color: "oklch(0.4 0.1 150)" }}
-        >
-          Kết bạn Zalo OA — nhận ưu đãi dành riêng cho bạn
-        </a>
-      )}
+      <a
+        href={ZALO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="rounded-[10px] py-4 text-[15px] font-semibold w-full flex items-center justify-center gap-2 min-h-[44px]"
+        style={{ background: "var(--sage-soft)", color: "oklch(0.4 0.1 150)" }}
+      >
+        Kết bạn Zalo OA — nhận ưu đãi dành riêng cho bạn
+      </a>
 
       <Link
         href="/thiep-mien-phi"
