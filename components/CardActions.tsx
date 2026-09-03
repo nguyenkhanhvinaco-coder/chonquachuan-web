@@ -143,7 +143,13 @@ export default function CardActions({
     }
 
     const file = new File([blob], fileName, { type: blob.type || "image/png" });
-    const shareText = `Gửi tới ${den} một lời chúc 🎁 — chonquachuan.vn`;
+    // Nhung link that (co du query tranh/tu/den) vao thang trong text, KHONG
+    // chi ghi ten mien suong — vi mot so app (Messenger...) lam rot file anh
+    // dinh kem khi chia se qua Web Share API, chi con lai dong text nay. Neu
+    // text chi ghi "chonquachuan.vn" thi app se tu doan link ve trang chu
+    // (khong co anh thiep). Co link day du thi du bi rot anh, nguoi nhan
+    // van bam duoc dung trang thiep (co OG image/tieu de dung).
+    const shareText = `Gửi tới ${den} một lời chúc 🎁 — ${shareUrl}`;
 
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
