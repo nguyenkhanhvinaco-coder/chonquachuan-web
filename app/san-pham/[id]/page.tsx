@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import LeadFormTrigger from "@/components/LeadForm";
-import { GiftIcon } from "@/components/icons";
+import ProductGallery from "@/components/ProductGallery";
 import { getProducts } from "@/lib/products";
 
 // Trang chi tiet san pham (kieu Etsy: anh lon, mo ta day du, gia, nut tu
@@ -42,28 +41,18 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
       </section>
 
       <section className="px-9 pt-6 pb-20 md:px-[72px] grid md:grid-cols-2 gap-10 md:gap-16">
-        <div
-          className="relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[480px] flex items-center justify-center"
-          style={{ background: product.color }}
-        >
-          {product.image ? (
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <GiftIcon size={64} color="white" strokeWidth={1.3} />
-          )}
-          {product.is_digital && (
-            <span className="absolute top-4 left-4 bg-ink text-bg text-[12px] font-bold px-3 py-1.5 rounded-full z-10">
-              Tải về ngay
-            </span>
-          )}
-        </div>
+        <ProductGallery
+          images={product.images?.length ? product.images : product.image ? [product.image] : []}
+          color={product.color}
+          name={product.name}
+          badge={
+            product.is_digital ? (
+              <span className="absolute top-4 left-4 bg-ink text-bg text-[12px] font-bold px-3 py-1.5 rounded-full z-10">
+                Tải về ngay
+              </span>
+            ) : undefined
+          }
+        />
 
         <div className="flex flex-col gap-5">
           <span

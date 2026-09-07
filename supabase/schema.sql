@@ -18,6 +18,12 @@ create table if not exists products (
 -- ve khoi mau + icon nhu truoc.
 alter table products add column if not exists image text;
 
+-- Bo sung 07/09/2026: gallery nhieu anh cho trang chi tiet san pham
+-- (/san-pham/[id], kieu Etsy) - mang duong dan anh, vd:
+-- '{"/products/tui-tre-em.jpg","/products/tui-tre-em-2.jpg"}'.
+-- De trong (NULL) thi trang chi tiet chi hien anh dai dien (cot `image`).
+alter table products add column if not exists images text[];
+
 create table if not exists leads (
   id uuid primary key default gen_random_uuid(),
   name text not null,

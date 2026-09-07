@@ -9,8 +9,12 @@ export type Product = {
   is_digital: boolean;
   color: string;
   // Duong dan anh that (vd "/products/tui-tre-em.jpg") - de trong (undefined)
-  // thi giao dien tu dong lui ve khoi mau + icon nhu truoc.
+  // thi giao dien tu dong lui ve khoi mau + icon nhu truoc. Dung lam anh dai
+  // dien (the san pham, khu Noi bat trang chu).
   image?: string;
+  // Toan bo anh cho trang chi tiet san pham (gallery nhieu anh kieu Etsy).
+  // De trong thi trang chi tiet chi hien 1 anh dai dien (`image`) o tren.
+  images?: string[];
 };
 
 // Dữ liệu mẫu — dùng khi chưa nối Supabase, hoặc làm dữ liệu seed ban đầu
@@ -97,6 +101,12 @@ export const seedProducts: Product[] = [
     is_digital: false,
     color: "oklch(0.68 0.15 10)",
     image: "/products/tui-tre-em.jpg",
+    images: [
+      "/products/tui-tre-em.jpg",
+      "/products/tui-tre-em-2.jpg",
+      "/products/tui-tre-em-3.jpg",
+      "/products/tui-tre-em-4.jpg",
+    ],
   },
 ];
 
@@ -105,7 +115,7 @@ export async function getProducts(): Promise<Product[]> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("id, name, description, price_display, category, is_digital, color, image")
+    .select("id, name, description, price_display, category, is_digital, color, image, images")
     .eq("active", true);
 
   if (error || !data || data.length === 0) return seedProducts;
