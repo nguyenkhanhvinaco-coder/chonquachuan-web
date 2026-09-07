@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import { ArrowRightIcon, GiftIcon } from "@/components/icons";
+import { ArrowRightIcon, GiftIcon, FacebookIcon, ZaloIcon } from "@/components/icons";
 import InlineLeadForm from "@/components/InlineLeadForm";
 import { getFeaturedProducts } from "@/lib/products";
+import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
 export default async function HomePage() {
   // Chi lay 2 san pham dau lam vi du tuong trung (1 huong ca nhan, 1 huong
@@ -90,8 +91,31 @@ export default async function HomePage() {
             Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối tác
             đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay tức thì.
           </p>
-          <div className="mt-2 max-w-[420px]">
+          <div className="mt-2 max-w-[420px] flex flex-col gap-4">
             <InlineLeadForm />
+            <div className="flex flex-col gap-2.5">
+              <span className="text-[12.5px] font-semibold text-ink-soft">Hoặc liên hệ trực tiếp</span>
+              <div className="flex gap-3">
+                <a
+                  href={FANPAGE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
+                >
+                  <FacebookIcon size={20} />
+                  Fanpage
+                </a>
+                <a
+                  href={ZALO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
+                >
+                  <ZaloIcon size={20} />
+                  Zalo OA
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex-1 grid grid-cols-2 gap-5 w-full">

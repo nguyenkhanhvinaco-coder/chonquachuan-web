@@ -25,13 +25,22 @@ export function FacebookIcon({ size = 22 }: { size?: number }) {
 }
 
 export function ZaloIcon({ size = 22 }: { size?: number }) {
+  // Dung SVG <text> that (khong ve tay net chu bang path) de dam bao chu
+  // "Zalo" luon hien ro rang, khong bi vo/khong doc duoc.
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <rect width="24" height="24" rx="7" fill="#0068FF" />
-      <path
-        d="M7 16.5V15l3.6-4.9H7.2V8.6h5.9v1.5L9.5 15h3.7v1.5H7Zm8.1 0V8.6h1.5v7.9h-1.5Zm2.9-4.4c0-1.9 1.1-3.7 3-3.7v1.5c-.9 0-1.5 1-1.5 2.2s.6 2.2 1.5 2.2V16c-1.9 0-3-1.8-3-3.9Z"
+    <svg width={size} height={size * (28 / 22)} viewBox="0 0 22 28">
+      <rect width="22" height="28" rx="4" fill="#0068FF" />
+      <text
+        x="11"
+        y="19"
+        textAnchor="middle"
+        fontFamily="Arial, sans-serif"
+        fontWeight="700"
+        fontSize="11"
         fill="#FFFFFF"
-      />
+      >
+        Zalo
+      </text>
     </svg>
   );
 }
