@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import PaintingCard from "@/components/PaintingCard";
 import CardActions from "@/components/CardActions";
+import InAppBrowserNotice from "@/components/InAppBrowserNotice";
 import { findCard } from "@/lib/trungThuCards";
 
 const SITE_URL = "https://chonquachuan.vn";
@@ -59,6 +60,7 @@ export default function XemThiepPage({ searchParams }: { searchParams: SP }) {
     <div className="flex flex-col min-h-screen">
       <Header minimal />
       <div className="flex-1 flex flex-col items-center gap-8 px-6 py-12 bg-surface-2">
+        <InAppBrowserNotice />
         <PaintingCard card={card} tu={tu} den={den} loiNhan={loiNhan} />
         <CardActions shareUrl={shareUrl} tu={tu} den={den} />
       </div>

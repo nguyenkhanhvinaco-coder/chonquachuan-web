@@ -261,7 +261,7 @@ export default function CardActions({
           <p className="text-white text-center text-[15px] font-semibold max-w-[320px] leading-relaxed">
             {isFacebookOrInstagramInApp() ? (
               <>
-                Trình duyệt trong Facebook/Instagram không cho lưu ảnh trực tiếp. Chị bấm nút <strong>••• (góc trên)</strong> và chọn <strong>&ldquo;Mở bằng trình duyệt&rdquo;</strong> (Chrome/Safari) để gửi thiệp được bình thường.
+                Thiệp đã sẵn sàng rồi nè 💌 Chạm vào <strong>⋯</strong> ở góc màn hình, chọn <strong>&ldquo;Mở bằng trình duyệt&rdquo;</strong> để gửi qua Zalo được bình thường.
               </>
             ) : (
               <>Nhấn giữ vào ảnh bên dưới rồi chọn &ldquo;Lưu ảnh&rdquo; để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo.</>
