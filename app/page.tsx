@@ -80,10 +80,11 @@ export default async function HomePage() {
           <div className="inline-flex self-start bg-accent-soft px-3.5 py-1.5 rounded-full text-[13px] font-semibold" style={{ color: "oklch(0.45 0.14 40)" }}>
             Dành cho doanh nghiệp &amp; cá nhân
           </div>
-          <h1 className="font-serif text-[38px] md:text-[52px] leading-[1.12]">
-            Tìm quà chuẩn,
-            <br />
-            nhanh, và ý nghĩa.
+          <h1 className="font-serif leading-[1.16] max-w-[480px]">
+            <span className="block text-[38px] md:text-[52px]">Chọn Quà Chuẩn</span>
+            <span className="block text-[20px] md:text-[26px] mt-1.5 text-ink-soft font-normal">
+              — tư vấn và cung cấp quà tặng cho doanh nghiệp và cá nhân.
+            </span>
           </h1>
           <p className="text-[13px] leading-relaxed text-ink-soft max-w-[480px]">
             Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối tác
