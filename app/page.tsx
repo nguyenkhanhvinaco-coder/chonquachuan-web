@@ -6,6 +6,12 @@ import InlineLeadForm from "@/components/InlineLeadForm";
 import { getFeaturedProducts } from "@/lib/products";
 import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
+// Cho phep trang lam moi du lieu san pham (tu Supabase) toi da moi 60 giay
+// mot lan, thay vi dong bang vinh vien luc build - de sua san pham truc
+// tiep trong Supabase Table Editor (khong dong code) len trang that trong
+// vong ~1 phut, khong can cho deploy lai.
+export const revalidate = 60;
+
 export default async function HomePage() {
   // Chi lay 2 san pham dau lam vi du tuong trung (1 huong ca nhan, 1 huong
   // doanh nghiep) - trang chu khong con la catalog day du nua, xem ghi chu

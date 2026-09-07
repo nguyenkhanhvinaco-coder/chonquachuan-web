@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/danh-muc" },
 };
 
+// Cung ly do nhu trang chu: lam moi du lieu san pham toi da 60 giay/lan
+// thay vi dong bang vinh vien luc build.
+export const revalidate = 60;
+
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
