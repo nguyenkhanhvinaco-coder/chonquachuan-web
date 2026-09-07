@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --bg: oklch(0.97 0.015 75);
+  --bg: oklch(1 0 0);
   --surface: oklch(0.995 0.004 75);
   --surface-2: oklch(0.945 0.02 60);
   --line: oklch(0.88 0.02 60);
