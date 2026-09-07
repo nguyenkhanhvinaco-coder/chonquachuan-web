@@ -171,7 +171,7 @@ export default async function HomePage() {
           href="mailto:lienhe@chonquachuan.vn?subject=Đăng ký nhà cung cấp Chọn Quà Chuẩn"
           className="flex-shrink-0 bg-bg text-ink rounded-[10px] px-[26px] py-3.5 text-[15px] font-semibold"
         >
-          Trở thành nhà cung cấp
+          Trở thành đối tác với Chọn Quà Chuẩn
         </a>
       </section>
 

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FacebookIcon, ZaloIcon } from "./icons";
+import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
 function Brand() {
   return (
@@ -39,11 +41,28 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
     <header className="flex items-center justify-between px-3 sm:px-9 md:px-[72px] py-3 sm:py-6 border-b border-line gap-2">
       <Brand />
       <nav className="flex items-center gap-3 md:gap-8 flex-shrink-0">
+        <div className="flex items-center gap-2">
+          <a
+            href={FANPAGE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Fanpage Chọn Quà Chuẩn"
+            className="flex-shrink-0"
+          >
+            <FacebookIcon size={26} />
+          </a>
+          <a
+            href={ZALO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Zalo OA Chọn Quà Chuẩn"
+            className="flex-shrink-0"
+          >
+            <ZaloIcon size={26} />
+          </a>
+        </div>
         <Link href="/danh-muc" className="text-ink-soft text-[15px] font-medium hidden md:inline">
           Danh mục
-        </Link>
-        <Link href="/#nha-cung-cap" className="text-ink-soft text-[15px] font-medium hidden md:inline">
-          Trở thành nhà cung cấp
         </Link>
         {/* Giỏ hàng đã gỡ khỏi header: website chưa có giỏ hàng/thanh toán thật,
             biểu tượng giỏ kèm số 0 khiến khách tưởng có mà bấm vào không làm gì.

@@ -12,6 +12,30 @@ export function GiftIcon({ size = 22, color = "currentColor", strokeWidth = 1.7 
   );
 }
 
+export function FacebookIcon({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#1877F2" />
+      <path
+        d="M15.4 12.5h-2.1V19h-2.7v-6.5H9.1v-2.3h1.5V9.4c0-1.5.9-2.9 3.2-2.9.9 0 1.6.1 1.6.1v2.2h-1.1c-.9 0-1.1.4-1.1 1.1v1.5h2.4l-.2 2.1Z"
+        fill="#FFFFFF"
+      />
+    </svg>
+  );
+}
+
+export function ZaloIcon({ size = 22 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <rect width="24" height="24" rx="7" fill="#0068FF" />
+      <path
+        d="M7 16.5V15l3.6-4.9H7.2V8.6h5.9v1.5L9.5 15h3.7v1.5H7Zm8.1 0V8.6h1.5v7.9h-1.5Zm2.9-4.4c0-1.9 1.1-3.7 3-3.7v1.5c-.9 0-1.5 1-1.5 2.2s.6 2.2 1.5 2.2V16c-1.9 0-3-1.8-3-3.9Z"
+        fill="#FFFFFF"
+      />
+    </svg>
+  );
+}
+
 export function BriefcaseIcon({ size = 22, color = "currentColor", strokeWidth = 1.7 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
