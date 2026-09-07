@@ -45,7 +45,7 @@ export default async function HomePage() {
                   href={`/san-pham/${mainProduct.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold bg-[#1A1006] text-white"
+                  className="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold bg-[#FFC633] text-[#1A1006]"
                 >
                   Xem chi tiết
                   <ArrowRightIcon size={16} color="currentColor" />
