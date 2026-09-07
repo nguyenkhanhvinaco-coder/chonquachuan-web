@@ -27,26 +27,25 @@ export default async function HomePage() {
           day sales ngay lap tuc). Thiep tranh ve chuyen xuong khu the nho o
           Hero ben duoi, video chuyen len khu the lon. */}
       {mainProduct && (
-        <section className="bg-surface-2">
+        <section style={{ background: "linear-gradient(135deg, #FFD666 0%, #FF6B4A 100%)" }}>
           <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14 px-9 py-12 md:px-[72px] md:py-16">
             <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left max-w-[460px]">
-              <span
-                className="inline-flex items-center gap-1.5 bg-accent-soft px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
-                style={{ color: "oklch(0.45 0.14 40)" }}
-              >
+              <span className="inline-flex items-center gap-1.5 bg-white/80 px-3.5 py-1.5 rounded-full text-[13px] font-bold text-[#1A1006]">
                 🔥 Sản phẩm nổi bật
               </span>
-              <h2 className="font-serif text-[24px] md:text-[36px] leading-[1.2]">{mainProduct.name}</h2>
-              <p className="text-[15px] leading-relaxed max-w-[420px] text-ink-soft">
+              <h2 className="font-serif font-bold text-[24px] md:text-[36px] leading-[1.2] text-[#1A1006]">
+                {mainProduct.name}
+              </h2>
+              <p className="text-[15px] leading-relaxed max-w-[420px] font-semibold text-[#3A2410]">
                 {mainProduct.description}
               </p>
-              <span className="text-xl font-bold">{mainProduct.price_display}</span>
+              <span className="text-xl font-extrabold text-[#1A1006]">{mainProduct.price_display}</span>
               <div className="flex flex-wrap gap-3 mt-1.5 justify-center md:justify-start">
                 <Link
                   href={`/san-pham/${mainProduct.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold bg-ink text-bg"
+                  className="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold bg-[#1A1006] text-white"
                 >
                   Xem chi tiết
                   <ArrowRightIcon size={16} color="currentColor" />
@@ -56,7 +55,7 @@ export default async function HomePage() {
                   productLabel={`${mainProduct.name} · ${mainProduct.price_display}`}
                   triggerLabel="Nhận tư vấn ngay"
                   source="trang-chu-spotlight"
-                  triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border border-ink"
+                  triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/70"
                 />
               </div>
             </div>
@@ -68,12 +67,13 @@ export default async function HomePage() {
               style={{ background: mainProduct.color }}
             >
               {mainProduct.image ? (
+                // object-contain: anh co logo/QR in san o goc, khong duoc cat.
                 <Image
                   src={mainProduct.image}
                   alt={mainProduct.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-contain"
                   priority
                 />
               ) : (

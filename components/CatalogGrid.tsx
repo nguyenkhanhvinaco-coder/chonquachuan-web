@@ -54,7 +54,7 @@ export default function CatalogGrid({ products }: { products: Product[] }) {
                   </span>
                 )}
                 {p.image ? (
-                  <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                  <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-contain" />
                 ) : (
                   <GiftIcon size={34} color="white" strokeWidth={1.4} />
                 )}

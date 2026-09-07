@@ -55,19 +55,11 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
         />
 
         <div className="flex flex-col gap-5">
-          <span
-            className="inline-flex self-start bg-accent-soft px-3 py-1.5 rounded-full text-[12.5px] font-semibold"
-            style={{ color: "oklch(0.45 0.14 40)" }}
-          >
-            {product.category === "vat-ly"
-              ? "Set quà vật lý"
-              : product.category === "qua-so"
-              ? "Quà tặng số"
-              : "Combo doanh nghiệp"}
-          </span>
           <h1 className="font-serif text-[26px] md:text-[34px] leading-tight">{product.name}</h1>
           <span className="text-2xl font-bold">{product.price_display}</span>
-          <p className="text-ink-soft text-[15px] leading-relaxed">{product.description}</p>
+          <p className="text-ink-soft text-[15px] leading-relaxed whitespace-pre-line">
+            {product.long_description || product.description}
+          </p>
 
           <div className="flex flex-wrap gap-3 mt-2">
             <LeadFormTrigger

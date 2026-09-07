@@ -15,6 +15,10 @@ export type Product = {
   // Toan bo anh cho trang chi tiet san pham (gallery nhieu anh kieu Etsy).
   // De trong thi trang chi tiet chi hien 1 anh dai dien (`image`) o tren.
   images?: string[];
+  // Mo ta day du (nhieu doan) rieng cho trang chi tiet san pham - `description`
+  // van la ban ngan dung cho the san pham/trang chu. De trong thi trang chi
+  // tiet lui ve dung `description`.
+  long_description?: string;
 };
 
 // Dữ liệu mẫu — dùng khi chưa nối Supabase, hoặc làm dữ liệu seed ban đầu
@@ -107,6 +111,8 @@ export const seedProducts: Product[] = [
       "/products/tui-tre-em-3.jpg",
       "/products/tui-tre-em-4.jpg",
     ],
+    long_description:
+      "Túi có thể dùng làm túi mang chăn gối đi học bán trú, túi du lịch cuối tuần, hoặc túi đi chơi xa cùng ba mẹ — một phụ kiện đa năng, phù hợp nhiều dịp khác nhau.\n\nKhông chỉ có vẻ ngoài sành điệu, túi còn sở hữu không gian chứa đồ rộng rãi cùng nhiều ngăn tiện lợi, giúp sắp xếp đồ đạc ngăn nắp — lựa chọn thiết thực cho nhu cầu di chuyển của trẻ em từ tiểu học trở lên.\n\nDây đeo vai có thể tháo rời và điều chỉnh độ dài, dễ dàng tuỳ chỉnh để đeo thoải mái nhất.\n\nChi tiết chữ cái cá nhân hoá (in decal nhiệt lên vải) biến chiếc túi thành món quà tuyệt vời, mang dấu ấn riêng mà các bé sẽ vô cùng yêu thích.",
   },
 ];
 
@@ -115,7 +121,9 @@ export async function getProducts(): Promise<Product[]> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("id, name, description, price_display, category, is_digital, color, image, images")
+    .select(
+      "id, name, description, price_display, category, is_digital, color, image, images, long_description"
+    )
     .eq("active", true);
 
   if (error || !data || data.length === 0) return seedProducts;

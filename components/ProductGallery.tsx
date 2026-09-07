@@ -33,12 +33,15 @@ export default function ProductGallery({ images, color, name, badge }: Props) {
         style={{ background: color }}
       >
         {badge}
+        {/* object-contain (khong phai object-cover): anh san pham co logo/QR
+            in san o goc, cat anh se che mat logo/QR - phai hien tron ven
+            anh, du co vien mau xung quanh. */}
         <Image
           src={images[active]}
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
+          className="object-contain"
           priority
         />
       </div>

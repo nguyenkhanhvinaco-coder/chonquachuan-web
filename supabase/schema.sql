@@ -24,6 +24,12 @@ alter table products add column if not exists image text;
 -- De trong (NULL) thi trang chi tiet chi hien anh dai dien (cot `image`).
 alter table products add column if not exists images text[];
 
+-- Bo sung 07/09/2026: mo ta day du (nhieu doan, dung \n\n de xuong dong)
+-- rieng cho trang chi tiet san pham - cot `description` van la ban ngan
+-- dung cho the san pham/trang chu. De trong (NULL) thi trang chi tiet lui
+-- ve dung `description`.
+alter table products add column if not exists long_description text;
+
 create table if not exists leads (
   id uuid primary key default gen_random_uuid(),
   name text not null,
