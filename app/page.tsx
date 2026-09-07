@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import { CATEGORY_ICONS, ArrowRightIcon, GiftIcon, PersonIcon, BriefcaseIcon } from "@/components/icons";
-import { categories } from "@/lib/categories";
-import LeadFormTrigger from "@/components/LeadForm";
-import { getProducts, getFeaturedProducts } from "@/lib/products";
+import { ArrowRightIcon, GiftIcon } from "@/components/icons";
+import InlineLeadForm from "@/components/InlineLeadForm";
+import { getFeaturedProducts } from "@/lib/products";
 
 export default async function HomePage() {
-  const products = (await getProducts()).slice(0, 4);
-  const featured = await getFeaturedProducts();
+  // Chi lay 2 san pham dau lam vi du tuong trung (1 huong ca nhan, 1 huong
+  // doanh nghiep) - trang chu khong con la catalog day du nua, xem ghi chu
+  // o phan Hero ben duoi.
+  const examples = (await getFeaturedProducts()).slice(0, 2);
 
   return (
     <div className="flex flex-col">
@@ -70,7 +71,10 @@ export default async function HomePage() {
         </Link>
       </section>
 
-      {/* Hero */}
+      {/* Hero — don gian hoa 2026-09: bo bang hoi /tim-qua va luoi danh muc,
+          thay bang form de lai thong tin hien truc tiep tren trang (khong
+          qua modal) + 2 san pham vi du tuong trung (khong phai catalog day
+          du, tranh lo thiet ke cho doi thu sao chep). */}
       <section className="flex flex-col md:flex-row items-center gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
         <div className="flex-1 flex flex-col gap-6">
           <div className="inline-flex self-start bg-accent-soft px-3.5 py-1.5 rounded-full text-[13px] font-semibold" style={{ color: "oklch(0.45 0.14 40)" }}>
@@ -82,149 +86,50 @@ export default async function HomePage() {
             nhanh, và ý nghĩa.
           </h1>
           <p className="text-lg leading-relaxed text-ink-soft max-w-[480px]">
-            Trả lời vài câu hỏi, chúng tôi gợi ý ngay những set quà tặng phù hợp — từ quà tri ân đối
-            tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số (ebook, khóa học,
-            file thiết kế) nhận ngay tức thì.
+            Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối tác
+            đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay tức thì.
           </p>
-          <div className="flex flex-col gap-3 mt-2">
-            <span className="text-[13px] font-semibold uppercase tracking-wide text-ink-soft">
-              Bạn tìm quà cho ai?
-            </span>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                href="/tim-qua/ket-qua?doi-tuong=ca-nhan"
-                className="flex-1 bg-accent text-accent-ink rounded-[10px] px-6 py-4 text-base font-semibold flex items-center justify-between gap-3 min-h-[44px]"
-              >
-                <span className="flex items-center gap-3">
-                  <PersonIcon size={22} color="var(--accent-ink)" strokeWidth={1.8} />
-                  Cá nhân, người thân
-                </span>
-                <ArrowRightIcon size={17} />
-              </Link>
-              <Link
-                href="/tim-qua/ket-qua?doi-tuong=doanh-nghiep"
-                className="flex-1 border-[1.5px] border-line bg-surface rounded-[10px] px-6 py-4 text-base font-semibold flex items-center justify-between gap-3 min-h-[44px]"
-              >
-                <span className="flex items-center gap-3">
-                  <BriefcaseIcon size={22} color="var(--ink)" strokeWidth={1.8} />
-                  Doanh nghiệp, đối tác
-                </span>
-                <ArrowRightIcon size={17} />
-              </Link>
-            </div>
-            <Link href="/tim-qua" className="text-[14px] font-semibold w-fit">
-              Muốn tư vấn kỹ hơn? Trả lời vài câu hỏi →
-            </Link>
+          <div className="mt-2 max-w-[420px]">
+            <InlineLeadForm />
           </div>
         </div>
         <div className="flex-1 grid grid-cols-2 gap-5 w-full">
-          {featured.map((g, i) => {
+          {examples.map((g, i) => {
             const isHero = i === 0;
+            const audienceTag = i === 0 ? "Cho cá nhân" : "Cho doanh nghiệp";
             return (
-              <LeadFormTrigger
+              <div
                 key={g.id}
-                productId={g.id}
-                productLabel={`${g.name} · ${g.price_display}`}
-                source="trang-chu-noi-bat"
-                triggerClassName={`rounded-[20px] text-left flex overflow-hidden ${
+                className={`rounded-[20px] flex overflow-hidden ${
                   isHero ? "row-span-2 min-h-[420px]" : "min-h-[200px]"
                 }`}
-                triggerLabel={
-                  <span
-                    className={`flex flex-col justify-end w-full rounded-[20px] ${
-                      isHero ? "p-7" : "p-6"
-                    }`}
-                    style={{ background: g.color }}
-                  >
-                    <GiftIcon
-                      size={isHero ? 46 : 34}
-                      color="white"
-                      strokeWidth={isHero ? 1.5 : 1.6}
-                    />
-                    <span
-                      className={`font-serif font-semibold text-white ${
-                        isHero ? "text-xl mt-4" : "text-base mt-2.5"
-                      }`}
-                    >
-                      {g.name}
-                    </span>
-                    <span className="text-sm mt-1.5 text-white/85">{g.price_display}</span>
-                    <span className="text-[13px] font-semibold mt-3 text-white/90">
-                      Nhận tư vấn →
-                    </span>
-                  </span>
-                }
-              />
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Category quick nav */}
-      <section className="px-9 pb-14 md:px-[72px] flex flex-col gap-6">
-        <h2 className="font-serif text-2xl">Hoặc chọn ngay theo danh mục</h2>
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          {categories.map((c) => {
-            const Icon = CATEGORY_ICONS[c.icon];
-            return (
-              <Link
-                href="/danh-muc"
-                key={c.label}
-                className="flex flex-col items-center gap-2.5 bg-surface border border-line rounded-2xl px-3 py-5 text-center"
               >
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center"
-                  style={{ background: c.bg }}
+                <span
+                  className={`flex flex-col justify-end w-full rounded-[20px] ${
+                    isHero ? "p-7" : "p-6"
+                  }`}
+                  style={{ background: g.color }}
                 >
-                  <Icon size={22} color={c.fg} />
-                </div>
-                <span className="text-[12.5px] font-semibold">{c.label}</span>
-              </Link>
+                  <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
+                    {audienceTag} · Ví dụ
+                  </span>
+                  <GiftIcon
+                    size={isHero ? 46 : 34}
+                    color="white"
+                    strokeWidth={isHero ? 1.5 : 1.6}
+                  />
+                  <span
+                    className={`font-serif font-semibold text-white ${
+                      isHero ? "text-xl mt-4" : "text-base mt-2.5"
+                    }`}
+                  >
+                    {g.name}
+                  </span>
+                  <span className="text-sm mt-1.5 text-white/85">{g.price_display}</span>
+                </span>
+              </div>
             );
           })}
-        </div>
-      </section>
-
-      {/* Dual audience */}
-      <section className="px-9 pb-20 md:px-[72px] grid md:grid-cols-2 gap-6">
-        <div className="bg-surface border border-line rounded-[20px] p-9 flex flex-col gap-3.5">
-          <BriefcaseIcon size={30} color="var(--accent)" strokeWidth={1.7} />
-          <h3 className="text-xl">Cho Doanh Nghiệp</h3>
-          <p className="text-ink-soft text-[15px] leading-relaxed">
-            Quà tặng đối tác, tri ân khách hàng cuối năm, quà khai trương, quà sự kiện — số lượng
-            lớn, đúng ngân sách, đúng thời hạn.
-          </p>
-        </div>
-        <div className="bg-surface border border-line rounded-[20px] p-9 flex flex-col gap-3.5">
-          <PersonIcon size={30} color="var(--sage)" strokeWidth={1.7} />
-          <h3 className="text-xl">Cho Cá Nhân</h3>
-          <p className="text-ink-soft text-[15px] leading-relaxed">
-            Quà sinh nhật, quà cho người thân, set quà handmade độc đáo — mỗi món đều có câu chuyện
-            riêng.
-          </p>
-        </div>
-      </section>
-
-      {/* Featured gift sets */}
-      <section className="px-9 pb-20 md:px-[72px] flex flex-col gap-8 bg-surface-2">
-        <div className="flex items-baseline justify-between pt-14">
-          <h2 className="font-serif text-[28px]">Một vài set quà nổi bật</h2>
-          <Link href="/danh-muc" className="text-sm font-semibold">
-            Xem tất cả →
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pb-14">
-          {products.map((g) => (
-            <div key={g.id} className="bg-surface rounded-2xl overflow-hidden border border-line flex flex-col">
-              <div className="h-[150px] flex items-center justify-center" style={{ background: g.color }}>
-                <GiftIcon size={36} color="white" strokeWidth={1.5} />
-              </div>
-              <div className="p-4 flex flex-col gap-1.5">
-                <p className="font-serif font-semibold text-[15px]">{g.name}</p>
-                <p className="text-ink-soft text-[13px]">{g.price_display}</p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -235,9 +140,9 @@ export default async function HomePage() {
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {[
-            { n: 1, title: "Điền nhu cầu", desc: "Cho biết đối tượng nhận quà, dịp tặng, ngân sách và số lượng." },
-            { n: 2, title: "Nhận gợi ý phù hợp", desc: "Hệ thống đề xuất các set quà khớp với tiêu chí của bạn." },
-            { n: 3, title: "Chọn & kết nối nhà cung cấp", desc: "Chúng tôi kết nối bạn với nhà cung cấp phù hợp để hoàn tất đơn." },
+            { n: 1, title: "Để lại thông tin", desc: "Cho biết bạn cần quà cho dịp gì, ngân sách khoảng bao nhiêu." },
+            { n: 2, title: "Chúng tôi liên hệ tư vấn", desc: "Gọi hoặc nhắn Zalo trong thời gian sớm nhất, gợi ý set quà phù hợp nhất." },
+            { n: 3, title: "Chốt đơn & nhận quà", desc: "Chọn set quà ưng ý, chúng tôi lo phần còn lại đến khi bạn nhận quà." },
           ].map((s) => (
             <div key={s.n} className="flex flex-col gap-3">
               <div
