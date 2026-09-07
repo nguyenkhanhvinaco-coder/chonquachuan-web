@@ -85,6 +85,15 @@ export const seedProducts: Product[] = [
     is_digital: false,
     color: "oklch(0.6 0.16 130)",
   },
+  {
+    id: "tui-tre-em",
+    name: "Túi Trẻ Em (cá nhân hoá theo yêu cầu)",
+    description: "Túi đeo chéo in tên riêng, nhiều ngăn tiện lợi, cho bé từ tiểu học trở lên.",
+    price_display: "250.000đ - 350.000đ",
+    category: "vat-ly",
+    is_digital: false,
+    color: "oklch(0.68 0.15 10)",
+  },
 ];
 
 export async function getProducts(): Promise<Product[]> {
@@ -102,7 +111,7 @@ export async function getProducts(): Promise<Product[]> {
 // Sản phẩm ghim lên khu nổi bật ở trang chủ — nơi muốn đẩy mạnh bán hàng.
 // ĐỔI SẢN PHẨM NỔI BẬT: chỉ cần sửa 3 id dưới đây, không phải đụng giao diện.
 // Thứ tự có ý nghĩa: id đầu tiên chiếm ô LỚN, hai id sau nằm ở hai ô nhỏ.
-export const FEATURED_IDS = ["tra-thao-moc", "van-phong-tri-an", "tui-qua-tet"];
+export const FEATURED_IDS = ["tui-tre-em", "van-phong-tri-an", "tra-thao-moc"];
 
 export async function getFeaturedProducts(): Promise<Product[]> {
   const all = await getProducts();
