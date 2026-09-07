@@ -85,7 +85,7 @@ export default async function HomePage() {
             <br />
             nhanh, và ý nghĩa.
           </h1>
-          <p className="text-lg leading-relaxed text-ink-soft max-w-[480px]">
+          <p className="text-[13px] leading-relaxed text-ink-soft max-w-[480px]">
             Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối tác
             đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay tức thì.
           </p>
@@ -142,7 +142,7 @@ export default async function HomePage() {
           {[
             { n: 1, title: "Để lại thông tin", desc: "Cho biết bạn cần quà cho dịp gì, ngân sách khoảng bao nhiêu." },
             { n: 2, title: "Chúng tôi liên hệ tư vấn", desc: "Gọi hoặc nhắn Zalo trong thời gian sớm nhất, gợi ý set quà phù hợp nhất." },
-            { n: 3, title: "Chốt đơn & nhận quà", desc: "Chọn set quà ưng ý, chúng tôi lo phần còn lại đến khi bạn nhận quà." },
+            { n: 3, title: "Chọn và nhận quà", desc: "Chọn set quà ưng ý, chúng tôi lo phần còn lại đến khi bạn nhận quà." },
           ].map((s) => (
             <div key={s.n} className="flex flex-col gap-3">
               <div
