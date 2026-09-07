@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { GiftIcon } from "./icons";
 import LeadFormTrigger from "./LeadForm";
 import type { Product } from "@/lib/products";
@@ -43,20 +44,26 @@ export default function CatalogGrid({ products }: { products: Product[] }) {
       <section className="px-9 pt-8 pb-14 md:px-[72px] grid grid-cols-2 md:grid-cols-4 gap-[22px]">
         {visible.map((p) => (
           <div key={p.id} className="bg-surface border border-line rounded-2xl overflow-hidden flex flex-col">
-            <div className="h-[150px] relative flex items-center justify-center overflow-hidden" style={{ background: p.color }}>
-              {p.is_digital && (
-                <span className="absolute top-2.5 left-2.5 bg-ink text-bg text-[11px] font-bold px-2.5 py-1 rounded-full z-10">
-                  Tải về ngay
-                </span>
-              )}
-              {p.image ? (
-                <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
-              ) : (
-                <GiftIcon size={34} color="white" strokeWidth={1.4} />
-              )}
-            </div>
+            {/* Bam vao anh/ten mo trang chi tiet o tab moi (kieu Etsy) - nut
+                Nhan tu van van la button rieng, khong nam trong Link. */}
+            <Link href={`/san-pham/${p.id}`} target="_blank" rel="noopener noreferrer" className="contents">
+              <div className="h-[150px] relative flex items-center justify-center overflow-hidden" style={{ background: p.color }}>
+                {p.is_digital && (
+                  <span className="absolute top-2.5 left-2.5 bg-ink text-bg text-[11px] font-bold px-2.5 py-1 rounded-full z-10">
+                    Tải về ngay
+                  </span>
+                )}
+                {p.image ? (
+                  <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+                ) : (
+                  <GiftIcon size={34} color="white" strokeWidth={1.4} />
+                )}
+              </div>
+            </Link>
             <div className="p-4 flex flex-col gap-1.5 flex-1">
-              <p className="font-serif font-semibold text-[14.5px]">{p.name}</p>
+              <Link href={`/san-pham/${p.id}`} target="_blank" rel="noopener noreferrer">
+                <p className="font-serif font-semibold text-[14.5px]">{p.name}</p>
+              </Link>
               <p className="text-ink-soft text-[12.5px] flex-1">{p.description}</p>
               <div className="flex items-center justify-between mt-1.5">
                 <span className="font-bold text-[14.5px]">{p.price_display}</span>

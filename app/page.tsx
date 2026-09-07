@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import { ArrowRightIcon, GiftIcon, FacebookIcon, ZaloIcon } from "@/components/icons";
 import InlineLeadForm from "@/components/InlineLeadForm";
+import LeadFormTrigger from "@/components/LeadForm";
 import { getFeaturedProducts } from "@/lib/products";
 import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
@@ -13,75 +14,81 @@ import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  // Chi lay 2 san pham dau lam vi du tuong trung (1 huong ca nhan, 1 huong
-  // doanh nghiep) - trang chu khong con la catalog day du nua, xem ghi chu
-  // o phan Hero ben duoi.
-  const examples = (await getFeaturedProducts()).slice(0, 2);
+  // San pham chinh can day sales, hien ngay khi mo trang (khu tren cung) -
+  // doi ID o day khi doi san pham can day manh, khong phai dung code khac.
+  const [mainProduct] = await getFeaturedProducts();
 
   return (
     <div className="flex flex-col">
       <Header />
 
-      {/* Seasonal promo — Trung Thu */}
-      <section style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}>
-        <Link
-          href="/thiep-mien-phi"
-          className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 px-9 py-12 md:px-[72px] md:py-14"
-        >
-          <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left max-w-[440px]">
-            <span
-              className="inline-flex items-center gap-1.5 bg-white/70 px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
-              style={{ color: "#B3441F" }}
-            >
-              🎁 Thiệp tranh vẽ tặng miễn phí
-            </span>
-            <h2 className="font-serif text-[22px] md:text-[36px] leading-[1.2]" style={{ color: "#3A2A1D" }}>
-              Thiệp tranh vẽ của bé.
-              <br />
-              Gửi tặng bạn miễn phí.
-            </h2>
-            <p className="text-[15px] leading-relaxed max-w-[420px]" style={{ color: "#6B5643" }}>
-              Chọn 1 trong 15 bức tranh thật do một bạn nhỏ vẽ tay, thêm lời chúc, gửi ngay cho
-              người thân — không mất phí, không cần đăng ký.
-            </p>
-            <span
-              className="inline-flex items-center gap-2 w-fit rounded-[10px] px-6 py-3.5 text-[15px] font-bold mt-1.5"
-              style={{ background: "#16A34A", color: "#FFFFFF", boxShadow: "0 6px 20px rgba(22,163,74,0.45)" }}
-            >
-              Bấm để tạo thiệp
-              <ArrowRightIcon size={16} color="#FFFFFF" />
-            </span>
-          </div>
-          <div className="hidden md:block flex-1 h-[240px] rounded-2xl overflow-hidden border-4 border-white shadow-lg">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/videos/gioi-thieu-poster.jpg"
-              className="w-full h-full object-cover"
-            >
-              <source src="/videos/gioi-thieu.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div className="relative w-full max-w-[300px] h-[190px] md:h-[240px] md:max-w-[340px] shrink-0">
-            <div className="absolute left-[6%] top-[8%] w-[52%] aspect-[3/4] rotate-[-7deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
-              <Image src="/trung-thu/co-tien.jpg" alt="Tranh Cô Tiên Đêm Sao" fill sizes="200px" className="object-cover" />
+      {/* San pham noi bat — vi tri tren cung, thay cho banner Thiep tranh ve
+          cu (2026-09: doi cho theo yeu cau, mo trang phai thay san pham can
+          day sales ngay lap tuc). Thiep tranh ve chuyen xuong khu the nho o
+          Hero ben duoi, video chuyen len khu the lon. */}
+      {mainProduct && (
+        <section className="bg-surface-2">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14 px-9 py-12 md:px-[72px] md:py-16">
+            <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left max-w-[460px]">
+              <span
+                className="inline-flex items-center gap-1.5 bg-accent-soft px-3.5 py-1.5 rounded-full text-[13px] font-semibold"
+                style={{ color: "oklch(0.45 0.14 40)" }}
+              >
+                🔥 Sản phẩm nổi bật
+              </span>
+              <h2 className="font-serif text-[24px] md:text-[36px] leading-[1.2]">{mainProduct.name}</h2>
+              <p className="text-[15px] leading-relaxed max-w-[420px] text-ink-soft">
+                {mainProduct.description}
+              </p>
+              <span className="text-xl font-bold">{mainProduct.price_display}</span>
+              <div className="flex flex-wrap gap-3 mt-1.5 justify-center md:justify-start">
+                <Link
+                  href={`/san-pham/${mainProduct.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold bg-ink text-bg"
+                >
+                  Xem chi tiết
+                  <ArrowRightIcon size={16} color="currentColor" />
+                </Link>
+                <LeadFormTrigger
+                  productId={mainProduct.id}
+                  productLabel={`${mainProduct.name} · ${mainProduct.price_display}`}
+                  triggerLabel="Nhận tư vấn ngay"
+                  source="trang-chu-spotlight"
+                  triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border border-ink"
+                />
+              </div>
             </div>
-            <div className="absolute right-[4%] top-0 w-[46%] aspect-[3/4] rotate-[6deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
-              <Image src="/trung-thu/ca-koi.jpg" alt="Tranh Cá Koi May Mắn" fill sizes="180px" className="object-cover" />
-            </div>
-            <div className="absolute left-[26%] bottom-0 w-[48%] aspect-[3/4] rotate-[3deg] rounded-xl overflow-hidden border-4 border-white shadow-lg">
-              <Image src="/trung-thu/quoc-khanh.jpg" alt="Tranh Diễu Hành Mừng Quốc Khánh" fill sizes="190px" className="object-cover" />
-            </div>
+            <Link
+              href={`/san-pham/${mainProduct.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative flex-1 w-full max-w-[520px] aspect-[4/3] rounded-2xl overflow-hidden border-4 border-white shadow-lg flex items-center justify-center"
+              style={{ background: mainProduct.color }}
+            >
+              {mainProduct.image ? (
+                <Image
+                  src={mainProduct.image}
+                  alt={mainProduct.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+              ) : (
+                <GiftIcon size={64} color="white" strokeWidth={1.3} />
+              )}
+            </Link>
           </div>
-        </Link>
-      </section>
+        </section>
+      )}
 
       {/* Hero — don gian hoa 2026-09: bo bang hoi /tim-qua va luoi danh muc,
           thay bang form de lai thong tin hien truc tiep tren trang (khong
-          qua modal) + 2 san pham vi du tuong trung (khong phai catalog day
-          du, tranh lo thiet ke cho doi thu sao chep). */}
+          qua modal). Khu the ben phai: video gioi thieu (o lon) + Thiep
+          tranh ve mien phi (o nho) — san pham that da chuyen len khu Noi
+          bat rieng phia tren. */}
       <section className="flex flex-col md:flex-row items-center gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
         <div className="flex-1 flex flex-col gap-6">
           <div className="inline-flex self-start bg-accent-soft px-3.5 py-1.5 rounded-full text-[13px] font-semibold" style={{ color: "oklch(0.45 0.14 40)" }}>
@@ -125,60 +132,49 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="flex-1 grid grid-cols-2 gap-5 w-full">
-          {examples.map((g, i) => {
-            const isHero = i === 0;
-            const audienceTag = i === 0 ? "Cho cá nhân" : "Cho doanh nghiệp";
-            return (
-              <div
-                key={g.id}
-                className={`relative rounded-[20px] flex overflow-hidden ${
-                  isHero ? "row-span-2 min-h-[420px]" : "min-h-[200px]"
-                }`}
-                style={{ background: g.color }}
-              >
-                {g.image && (
-                  <Image
-                    src={g.image}
-                    alt={g.name}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover"
-                    priority={isHero}
-                  />
-                )}
-                {g.image && (
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: "linear-gradient(to top, rgba(20,15,10,0.72) 0%, rgba(20,15,10,0.15) 55%, rgba(20,15,10,0) 75%)" }}
-                  />
-                )}
-                <span
-                  className={`relative z-10 flex flex-col justify-end w-full rounded-[20px] ${
-                    isHero ? "p-7" : "p-6"
-                  }`}
-                >
-                  <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
-                    {audienceTag} · Ví dụ
-                  </span>
-                  {!g.image && (
-                    <GiftIcon
-                      size={isHero ? 46 : 34}
-                      color="white"
-                      strokeWidth={isHero ? 1.5 : 1.6}
-                    />
-                  )}
-                  <span
-                    className={`font-serif font-semibold text-white ${
-                      isHero ? "text-xl mt-4" : "text-base mt-2.5"
-                    }`}
-                  >
-                    {g.name}
-                  </span>
-                  <span className="text-sm mt-1.5 text-white/85">{g.price_display}</span>
-                </span>
-              </div>
-            );
-          })}
+          {/* O lon: video gioi thieu (truoc o day la anh san pham, san pham
+              da chuyen len khu Noi bat phia tren). */}
+          <div className="relative rounded-[20px] overflow-hidden row-span-2 min-h-[420px]">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/videos/gioi-thieu-poster.jpg"
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/videos/gioi-thieu.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          {/* O nho: Thiep tranh ve mien phi (truoc o day la 1 san pham vi
+              du, gio chuyen thanh vi tri nay theo yeu cau). */}
+          <Link
+            href="/thiep-mien-phi"
+            className="relative rounded-[20px] flex overflow-hidden min-h-[200px]"
+            style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}
+          >
+            <Image
+              src="/trung-thu/co-tien.jpg"
+              alt="Thiệp tranh vẽ của bé"
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(to top, rgba(20,15,10,0.72) 0%, rgba(20,15,10,0.15) 55%, rgba(20,15,10,0) 75%)" }}
+            />
+            <span className="relative z-10 flex flex-col justify-end w-full rounded-[20px] p-6">
+              <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
+                Miễn phí
+              </span>
+              <span className="font-serif font-semibold text-white text-base mt-2.5">
+                Thiệp tranh vẽ của bé
+              </span>
+              <span className="text-sm mt-1.5 text-white/85">Gửi tặng bạn miễn phí →</span>
+            </span>
+          </Link>
         </div>
       </section>
 
