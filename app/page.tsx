@@ -151,34 +151,52 @@ export default async function HomePage() {
             </video>
           </div>
 
-          {/* O nho: Thiep tranh ve mien phi (truoc o day la 1 san pham vi
-              du, gio chuyen thanh vi tri nay theo yeu cau). */}
-          <Link
-            href="/thiep-mien-phi"
-            className="relative rounded-[20px] flex overflow-hidden order-1 md:order-2 min-h-[200px]"
-            style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}
-          >
-            <Image
-              src="/trung-thu/co-tien.jpg"
-              alt="Thiệp tranh vẽ của bé"
-              fill
-              sizes="(max-width: 768px) 50vw, 25vw"
-              className="object-cover"
-            />
-            <div
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(to top, rgba(20,15,10,0.72) 0%, rgba(20,15,10,0.15) 55%, rgba(20,15,10,0) 75%)" }}
-            />
-            <span className="relative z-10 flex flex-col justify-end w-full rounded-[20px] p-6">
-              <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
-                Miễn phí
+          {/* Cot nho: Thiep tranh ve mien phi + dai 3 anh tranh mau ben duoi
+              (lap khoang trong o duoi the thiep tren desktop - the thiep
+              chi cao ~200px trong khi video ben trai cao 420px). */}
+          <div className="order-1 md:order-2 flex flex-col gap-5">
+            <Link
+              href="/thiep-mien-phi"
+              className="relative rounded-[20px] flex overflow-hidden min-h-[200px]"
+              style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}
+            >
+              <Image
+                src="/trung-thu/co-tien.jpg"
+                alt="Thiệp tranh vẽ của bé"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(20,15,10,0.72) 0%, rgba(20,15,10,0.15) 55%, rgba(20,15,10,0) 75%)" }}
+              />
+              <span className="relative z-10 flex flex-col justify-end w-full rounded-[20px] p-6">
+                <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
+                  Miễn phí
+                </span>
+                <span className="font-serif font-semibold text-white text-base mt-2.5">
+                  Thiệp tranh vẽ của bé
+                </span>
+                <span className="text-sm mt-1.5 text-white/85">Gửi tặng bạn miễn phí →</span>
               </span>
-              <span className="font-serif font-semibold text-white text-base mt-2.5">
-                Thiệp tranh vẽ của bé
-              </span>
-              <span className="text-sm mt-1.5 text-white/85">Gửi tặng bạn miễn phí →</span>
-            </span>
-          </Link>
+            </Link>
+
+            <Link
+              href="/thiep-mien-phi"
+              className="grid grid-cols-3 gap-3 flex-1 min-h-[130px] md:min-h-[190px]"
+            >
+              {[
+                { src: "/trung-thu/ca-koi.jpg", alt: "Tranh Cá Koi May Mắn" },
+                { src: "/trung-thu/dan-meo.jpg", alt: "Tranh Đàn Mèo" },
+                { src: "/trung-thu/quoc-khanh.jpg", alt: "Tranh Diễu Hành Mừng Quốc Khánh" },
+              ].map((img) => (
+                <div key={img.src} className="relative rounded-xl overflow-hidden">
+                  <Image src={img.src} alt={img.alt} fill sizes="120px" className="object-cover" />
+                </div>
+              ))}
+            </Link>
+          </div>
         </div>
       </section>
 
