@@ -131,10 +131,14 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        <div className="flex-1 grid grid-cols-2 gap-5 w-full">
+        {/* Mobile (1 cot): thiep xep truoc, video xep sau, moi khoi full-width,
+            khong chong lan nhau. Desktop (md: 2 cot): video lon ben trai
+            (chiem 2 hang), thiep nho tren-phai - dung "order" de doi thu tu
+            hien thi giua 2 kich thuoc man hinh ma khong doi thu tu code. */}
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
           {/* O lon: video gioi thieu (truoc o day la anh san pham, san pham
               da chuyen len khu Noi bat phia tren). */}
-          <div className="relative rounded-[20px] overflow-hidden row-span-2 min-h-[420px]">
+          <div className="relative rounded-[20px] overflow-hidden order-2 md:order-1 md:row-span-2 min-h-[240px] md:min-h-[420px]">
             <video
               autoPlay
               muted
@@ -151,7 +155,7 @@ export default async function HomePage() {
               du, gio chuyen thanh vi tri nay theo yeu cau). */}
           <Link
             href="/thiep-mien-phi"
-            className="relative rounded-[20px] flex overflow-hidden min-h-[200px]"
+            className="relative rounded-[20px] flex overflow-hidden order-1 md:order-2 min-h-[200px]"
             style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}
           >
             <Image
