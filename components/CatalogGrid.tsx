@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { GiftIcon } from "./icons";
 import LeadFormTrigger from "./LeadForm";
 import type { Product } from "@/lib/products";
@@ -42,13 +43,17 @@ export default function CatalogGrid({ products }: { products: Product[] }) {
       <section className="px-9 pt-8 pb-14 md:px-[72px] grid grid-cols-2 md:grid-cols-4 gap-[22px]">
         {visible.map((p) => (
           <div key={p.id} className="bg-surface border border-line rounded-2xl overflow-hidden flex flex-col">
-            <div className="h-[150px] relative flex items-center justify-center" style={{ background: p.color }}>
+            <div className="h-[150px] relative flex items-center justify-center overflow-hidden" style={{ background: p.color }}>
               {p.is_digital && (
-                <span className="absolute top-2.5 left-2.5 bg-ink text-bg text-[11px] font-bold px-2.5 py-1 rounded-full">
+                <span className="absolute top-2.5 left-2.5 bg-ink text-bg text-[11px] font-bold px-2.5 py-1 rounded-full z-10">
                   Tải về ngay
                 </span>
               )}
-              <GiftIcon size={34} color="white" strokeWidth={1.4} />
+              {p.image ? (
+                <Image src={p.image} alt={p.name} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover" />
+              ) : (
+                <GiftIcon size={34} color="white" strokeWidth={1.4} />
+              )}
             </div>
             <div className="p-4 flex flex-col gap-1.5 flex-1">
               <p className="font-serif font-semibold text-[14.5px]">{p.name}</p>

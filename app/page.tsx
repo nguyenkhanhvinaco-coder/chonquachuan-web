@@ -131,24 +131,42 @@ export default async function HomePage() {
             return (
               <div
                 key={g.id}
-                className={`rounded-[20px] flex overflow-hidden ${
+                className={`relative rounded-[20px] flex overflow-hidden ${
                   isHero ? "row-span-2 min-h-[420px]" : "min-h-[200px]"
                 }`}
+                style={{ background: g.color }}
               >
+                {g.image && (
+                  <Image
+                    src={g.image}
+                    alt={g.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover"
+                    priority={isHero}
+                  />
+                )}
+                {g.image && (
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top, rgba(20,15,10,0.72) 0%, rgba(20,15,10,0.15) 55%, rgba(20,15,10,0) 75%)" }}
+                  />
+                )}
                 <span
-                  className={`flex flex-col justify-end w-full rounded-[20px] ${
+                  className={`relative z-10 flex flex-col justify-end w-full rounded-[20px] ${
                     isHero ? "p-7" : "p-6"
                   }`}
-                  style={{ background: g.color }}
                 >
                   <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
                     {audienceTag} · Ví dụ
                   </span>
-                  <GiftIcon
-                    size={isHero ? 46 : 34}
-                    color="white"
-                    strokeWidth={isHero ? 1.5 : 1.6}
-                  />
+                  {!g.image && (
+                    <GiftIcon
+                      size={isHero ? 46 : 34}
+                      color="white"
+                      strokeWidth={isHero ? 1.5 : 1.6}
+                    />
+                  )}
                   <span
                     className={`font-serif font-semibold text-white ${
                       isHero ? "text-xl mt-4" : "text-base mt-2.5"

@@ -8,9 +8,15 @@ create table if not exists products (
   category text not null,
   is_digital boolean not null default false,
   color text not null default 'var(--accent)',
+  image text,
   active boolean not null default true,
   created_at timestamptz not null default now()
 );
+
+-- Bo sung 07/09/2026: anh that cho san pham (vd '/products/tui-tre-em.jpg',
+-- file dat trong public/products/). De trong (NULL) thi giao dien tu lui
+-- ve khoi mau + icon nhu truoc.
+alter table products add column if not exists image text;
 
 create table if not exists leads (
   id uuid primary key default gen_random_uuid(),
