@@ -27,7 +27,7 @@ export default async function HomePage() {
           day sales ngay lap tuc). Thiep tranh ve chuyen xuong khu the nho o
           Hero ben duoi, video chuyen len khu the lon. */}
       {mainProduct && (
-        <section style={{ background: "linear-gradient(135deg, #8ED1FC 0%, #1E88E5 100%)" }}>
+        <section style={{ background: "linear-gradient(135deg, #E3F3FF 0%, #A8D8F8 100%)" }}>
           <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14 px-9 py-12 md:px-[72px] md:py-16">
             <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left max-w-[460px]">
               <span className="inline-flex items-center gap-1.5 bg-white/80 px-3.5 py-1.5 rounded-full text-[13px] font-bold text-[#1A1006]">
