@@ -46,6 +46,17 @@ function isTouchDevice(): boolean {
   return navigator.maxTouchPoints > 0;
 }
 
+// Trinh duyet rieng nam trong app Facebook/Instagram (mo tu link chia se
+// tren Facebook) thuong CHAN ca navigator.share(files) LAN nhan giu-de-luu
+// anh (Facebook tat menu ngu canh tren <img> de han che luu anh ra ngoai).
+// Khong co cach nao tu code web vuot qua duoc gioi han nay - chi co the
+// phat hien va huong dan nguoi dung tu mo bang trinh duyet that.
+function isFacebookOrInstagramInApp(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent || "";
+  return /FBAN|FBAV|FB_IAB|Instagram/i.test(ua);
+}
+
 function blobToDataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -248,7 +259,13 @@ export default function CardActions({
             <XIcon size={20} color="#FFFFFF" />
           </button>
           <p className="text-white text-center text-[15px] font-semibold max-w-[320px] leading-relaxed">
-            Nhấn giữ vào ảnh bên dưới rồi chọn &ldquo;Lưu ảnh&rdquo; để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo.
+            {isFacebookOrInstagramInApp() ? (
+              <>
+                Trình duyệt trong Facebook/Instagram không cho lưu ảnh trực tiếp. Chị bấm nút <strong>••• (góc trên)</strong> và chọn <strong>&ldquo;Mở bằng trình duyệt&rdquo;</strong> (Chrome/Safari) để gửi thiệp được bình thường.
+              </>
+            ) : (
+              <>Nhấn giữ vào ảnh bên dưới rồi chọn &ldquo;Lưu ảnh&rdquo; để lưu về máy — sau đó gửi ảnh đó cho người nhận qua Zalo.</>
+            )}
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
