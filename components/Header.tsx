@@ -42,9 +42,6 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
         <Link href="/danh-muc" className="text-ink-soft text-[15px] font-medium hidden md:inline">
           Danh mục
         </Link>
-        <Link href="/#cach-hoat-dong" className="text-ink-soft text-[15px] font-medium hidden md:inline">
-          Cách hoạt động
-        </Link>
         <Link href="/#nha-cung-cap" className="text-ink-soft text-[15px] font-medium hidden md:inline">
           Trở thành nhà cung cấp
         </Link>
