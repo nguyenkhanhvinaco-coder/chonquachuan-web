@@ -39,7 +39,14 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
     <header className="flex items-center justify-between px-3 sm:px-9 md:px-[72px] py-3 sm:py-6 border-b border-line gap-2">
       <Brand />
       <nav className="flex items-center gap-3 md:gap-8 flex-shrink-0">
-        <Link href="/danh-muc" className="text-ink-soft text-[15px] font-medium hidden md:inline">
+        {/* Truoc day de "hidden md:inline" nen tren dien thoai KHONG thay muc
+            Danh muc - khach dung dien thoai khong co loi vao trang danh muc
+            (2026-09-08). Gio hien o moi kho, chi thu nho chu tren mobile de
+            khong chen cho nut "Tim qua ngay". */}
+        <Link
+          href="/danh-muc"
+          className="text-ink-soft text-[12.5px] sm:text-[15px] font-medium whitespace-nowrap flex-shrink-0"
+        >
           Danh mục
         </Link>
         {/* Giỏ hàng đã gỡ khỏi header: website chưa có giỏ hàng/thanh toán thật,
