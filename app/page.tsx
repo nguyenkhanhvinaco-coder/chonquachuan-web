@@ -67,7 +67,7 @@ export default async function HomePage() {
                 san pham ghim thu hai phai nam canh Tui tre em ke ca khi xem
                 bang dien thoai. O lon giu ti le 4/3 va quyet dinh chieu cao
                 hang; o nho keo gian bang chieu cao do. */}
-            <div className="flex-1 w-full max-w-[520px] md:max-w-[640px] grid grid-cols-[1.4fr_1fr] gap-3 md:gap-4 items-stretch">
+            <div className="flex-1 w-full max-w-[520px] md:max-w-[680px] grid grid-cols-2 gap-3 md:gap-4 items-start">
               <Link
                 href={`/san-pham/${mainProduct.id}`}
                 target="_blank"
@@ -90,47 +90,45 @@ export default async function HomePage() {
                 )}
               </Link>
 
-              {/* O nho: san pham ghim thu hai. Ten + gia dat DE LEN anh (kieu
-                  the "Thiep tranh ve" ben duoi) thay vi thanh chu rieng ben
-                  duoi anh - o nay chi rong ~130px tren dien thoai, neu tach
-                  thanh chu rieng thi chu va anh tranh chieu cao cua hang lam
-                  chu bi cat mat (da gap khi test o 390px). Dat de len anh thi
-                  chu dai bao nhieu dong cung khong the lam vo bo cuc. */}
+              {/* O nho: san pham ghim thu hai. Anh de nguyen KHONG phu lop mo
+                  den - ban dau dat chu de len anh nen phai phu gradient toi,
+                  nhung lop phu do che mat san pham (phan hoi 2026-09-08). Gio
+                  ten + gia nam o dai trang duoi anh, va anh cua hai o de cung
+                  ti le 4/3 cho can doi voi nhau. items-start o grid cha giup
+                  hai anh thang hang tren cung, the nay chi cao hon phan dai
+                  chu ma khong keo gian anh. */}
               {secondProduct && (
                 <Link
                   href={`/san-pham/${secondProduct.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative h-full rounded-2xl overflow-hidden border-4 border-white shadow-lg flex"
-                  style={{ background: secondProduct.color }}
+                  className="rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
                 >
-                  {/* object-contain nhu o lon: anh co logo/QR in san o goc,
-                      doi sang object-cover la cat mat. */}
-                  {secondProduct.image ? (
-                    <Image
-                      src={secondProduct.image}
-                      alt={secondProduct.name}
-                      fill
-                      sizes="(max-width: 768px) 40vw, 22vw"
-                      className="object-contain"
-                    />
-                  ) : (
-                    <span className="absolute inset-0 flex items-center justify-center">
-                      <GiftIcon size={40} color="white" strokeWidth={1.3} />
-                    </span>
-                  )}
                   <span
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(15,12,8,0.92) 0%, rgba(15,12,8,0.74) 26%, rgba(15,12,8,0.28) 54%, rgba(15,12,8,0) 78%)",
-                    }}
-                  />
-                  <span className="relative z-10 flex flex-col justify-end gap-0.5 w-full p-2.5 md:p-3">
-                    <span className="text-[11.5px] md:text-[13px] font-bold leading-snug text-white">
+                    className="relative block aspect-[4/3]"
+                    style={{ background: secondProduct.color }}
+                  >
+                    {/* object-contain nhu o lon: anh co logo/QR in san o goc,
+                        doi sang object-cover la cat mat. */}
+                    {secondProduct.image ? (
+                      <Image
+                        src={secondProduct.image}
+                        alt={secondProduct.name}
+                        fill
+                        sizes="(max-width: 768px) 45vw, 24vw"
+                        className="object-contain"
+                      />
+                    ) : (
+                      <span className="absolute inset-0 flex items-center justify-center">
+                        <GiftIcon size={40} color="white" strokeWidth={1.3} />
+                      </span>
+                    )}
+                  </span>
+                  <span className="flex flex-col gap-0.5 px-2.5 py-2 md:px-3 md:py-2.5">
+                    <span className="text-[11.5px] md:text-[13.5px] font-bold leading-snug text-[#1A1006]">
                       {secondProduct.name}
                     </span>
-                    <span className="text-[11px] md:text-[12.5px] font-extrabold text-[#FFC633]">
+                    <span className="text-[11.5px] md:text-[13px] font-extrabold text-[#DC2626]">
                       {secondProduct.price_display}
                     </span>
                   </span>
