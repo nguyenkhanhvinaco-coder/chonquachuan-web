@@ -6,6 +6,12 @@ export type Product = {
   description: string;
   price_display: string;
   category: string;
+  // Mot san pham co the thuoc NHIEU danh muc (vd chai thuy tinh vua la qua
+  // vat ly ca nhan, vua la qua doanh nghiep). De trong thi tu dong hieu la
+  // chi thuoc mot danh muc `category` - nho vay cac san pham cu khong can
+  // sua gi. Luon doc qua ham productCategories() ben duoi, dung doc truc
+  // tiep truong nay.
+  categories?: string[] | null;
   is_digital: boolean;
   color: string;
   // Duong dan anh that (vd "/products/tui-tre-em.jpg") - de trong (undefined)
@@ -19,6 +25,10 @@ export type Product = {
   // van la ban ngan dung cho the san pham/trang chu. De trong thi trang chi
   // tiet lui ve dung `description`.
   long_description?: string;
+  // Dung de xep san pham moi them len truoc trong trang danh muc (xem
+  // sortForDisplay). Supabase tu dien; seedProducts trong file nay khong co
+  // nen se lui ve giu nguyen thu tu khai bao.
+  created_at?: string;
 };
 
 // Dữ liệu mẫu — dùng khi chưa nối Supabase, hoặc làm dữ liệu seed ban đầu
@@ -119,7 +129,11 @@ export const seedProducts: Product[] = [
     name: "Chai Nước Thủy Tinh Trong Suốt",
     description: "Chai thủy tinh nắp vặn kín, hai dung tích 300ml và 500ml, nhận in logo theo yêu cầu.",
     price_display: "Liên hệ",
+    // Vua la qua vat ly ca nhan (cung nhom Tui tre em), vua la qua doanh
+    // nghiep - nen dat ca hai trong `categories`. `category` giu 'vat-ly'
+    // lam danh muc chinh cho cac cho chi doc mot gia tri.
     category: "vat-ly",
+    categories: ["vat-ly", "doi-tac"],
     is_digital: false,
     color: "oklch(0.86 0.05 220)",
     // Anh dai dien co chu y chon tam co ba chai kich co khac nhau dung canh
@@ -137,18 +151,65 @@ export const seedProducts: Product[] = [
   },
 ];
 
-export async function getProducts(): Promise<Product[]> {
-  if (!supabase) return seedProducts;
+// Danh sach danh muc that su cua mot san pham. Dung ham nay o MOI cho can
+// loc theo danh muc - dung so sanh `p.category === tab`, vi lam vay se bo sot
+// san pham thuoc nhieu danh muc.
+export function productCategories(p: Product): string[] {
+  return p.categories && p.categories.length > 0 ? p.categories : [p.category];
+}
 
-  const { data, error } = await supabase
+export function productInCategory(p: Product, category: string): boolean {
+  return productCategories(p).includes(category);
+}
+
+// Thu tu hien thi dung chung cho trang danh muc / trang chu: san pham dang
+// duoc day manh (FEATURED_IDS) len dau theo dung thu tu ghim, phan con lai
+// xep theo moi nhat truoc. Nho vay san pham vua them luon nam dau trang danh
+// muc ma khong phai sap xep tay.
+function sortForDisplay(products: Product[]): Product[] {
+  const rank = (p: Product) => {
+    const i = FEATURED_IDS.indexOf(p.id);
+    return i === -1 ? FEATURED_IDS.length : i;
+  };
+  return [...products].sort((a, b) => {
+    const d = rank(a) - rank(b);
+    if (d !== 0) return d;
+    return (b.created_at ?? "").localeCompare(a.created_at ?? "");
+  });
+}
+
+const COLUMNS_WITH_CATEGORIES =
+  "id, name, description, price_display, category, categories, is_digital, color, image, images, long_description, created_at";
+// Ban du phong khi Supabase CHUA co cot `categories`. Khong co dong nay thi
+// chi can quen chay lenh them cot la ca trang web tut xuong du lieu mau
+// trong code - hong that su, chu khong chi mat tinh nang nhieu danh muc.
+const COLUMNS_LEGACY =
+  "id, name, description, price_display, category, is_digital, color, image, images, long_description, created_at";
+
+export async function getProducts(): Promise<Product[]> {
+  if (!supabase) return sortForDisplay(seedProducts);
+
+  const first = await supabase
     .from("products")
-    .select(
-      "id, name, description, price_display, category, is_digital, color, image, images, long_description"
-    )
+    .select(COLUMNS_WITH_CATEGORIES)
     .eq("active", true);
 
-  if (error || !data || data.length === 0) return seedProducts;
-  return data as Product[];
+  // Hai cau select tra ve kieu khac nhau nen giu o dang unknown[] roi ep kieu
+  // mot lan o cuoi, thay vi gan chung mot bien (TypeScript se bao loi).
+  let rows: unknown[] | null = first.data;
+  let failed = Boolean(first.error);
+
+  if (failed) {
+    const legacy = await supabase
+      .from("products")
+      .select(COLUMNS_LEGACY)
+      .eq("active", true);
+    rows = legacy.data;
+    failed = Boolean(legacy.error);
+  }
+
+  if (failed || !rows || rows.length === 0) return sortForDisplay(seedProducts);
+  return sortForDisplay(rows as Product[]);
 }
 
 // Sản phẩm ghim lên khu nổi bật ở trang chủ — nơi muốn đẩy mạnh bán hàng.

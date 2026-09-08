@@ -6,6 +6,7 @@ import InlineLeadForm from "@/components/InlineLeadForm";
 import LeadFormTrigger from "@/components/LeadForm";
 import EbookCoverCard from "@/components/EbookCoverCard";
 import { getFeaturedProducts } from "@/lib/products";
+import { EBOOKS } from "@/lib/ebook";
 import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
 // Cho phep trang lam moi du lieu san pham (tu Supabase) toi da moi 60 giay
@@ -15,11 +16,36 @@ import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  // San pham chinh can day sales, hien ngay khi mo trang (khu tren cung) -
-  // doi ID o day khi doi san pham can day manh, khong phai dung code khac.
-  // `secondProduct` la san pham ghim thu hai, hien o o nho ngay canh o lon
-  // (xem FEATURED_IDS trong lib/products.ts).
+  // Khu "San pham noi bat" o dau trang: hai san pham ghim dau trong
+  // FEATURED_IDS (sua danh sach do trong lib/products.ts khi doi san pham can
+  // day manh) + mot o Ebook. Ebook KHONG nam trong bang products ma o
+  // lib/ebook.ts, nen gop lai thanh mot mang `tiles` de ca ba o dung chung
+  // mot khuon hien thi, khong the lech nhau.
   const [mainProduct, secondProduct] = await getFeaturedProducts();
+  const ebook = EBOOKS[0];
+
+  const tiles = [
+    ...[mainProduct, secondProduct]
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .map((p) => ({
+        key: p.id,
+        href: `/san-pham/${p.id}`,
+        image: p.image,
+        name: p.name,
+        bg: p.color,
+      })),
+    ...(ebook
+      ? [
+          {
+            key: ebook.id,
+            href: ebook.href,
+            image: ebook.cover,
+            name: ebook.title,
+            bg: "#EFE3CE",
+          },
+        ]
+      : []),
+  ];
 
   return (
     <div className="flex flex-col">
@@ -32,81 +58,68 @@ export default async function HomePage() {
       {mainProduct && (
         <section style={{ background: "linear-gradient(135deg, #E3F3FF 0%, #A8D8F8 100%)" }}>
           <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14 px-9 py-12 md:px-[72px] md:py-16">
-            <div className="flex-1 flex flex-col gap-3.5 items-center md:items-start text-center md:text-left max-w-[460px]">
-              <span className="inline-flex items-center gap-1.5 bg-white/80 px-3.5 py-1.5 rounded-full text-[13px] font-bold text-[#1A1006]">
+            {/* Cot trai chi con nhan + nut tu van (yeu cau 2026-09-08: bo ten
+                va mo ta san pham o day, vi ten da nam duoi tung khung anh roi
+                - de lai la lap va lam khu nay dai dong). Nhan phong to va co
+                nhip dap nhe (.badge-noi-bat trong globals.css) de thu hut. */}
+            <div className="flex-1 flex flex-col gap-5 items-center md:items-start text-center md:text-left max-w-[300px]">
+              <span className="badge-noi-bat inline-flex items-center gap-2 bg-white px-5 py-3 rounded-full text-[17px] md:text-[20px] font-extrabold text-[#DC2626] shadow-md">
                 🔥 Sản phẩm nổi bật
               </span>
-              <h2 className="font-serif font-bold text-[24px] md:text-[36px] leading-[1.2] text-[#DC2626]">
-                {mainProduct.name}
-              </h2>
-              <p className="text-[15px] leading-relaxed max-w-[420px] font-semibold text-[#3A2410]">
-                {mainProduct.description}
-              </p>
-              {/* Gia da bo khoi trang chu (yeu cau 2026-09-08) - gia chi hien
-                  o trang chi tiet san pham. Nut "Xem chi tiet" cung da chuyen
-                  xuong duoi tung khung anh ben phai, moi san pham mot nut. */}
-              <div className="flex flex-wrap gap-3 mt-1.5 justify-center md:justify-start">
-                <LeadFormTrigger
-                  productId={mainProduct.id}
-                  productLabel={`${mainProduct.name} · ${mainProduct.price_display}`}
-                  triggerLabel="Nhận tư vấn ngay"
-                  source="trang-chu-spotlight"
-                  triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/70"
-                />
-              </div>
+              <LeadFormTrigger
+                productId="trang-chu-noi-bat"
+                productLabel="Sản phẩm nổi bật (trang chủ)"
+                triggerLabel="Nhận tư vấn ngay"
+                source="trang-chu-spotlight"
+                triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/70"
+              />
             </div>
-            {/* Hai o san pham xep canh nhau tren CA mobile lan desktop (grid 2
-                cot, khong doi sang xep chong o man hinh nho).
+            {/* Ba o: 2 san pham ghim + Ebook. Tat ca deu HIEN tren dien thoai
+                (yeu cau 2026-09-08) - dung 2 cot o mobile cho de doc, o thu ba
+                xuong hang duoi; 3 cot tu man hinh md tro len. Neu ep 3 cot o
+                mobile thi moi o chi con ~100px, nut "Xem chi tiet" bi vo chu.
 
-                Dung .map de hai o dung CHUNG mot cau truc: anh (ti le 4/3) →
-                ten → nut "Xem chi tiet". Truoc day o lon va o nho viet rieng
-                nen lech nhau, bi phan hoi la mat can doi (2026-09-08). Viet
-                chung kieu nay thi khong the lech duoc nua.
-
-                Khong hien gia o day - gia chi nam o trang chi tiet san pham. */}
-            <div className="flex-1 w-full max-w-[520px] md:max-w-[680px] grid grid-cols-2 gap-3 md:gap-4 items-start">
-              {[mainProduct, secondProduct]
-                .filter((p): p is NonNullable<typeof p> => Boolean(p))
-                .map((p, i) => (
-                  <Link
-                    key={p.id}
-                    href={`/san-pham/${p.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
-                  >
-                    <span
-                      className="relative block aspect-[4/3]"
-                      style={{ background: p.color }}
-                    >
-                      {/* object-contain: anh co logo/QR in san o goc, doi sang
-                          object-cover la cat mat. */}
-                      {p.image ? (
-                        <Image
-                          src={p.image}
-                          alt={p.name}
-                          fill
-                          sizes="(max-width: 768px) 45vw, 24vw"
-                          className="object-contain"
-                          priority={i === 0}
-                        />
-                      ) : (
-                        <span className="absolute inset-0 flex items-center justify-center">
-                          <GiftIcon size={40} color="white" strokeWidth={1.3} />
-                        </span>
-                      )}
-                    </span>
-                    <span className="flex flex-col gap-2 px-2.5 py-2.5 md:px-3 md:py-3">
-                      <span className="text-[11.5px] md:text-[13.5px] font-bold leading-snug text-[#1A1006]">
-                        {p.name}
+                Ca ba dung CHUNG mot khuon (anh ti le 4/3 → ten → nut) nen
+                khong the lech nhau. Khong hien gia o day - gia nam o trang
+                chi tiet san pham. */}
+            <div className="flex-1 w-full grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 items-start">
+              {tiles.map((t, i) => (
+                <Link
+                  key={t.key}
+                  href={t.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
+                >
+                  <span className="relative block aspect-[4/3]" style={{ background: t.bg }}>
+                    {/* object-contain: anh san pham co logo/QR in san o goc,
+                        doi sang object-cover la cat mat. */}
+                    {t.image ? (
+                      <Image
+                        src={t.image}
+                        alt={t.name}
+                        fill
+                        sizes="(max-width: 768px) 45vw, 24vw"
+                        className="object-contain"
+                        priority={i === 0}
+                      />
+                    ) : (
+                      <span className="absolute inset-0 flex items-center justify-center">
+                        <GiftIcon size={40} color="white" strokeWidth={1.3} />
                       </span>
-                      <span className="inline-flex items-center justify-center gap-1.5 rounded-[10px] px-3 py-2 md:py-2.5 text-[12px] md:text-[13.5px] font-bold bg-[#FFC633] text-[#1A1006]">
-                        Xem chi tiết
-                        <ArrowRightIcon size={14} color="currentColor" />
-                      </span>
+                    )}
+                  </span>
+                  <span className="flex flex-col gap-2 px-2.5 py-2.5 md:px-3 md:py-3 flex-1">
+                    <span className="text-[11.5px] md:text-[13.5px] font-bold leading-snug text-[#1A1006] flex-1">
+                      {t.name}
                     </span>
-                  </Link>
-                ))}
+                    <span className="inline-flex items-center justify-center gap-1.5 rounded-[10px] px-3 py-2 md:py-2.5 text-[12px] md:text-[13.5px] font-bold bg-[#FFC633] text-[#1A1006]">
+                      Xem chi tiết
+                      <ArrowRightIcon size={14} color="currentColor" />
+                    </span>
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

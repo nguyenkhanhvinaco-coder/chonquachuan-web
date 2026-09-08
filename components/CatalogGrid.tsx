@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GiftIcon } from "./icons";
 import LeadFormTrigger from "./LeadForm";
-import type { Product } from "@/lib/products";
+import { productInCategory, type Product } from "@/lib/products";
 
 const TABS = [
   { id: "all", label: "Tất cả" },
@@ -17,7 +17,10 @@ const TABS = [
 export default function CatalogGrid({ products }: { products: Product[] }) {
   const [tab, setTab] = useState<(typeof TABS)[number]["id"]>("all");
 
-  const visible = tab === "all" ? products : products.filter((p) => p.category === tab);
+  // Loc qua productInCategory chu khong so sanh p.category === tab: mot san
+  // pham co the thuoc nhieu danh muc (vd chai thuy tinh nam ca o "Set qua vat
+  // ly" lan "Combo doanh nghiep"), so sanh truc tiep se bo sot.
+  const visible = tab === "all" ? products : products.filter((p) => productInCategory(p, tab));
 
   return (
     <>

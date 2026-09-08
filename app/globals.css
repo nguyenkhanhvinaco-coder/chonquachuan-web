@@ -27,3 +27,28 @@ a {
 a:hover {
   color: oklch(0.5 0.16 40);
 }
+
+/* Nhan "San pham noi bat" o dau trang chu - nhip dap nhe keo mat nguoi xem
+   ma khong gay chu y qua muc. Vong sang lan ra roi tat dan, 2.6s mot nhip. */
+@keyframes noi-bat-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+  }
+}
+
+.badge-noi-bat {
+  animation: noi-bat-pulse 2.6s ease-in-out infinite;
+}
+
+/* Ton trong nguoi dung tat hieu ung chuyen dong trong cai dat he thong. */
+@media (prefers-reduced-motion: reduce) {
+  .badge-noi-bat {
+    animation: none;
+  }
+}

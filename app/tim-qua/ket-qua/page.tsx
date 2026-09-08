@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import LeadFormTrigger from "@/components/LeadForm";
 import { GiftIcon } from "@/components/icons";
-import { getProducts } from "@/lib/products";
+import { getProducts, productCategories, type Product } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Gợi ý quà tặng cho bạn",
@@ -40,11 +40,17 @@ export default async function ResultsPage({
 
   const products = audience
     ? [...all].sort((a, b) => {
-        const rank = (c: string) => {
-          const i = audience.priority.indexOf(c as never);
-          return i === -1 ? 99 : i;
-        };
-        return rank(a.category) - rank(b.category);
+        // San pham co the thuoc nhieu danh muc - lay muc phu hop NHAT trong so
+        // cac danh muc cua no, de vd chai thuy tinh (vat-ly + doi-tac) duoc xep
+        // cao o CA loi vao "Ca nhan" lan "Doanh nghiep".
+        const rank = (p: Product) =>
+          Math.min(
+            ...productCategories(p).map((c) => {
+              const i = audience.priority.indexOf(c as never);
+              return i === -1 ? 99 : i;
+            })
+          );
+        return rank(a) - rank(b);
       })
     : all;
 

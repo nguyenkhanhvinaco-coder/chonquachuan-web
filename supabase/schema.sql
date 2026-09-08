@@ -30,6 +30,14 @@ alter table products add column if not exists images text[];
 -- ve dung `description`.
 alter table products add column if not exists long_description text;
 
+-- Bo sung 08/09/2026: mot san pham co the thuoc NHIEU danh muc, vd chai thuy
+-- tinh vua la qua vat ly ca nhan vua la qua doanh nghiep: '{vat-ly,doi-tac}'.
+-- De trong (NULL) thi code hieu la san pham chi thuoc danh muc `category` nhu
+-- truoc, nen cac san pham cu khong can sua gi. Trong code luon doc qua ham
+-- productCategories() (lib/products.ts), dung so sanh truc tiep
+-- `p.category === x` vi se bo sot san pham nhieu danh muc.
+alter table products add column if not exists categories text[];
+
 create table if not exists leads (
   id uuid primary key default gen_random_uuid(),
   name text not null,
