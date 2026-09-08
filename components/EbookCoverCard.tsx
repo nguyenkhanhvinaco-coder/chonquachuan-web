@@ -9,7 +9,15 @@ import { EBOOKS } from "@/lib/ebook";
 // phang). Chi co 1 cuon thi hien tinh; tu dong chay luan phien (crossfade)
 // qua bia cua tat ca cuon trong EBOOKS khi co tu 2 cuon tro len, khong can
 // sua gi them khi them ebook moi vao lib/ebook.ts.
-export default function EbookCoverCard() {
+type Props = {
+  // O to (khu Hero trang chu, thay cho video) hay o nho (canh video) —
+  // dieu khien chieu cao toi thieu; vi tri trong luoi (order/row-span) do
+  // trang goi component tu quyet dinh qua className.
+  large?: boolean;
+  className?: string;
+};
+
+export default function EbookCoverCard({ large = false, className = "" }: Props) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -25,7 +33,9 @@ export default function EbookCoverCard() {
   return (
     <Link
       href={current.href}
-      className="relative rounded-[20px] flex overflow-hidden min-h-[200px]"
+      className={`relative rounded-[20px] flex overflow-hidden ${
+        large ? "min-h-[240px] md:min-h-[420px]" : "min-h-[200px]"
+      } ${className}`}
       style={{ background: "#1C4A63" }}
     >
       {EBOOKS.map((book, i) => (

@@ -132,31 +132,32 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        {/* Mobile (1 cot): thiep xep truoc, video xep sau, moi khoi full-width,
-            khong chong lan nhau. Desktop (md: 2 cot): video lon ben trai
-            (chiem 2 hang), thiep nho tren-phai - dung "order" de doi thu tu
-            hien thi giua 2 kich thuoc man hinh ma khong doi thu tu code. */}
+        {/* Mobile (1 cot): video+thiep xep truoc, Ebook lon xep sau, moi khoi
+            full-width, khong chong lan nhau. Desktop (md: 2 cot): Ebook lon
+            ben trai (chiem 2 hang, dung bia sach lam anh nen), video nho +
+            thiep nho ben phai - dung "order" de doi thu tu hien thi giua 2
+            kich thuoc man hinh ma khong doi thu tu code. */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-          {/* O lon: video gioi thieu (truoc o day la anh san pham, san pham
-              da chuyen len khu Noi bat phia tren). */}
-          <div className="relative rounded-[20px] overflow-hidden order-2 md:order-1 md:row-span-2 min-h-[240px] md:min-h-[420px]">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/videos/gioi-thieu-poster.jpg"
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="/videos/gioi-thieu.mp4" type="video/mp4" />
-            </video>
-          </div>
+          {/* O lon: the Ebook (bia sach that, chay luan phien khi co nhieu
+              cuon) - truoc day la video gioi thieu, doi cho theo yeu cau
+              2026-09-08 de day manh Ebook hon. */}
+          <EbookCoverCard large className="order-2 md:order-1 md:row-span-2" />
 
-          {/* Cot nho: Thiep tranh ve mien phi + dai 3 anh tranh mau ben duoi
-              (lap khoang trong o duoi the thiep tren desktop - the thiep
-              chi cao ~200px trong khi video ben trai cao 420px). */}
+          {/* Cot nho: video gioi thieu + Thiep tranh ve mien phi + dai 3 anh
+              tranh mau ben duoi. */}
           <div className="order-1 md:order-2 flex flex-col gap-5">
-            <EbookCoverCard />
+            <div className="relative rounded-[20px] overflow-hidden min-h-[200px]">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/videos/gioi-thieu-poster.jpg"
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src="/videos/gioi-thieu.mp4" type="video/mp4" />
+              </video>
+            </div>
 
             <Link
               href="/thiep-mien-phi"
