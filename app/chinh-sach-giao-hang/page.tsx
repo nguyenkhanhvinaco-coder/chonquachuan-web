@@ -153,12 +153,6 @@ export default function ChinhSachGiaoHangPage() {
             vấn đề.
           </p>
           <p>Sau khi xác minh, chúng tôi sẽ đổi hàng mới, bù phần hàng thiếu, hoặc thống nhất phương án xử lý khác phù hợp với bạn. Chi phí phát sinh cho phần lỗi thuộc về chúng tôi.</p>
-          <p>
-            Riêng sản phẩm đã cá nhân hoá theo yêu cầu (in logo, khắc tên riêng) chỉ đổi được khi lỗi
-            thuộc về chúng tôi hoặc bên sản xuất — ví dụ in sai nội dung đã duyệt, sai màu, sai chất
-            liệu, hàng hư hỏng. Sản phẩm đã in đúng nội dung bạn duyệt thì không đổi lại được, vì
-            không dùng cho khách khác được.
-          </p>
         </Section>
 
         <Section id="khong-giao-duoc" title="7. Trường hợp không giao được">

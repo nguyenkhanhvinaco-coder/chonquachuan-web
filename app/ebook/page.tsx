@@ -46,7 +46,10 @@ export default function EbookPage() {
       </section>
 
       <section className="px-3 sm:px-9 md:px-[72px] pb-16">
-        <div className="rounded-xl border border-line overflow-hidden bg-surface-2" style={{ height: "min(860px, 92vh)" }}>
+        {/* Kho trang sach ben trong la 780x760 (rong hon truoc, thap hon mot
+            chut). Chieu cao khung vua du chua trang sach + thanh dieu huong,
+            khong de thua qua nhieu khoang trong quanh sach. */}
+        <div className="rounded-xl border border-line overflow-hidden bg-surface-2" style={{ height: "min(900px, 92vh)" }}>
           <iframe
             src={EBOOK_READER_URL}
             title="10 bài học kinh doanh từ Chung Ju Yung — đọc online"

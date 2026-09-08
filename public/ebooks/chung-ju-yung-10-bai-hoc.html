@@ -119,9 +119,12 @@
   .page-indicator{ font-variant-numeric:tabular-nums; color:var(--ink-soft); }
 
   /* ---------- BOOK ---------- */
+  /* Kho trang sach: noi rong tu 560x780 len 780x940 (2026-09-08) - khung
+     chua tren trang /ebook rong hon nhieu nen truoc do thua rat nhieu cho
+     trong hai ben. Tren dien thoai van la 98vw nhu cu nen khong doi gi. */
   .book-shell{
     position:relative;
-    width:min(560px, 98vw);
+    width:min(780px, 98vw);
     flex:1 1 auto;
     min-height:0;
     display:flex; align-items:center; justify-content:center;
@@ -129,7 +132,7 @@
   #bookEl{
     position:relative;
     width:100%; height:100%;
-    max-width:560px; max-height:780px;
+    max-width:780px; max-height:760px;
     background:var(--paper);
     border-radius:12px;
     border:1px solid var(--line);
@@ -309,6 +312,40 @@
   @media (max-width:520px){
     .toc-thesis{ display:none; }
     .nav-btn span{ display:none; }
+  }
+
+  /* Chu to hon CHI TU MAN HINH RONG tro len (2026-09-08). Khong dung chung
+     cho mobile: tren dien thoai kho trang nho, chu to len se lam noi dung
+     tran khoi trang - ma .leaf-body dat overflow:hidden nen phan tran bi CAT
+     MAT khong bao gi. Kho trang o day da noi tu 560x780 len 780x940 (dien
+     tich +68%) nen du cho cho co chu lon hon. */
+  @media (min-width:700px){
+    .leaf-frame{ padding:30px 36px 22px; }
+    .cover-leaf .leaf-frame{ padding:34px 36px 24px; }
+
+    .running-head{ font-size:10px; padding-bottom:11px; margin-bottom:18px; }
+    .running-foot{ font-size:10.5px; padding-top:10px; margin-top:14px; }
+
+    p{ font-size:15.5px; line-height:1.6; }
+    .lede{ font-size:18px; line-height:1.55; }
+
+    blockquote{ font-size:14.5px; line-height:1.5; padding-left:16px; margin:15px 0; }
+    .chapter-titles h2{ font-size:clamp(17px,3.6vw,21px); }
+    .chapter-idea{ font-size:10px; }
+
+    .apply{ padding:12px 15px; }
+    .apply p{ font-size:12.5px; }
+
+    .epi-box{ padding:16px 18px; }
+    .epi-box h3{ font-size:18px; }
+    .epi-box p{ font-size:13px; }
+
+    ol.src{ font-size:11px; }
+    .colophon{ font-size:10px; }
+
+    .cover-sub{ font-size:14px; }
+    .back-leaf h2{ font-size:25px; }
+    .back-leaf p{ font-size:14.5px; max-width:340px; }
   }
 </style>
 </head>
