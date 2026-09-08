@@ -57,13 +57,32 @@ export default async function HomePage() {
           Hero ben duoi, video chuyen len khu the lon. */}
       {mainProduct && (
         <section style={{ background: "linear-gradient(135deg, #E3F3FF 0%, #A8D8F8 100%)" }}>
-          <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-14 px-9 py-12 md:px-[72px] md:py-16">
-            {/* Cot trai chi con nhan + nut tu van (yeu cau 2026-09-08: bo ten
-                va mo ta san pham o day, vi ten da nam duoi tung khung anh roi
-                - de lai la lap va lam khu nay dai dong). Nhan phong to va co
-                nhip dap nhe (.badge-noi-bat trong globals.css) de thu hut. */}
-            <div className="flex-1 flex flex-col gap-5 items-center md:items-start text-center md:text-left max-w-[300px]">
-              <span className="badge-noi-bat inline-flex items-center gap-2 bg-white px-5 py-3 rounded-full text-[17px] md:text-[20px] font-extrabold text-[#DC2626] shadow-md">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 px-9 pt-8 pb-10 md:px-[72px] md:pt-10 md:pb-12">
+            {/* Cot trai: phan gioi thieu thuong hieu da CHUYEN TU KHU HERO ben
+                duoi len day (yeu cau 2026-09-08) - truoc do cot nay chi co
+                nhan + nut nen trong hoac, con phan gioi thieu lai nam mai
+                phia duoi. Gop len giup trang can doi va nguoi moi vao hieu
+                ngay Chon Qua Chuan lam gi.
+
+                Ten + mo ta san pham khong dat o day: da nam duoi tung khung
+                anh ben phai roi. Nhan "San pham noi bat" co nhip dap nhe
+                (.badge-noi-bat trong globals.css). */}
+            <div className="flex-1 flex flex-col gap-4 items-center md:items-start text-center md:text-left max-w-[450px]">
+              <div className="inline-flex bg-white/75 px-3.5 py-1.5 rounded-full text-[13px] font-semibold text-[#8A3A12]">
+                Dành cho doanh nghiệp &amp; cá nhân
+              </div>
+              <h1 className="font-serif leading-[1.16] text-[#1A1006]">
+                <span className="block text-[32px] md:text-[44px]">Chọn Quà Chuẩn</span>
+                <span className="block text-[17px] md:text-[21px] mt-1.5 font-normal text-[#3A2410]">
+                  — tư vấn và cung cấp quà tặng ĐỘC QUYỀN cho doanh nghiệp và cá nhân.
+                </span>
+              </h1>
+              <p className="text-[13px] leading-relaxed text-[#3A2410]">
+                Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối
+                tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay
+                tức thì.
+              </p>
+              <span className="badge-noi-bat inline-flex items-center gap-2 bg-white px-5 py-3 rounded-full text-[17px] md:text-[20px] font-extrabold text-[#DC2626] shadow-md mt-1">
                 🔥 Sản phẩm nổi bật
               </span>
               <LeadFormTrigger
@@ -82,14 +101,18 @@ export default async function HomePage() {
                 Ca ba dung CHUNG mot khuon (anh ti le 4/3 → ten → nut) nen
                 khong the lech nhau. Khong hien gia o day - gia nam o trang
                 chi tiet san pham. */}
-            <div className="flex-1 w-full grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 items-start">
+            {/* items-stretch (mac dinh) + h-full o tung the: ba o BANG chieu
+                cao nhau nen nut "Xem chi tiet" thang hang, du ten san pham dai
+                ngan khac nhau. Truoc dung items-start nen o nao ten ngan thi
+                nut bi day len cao hon hai o kia. */}
+            <div className="flex-1 w-full grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
               {tiles.map((t, i) => (
                 <Link
                   key={t.key}
                   href={t.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
+                  className="h-full rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
                 >
                   <span className="relative block aspect-[4/3]" style={{ background: t.bg }}>
                     {/* object-contain: anh san pham co logo/QR in san o goc,
@@ -110,12 +133,15 @@ export default async function HomePage() {
                     )}
                   </span>
                   <span className="flex flex-col gap-2 px-2.5 py-2.5 md:px-3 md:py-3 flex-1">
-                    <span className="text-[11.5px] md:text-[13.5px] font-bold leading-snug text-[#1A1006] flex-1">
+                    <span className="text-[13.5px] md:text-[16.5px] font-bold leading-snug text-[#DC2626] flex-1">
                       {t.name}
                     </span>
-                    <span className="inline-flex items-center justify-center gap-1.5 rounded-[10px] px-3 py-2 md:py-2.5 text-[12px] md:text-[13.5px] font-bold bg-[#FFC633] text-[#1A1006]">
+                    {/* whitespace-nowrap + dem ngang hep o mobile: cot chi rong
+                        ~140px tren dien thoai, de mac dinh thi chu nut vo lam
+                        hai dong ("Xem chi" / "tiet"). */}
+                    <span className="inline-flex items-center justify-center gap-1 md:gap-1.5 whitespace-nowrap rounded-[10px] px-2 md:px-3 py-2.5 md:py-3 text-[13px] md:text-[16px] font-bold bg-[#FFC633] text-[#1A1006]">
                       Xem chi tiết
-                      <ArrowRightIcon size={14} color="currentColor" />
+                      <ArrowRightIcon size={15} color="currentColor" />
                     </span>
                   </span>
                 </Link>
@@ -132,20 +158,16 @@ export default async function HomePage() {
           bat rieng phia tren. */}
       <section className="flex flex-col md:flex-row items-center gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
         <div className="flex-1 flex flex-col gap-6">
-          <div className="inline-flex self-start bg-accent-soft px-3.5 py-1.5 rounded-full text-[13px] font-semibold" style={{ color: "oklch(0.45 0.14 40)" }}>
-            Dành cho doanh nghiệp &amp; cá nhân
-          </div>
-          <h1 className="font-serif leading-[1.16] max-w-[480px]">
-            <span className="block text-[38px] md:text-[52px]">Chọn Quà Chuẩn</span>
-            <span className="block text-[20px] md:text-[26px] mt-1.5 text-ink-soft font-normal">
-              — tư vấn và cung cấp quà tặng cho doanh nghiệp và cá nhân.
+          {/* Phan gioi thieu thuong hieu (nhan + ten + mo ta) da chuyen len khu
+              "San pham noi bat" phia tren (2026-09-08), o day chi con form de
+              lai thong tin nen dat mot tieu de ngan cho khoi trong hoac. */}
+          <h2 className="font-serif leading-[1.16] max-w-[480px]">
+            <span className="block text-[28px] md:text-[38px]">Nhận tư vấn chọn quà</span>
+            <span className="block text-[15px] md:text-[18px] mt-2 text-ink-soft font-normal">
+              Để lại thông tin, chúng tôi liên hệ tư vấn set quà phù hợp và báo giá trong ngày.
             </span>
-          </h1>
-          <p className="text-[13px] leading-relaxed text-ink-soft max-w-[480px]">
-            Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối tác
-            đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay tức thì.
-          </p>
-          <div className="mt-2 max-w-[420px] flex flex-col gap-4">
+          </h2>
+          <div className="max-w-[420px] flex flex-col gap-4">
             <InlineLeadForm />
             <div className="flex flex-col gap-2.5">
               <span className="text-[12.5px] font-semibold text-ink-soft">Hoặc liên hệ trực tiếp</span>
