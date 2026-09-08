@@ -114,6 +114,27 @@ export const seedProducts: Product[] = [
     long_description:
       "Túi có thể dùng làm túi mang chăn gối đi học bán trú, túi du lịch cuối tuần, hoặc túi đi chơi xa cùng ba mẹ — một phụ kiện đa năng, phù hợp nhiều dịp khác nhau.\n\nKhông chỉ có vẻ ngoài sành điệu, túi còn sở hữu không gian chứa đồ rộng rãi cùng nhiều ngăn tiện lợi, giúp sắp xếp đồ đạc ngăn nắp — lựa chọn thiết thực cho nhu cầu di chuyển của trẻ em từ tiểu học trở lên.\n\nDây đeo vai có thể tháo rời và điều chỉnh độ dài, dễ dàng tuỳ chỉnh để đeo thoải mái nhất.\n\nChi tiết chữ cái cá nhân hoá (in decal nhiệt lên vải) biến chiếc túi thành món quà tuyệt vời, mang dấu ấn riêng mà các bé sẽ vô cùng yêu thích.",
   },
+  {
+    id: "chai-thuy-tinh",
+    name: "Chai Nước Thủy Tinh Trong Suốt",
+    description: "Chai thủy tinh nắp vặn kín, hai dung tích 300ml và 500ml, nhận in logo theo yêu cầu.",
+    price_display: "Liên hệ",
+    category: "vat-ly",
+    is_digital: false,
+    color: "oklch(0.86 0.05 220)",
+    // Anh dai dien co chu y chon tam co ba chai kich co khac nhau dung canh
+    // nhau, de nguoi xem hieu ngay san pham co nhieu dung tich (300ml/500ml)
+    // ma khong can doc chu.
+    image: "/products/chai-thuy-tinh.jpg",
+    images: [
+      "/products/chai-thuy-tinh.jpg",
+      "/products/chai-thuy-tinh-2.jpg",
+      "/products/chai-thuy-tinh-3.jpg",
+      "/products/chai-thuy-tinh-4.jpg",
+    ],
+    long_description:
+      "Thân trụ tối giản, thủy tinh trong vắt nhìn rõ đồ uống bên trong, nắp vặn kín không lo rò rỉ khi để trong túi xách. Một chiếc chai đủ đẹp để đặt trên bàn họp tiếp khách, đủ bền để mang theo cả ngày dài.\n\nTrong doanh nghiệp: đặt bàn phòng họp tiếp khách, trang bị cho khách sạn và văn phòng, làm quà tặng đối tác và nhân viên, phục vụ hội nghị và sự kiện cơ quan đoàn thể.\n\nSự kiện và dịp kỷ niệm: quà cưới, quà lễ tốt nghiệp, quà họp lớp và kỷ niệm trường, quà lưu niệm cho giải thể thao và hoạt động phong trào.\n\nDùng cá nhân: mang theo khi đi bộ đường dài, cắm trại, du lịch, hoặc đơn giản là một tách trà chiều tại nhà. Dùng được với cả đồ uống nóng và đồ uống lạnh.\n\nHai dung tích 300ml và 500ml — chọn 300ml cho bàn họp và bàn làm việc, 500ml cho người mang theo cả ngày. Nắp nhựa có ron bên trong, miệng chai rộng nên dễ cho đá viên vào và dễ rửa sạch tận đáy.\n\nNhận in logo lên thân chai theo yêu cầu, tư vấn vị trí và kích thước in phù hợp với từng dung tích.",
+  },
 ];
 
 export async function getProducts(): Promise<Product[]> {
@@ -132,8 +153,11 @@ export async function getProducts(): Promise<Product[]> {
 
 // Sản phẩm ghim lên khu nổi bật ở trang chủ — nơi muốn đẩy mạnh bán hàng.
 // ĐỔI SẢN PHẨM NỔI BẬT: chỉ cần sửa 3 id dưới đây, không phải đụng giao diện.
-// Thứ tự có ý nghĩa: id đầu tiên chiếm ô LỚN, hai id sau nằm ở hai ô nhỏ.
-export const FEATURED_IDS = ["tui-tre-em", "van-phong-tri-an", "tra-thao-moc"];
+// Thứ tự có ý nghĩa: id đầu tiên là sản phẩm chính (ô lớn, kèm mô tả + nút
+// bấm ở cột chữ bên trái); id thứ hai hiện ở ô nhỏ nằm ngay CẠNH ô lớn
+// (2026-09-08: thêm Chai thủy tinh vào đây theo yêu cầu, lấp khoảng trống
+// bên phải ảnh Túi trẻ em).
+export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "van-phong-tri-an"];
 
 export async function getFeaturedProducts(): Promise<Product[]> {
   const all = await getProducts();
