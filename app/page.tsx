@@ -42,17 +42,10 @@ export default async function HomePage() {
               <p className="text-[15px] leading-relaxed max-w-[420px] font-semibold text-[#3A2410]">
                 {mainProduct.description}
               </p>
-              <span className="text-xl font-extrabold text-[#1A1006]">{mainProduct.price_display}</span>
+              {/* Gia da bo khoi trang chu (yeu cau 2026-09-08) - gia chi hien
+                  o trang chi tiet san pham. Nut "Xem chi tiet" cung da chuyen
+                  xuong duoi tung khung anh ben phai, moi san pham mot nut. */}
               <div className="flex flex-wrap gap-3 mt-1.5 justify-center md:justify-start">
-                <Link
-                  href={`/san-pham/${mainProduct.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold bg-[#FFC633] text-[#1A1006]"
-                >
-                  Xem chi tiết
-                  <ArrowRightIcon size={16} color="currentColor" />
-                </Link>
                 <LeadFormTrigger
                   productId={mainProduct.id}
                   productLabel={`${mainProduct.name} · ${mainProduct.price_display}`}
@@ -62,78 +55,58 @@ export default async function HomePage() {
                 />
               </div>
             </div>
-            {/* Hai o anh xep canh nhau tren CA mobile lan desktop (grid 2 cot,
-                khong doi sang xep chong o man hinh nho) - yeu cau 2026-09-08:
-                san pham ghim thu hai phai nam canh Tui tre em ke ca khi xem
-                bang dien thoai. O lon giu ti le 4/3 va quyet dinh chieu cao
-                hang; o nho keo gian bang chieu cao do. */}
-            <div className="flex-1 w-full max-w-[520px] md:max-w-[680px] grid grid-cols-2 gap-3 md:gap-4 items-start">
-              <Link
-                href={`/san-pham/${mainProduct.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative aspect-[4/3] rounded-2xl overflow-hidden border-4 border-white shadow-lg flex items-center justify-center"
-                style={{ background: mainProduct.color }}
-              >
-                {mainProduct.image ? (
-                  // object-contain: anh co logo/QR in san o goc, khong duoc cat.
-                  <Image
-                    src={mainProduct.image}
-                    alt={mainProduct.name}
-                    fill
-                    sizes="(max-width: 768px) 58vw, 30vw"
-                    className="object-contain"
-                    priority
-                  />
-                ) : (
-                  <GiftIcon size={64} color="white" strokeWidth={1.3} />
-                )}
-              </Link>
+            {/* Hai o san pham xep canh nhau tren CA mobile lan desktop (grid 2
+                cot, khong doi sang xep chong o man hinh nho).
 
-              {/* O nho: san pham ghim thu hai. Anh de nguyen KHONG phu lop mo
-                  den - ban dau dat chu de len anh nen phai phu gradient toi,
-                  nhung lop phu do che mat san pham (phan hoi 2026-09-08). Gio
-                  ten + gia nam o dai trang duoi anh, va anh cua hai o de cung
-                  ti le 4/3 cho can doi voi nhau. items-start o grid cha giup
-                  hai anh thang hang tren cung, the nay chi cao hon phan dai
-                  chu ma khong keo gian anh. */}
-              {secondProduct && (
-                <Link
-                  href={`/san-pham/${secondProduct.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
-                >
-                  <span
-                    className="relative block aspect-[4/3]"
-                    style={{ background: secondProduct.color }}
+                Dung .map de hai o dung CHUNG mot cau truc: anh (ti le 4/3) →
+                ten → nut "Xem chi tiet". Truoc day o lon va o nho viet rieng
+                nen lech nhau, bi phan hoi la mat can doi (2026-09-08). Viet
+                chung kieu nay thi khong the lech duoc nua.
+
+                Khong hien gia o day - gia chi nam o trang chi tiet san pham. */}
+            <div className="flex-1 w-full max-w-[520px] md:max-w-[680px] grid grid-cols-2 gap-3 md:gap-4 items-start">
+              {[mainProduct, secondProduct]
+                .filter((p): p is NonNullable<typeof p> => Boolean(p))
+                .map((p, i) => (
+                  <Link
+                    key={p.id}
+                    href={`/san-pham/${p.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
                   >
-                    {/* object-contain nhu o lon: anh co logo/QR in san o goc,
-                        doi sang object-cover la cat mat. */}
-                    {secondProduct.image ? (
-                      <Image
-                        src={secondProduct.image}
-                        alt={secondProduct.name}
-                        fill
-                        sizes="(max-width: 768px) 45vw, 24vw"
-                        className="object-contain"
-                      />
-                    ) : (
-                      <span className="absolute inset-0 flex items-center justify-center">
-                        <GiftIcon size={40} color="white" strokeWidth={1.3} />
+                    <span
+                      className="relative block aspect-[4/3]"
+                      style={{ background: p.color }}
+                    >
+                      {/* object-contain: anh co logo/QR in san o goc, doi sang
+                          object-cover la cat mat. */}
+                      {p.image ? (
+                        <Image
+                          src={p.image}
+                          alt={p.name}
+                          fill
+                          sizes="(max-width: 768px) 45vw, 24vw"
+                          className="object-contain"
+                          priority={i === 0}
+                        />
+                      ) : (
+                        <span className="absolute inset-0 flex items-center justify-center">
+                          <GiftIcon size={40} color="white" strokeWidth={1.3} />
+                        </span>
+                      )}
+                    </span>
+                    <span className="flex flex-col gap-2 px-2.5 py-2.5 md:px-3 md:py-3">
+                      <span className="text-[11.5px] md:text-[13.5px] font-bold leading-snug text-[#1A1006]">
+                        {p.name}
                       </span>
-                    )}
-                  </span>
-                  <span className="flex flex-col gap-0.5 px-2.5 py-2 md:px-3 md:py-2.5">
-                    <span className="text-[11.5px] md:text-[13.5px] font-bold leading-snug text-[#1A1006]">
-                      {secondProduct.name}
+                      <span className="inline-flex items-center justify-center gap-1.5 rounded-[10px] px-3 py-2 md:py-2.5 text-[12px] md:text-[13.5px] font-bold bg-[#FFC633] text-[#1A1006]">
+                        Xem chi tiết
+                        <ArrowRightIcon size={14} color="currentColor" />
+                      </span>
                     </span>
-                    <span className="text-[11.5px] md:text-[13px] font-extrabold text-[#DC2626]">
-                      {secondProduct.price_display}
-                    </span>
-                  </span>
-                </Link>
-              )}
+                  </Link>
+                ))}
             </div>
           </div>
         </section>
