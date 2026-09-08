@@ -156,6 +156,22 @@ export default async function HomePage() {
               chi cao ~200px trong khi video ben trai cao 420px). */}
           <div className="order-1 md:order-2 flex flex-col gap-5">
             <Link
+              href="/ebook"
+              className="relative rounded-[20px] flex overflow-hidden min-h-[140px]"
+              style={{ background: "linear-gradient(135deg, #1C4A63, #2E5A7C)" }}
+            >
+              <span className="relative z-10 flex flex-col justify-end w-full rounded-[20px] p-6">
+                <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
+                  Miễn phí đọc
+                </span>
+                <span className="font-serif font-semibold text-white text-base mt-2.5">
+                  Ebook: 10 bài học kinh doanh từ Chung Ju Yung
+                </span>
+                <span className="text-sm mt-1.5 text-white/85">Lật từng trang, đọc ngay →</span>
+              </span>
+            </Link>
+
+            <Link
               href="/thiep-mien-phi"
               className="relative rounded-[20px] flex overflow-hidden min-h-[200px]"
               style={{ background: "linear-gradient(135deg, #F8E4C6, #F2CFA0)" }}
