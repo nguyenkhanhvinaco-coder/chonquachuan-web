@@ -89,6 +89,9 @@ export default async function CatalogPage() {
           <Link href="/lien-he" className="text-ink-soft text-[13px] font-medium">
             Liên hệ
           </Link>
+          <Link href="/chinh-sach-giao-hang" className="text-ink-soft text-[13px] font-medium">
+            Chính sách giao hàng
+          </Link>
           <Link href="/chinh-sach-du-lieu-ca-nhan" className="text-ink-soft text-[13px] font-medium">
             Chính sách dữ liệu cá nhân
           </Link>

@@ -106,6 +106,9 @@ export default function ContactPage() {
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3 flex-wrap">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
         <div className="flex items-center gap-4 flex-wrap">
+          <Link href="/chinh-sach-giao-hang" className="text-ink-soft text-[13px] font-medium">
+            Chính sách giao hàng
+          </Link>
           <Link href="/chinh-sach-du-lieu-ca-nhan" className="text-ink-soft text-[13px] font-medium">
             Chính sách dữ liệu cá nhân
           </Link>
