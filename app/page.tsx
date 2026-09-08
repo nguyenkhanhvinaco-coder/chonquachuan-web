@@ -132,20 +132,21 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        {/* Mobile (1 cot): video+thiep xep truoc, Ebook lon xep sau, moi khoi
-            full-width, khong chong lan nhau. Desktop (md: 2 cot): Ebook lon
-            ben trai (chiem 2 hang, dung bia sach lam anh nen), video nho +
-            thiep nho ben phai - dung "order" de doi thu tu hien thi giua 2
-            kich thuoc man hinh ma khong doi thu tu code. */}
+        {/* Ebook luon xep dau tien (order-1) tren ca mobile lan desktop - user
+            test tren dien thoai 2026-09-08 thay Ebook bi troi xuong cuoi vi
+            luc do chi doi thu tu tren desktop, quen mobile van theo thu tu
+            video-truoc/Ebook-sau cu. Desktop: Ebook la o lon ben trai (chiem
+            2 hang, dung bia sach lam anh nen); video+thiep+anh mau xep cot
+            nho ben phai, cung thu tu ben trong nhu mobile. */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
           {/* O lon: the Ebook (bia sach that, chay luan phien khi co nhieu
               cuon) - truoc day la video gioi thieu, doi cho theo yeu cau
               2026-09-08 de day manh Ebook hon. */}
-          <EbookCoverCard large className="order-2 md:order-1 md:row-span-2" />
+          <EbookCoverCard large className="order-1 md:row-span-2" />
 
           {/* Cot nho: video gioi thieu + Thiep tranh ve mien phi + dai 3 anh
               tranh mau ben duoi. */}
-          <div className="order-1 md:order-2 flex flex-col gap-5">
+          <div className="order-2 flex flex-col gap-5">
             <div className="relative rounded-[20px] overflow-hidden min-h-[200px]">
               <video
                 autoPlay
