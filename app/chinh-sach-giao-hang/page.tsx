@@ -192,6 +192,9 @@ export default function ChinhSachGiaoHangPage() {
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3 flex-wrap">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
         <div className="flex items-center gap-4 flex-wrap">
+          <Link href="/danh-muc" className="text-ink-soft text-[13px] font-medium">
+            Danh mục
+          </Link>
           <Link href="/lien-he" className="text-ink-soft text-[13px] font-medium">
             Liên hệ
           </Link>

@@ -82,9 +82,18 @@ export default async function HomePage() {
                 tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay
                 tức thì.
               </p>
-              <span className="badge-noi-bat inline-flex items-center gap-2 bg-white px-5 py-3 rounded-full text-[17px] md:text-[20px] font-extrabold text-[#DC2626] shadow-md mt-1">
-                🔥 Sản phẩm nổi bật
-              </span>
+              {/* Khung vien thuoc nay truoc la nhan chu "San pham noi bat".
+                  2026-09-08: user thich khung nhung bo chu, va chuyen loi vao
+                  trang Danh muc xuong day - tren dien thoai link "Danh muc" o
+                  header chen vao slogan lam ten thuong hieu bi cat cut. Giu
+                  nguyen nhip dap (.badge-noi-bat) vi user khen dep. */}
+              <Link
+                href="/danh-muc"
+                className="badge-noi-bat inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full text-[17px] md:text-[20px] font-extrabold text-[#DC2626] shadow-md mt-1"
+              >
+                Danh mục
+                <ArrowRightIcon size={18} color="currentColor" />
+              </Link>
               <LeadFormTrigger
                 productId="trang-chu-noi-bat"
                 productLabel="Sản phẩm nổi bật (trang chủ)"
@@ -311,6 +320,11 @@ export default async function HomePage() {
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
         <div className="flex items-center gap-4 flex-wrap">
+          {/* "Danh muc" nam o chan trang moi trang, vi da bo khoi header
+              (2026-09-08) - tren dien thoai no chen vao slogan. */}
+          <Link href="/danh-muc" className="text-ink-soft text-[13px] font-medium">
+            Danh mục
+          </Link>
           <Link href="/lien-he" className="text-ink-soft text-[13px] font-medium">
             Liên hệ
           </Link>

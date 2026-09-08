@@ -68,17 +68,25 @@ export default function CatalogGrid({ products }: { products: Product[] }) {
                 <p className="font-serif font-semibold text-[14.5px]">{p.name}</p>
               </Link>
               <p className="text-ink-soft text-[12.5px] flex-1">{p.description}</p>
-              <div className="flex items-center justify-between mt-1.5">
-                <span className="font-bold text-[14.5px]">{p.price_display}</span>
+              {/* Tren dien thoai luoi la 2 cot nen moi the chi rong ~165px:
+                  de gia va nut nam CUNG MOT HANG thi nut bi day tran ra ngoai
+                  the, chu bi cat cut (user chup man hinh 2026-09-08). Gio o
+                  kho nho xep doc, nut chiem tron be ngang; tu md tro len moi
+                  quay lai nam ngang nhu cu. */}
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mt-2">
+                <span className="font-bold text-[14px] md:text-[14.5px] leading-snug">
+                  {p.price_display}
+                </span>
                 <LeadFormTrigger
                   productId={p.id}
                   productLabel={`${p.name} · ${p.price_display}`}
                   triggerLabel={p.is_digital ? "Đặt mua" : "Nhận tư vấn"}
                   source="catalog"
                   triggerClassName={
-                    p.is_digital
-                      ? "border border-ink text-ink rounded-lg px-3.5 py-3.5 text-[12.5px] font-semibold min-h-[44px]"
-                      : "bg-accent text-accent-ink rounded-lg px-3.5 py-3.5 text-[12.5px] font-semibold min-h-[44px]"
+                    "w-full md:w-auto flex-shrink-0 whitespace-nowrap rounded-lg px-3 py-2.5 md:px-3.5 md:py-3.5 text-[12.5px] font-semibold min-h-[40px] md:min-h-[44px] " +
+                    (p.is_digital
+                      ? "border border-ink text-ink"
+                      : "bg-accent text-accent-ink")
                   }
                 />
               </div>

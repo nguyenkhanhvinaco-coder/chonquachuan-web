@@ -39,16 +39,11 @@ export default function Header({ minimal = false }: { minimal?: boolean }) {
     <header className="flex items-center justify-between px-3 sm:px-9 md:px-[72px] py-3 sm:py-6 border-b border-line gap-2">
       <Brand />
       <nav className="flex items-center gap-3 md:gap-8 flex-shrink-0">
-        {/* Truoc day de "hidden md:inline" nen tren dien thoai KHONG thay muc
-            Danh muc - khach dung dien thoai khong co loi vao trang danh muc
-            (2026-09-08). Gio hien o moi kho, chi thu nho chu tren mobile de
-            khong chen cho nut "Tim qua ngay". */}
-        <Link
-          href="/danh-muc"
-          className="text-ink-soft text-[12.5px] sm:text-[15px] font-medium whitespace-nowrap flex-shrink-0"
-        >
-          Danh mục
-        </Link>
+        {/* Da BO link "Danh muc" khoi header (2026-09-08, lan sua thu hai):
+            tren dien thoai no chen vao slogan va lam ten "Chon Qua Chuan" bi
+            cat cut thanh "Chon Qu...". Loi vao trang danh muc gio nam o:
+            - nhan hinh vien thuoc dau khu san pham o trang chu
+            - chan trang cua tat ca cac trang */}
         {/* Giỏ hàng đã gỡ khỏi header: website chưa có giỏ hàng/thanh toán thật,
             biểu tượng giỏ kèm số 0 khiến khách tưởng có mà bấm vào không làm gì.
             Gắn lại khi làm xong luồng mua hàng — CartIcon vẫn còn trong icons.tsx. */}
