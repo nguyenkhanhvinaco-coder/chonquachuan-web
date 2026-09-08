@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
-import EbookDownloadCard from "@/components/EbookDownloadCard";
+import EbookLeadForm from "@/components/EbookLeadForm";
 import { EBOOK_READER_URL } from "@/lib/ebook";
 
 export const metadata: Metadata = {
@@ -42,7 +42,7 @@ export default function EbookPage() {
             ngay bên dưới, hoàn toàn miễn phí.
           </p>
         </div>
-        <EbookDownloadCard />
+        <EbookLeadForm />
       </section>
 
       <section className="px-3 sm:px-9 md:px-[72px] pb-16">
