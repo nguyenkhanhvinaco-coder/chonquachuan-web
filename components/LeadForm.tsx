@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
 import { ZALO_URL } from "@/lib/contact";
+import { notifyLead } from "@/lib/leadNotify";
 import { XIcon } from "./icons";
 
 type Props = {
@@ -52,6 +53,10 @@ export default function LeadFormTrigger({
       consent_at: new Date().toISOString(),
       consent_policy_version: PRIVACY_POLICY_VERSION,
     });
+
+    if (!error) {
+      notifyLead({ name, phone, source, product_ref: productId, note: productLabel });
+    }
 
     setStatus(error ? "error" : "done");
   }

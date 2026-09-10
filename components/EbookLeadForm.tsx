@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
 import { ZALO_URL } from "@/lib/contact";
 import { EBOOK_PRICE_VND, EBOOK_PRODUCT_REF } from "@/lib/ebook";
+import { notifyLead } from "@/lib/leadNotify";
 import { XIcon } from "./icons";
 
 // Tải file PDF không tự phục vụ (không có nút tải trực tiếp) — khách để lại
@@ -43,6 +44,17 @@ export default function EbookLeadForm() {
       consent_at: new Date().toISOString(),
       consent_policy_version: PRIVACY_POLICY_VERSION,
     });
+
+    if (!error) {
+      notifyLead({
+        name,
+        phone: zalo,
+        email,
+        source: "ebook-tai-pdf",
+        product_ref: EBOOK_PRODUCT_REF,
+        note: `Muốn tải file PDF ebook (${EBOOK_PRICE_VND.toLocaleString("vi-VN")}đ) — gửi số tài khoản, nhận chuyển khoản rồi gửi file.`,
+      });
+    }
 
     setStatus(error ? "error" : "done");
   }

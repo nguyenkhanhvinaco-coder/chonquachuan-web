@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
 import { ZALO_URL } from "@/lib/contact";
+import { notifyLead } from "@/lib/leadNotify";
 
 // Form don gian, LUON HIEN san tren trang (khong qua modal/nut bam trung
 // gian) - thay cho luong "tra loi vai cau hoi" cu. Dung chung bang `leads`
@@ -34,6 +35,15 @@ export default function InlineLeadForm() {
       consent_at: new Date().toISOString(),
       consent_policy_version: PRIVACY_POLICY_VERSION,
     });
+
+    if (!error) {
+      notifyLead({
+        name,
+        phone,
+        source: "trang-chu-hero",
+        product_ref: "tu-van-chung",
+      });
+    }
 
     setStatus(error ? "error" : "done");
   }

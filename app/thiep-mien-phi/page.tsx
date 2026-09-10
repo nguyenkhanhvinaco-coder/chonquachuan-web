@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import { supabase } from "@/lib/supabase";
 import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
+import { notifyLead } from "@/lib/leadNotify";
 import { TRUNG_THU_CARDS } from "@/lib/trungThuCards";
 import { ArrowRightIcon, CheckIcon } from "@/components/icons";
 
@@ -35,19 +36,30 @@ export default function ThiepTrungThuPage() {
     if (!tranh || !tu || !den || !consent) return;
     setStatus("submitting");
 
+    const ghiChu = `Thiệp tranh vẽ (tranh bé vẽ) — tranh: ${card?.name ?? tranh} | gửi tới: ${den}${
+      loiNhan ? ` | lời nhắn: ${loiNhan}` : ""
+    }`;
+
     if (supabase) {
       await supabase.from("leads").insert({
         name: tu,
         phone: "", // cot phone dang NOT NULL trong Supabase - form nay khong con hoi SDT nua
-        note: `Thiệp tranh vẽ (tranh bé vẽ) — tranh: ${card?.name ?? tranh} | gửi tới: ${den}${
-          loiNhan ? ` | lời nhắn: ${loiNhan}` : ""
-        }`,
+        note: ghiChu,
         product_ref: `thiep-trung-thu-${tranh}`,
         source: "trung-thu-2026-tranh-be",
         consent_at: new Date().toISOString(),
         consent_policy_version: PRIVACY_POLICY_VERSION,
       });
     }
+
+    // Ghi vao Sheet de du lieu day du, nhung KHONG gui email:
+    // form nay khong hoi SDT/email nen Apps Script tu bo qua buoc gui mail.
+    notifyLead({
+      name: tu,
+      source: "trung-thu-2026-tranh-be",
+      product_ref: `thiep-trung-thu-${tranh}`,
+      note: ghiChu,
+    });
 
     const params = new URLSearchParams({ tranh, tu, den });
     if (loiNhan) params.set("loi-nhan", loiNhan);
