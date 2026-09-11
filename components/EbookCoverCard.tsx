@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { EBOOKS } from "@/lib/ebook";
+import { ArrowRightIcon } from "./icons";
 
 // The quang ba Ebook o trang chu — dung anh bia that (khong con la khoi mau
 // phang). Chi co 1 cuon thi hien tinh; tu dong chay luan phien (crossfade)
@@ -33,8 +34,11 @@ export default function EbookCoverCard({ large = false, className = "" }: Props)
   return (
     <Link
       href={current.href}
+      // Mobile cao 370px (truoc 240px): them nut "Doc Ebook mien phi" o day
+      // the, chu + nut chiem ~200px - thap hon thi chu de len het tranh bia
+      // (da thu 300px: nhan "Mien phi doc" van lan vao bien so 10 cua tranh).
       className={`relative rounded-[20px] flex overflow-hidden ${
-        large ? "min-h-[240px] md:min-h-[420px]" : "min-h-[200px]"
+        large ? "min-h-[370px] md:min-h-[420px]" : "min-h-[200px]"
       } ${className}`}
       style={{ background: "#1C4A63" }}
     >
@@ -54,17 +58,25 @@ export default function EbookCoverCard({ large = false, className = "" }: Props)
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(20,15,10,0.72) 0%, rgba(20,15,10,0.15) 55%, rgba(20,15,10,0) 75%)",
+            "linear-gradient(to top, rgba(20,15,10,0.82) 0%, rgba(20,15,10,0.35) 45%, rgba(20,15,10,0) 70%)",
         }}
       />
-      <span className="relative z-10 flex flex-col justify-end w-full rounded-[20px] p-6">
+      <span className="relative z-10 flex flex-col justify-end w-full rounded-[20px] p-5 md:p-6">
         <span className="text-[11.5px] font-bold text-white/80 uppercase tracking-wide">
           Miễn phí đọc
         </span>
         <span className="font-serif font-semibold text-white text-base mt-2.5">
           {current.title}
         </span>
-        <span className="text-sm mt-1.5 text-white/85">{current.subtitle} →</span>
+        <span className="text-sm mt-1.5 text-white/85">{current.subtitle}</span>
+        {/* Nut that su (them 2026-09-11 theo yeu cau): truoc chi co dong chu nho
+            "... doc ngay ->" nen nguoi xem khong nhan ra bam duoc. Dung <span>
+            vi ca the da la mot <Link> - khong long <a> trong <a>. Cung kieu vang
+            voi nut "Xem chi tiet" o khu San pham noi bat. */}
+        <span className="mt-3.5 self-start inline-flex items-center gap-1.5 whitespace-nowrap rounded-[10px] px-4 py-2.5 text-[14px] md:text-[15px] font-bold bg-[#FFC633] text-[#1A1006] shadow-md">
+          Đọc Ebook miễn phí
+          <ArrowRightIcon size={15} color="currentColor" />
+        </span>
       </span>
     </Link>
   );

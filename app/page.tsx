@@ -210,6 +210,24 @@ export default async function HomePage() {
             2 hang, dung bia sach lam anh nen); video+thiep+anh mau xep cot
             nho ben phai, cung thu tu ben trong nhu mobile. */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+          {/* Tieu de khu qua mien phi (them 2026-09-11 theo yeu cau): truoc do
+              khu the Ebook + Thiep nam tron ben phai, khong co gi bao nguoi xem
+              day la do mien phi. Chiem ca 2 cot va xep TREN CUNG (order-first)
+              tren ca mobile lan desktop - tren mobile no hien ngay sau form. */}
+          <div className="order-first md:col-span-2 flex flex-col gap-2.5">
+            <span className="inline-flex self-start items-center rounded-full bg-[#DCFCE7] px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-[#15803D]">
+              Quà tặng miễn phí
+            </span>
+            {/* [text-wrap:balance]: tren dien thoai tieu de xuong 2 dong, khong
+                chia deu thi dong 2 chi con tro chu "phi". */}
+            <h2 className="font-serif leading-[1.16] text-[26px] md:text-[32px] [text-wrap:balance]">
+              Ebook &amp; thiệp tranh miễn phí
+            </h2>
+            <p className="text-ink-soft text-[14.5px] md:text-[16px] leading-relaxed">
+              Lật từng trang đọc ngay, hoặc tạo thiệp tranh gửi tặng người thân — không mất phí.
+            </p>
+          </div>
+
           {/* O lon: the Ebook (bia sach that, chay luan phien khi co nhieu
               cuon) - truoc day la video gioi thieu, doi cho theo yeu cau
               2026-09-08 de day manh Ebook hon. */}
