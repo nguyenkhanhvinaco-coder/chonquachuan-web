@@ -2,13 +2,18 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import EbookLeadForm from "@/components/EbookLeadForm";
-import { EBOOKS, EBOOK_READER_URL, ebookProductRef } from "@/lib/ebook";
+import { EBOOKS, ebookProductRef } from "@/lib/ebook";
+
+// Cuốn thứ 2 của tủ sách. Giống trang /ebook: đọc miễn phí trên web, muốn
+// nhận PDF thì để lại email/Zalo qua EbookLeadForm (miễn phí). Nội dung diễn
+// giải từ sách của Thiền sư Thích Nhất Hạnh nên có ghi nguồn rõ ở đầu trang.
+const BOOK = EBOOKS.find((b) => b.id === "khong-diet-khong-sinh")!;
 
 export const metadata: Metadata = {
-  title: "Ebook: 10 bài học kinh doanh từ Chung Ju Yung",
+  title: "Ebook: Không diệt, không sinh — đừng sợ hãi",
   description:
-    "Đọc miễn phí ebook 10 bài học kinh doanh từ Chung Ju Yung, người sáng lập Hyundai — thực hiện bởi Chọn Quà Chuẩn.",
-  alternates: { canonical: "/ebook" },
+    "Đọc miễn phí ebook đúc kết tuệ giác của Thiền sư Thích Nhất Hạnh về nỗi sợ, sự tiếp nối và hạnh phúc trong hiện tại — thực hiện bởi Chọn Quà Chuẩn.",
+  alternates: { canonical: "/ebook/khong-diet-khong-sinh" },
 };
 
 const breadcrumbJsonLd = {
@@ -17,10 +22,16 @@ const breadcrumbJsonLd = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Trang chủ", item: "https://chonquachuan.vn" },
     { "@type": "ListItem", position: 2, name: "Ebook", item: "https://chonquachuan.vn/ebook" },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Không diệt, không sinh — đừng sợ hãi",
+      item: "https://chonquachuan.vn/ebook/khong-diet-khong-sinh",
+    },
   ],
 };
 
-export default function EbookPage() {
+export default function EbookKhongDietKhongSinhPage() {
   return (
     <div className="flex flex-col">
       <script
@@ -32,28 +43,29 @@ export default function EbookPage() {
       <section className="px-9 pt-12 pb-8 md:px-[72px] flex flex-col md:flex-row md:items-start md:justify-between gap-8">
         <div className="flex flex-col gap-3 max-w-[560px]">
           <span className="text-ink-soft text-[13px] font-semibold tracking-wide uppercase">
-            Tủ sách doanh nhân
+            Tủ sách an lạc
           </span>
           <h1 className="font-serif text-[32px] md:text-[40px] leading-tight">
-            10 bài học kinh doanh từ Chung Ju Yung
+            Không diệt, không sinh — đừng sợ hãi
           </h1>
           <p className="text-ink-soft text-[15px] md:text-base leading-relaxed">
-            Người sáng lập Hyundai — từ cậu bé nông dân bỏ nhà bốn lần với vài đồng bạc trong túi,
-            đến người dựng nên một trong những tập đoàn công nghiệp lớn nhất châu Á. Lật từng trang
-            ngay bên dưới, hoàn toàn miễn phí.
+            Bốn hình ảnh để hiểu nỗi sợ, hai bài thực tập để sống an hơn, và một lời nhắc rằng hạnh
+            phúc có địa chỉ ngay đây, bây giờ. Lật từng trang ngay bên dưới, hoàn toàn miễn phí.
+          </p>
+          <p className="text-ink-soft text-[13px] leading-relaxed">
+            Nội dung diễn giải từ sách <em>Không diệt không sinh đừng sợ hãi</em> của Thiền sư Thích
+            Nhất Hạnh — không phải trích nguyên văn. Mời bạn
+            tìm đọc sách gốc.
           </p>
         </div>
-        <EbookLeadForm productRef={ebookProductRef(EBOOKS[0].id)} title={EBOOKS[0].title} />
+        <EbookLeadForm productRef={ebookProductRef(BOOK.id)} title={BOOK.title} />
       </section>
 
       <section className="px-3 sm:px-9 md:px-[72px] pb-16">
-        {/* Kho trang sach ben trong la 780x760 (rong hon truoc, thap hon mot
-            chut). Chieu cao khung vua du chua trang sach + thanh dieu huong,
-            khong de thua qua nhieu khoang trong quanh sach. */}
         <div className="rounded-xl border border-line overflow-hidden bg-surface-2" style={{ height: "min(900px, 92vh)" }}>
           <iframe
-            src={EBOOK_READER_URL}
-            title="10 bài học kinh doanh từ Chung Ju Yung — đọc online"
+            src={BOOK.readerUrl}
+            title="Không diệt, không sinh — đừng sợ hãi — đọc online"
             className="w-full h-full"
             style={{ border: "none" }}
             loading="lazy"

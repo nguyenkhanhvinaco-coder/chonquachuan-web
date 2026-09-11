@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/chinh-sach-giao-hang",
     "/chinh-sach-du-lieu-ca-nhan",
     "/thiep-mien-phi",
+    "/ebook",
+    "/ebook/khong-diet-khong-sinh",
   ];
 
   return routes.map((route) => ({

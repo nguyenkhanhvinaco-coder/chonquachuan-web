@@ -5,16 +5,22 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { PRIVACY_POLICY_VERSION } from "@/lib/privacy";
 import { ZALO_URL } from "@/lib/contact";
-import { EBOOK_PRICE_VND, EBOOK_PRODUCT_REF } from "@/lib/ebook";
 import { notifyLead } from "@/lib/leadNotify";
 import { XIcon } from "./icons";
 
-// Tải file PDF không tự phục vụ (không có nút tải trực tiếp) — khách để lại
-// email hoặc Zalo, nhân viên Chọn Quà Chuẩn gửi số tài khoản để chuyển khoản
-// 5.000đ rồi gửi file qua đúng kênh khách cung cấp. Dùng chung bảng `leads`
-// và cách lưu consent như LeadFormTrigger, nhưng field khác: không bắt buộc
-// điện thoại, cho phép chỉ để lại email — cần ít nhất 1 trong 2.
-export default function EbookLeadForm() {
+// Nhận file PDF ebook — MIỄN PHÍ, nhưng không có nút tải trực tiếp: khách để
+// lại email hoặc Zalo, nhân viên Chọn Quà Chuẩn gửi file qua đúng kênh khách
+// cung cấp. (Trước 2026-09-11 có thu 5.000đ — đã bỏ hẳn cho mọi ebook.)
+// Dùng chung cho mọi cuốn: trang nào dùng thì truyền productRef + title của
+// cuốn đó, để lead trong Sheet ghi rõ khách xin cuốn nào.
+// Dùng chung bảng `leads` và cách lưu consent như LeadFormTrigger, nhưng field
+// khác: không bắt buộc điện thoại, cho phép chỉ để lại email — cần ít nhất 1 trong 2.
+type Props = {
+  productRef: string;
+  title: string;
+};
+
+export default function EbookLeadForm({ productRef, title }: Props) {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [name, setName] = useState("");
@@ -34,13 +40,15 @@ export default function EbookLeadForm() {
       return;
     }
 
+    const note = `Muốn nhận file PDF ebook "${title}" (miễn phí) — gửi file qua email/Zalo khách để lại.`;
+
     const { error } = await supabase.from("leads").insert({
       name,
       phone: zalo || "",
       email: email || null,
-      product_ref: EBOOK_PRODUCT_REF,
+      product_ref: productRef,
       source: "ebook-tai-pdf",
-      note: `Muốn tải file PDF ebook (${EBOOK_PRICE_VND.toLocaleString("vi-VN")}đ) — gửi số tài khoản để khách chuyển khoản, rồi gửi file qua email/Zalo khách để lại.`,
+      note,
       consent_at: new Date().toISOString(),
       consent_policy_version: PRIVACY_POLICY_VERSION,
     });
@@ -51,8 +59,8 @@ export default function EbookLeadForm() {
         phone: zalo,
         email,
         source: "ebook-tai-pdf",
-        product_ref: EBOOK_PRODUCT_REF,
-        note: `Muốn tải file PDF ebook (${EBOOK_PRICE_VND.toLocaleString("vi-VN")}đ) — gửi số tài khoản, nhận chuyển khoản rồi gửi file.`,
+        product_ref: productRef,
+        note,
       });
     }
 
@@ -70,19 +78,17 @@ export default function EbookLeadForm() {
 
   return (
     <div className="rounded-xl border border-line bg-surface-2 px-6 py-6 flex flex-col gap-3 max-w-[420px]">
-      <span className="font-serif text-lg">Tải bản PDF về máy</span>
+      <span className="font-serif text-lg">Nhận bản PDF miễn phí</span>
       <p className="text-ink-soft text-sm leading-relaxed">
-        Đọc trên web hoàn toàn miễn phí. Muốn lưu file PDF về máy, để lại email hoặc Zalo — chúng
-        tôi gửi số tài khoản để bạn chuyển khoản{" "}
-        <b className="text-ink">{EBOOK_PRICE_VND.toLocaleString("vi-VN")}đ</b> (trích vào Quỹ xã
-        hội của Chọn Quà Chuẩn), rồi gửi file PDF qua đúng kênh bạn để lại.
+        Đọc trên web hoàn toàn miễn phí. Muốn lưu file PDF về máy, để lại email hoặc Zalo — Chọn
+        Quà Chuẩn sẽ gửi file cho bạn, không mất phí.
       </p>
       <button
         type="button"
         onClick={() => setOpen(true)}
         className="bg-accent text-accent-ink rounded-lg px-5 py-3 text-sm font-semibold min-h-[44px]"
       >
-        Liên hệ để tải file PDF
+        Nhận file PDF
       </button>
 
       {open && (
@@ -94,9 +100,7 @@ export default function EbookLeadForm() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-1">
                 <h2 className="font-serif text-xl">Nhận file PDF ebook</h2>
-                <p className="text-ink-soft text-[13.5px]">
-                  10 bài học kinh doanh từ Chung Ju Yung
-                </p>
+                <p className="text-ink-soft text-[13.5px]">{title}</p>
               </div>
               <button
                 onClick={closeAndReset}
@@ -111,9 +115,8 @@ export default function EbookLeadForm() {
               <div className="flex flex-col gap-2 py-4">
                 <p className="font-semibold">Đã ghi nhận yêu cầu!</p>
                 <p className="text-ink-soft text-sm">
-                  Nhân viên Chọn Quà Chuẩn sẽ gửi số tài khoản ngân hàng qua{" "}
-                  {email && zalo ? "email/Zalo" : email ? "email" : "Zalo"} bạn để lại. Sau khi
-                  nhận được chuyển khoản, chúng tôi gửi ngay file PDF cho bạn.
+                  Chọn Quà Chuẩn sẽ gửi file PDF qua{" "}
+                  {email && zalo ? "email/Zalo" : email ? "email" : "Zalo"} bạn để lại.
                 </p>
                 <p className="text-ink-soft text-sm">Cần nhanh hơn? Nhắn Zalo cho chúng tôi.</p>
                 <a
