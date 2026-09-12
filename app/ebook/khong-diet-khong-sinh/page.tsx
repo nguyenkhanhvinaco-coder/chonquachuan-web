@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import EbookLeadForm from "@/components/EbookLeadForm";
+import EbookMoreList from "@/components/EbookMoreList";
 import { EBOOKS, ebookProductRef } from "@/lib/ebook";
 
 // Cuốn thứ 2 của tủ sách. Giống trang /ebook: đọc miễn phí trên web, muốn
@@ -61,8 +62,12 @@ export default function EbookKhongDietKhongSinhPage() {
         <EbookLeadForm productRef={ebookProductRef(BOOK.id)} title={BOOK.title} />
       </section>
 
-      <section className="px-3 sm:px-9 md:px-[72px] pb-16">
-        <div className="rounded-xl border border-line overflow-hidden bg-surface-2" style={{ height: "min(900px, 92vh)" }}>
+      <section className="px-3 sm:px-9 md:px-[72px] pb-16 flex items-start justify-center gap-5">
+        <EbookMoreList currentId={BOOK.id} />
+        <div
+          className="rounded-xl border border-line overflow-hidden bg-surface-2 w-full max-w-[880px]"
+          style={{ height: "min(900px, 92vh)" }}
+        >
           <iframe
             src={BOOK.readerUrl}
             title="Không diệt, không sinh — đừng sợ hãi — đọc online"
@@ -71,6 +76,7 @@ export default function EbookKhongDietKhongSinhPage() {
             loading="lazy"
           />
         </div>
+        <div className="hidden 2xl:block w-[200px] shrink-0" aria-hidden="true" />
       </section>
 
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3 flex-wrap">

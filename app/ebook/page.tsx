@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import EbookLeadForm from "@/components/EbookLeadForm";
+import EbookMoreList from "@/components/EbookMoreList";
 import { EBOOKS, EBOOK_READER_URL, ebookProductRef } from "@/lib/ebook";
 
 export const metadata: Metadata = {
@@ -46,11 +47,15 @@ export default function EbookPage() {
         <EbookLeadForm productRef={ebookProductRef(EBOOKS[0].id)} title={EBOOKS[0].title} />
       </section>
 
-      <section className="px-3 sm:px-9 md:px-[72px] pb-16">
+      <section className="px-3 sm:px-9 md:px-[72px] pb-16 flex items-start justify-center gap-5">
+        <EbookMoreList currentId={EBOOKS[0].id} />
         {/* Kho trang sach ben trong la 780x760 (rong hon truoc, thap hon mot
             chut). Chieu cao khung vua du chua trang sach + thanh dieu huong,
             khong de thua qua nhieu khoang trong quanh sach. */}
-        <div className="rounded-xl border border-line overflow-hidden bg-surface-2" style={{ height: "min(900px, 92vh)" }}>
+        <div
+          className="rounded-xl border border-line overflow-hidden bg-surface-2 w-full max-w-[880px]"
+          style={{ height: "min(900px, 92vh)" }}
+        >
           <iframe
             src={EBOOK_READER_URL}
             title="10 bài học kinh doanh từ Chung Ju Yung — đọc online"
@@ -59,6 +64,7 @@ export default function EbookPage() {
             loading="lazy"
           />
         </div>
+        <div className="hidden 2xl:block w-[200px] shrink-0" aria-hidden="true" />
       </section>
 
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3 flex-wrap">
