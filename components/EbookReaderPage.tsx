@@ -4,9 +4,9 @@ import EbookLeadForm from "@/components/EbookLeadForm";
 import EbookMoreList from "@/components/EbookMoreList";
 import { ebookProductRef, type Ebook } from "@/lib/ebook";
 
-// Khuôn chung cho mọi trang đọc ebook: /ebook (cuốn nổi bật = EBOOKS[0]) và
-// /ebook/<id> (các cuốn còn lại). Mọi chữ riêng của từng cuốn nằm trong
-// lib/ebook.ts — không sửa ở đây khi thêm cuốn mới.
+// Khuôn chung cho mọi trang đọc ebook /ebook/<tên sách> (app/ebook/[slug]).
+// Mọi chữ riêng của từng cuốn nằm trong lib/ebook.ts — không sửa ở đây khi
+// thêm cuốn mới.
 const SITE_URL = "https://chonquachuan.vn";
 
 export default function EbookReaderPage({ book }: { book: Ebook }) {
@@ -16,9 +16,7 @@ export default function EbookReaderPage({ book }: { book: Ebook }) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Trang chủ", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Ebook", item: `${SITE_URL}/ebook` },
-      ...(book.href !== "/ebook"
-        ? [{ "@type": "ListItem", position: 3, name: book.title, item: `${SITE_URL}${book.href}` }]
-        : []),
+      { "@type": "ListItem", position: 3, name: book.title, item: `${SITE_URL}${book.href}` },
     ],
   };
 

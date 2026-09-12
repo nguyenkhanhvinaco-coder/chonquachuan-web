@@ -1,12 +1,13 @@
 // Danh sách Ebook — tủ sách miễn phí của Chọn Quà Chuẩn.
 //
-// - EBOOKS[0] là cuốn NỔI BẬT: chiếm trang /ebook, ô "Sản phẩm nổi bật" ở
-//   trang chủ, và là bìa đầu tiên của thẻ quay vòng (EbookCoverCard.tsx).
-//   Muốn đổi cuốn nổi bật: đưa cuốn mới lên ĐẦU mảng với href "/ebook", cuốn
-//   bị thay thì đổi href về "/ebook/<id>".
-// - Mọi cuốn còn lại có trang riêng /ebook/<id> (app/ebook/[slug]/page.tsx) —
-//   thêm cuốn mới chỉ cần thêm 1 phần tử vào mảng (kèm ảnh bìa 3:4 trong
-//   public/ebooks/covers/), không phải tạo trang mới.
+// - Mỗi cuốn có trang riêng ở href = "/ebook/<tên sách viết không dấu>"
+//   (app/ebook/[slug]/page.tsx) — thanh địa chỉ luôn hiện tên sách. Thêm cuốn
+//   mới chỉ cần thêm 1 phần tử vào mảng (kèm ảnh bìa 3:4 trong
+//   public/ebooks/covers/), không phải tạo trang mới. Đã đưa link lên web thì
+//   ĐỪNG đổi href nữa, link khách đã lưu sẽ hỏng.
+// - EBOOKS[0] là cuốn NỔI BẬT: ô "Sản phẩm nổi bật" ở trang chủ, bìa đầu tiên
+//   của thẻ quay vòng (EbookCoverCard.tsx), và /ebook tự chuyển tới cuốn này.
+//   Muốn đổi cuốn nổi bật: chỉ cần đưa cuốn đó lên ĐẦU mảng.
 // - Khi đang đọc một cuốn, các cuốn khác hiện trong EbookMoreList: cột bên
 //   cạnh khung đọc trên màn hình rộng (xl, từ 1280px), ô xổ ra phía trên khung
 //   đọc trên màn hình nhỏ hơn.
@@ -18,7 +19,7 @@
 // File PDF đã có sẵn ở pdfUrl — cách gửi nhanh nhất là dán link
 // https://chonquachuan.vn + pdfUrl cho khách.
 export type Ebook = {
-  id: string; // cũng là đường dẫn /ebook/<id> khi không phải cuốn nổi bật
+  id: string; // mã nội bộ (mã sản phẩm trong bảng leads) — không phải đường dẫn
   title: string;
   subtitle: string; // dòng phụ trên thẻ bìa ở trang chủ
   series: string; // nhãn nhỏ phía trên tiêu đề ở trang đọc
@@ -28,7 +29,7 @@ export type Ebook = {
   cover: string;
   readerUrl: string;
   pdfUrl: string;
-  href: string;
+  href: string; // "/ebook/<tên sách không dấu>" — địa chỉ trang đọc
 };
 
 export const EBOOKS: Ebook[] = [
@@ -47,7 +48,7 @@ export const EBOOKS: Ebook[] = [
     cover: "/ebooks/covers/cuoc-doi-khong-den-de-ta-sua.png",
     readerUrl: "/ebooks/cuoc-doi-khong-den-de-ta-sua.html",
     pdfUrl: "/ebooks/cuoc-doi-khong-den-de-ta-sua.pdf",
-    href: "/ebook",
+    href: "/ebook/cuoc-doi-khong-den-de-ta-sua-ma-de-ta-duoc-sua",
   },
   {
     // Từng là cuốn nổi bật ở /ebook (2026-09-08 → 09-13).
@@ -86,6 +87,9 @@ export const EBOOKS: Ebook[] = [
 // "ebook-<id>" để lead cũ và lead mới cùng một kiểu trong Sheet.
 export const ebookProductRef = (id: string) => `ebook-${id}`;
 
-// Cuốn nổi bật đang ở trang /ebook.
+// Phần cuối của href — là tham số [slug] của trang đọc.
+export const ebookSlug = (book: Ebook) => book.href.replace(/^\/ebook\//, "");
+
+// Cuốn nổi bật (EBOOKS[0]).
 export const EBOOK_READER_URL = EBOOKS[0].readerUrl;
 export const EBOOK_PDF_URL = EBOOKS[0].pdfUrl;
