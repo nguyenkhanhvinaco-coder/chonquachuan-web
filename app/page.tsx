@@ -6,7 +6,6 @@ import InlineLeadForm from "@/components/InlineLeadForm";
 import LeadFormTrigger from "@/components/LeadForm";
 import EbookCoverCard from "@/components/EbookCoverCard";
 import { getFeaturedProducts } from "@/lib/products";
-import { EBOOKS } from "@/lib/ebook";
 import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
 // Cho phep trang lam moi du lieu san pham (tu Supabase) toi da moi 60 giay
@@ -16,36 +15,21 @@ import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  // Khu "San pham noi bat" o dau trang: hai san pham ghim dau trong
+  // Khu "San pham noi bat" o dau trang: BA san pham ghim dau trong
   // FEATURED_IDS (sua danh sach do trong lib/products.ts khi doi san pham can
-  // day manh) + mot o Ebook. Ebook KHONG nam trong bang products ma o
-  // lib/ebook.ts, nen gop lai thanh mot mang `tiles` de ca ba o dung chung
-  // mot khuon hien thi, khong the lech nhau.
-  const [mainProduct, secondProduct] = await getFeaturedProducts();
-  const ebook = EBOOKS[0];
+  // day manh). Truoc 2026-09-14 o thu ba la Ebook - theo yeu cau chi Nga,
+  // Ebook bo khoi day va chi con o khu "Qua tang mien phi" ben duoi
+  // (EbookCoverCard), nhuong cho cho Coc gom hoa sen ve tay.
+  const featured = await getFeaturedProducts();
+  const mainProduct = featured[0];
 
-  const tiles = [
-    ...[mainProduct, secondProduct]
-      .filter((p): p is NonNullable<typeof p> => Boolean(p))
-      .map((p) => ({
-        key: p.id,
-        href: `/san-pham/${p.id}`,
-        image: p.image,
-        name: p.name,
-        bg: p.color,
-      })),
-    ...(ebook
-      ? [
-          {
-            key: ebook.id,
-            href: ebook.href,
-            image: ebook.cover,
-            name: ebook.title,
-            bg: "#EFE3CE",
-          },
-        ]
-      : []),
-  ];
+  const tiles = featured.map((p) => ({
+    key: p.id,
+    href: `/san-pham/${p.id}`,
+    image: p.image,
+    name: p.name,
+    bg: p.color,
+  }));
 
   return (
     <div className="flex flex-col">
@@ -102,7 +86,7 @@ export default async function HomePage() {
                 triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/70"
               />
             </div>
-            {/* Ba o: 2 san pham ghim + Ebook. Tat ca deu HIEN tren dien thoai
+            {/* Ba o: 3 san pham ghim dau FEATURED_IDS. Tat ca deu HIEN tren dien thoai
                 (yeu cau 2026-09-08) - dung 2 cot o mobile cho de doc, o thu ba
                 xuong hang duoi; 3 cot tu man hinh md tro len. Neu ep 3 cot o
                 mobile thi moi o chi con ~100px, nut "Xem chi tiet" bi vo chu.

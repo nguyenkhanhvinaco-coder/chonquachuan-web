@@ -149,6 +149,28 @@ export const seedProducts: Product[] = [
     long_description:
       "Thân trụ tối giản, thủy tinh trong vắt nhìn rõ đồ uống bên trong, nắp vặn kín không lo rò rỉ khi để trong túi xách. Một chiếc chai đủ đẹp để đặt trên bàn họp tiếp khách, đủ bền để mang theo cả ngày dài.\n\nTrong doanh nghiệp: đặt bàn phòng họp tiếp khách, trang bị cho khách sạn và văn phòng, làm quà tặng đối tác và nhân viên, phục vụ hội nghị và sự kiện cơ quan đoàn thể.\n\nSự kiện và dịp kỷ niệm: quà cưới, quà lễ tốt nghiệp, quà họp lớp và kỷ niệm trường, quà lưu niệm cho giải thể thao và hoạt động phong trào.\n\nDùng cá nhân: mang theo khi đi bộ đường dài, cắm trại, du lịch, hoặc đơn giản là một tách trà chiều tại nhà. Dùng được với cả đồ uống nóng và đồ uống lạnh.\n\nHai dung tích 300ml và 500ml — chọn 300ml cho bàn họp và bàn làm việc, 500ml cho người mang theo cả ngày. Nắp nhựa có ron bên trong, miệng chai rộng nên dễ cho đá viên vào và dễ rửa sạch tận đáy.\n\nNhận in logo lên thân chai theo yêu cầu, tư vấn vị trí và kích thước in phù hợp với từng dung tích.",
   },
+  {
+    id: "coc-gom-hoa-sen",
+    name: "Cốc Gốm Sứ Hoa Sen Vẽ Tay",
+    description: "Cốc gốm sứ 300ml, hoa sen vẽ tay, men mờ hai màu xanh bạc hà và trắng kem — mẫu mới 2026, nhận in logo.",
+    price_display: "Liên hệ",
+    // Qua ca nhan lan qua doanh nghiep (20/10, tri an cuoi nam) - giong chai
+    // thuy tinh. Anh dai dien la anh ghep 3 khung co huy hieu logo+QR o CHINH
+    // GIUA - chi Nga duyet 2026-09-14, chap nhan che quai coc o khung trai.
+    category: "vat-ly",
+    categories: ["vat-ly", "doi-tac"],
+    is_digital: false,
+    color: "oklch(0.95 0.02 170)",
+    image: "/products/coc-gom-hoa-sen.jpg",
+    images: [
+      "/products/coc-gom-hoa-sen.jpg",
+      "/products/coc-gom-hoa-sen-2.jpg",
+      "/products/coc-gom-hoa-sen-3.jpg",
+      "/products/coc-gom-hoa-sen-4.jpg",
+    ],
+    long_description:
+      "Mẫu cốc mới năm 2026, họa tiết hoa sen và đài sen được vẽ tay trên từng chiếc — nét mảnh, điểm một chấm xanh ngọc, thanh nhã và đậm chất Việt mà không cầu kỳ. Vì vẽ tay nên mỗi chiếc mang nét riêng, không chiếc nào giống hệt chiếc nào.\n\nLớp men mờ lấm tấm hạt cho cảm giác mộc, ấm tay; hai màu xanh bạc hà và trắng kem dịu mắt, đặt cạnh nhau thành một đôi rất hợp. Dáng thang loe đáy giúp cốc đứng vững trên bàn làm việc, quai tròn to cầm chắc tay, miệng rộng dễ rửa.\n\nTrong doanh nghiệp: quà 20/10 cho nhân viên nữ, quà tri ân khách hàng và đối tác cuối năm, quà chào mừng nhân viên mới, bộ quà hội nghị mang tinh thần văn hóa Việt.\n\nSự kiện và dịp kỷ niệm: quà tân gia, quà cưới theo đôi hai màu, quà cảm ơn thầy cô, quà sinh nhật cho bố mẹ và người lớn tuổi.\n\nDùng cá nhân: một tách trà buổi sáng thong thả, ly cà phê sữa trên bàn làm việc, hay cacao buổi tối tại nhà.\n\nDung tích 300ml — vừa một tách trà hay một ly cà phê sữa. Hai màu: xanh bạc hà, trắng kem.\n\nNhận in logo doanh nghiệp theo yêu cầu, tư vấn vị trí in để không lấn họa tiết sen, kèm tư vấn đóng hộp quà theo số lượng.",
+  },
 ];
 
 // Danh sach danh muc that su cua mot san pham. Dung ham nay o MOI cho can
@@ -218,7 +240,7 @@ export async function getProducts(): Promise<Product[]> {
 // bấm ở cột chữ bên trái); id thứ hai hiện ở ô nhỏ nằm ngay CẠNH ô lớn
 // (2026-09-08: thêm Chai thủy tinh vào đây theo yêu cầu, lấp khoảng trống
 // bên phải ảnh Túi trẻ em).
-export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "van-phong-tri-an"];
+export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "coc-gom-hoa-sen", "van-phong-tri-an"];
 
 export async function getFeaturedProducts(): Promise<Product[]> {
   const all = await getProducts();
