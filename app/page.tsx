@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import { ArrowRightIcon, GiftIcon, FacebookIcon, ZaloIcon } from "@/components/icons";
+import { ArrowRightIcon, FacebookIcon, ZaloIcon } from "@/components/icons";
 import InlineLeadForm from "@/components/InlineLeadForm";
 import LeadFormTrigger from "@/components/LeadForm";
 import BaiVietCard from "@/components/BaiVietCard";
 import { getFeaturedProducts } from "@/lib/products";
+import FeaturedCarousel from "@/components/FeaturedCarousel";
 import { EBOOKS } from "@/lib/ebook";
 import { BAI_VIET } from "@/lib/baiViet";
 import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
@@ -22,10 +23,14 @@ export default async function HomePage() {
   // day manh). Truoc 2026-09-14 o thu ba la Ebook - theo yeu cau chi Nga,
   // Ebook bo khoi day va chi con o khu "Qua tang mien phi" ben duoi
   // (EbookCoverCard), nhuong cho cho Coc gom hoa sen ve tay.
-  const featured = await getFeaturedProducts();
+  // 2026-09-15: cac o noi bat CHAY LUAN PHIEN (components/FeaturedCarousel.tsx)
+  // theo dung thu tu FEATURED_IDS. Chi dua san pham CO anh vao vong chay - o
+  // khong anh chi la khoi mau + icon, dung canh anh san pham that trong xau.
+  const featured = await getFeaturedProducts(8);
   const mainProduct = featured[0];
 
-  const tiles = featured.map((p) => ({
+  const coAnh = featured.filter((p) => p.image);
+  const tiles = (coAnh.length >= 3 ? coAnh : featured.slice(0, 3)).map((p) => ({
     key: p.id,
     href: `/san-pham/${p.id}`,
     image: p.image,
@@ -88,7 +93,7 @@ export default async function HomePage() {
                 triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/70"
               />
             </div>
-            {/* Ba o: 3 san pham ghim dau FEATURED_IDS. Tat ca deu HIEN tren dien thoai
+            {/* Cac o chay luan phien (FeaturedCarousel): 3 o/lan tu man hinh md, 2 o tren dien thoai. Tat ca deu HIEN tren dien thoai
                 (yeu cau 2026-09-08) - dung 2 cot o mobile cho de doc, o thu ba
                 xuong hang duoi; 3 cot tu man hinh md tro len. Neu ep 3 cot o
                 mobile thi moi o chi con ~100px, nut "Xem chi tiet" bi vo chu.
@@ -100,48 +105,7 @@ export default async function HomePage() {
                 cao nhau nen nut "Xem chi tiet" thang hang, du ten san pham dai
                 ngan khac nhau. Truoc dung items-start nen o nao ten ngan thi
                 nut bi day len cao hon hai o kia. */}
-            <div className="flex-1 w-full grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-              {tiles.map((t, i) => (
-                <Link
-                  key={t.key}
-                  href={t.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-full rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-white flex flex-col"
-                >
-                  <span className="relative block aspect-[4/3]" style={{ background: t.bg }}>
-                    {/* object-contain: anh san pham co logo/QR in san o goc,
-                        doi sang object-cover la cat mat. */}
-                    {t.image ? (
-                      <Image
-                        src={t.image}
-                        alt={t.name}
-                        fill
-                        sizes="(max-width: 768px) 45vw, 24vw"
-                        className="object-contain"
-                        priority={i === 0}
-                      />
-                    ) : (
-                      <span className="absolute inset-0 flex items-center justify-center">
-                        <GiftIcon size={40} color="white" strokeWidth={1.3} />
-                      </span>
-                    )}
-                  </span>
-                  <span className="flex flex-col gap-2 px-2.5 py-2.5 md:px-3 md:py-3 flex-1">
-                    <span className="text-[13.5px] md:text-[16.5px] font-bold leading-snug text-[#DC2626] flex-1">
-                      {t.name}
-                    </span>
-                    {/* whitespace-nowrap + dem ngang hep o mobile: cot chi rong
-                        ~140px tren dien thoai, de mac dinh thi chu nut vo lam
-                        hai dong ("Xem chi" / "tiet"). */}
-                    <span className="inline-flex items-center justify-center gap-1 md:gap-1.5 whitespace-nowrap rounded-[10px] px-2 md:px-3 py-2.5 md:py-3 text-[13px] md:text-[16px] font-bold bg-[#FFC633] text-[#1A1006]">
-                      Xem chi tiết
-                      <ArrowRightIcon size={15} color="currentColor" />
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </div>
+            <FeaturedCarousel tiles={tiles} />
           </div>
         </section>
       )}

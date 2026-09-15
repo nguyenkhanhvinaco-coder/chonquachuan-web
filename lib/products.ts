@@ -171,6 +171,28 @@ export const seedProducts: Product[] = [
     long_description:
       "Mẫu cốc mới năm 2026, họa tiết hoa sen và đài sen được vẽ tay trên từng chiếc — nét mảnh, điểm một chấm xanh ngọc, thanh nhã và đậm chất Việt mà không cầu kỳ. Vì vẽ tay nên mỗi chiếc mang nét riêng, không chiếc nào giống hệt chiếc nào.\n\nLớp men mờ lấm tấm hạt cho cảm giác mộc, ấm tay; hai màu xanh bạc hà và trắng kem dịu mắt, đặt cạnh nhau thành một đôi rất hợp. Dáng thang loe đáy giúp cốc đứng vững trên bàn làm việc, quai tròn to cầm chắc tay, miệng rộng dễ rửa.\n\nTrong doanh nghiệp: quà 20/10 cho nhân viên nữ, quà tri ân khách hàng và đối tác cuối năm, quà chào mừng nhân viên mới, bộ quà hội nghị mang tinh thần văn hóa Việt.\n\nSự kiện và dịp kỷ niệm: quà tân gia, quà cưới theo đôi hai màu, quà cảm ơn thầy cô, quà sinh nhật cho bố mẹ và người lớn tuổi.\n\nDùng cá nhân: một tách trà buổi sáng thong thả, ly cà phê sữa trên bàn làm việc, hay cacao buổi tối tại nhà.\n\nDung tích 300ml — vừa một tách trà hay một ly cà phê sữa. Hai màu: xanh bạc hà, trắng kem.\n\nNhận in logo doanh nghiệp theo yêu cầu, tư vấn vị trí in để không lấn họa tiết sen, kèm tư vấn đóng hộp quà theo số lượng.",
   },
+  {
+    id: "long-den-trung-thu",
+    name: "Lồng Đèn Trung Thu Tặng Các Bé",
+    description: "Lồng đèn giấy ánh kim nhiều mẫu dễ thương, 8.000đ/chiếc (chưa VAT), nhận đơn từ 50 chiếc — quà Trung Thu cho cơ quan, doanh nghiệp, trường học.",
+    price_display: "8.000đ/chiếc (chưa VAT)",
+    // San pham theo mua (Trung Thu 25/9/2026). Anh CHI dung mau khong co nhan vat
+    // hoat hinh ban quyen (Doraemon, Hello Kitty, Disney...) - dang cong khai de
+    // bi go theo bao cao ban quyen. Het mua thi bo id khoi FEATURED_IDS.
+    category: "vat-ly",
+    categories: ["vat-ly", "doi-tac"],
+    is_digital: false,
+    color: "oklch(0.3 0.07 262)",
+    image: "/products/long-den-trung-thu.jpg",
+    images: [
+      "/products/long-den-trung-thu.jpg",
+      "/products/long-den-trung-thu-2.jpg",
+      "/products/long-den-trung-thu-3.jpg",
+      "/products/long-den-trung-thu-4.jpg",
+    ],
+    long_description:
+      "Mùa trăng rằm, món quà các bé mong nhất vẫn là một chiếc lồng đèn để cầm đi rước đèn cùng bạn bè. Lồng đèn giấy ánh kim lấp lánh, tạo hình các bé con, chú lân, nàng tiên cá, kỳ lân… dễ thương, có cán cầm và phần đế dạng hộp.\n\nTrong cơ quan, doanh nghiệp: quà Trung Thu cho con em cán bộ, nhân viên; quà cho các bé trong chương trình vui Trung Thu của đoàn thể, khu phố; quà tri ân gia đình khách hàng.\n\nTrường học và nhóm lớp: phát quà cho học sinh mầm non, tiểu học trong ngày hội trăng rằm.\n\nGiá 8.000đ/chiếc (chưa VAT), nhận đơn từ 50 chiếc trở lên. Trung Thu năm nay rơi vào 25/9 — nên đặt sớm để chủ động thời gian nhận hàng.\n\nCòn nhiều mẫu khác ngoài các mẫu trong ảnh — nhắn Zalo OA hoặc để lại thông tin để nhận trọn bộ mẫu và báo giá theo số lượng. Gửi kèm lời chúc bằng thiệp tranh vẽ miễn phí tại chonquachuan.vn/thiep-mien-phi.",
+  },
 ];
 
 // Danh sach danh muc that su cua mot san pham. Dung ham nay o MOI cho can
@@ -235,14 +257,17 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 // Sản phẩm ghim lên khu nổi bật ở trang chủ — nơi muốn đẩy mạnh bán hàng.
-// ĐỔI SẢN PHẨM NỔI BẬT: chỉ cần sửa 3 id dưới đây, không phải đụng giao diện.
+// ĐỔI SẢN PHẨM NỔI BẬT: chỉ cần sửa danh sách id dưới đây, không phải đụng giao diện.
+// Từ 2026-09-15 trang chủ cho các sản phẩm CÓ ẢNH trong danh sách này chạy luân
+// phiên theo đúng thứ tự (components/FeaturedCarousel.tsx); trang Danh mục cũng
+// xếp chúng lên đầu theo thứ tự này.
 // Thứ tự có ý nghĩa: id đầu tiên là sản phẩm chính (ô lớn, kèm mô tả + nút
 // bấm ở cột chữ bên trái); id thứ hai hiện ở ô nhỏ nằm ngay CẠNH ô lớn
 // (2026-09-08: thêm Chai thủy tinh vào đây theo yêu cầu, lấp khoảng trống
 // bên phải ảnh Túi trẻ em).
-export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "coc-gom-hoa-sen", "van-phong-tri-an"];
+export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "coc-gom-hoa-sen", "long-den-trung-thu", "van-phong-tri-an"];
 
-export async function getFeaturedProducts(): Promise<Product[]> {
+export async function getFeaturedProducts(limit = 3): Promise<Product[]> {
   const all = await getProducts();
   const picked = FEATURED_IDS.map((id) => all.find((p) => p.id === id)).filter(
     (p): p is Product => Boolean(p)
@@ -251,5 +276,5 @@ export async function getFeaturedProducts(): Promise<Product[]> {
   // Nếu id ghim không còn tồn tại (sản phẩm bị xoá/đổi tên), lấp bằng sản phẩm
   // đầu danh sách để khu nổi bật không bao giờ trống.
   const fallback = all.filter((p) => !picked.some((q) => q.id === p.id));
-  return [...picked, ...fallback].slice(0, 3);
+  return [...picked, ...fallback].slice(0, limit);
 }
