@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { EBOOKS } from "@/lib/ebook";
+import { BAI_VIET } from "@/lib/baiViet";
 
 const SITE_URL = "https://chonquachuan.vn";
 
@@ -14,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/thiep-mien-phi",
     // Mọi trang ebook lấy thẳng từ lib/ebook.ts — thêm cuốn mới là có ở đây.
     ...EBOOKS.map((b) => b.href),
+    // Bài viết "Kiến thức chọn quà" — cũng lấy thẳng từ lib/baiViet.ts.
+    ...BAI_VIET.map((b) => b.href),
   ];
 
   return Array.from(new Set(routes)).map((route) => ({

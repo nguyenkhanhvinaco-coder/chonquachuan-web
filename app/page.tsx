@@ -4,8 +4,10 @@ import Header from "@/components/Header";
 import { ArrowRightIcon, GiftIcon, FacebookIcon, ZaloIcon } from "@/components/icons";
 import InlineLeadForm from "@/components/InlineLeadForm";
 import LeadFormTrigger from "@/components/LeadForm";
-import EbookCoverCard from "@/components/EbookCoverCard";
+import BaiVietCard from "@/components/BaiVietCard";
 import { getFeaturedProducts } from "@/lib/products";
+import { EBOOKS } from "@/lib/ebook";
+import { BAI_VIET } from "@/lib/baiViet";
 import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
 // Cho phep trang lam moi du lieu san pham (tu Supabase) toi da moi 60 giay
@@ -146,11 +148,18 @@ export default async function HomePage() {
 
       {/* Hero — don gian hoa 2026-09: bo bang hoi /tim-qua va luoi danh muc,
           thay bang form de lai thong tin hien truc tiep tren trang (khong
-          qua modal). Khu the ben phai: video gioi thieu (o lon) + Thiep
-          tranh ve mien phi (o nho) — san pham that da chuyen len khu Noi
-          bat rieng phia tren. */}
-      <section className="flex flex-col md:flex-row items-center gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
-        <div className="flex-1 flex flex-col gap-6">
+          qua modal). Khu the ben phai: "Kien thuc chon qua" (bai viet) +
+          "Qua tang mien phi" (video, thiep, bia Ebook) — san pham that da
+          chuyen len khu Noi bat rieng phia tren. */}
+      {/* Dien thoai (duoi md): chi Nga muon bai viet Tet len TRUOC form tu
+          van, form xuong ngay duoi bai (yeu cau 2026-09-15). Vi bai viet nam
+          trong luoi ben phai, luoi dung "contents" o mobile de 4 o con cua
+          no thanh anh em truc tiep voi form, roi xep bang order:
+          tieu de bai viet(1) -> bai viet(2) -> FORM(3) -> tieu de qua mien
+          phi(4) -> qua mien phi(5). Tu md tro len luoi la grid binh thuong,
+          form nam cot trai nhu cu. */}
+      <section className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
+        <div className="order-3 md:order-none mt-8 md:mt-0 flex-1 flex flex-col gap-6">
           {/* Phan gioi thieu thuong hieu (nhan + ten + mo ta) da chuyen len khu
               "San pham noi bat" phia tren (2026-09-08), o day chi con form de
               lai thong tin nen dat mot tieu de ngan cho khoi trong hoac. */}
@@ -187,39 +196,69 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
-        {/* Ebook luon xep dau tien (order-1) tren ca mobile lan desktop - user
-            test tren dien thoai 2026-09-08 thay Ebook bi troi xuong cuoi vi
-            luc do chi doi thu tu tren desktop, quen mobile van theo thu tu
-            video-truoc/Ebook-sau cu. Desktop: Ebook la o lon ben trai (chiem
-            2 hang, dung bia sach lam anh nen); video+thiep+anh mau xep cot
-            nho ben phai, cung thu tu ben trong nhu mobile. */}
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
-          {/* Tieu de khu qua mien phi (them 2026-09-11 theo yeu cau): truoc do
-              khu the Ebook + Thiep nam tron ben phai, khong co gi bao nguoi xem
-              day la do mien phi. Chiem ca 2 cot va xep TREN CUNG (order-first)
-              tren ca mobile lan desktop - tren mobile no hien ngay sau form. */}
-          <div className="order-first md:col-span-2 flex flex-col gap-2.5">
-            <span className="inline-flex self-start items-center rounded-full bg-[#DCFCE7] px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-[#15803D]">
-              Quà tặng miễn phí
+        {/* Sap xep lai 2026-09-15 theo anh chi Nga khoanh:
+            - Cot TRAI "Kien thuc chon qua": o lon la bai viet moi nhat
+              (BAI_VIET[0], lib/baiViet.ts); bai cu hon xep thanh danh sach
+              duoi o do. Truoc day o lon nay la the Ebook (EbookCoverCard).
+            - Cot PHAI "Qua tang mien phi": tieu de chuyen tu tren dau luoi
+              sang day, roi video, thiep tranh ve, va 3 BIA EBOOK (truoc la 3
+              anh tranh thiep).
+            Luoi 4 o: 2 tieu de cung mot hang (desktop) nen 2 khoi ben duoi
+            bat dau thang hang nhau. Mobile 1 cot theo order: tieu de bai viet
+            -> bai viet -> tieu de qua mien phi -> qua mien phi. Doi order thi
+            kiem ca 2 khung man hinh (bai hoc 2026-09-08: Ebook tung troi
+            xuong cuoi tren dien thoai vi chi doi order o desktop).
+            2 cot tu lg (1024px): o md luoi chi rong ~280px, chia 2 thi moi
+            cot con ~130px. */}
+        <div className="contents md:grid md:flex-1 md:w-full grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-4">
+          <div id="kien-thuc-chon-qua" className="order-1 flex flex-col gap-2.5 scroll-mt-6">
+            <span className="inline-flex self-start items-center rounded-full bg-[#FEF3C7] px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-[#B45309]">
+              Kiến thức chọn quà
             </span>
-            {/* [text-wrap:balance]: tren dien thoai tieu de xuong 2 dong, khong
-                chia deu thi dong 2 chi con tro chu "phi". */}
-            <h2 className="font-serif leading-[1.16] text-[26px] md:text-[32px] [text-wrap:balance]">
-              Ebook &amp; thiệp tranh miễn phí
+            <h2 className="font-serif leading-[1.16] text-[26px] lg:text-[28px] [text-wrap:balance]">
+              Bài viết &amp; kinh nghiệm
             </h2>
-            <p className="text-ink-soft text-[14.5px] md:text-[16px] leading-relaxed">
-              Lật từng trang đọc ngay, hoặc tạo thiệp tranh gửi tặng người thân — không mất phí.
+            <p className="text-ink-soft text-[14.5px] lg:text-[15px] leading-relaxed">
+              Xu hướng quà tặng và kinh nghiệm chọn quà thực tế từ Chọn Quà Chuẩn.
             </p>
           </div>
 
-          {/* O lon: the Ebook (bia sach that, chay luan phien khi co nhieu
-              cuon) - truoc day la video gioi thieu, doi cho theo yeu cau
-              2026-09-08 de day manh Ebook hon. */}
-          <EbookCoverCard large className="order-1 md:row-span-2" />
+          {/* Tieu de khu qua mien phi (them 2026-09-11, chuyen sang cot phai
+              2026-09-15). [text-wrap:balance]: tieu de xuong 2 dong, khong
+              chia deu thi dong 2 chi con tro chu "phi". */}
+          <div className="order-4 lg:order-2 mt-8 lg:mt-0 flex flex-col gap-2.5">
+            <span className="inline-flex self-start items-center rounded-full bg-[#DCFCE7] px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-[#15803D]">
+              Quà tặng miễn phí
+            </span>
+            <h2 className="font-serif leading-[1.16] text-[26px] lg:text-[28px] [text-wrap:balance]">
+              Ebook &amp; thiệp tranh miễn phí
+            </h2>
+            <p className="text-ink-soft text-[14.5px] lg:text-[15px] leading-relaxed">
+              Đọc Ebook hoặc tạo thiệp tranh gửi tặng người thân — không mất phí.
+            </p>
+          </div>
 
-          {/* Cot nho: video gioi thieu + Thiep tranh ve mien phi + dai 3 anh
-              tranh mau ben duoi. */}
-          <div className="order-2 flex flex-col gap-5">
+          <div className="order-2 lg:order-3 flex flex-col gap-4">
+            <BaiVietCard bai={BAI_VIET[0]} className="flex-1" />
+            {BAI_VIET.length > 1 && (
+              <ul className="flex flex-col divide-y divide-line border border-line rounded-2xl bg-surface">
+                {BAI_VIET.slice(1, 4).map((b) => (
+                  <li key={b.id}>
+                    <Link
+                      href={b.href}
+                      className="flex items-center justify-between gap-3 px-4 py-3 text-[14px] font-semibold"
+                    >
+                      {b.title}
+                      <ArrowRightIcon size={15} color="currentColor" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* Cot qua mien phi: video gioi thieu + Thiep tranh ve + 3 bia Ebook. */}
+          <div className="order-5 flex flex-col gap-5">
             <div className="relative rounded-[20px] overflow-hidden min-h-[200px]">
               <video
                 autoPlay
@@ -260,20 +299,27 @@ export default async function HomePage() {
               </span>
             </Link>
 
-            <Link
-              href="/thiep-mien-phi"
-              className="grid grid-cols-3 gap-3 flex-1 min-h-[130px] md:min-h-[190px]"
-            >
-              {[
-                { src: "/trung-thu/ca-koi.jpg", alt: "Tranh Cá Koi May Mắn" },
-                { src: "/trung-thu/dan-meo.jpg", alt: "Tranh Đàn Mèo" },
-                { src: "/trung-thu/quoc-khanh.jpg", alt: "Tranh Diễu Hành Mừng Quốc Khánh" },
-              ].map((img) => (
-                <div key={img.src} className="relative rounded-xl overflow-hidden">
-                  <Image src={img.src} alt={img.alt} fill sizes="120px" className="object-cover" />
-                </div>
-              ))}
-            </Link>
+            {/* 3 bia Ebook (2026-09-15, thay cho 3 anh tranh thiep). Moi bia
+                la 1 link rieng toi cuon do; bia ti le 3:4 dung khung goc nen
+                khong cat. Ten sach nam duoi bia vi bia nho (~90px) va vai bia
+                chi co tranh, khong co chu. Tu lay 3 cuon dau EBOOKS. */}
+            <div className="flex flex-col gap-2">
+              <span className="text-[12.5px] font-semibold text-ink-soft">
+                Tủ Ebook miễn phí — bấm vào bìa để đọc
+              </span>
+              <div className="grid grid-cols-3 gap-3">
+                {EBOOKS.slice(0, 3).map((b) => (
+                  <Link key={b.id} href={b.href} className="flex flex-col gap-1.5">
+                    <span className="relative block aspect-[3/4] rounded-xl overflow-hidden shadow-md">
+                      <Image src={b.cover} alt={b.title} fill sizes="140px" className="object-cover" />
+                    </span>
+                    <span className="text-[11.5px] leading-snug font-semibold text-[#1A1006] line-clamp-2">
+                      {b.title}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -6,3 +6,7 @@ export const ZALO_URL = "https://zalo.me/1501403345967916810";
 
 // Fanpage Facebook chính thức "Chọn Quà Chuẩn".
 export const FANPAGE_URL = "https://www.facebook.com/chonquachuan";
+
+// Hotline / Zalo Cty — số công ty hiển thị trên website, GBP, Fanpage.
+export const HOTLINE = "0827 288 286";
+export const HOTLINE_TEL = "0827288286";
