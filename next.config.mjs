@@ -10,6 +10,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Trang Danh muc da tat (2026-09-30, chi Nga). Link cu (Google, khach da luu) ve trang chu.
+      {
+        source: '/danh-muc',
+        destination: '/',
+        permanent: false,
+      },
       {
         source: '/thiep-trung-thu',
         destination: '/thiep-mien-phi',

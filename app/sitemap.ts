@@ -7,7 +7,6 @@ const SITE_URL = "https://chonquachuan.vn";
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
-    "/danh-muc",
     "/tim-qua",
     "/lien-he",
     "/chinh-sach-giao-hang",

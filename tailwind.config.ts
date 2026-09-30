@@ -21,11 +21,10 @@ const config: Config = {
         "sage-soft": "var(--sage-soft)",
       },
       fontFamily: {
-        // 2026-09-30 chi Nga chon Aptos cho ca website. Aptos la font cua Microsoft, KHONG duoc
-        // nhung file font len web — chi goi theo ten: may co san Aptos (Windows/Office moi) thi
-        // hien Aptos, may khac (dien thoai, Mac) tu roi ve Lora / Be Vietnam Pro nhu truoc.
-        serif: ["Aptos Display", "Aptos", "var(--font-lora)", "Georgia", "serif"],
-        sans: ["Aptos", "var(--font-be-vietnam)", "system-ui", "sans-serif"],
+        // Bo font giong happynuts.vn (2026-09-30): "serif" = tieu de, "sans" = chu thuong.
+        // Ten khoa giu nguyen serif/sans de khong phai sua class font-serif khap cac trang.
+        serif: ["var(--font-tieu-de)", "Arial Narrow", "sans-serif"],
+        sans: ["var(--font-chu-thuong)", "system-ui", "sans-serif"],
       },
     },
   },

@@ -35,8 +35,8 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
       <Header />
 
       <section className="px-9 pt-6 pb-2 md:px-[72px]">
-        <Link href="/danh-muc" className="text-ink-soft text-[13px] font-medium">
-          ← Quay lại danh mục
+        <Link href="/" className="text-ink-soft text-[13px] font-medium">
+          ← Về trang chủ
         </Link>
       </section>
 

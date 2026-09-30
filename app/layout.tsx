@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
-import { Lora, Be_Vietnam_Pro } from "next/font/google";
+import { Barlow_Semi_Condensed, Manrope, Lora } from "next/font/google";
 import "./globals.css";
 
+// 2026-09-30 chi Nga chon bo font giong happynuts.vn: tieu de Barlow Semi Condensed, chu thuong
+// Manrope. Ca hai la font Google mien phi, co tieng Viet, nhung thang vao web nen MOI may deu
+// thay giong nhau (khac Aptos — font Microsoft, khong duoc nhung len web).
+const tieuDe = Barlow_Semi_Condensed({
+  subsets: ["latin", "vietnamese"],
+  weight: ["500", "600", "700"],
+  variable: "--font-tieu-de",
+  display: "swap",
+});
+
+const chuThuong = Manrope({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-chu-thuong",
+  display: "swap",
+});
+
+// Lora chi con dung cho chu tren thiep tranh (components/PaintingCard.tsx) — mau thiep giu nguyen.
 const lora = Lora({
   subsets: ["latin", "vietnamese"],
   weight: ["500", "600", "700"],
   variable: "--font-lora",
-  display: "swap",
-});
-
-const beVietnamPro = Be_Vietnam_Pro({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-be-vietnam",
   display: "swap",
 });
 
@@ -98,7 +109,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" className={`${lora.variable} ${beVietnamPro.variable}`}>
+    <html lang="vi" className={`${tieuDe.variable} ${lora.variable} ${chuThuong.variable}`}>
       <body className="font-sans">
         {children}
         <script
