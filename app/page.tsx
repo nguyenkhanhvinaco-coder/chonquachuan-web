@@ -123,7 +123,7 @@ export default async function HomePage() {
           phi(4) -> qua mien phi(5). Tu md tro len luoi la grid binh thuong,
           form nam cot trai nhu cu. */}
       <section className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
-        <div className="order-3 md:order-none mt-8 md:mt-0 flex-1 flex flex-col gap-6">
+        <div className="order-3 md:order-none mt-8 md:mt-0 flex-1 xl:flex-none xl:w-[400px] flex flex-col gap-6">
           {/* Phan gioi thieu thuong hieu (nhan + ten + mo ta) da chuyen len khu
               "San pham noi bat" phia tren (2026-09-08), o day chi con form de
               lai thong tin nen dat mot tieu de ngan cho khoi trong hoac. */}
@@ -174,8 +174,12 @@ export default async function HomePage() {
             xuong cuoi tren dien thoai vi chi doi order o desktop).
             2 cot tu lg (1024px): o md luoi chi rong ~280px, chia 2 thi moi
             cot con ~130px. */}
-        <div className="contents md:grid md:flex-1 md:w-full grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-4">
-          <div id="kien-thuc-chon-qua" className="order-1 flex flex-col gap-2.5 scroll-mt-6">
+        {/* 2026-09-30 (chi Nga khoanh o trong giua form va bai viet): tu xl (1280px)
+            luoi thanh 3 cot — bai truoc do (hop go canh mai, BAI_VIET[1]) hien
+            thanh o lon ben trai bai moi nhat. Duoi xl no van nam trong danh
+            sach ngan duoi o lon nhu cu. */}
+        <div className="contents md:grid md:flex-1 md:w-full grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-4">
+          <div id="kien-thuc-chon-qua" className="order-1 xl:col-span-2 flex flex-col gap-2.5 scroll-mt-6">
             <span className="inline-flex self-start items-center rounded-full bg-[#FEF3C7] px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-[#B45309]">
               Kiến thức chọn quà
             </span>
@@ -202,12 +206,20 @@ export default async function HomePage() {
             </p>
           </div>
 
+          {BAI_VIET.length > 1 && (
+            <BaiVietCard bai={BAI_VIET[1]} moi={false} className="hidden xl:flex xl:order-3" />
+          )}
+
           <div className="order-2 lg:order-3 flex flex-col gap-4">
             <BaiVietCard bai={BAI_VIET[0]} className="flex-1" />
             {BAI_VIET.length > 1 && (
-              <ul className="flex flex-col divide-y divide-line border border-line rounded-2xl bg-surface">
-                {BAI_VIET.slice(1, 4).map((b) => (
-                  <li key={b.id}>
+              <ul
+                className={`flex flex-col divide-y divide-line border border-line rounded-2xl bg-surface ${
+                  BAI_VIET.length <= 2 ? "xl:hidden" : ""
+                }`}
+              >
+                {BAI_VIET.slice(1, 4).map((b, i) => (
+                  <li key={b.id} className={i === 0 ? "xl:hidden" : ""}>
                     <Link
                       href={b.href}
                       className="flex items-center justify-between gap-3 px-4 py-3 text-[14px] font-semibold"

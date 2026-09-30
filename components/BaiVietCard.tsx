@@ -9,7 +9,16 @@ import type { BaiViet } from "@/lib/baiViet";
 // sản phẩm). Khung ảnh đúng tỉ lệ gốc nên object-cover không cắt mất góc nào.
 // Nút "Đọc bài viết" dính đáy thẻ (mt-auto) để khi thẻ kéo cao bằng cột bên
 // cạnh thì nút vẫn nằm cuối.
-export default function BaiVietCard({ bai, className = "" }: { bai: BaiViet; className?: string }) {
+// moi=false: o lon thu hai (bai truoc do) — khong gan chu "Bai viet moi".
+export default function BaiVietCard({
+  bai,
+  className = "",
+  moi = true,
+}: {
+  bai: BaiViet;
+  className?: string;
+  moi?: boolean;
+}) {
   return (
     <Link
       href={bai.href}
@@ -26,7 +35,8 @@ export default function BaiVietCard({ bai, className = "" }: { bai: BaiViet; cla
       </span>
       <span className="flex flex-col gap-2.5 p-5 flex-1">
         <span className="text-[11.5px] font-bold uppercase tracking-wide text-[#B45309]">
-          Bài viết mới · {bai.chuyenMuc}
+          {moi ? "Bài viết mới · " : ""}
+          {bai.chuyenMuc}
         </span>
         <span className="font-serif font-semibold text-[19px] leading-snug text-[#1A1006]">
           {bai.title}
