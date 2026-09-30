@@ -28,8 +28,8 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   // chung của site) — khai báo openGraph ở trang con thay thế hẳn bản ở layout.
   const anh = { url: `${SITE_URL}${bai.anh}`, width: bai.anhRong, height: bai.anhCao, alt: bai.anhAlt };
   return {
-    title: bai.title,
-    description: bai.tomTat,
+    title: bai.tieuDeSeo ?? bai.title,
+    description: bai.moTaSeo ?? bai.tomTat,
     alternates: { canonical: bai.href },
     openGraph: {
       type: "article",
@@ -67,6 +67,7 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
       description: bai.tomTat,
       image: `${SITE_URL}${bai.anh}`,
       datePublished: bai.ngayDang,
+      dateModified: bai.ngayCapNhat ?? bai.ngayDang,
       author: { "@type": "Organization", name: "Chọn Quà Chuẩn", url: SITE_URL },
       publisher: { "@type": "Organization", name: "Chọn Quà Chuẩn", url: SITE_URL },
       mainEntityOfPage: `${SITE_URL}${bai.href}`,

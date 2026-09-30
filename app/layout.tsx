@@ -28,9 +28,10 @@ const lora = Lora({
 });
 
 const SITE_URL = "https://chonquachuan.vn";
-const SITE_TITLE = "Chọn Quà Chuẩn — Tìm quà tặng phù hợp, nhanh và ý nghĩa";
+// 2026-09-30 SEO: tu khoa khach tim ("qua tang doanh nghiep", "in logo") dung dau tieu de.
+const SITE_TITLE = "Quà tặng doanh nghiệp in logo theo yêu cầu — Chọn Quà Chuẩn";
 const SITE_DESCRIPTION =
-  "Chọn Quà Chuẩn giúp doanh nghiệp và cá nhân tìm quà tặng phù hợp — quà tri ân đối tác, quà cá nhân, set quà handmade, và quà tặng số.";
+  "Chọn Quà Chuẩn tư vấn và cung cấp quà tặng doanh nghiệp in logo theo yêu cầu tại TP.HCM: bình giữ nhiệt, cốc gốm sứ, túi vải, quà Tết, quà tri ân đối tác.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,6 +42,9 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     "quà tặng doanh nghiệp",
+    "quà tặng in logo",
+    "bình giữ nhiệt in logo",
+    "quà Tết doanh nghiệp",
     "quà tri ân đối tác",
     "quà tặng cá nhân",
     "set quà handmade",
@@ -79,6 +83,8 @@ const organizationJsonLd = {
   legalName: "Công ty TNHH Nguyên Khánh Vina",
   url: SITE_URL,
   logo: `${SITE_URL}/logo-icon.png`,
+  // Kenh chinh thuc — giup Google/AI noi website voi Fanpage va Zalo OA cung mot thuong hieu.
+  sameAs: ["https://www.facebook.com/chonquachuan", "https://zalo.me/1501403345967916810"],
   taxID: "0319221275",
   email: "lienhe@chonquachuan.vn",
   telephone: "+84827288286",

@@ -29,6 +29,10 @@ export type BaiViet = {
   soSanh?: { tieuDe: string; cot: string[]; dong: string[][] }; // bảng: cot[0] là cột tiêu chí
   lienKet?: { nhan: string; moTa: string; href: string }[]; // nút dẫn sang catalogue / trang khác
   hoiDap?: { hoi: string; dap: string }[]; // câu hỏi thường gặp — cũng xuất ra FAQPage JSON-LD
+  // --- SEO (tuỳ chọn): Google cắt tiêu đề ~60 ký tự, mô tả ~155 ký tự ---
+  tieuDeSeo?: string; // tiêu đề ngắn cho thẻ <title>; không khai thì dùng title
+  moTaSeo?: string; // mô tả ngắn cho Google; không khai thì dùng tomTat
+  ngayCapNhat?: string; // YYYY-MM-DD — lần sửa nội dung gần nhất
 };
 
 export const BAI_VIET: BaiViet[] = [
@@ -43,6 +47,9 @@ export const BAI_VIET: BaiViet[] = [
     title: "Bình giữ nhiệt in logo làm quà tặng doanh nghiệp: chọn hàng nhập khẩu hay Lock&Lock?",
     tomTat:
       "So sánh hai dòng bình giữ nhiệt in logo cho doanh nghiệp: hàng nhập khẩu giá từ 65.000 đ và Lock&Lock giá từ 250.000 đ — chất liệu, số lượng tối thiểu, thời gian giao và cách chọn theo ngân sách.",
+    tieuDeSeo: "Bình giữ nhiệt in logo quà tặng doanh nghiệp: giá, cách chọn",
+    moTaSeo:
+      "Bình giữ nhiệt in logo cho doanh nghiệp: hàng nhập khẩu từ 65.000 đ, Lock&Lock từ 250.000 đ. So sánh chất liệu, số lượng tối thiểu, thời gian giao.",
     ngayDang: "2026-09-30",
     anh: "/marketing/post-binh-giu-nhiet-in-logo.jpg",
     anhRong: 1200,
@@ -144,6 +151,7 @@ export const BAI_VIET: BaiViet[] = [
     title: "Xu hướng quà tặng Tết 2027: Sáng tạo để trao giá trị, chạm vào cảm xúc",
     tomTat:
       "Quà Tết 2027 không còn gói gọn trong những giỏ quà khuôn mẫu — sáng tạo gặp gỡ giá trị thiết thực, tạo nên trải nghiệm cảm xúc khác biệt.",
+    tieuDeSeo: "Xu hướng quà tặng Tết 2027 cho doanh nghiệp",
     ngayDang: "2026-09-15",
     anh: "/marketing/post-xu-huong-qua-tet-2027.jpg",
     anhRong: 1302,

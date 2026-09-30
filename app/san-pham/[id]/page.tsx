@@ -23,6 +23,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     title: product.name,
     description: product.description,
     alternates: { canonical: `/san-pham/${product.id}` },
+    // San pham mau (chua co anh that) khong dua len Google — noi dung gia lam giam uy tin ca site.
+    ...(product.image ? {} : { robots: { index: false, follow: true } }),
+    openGraph: product.image
+      ? { title: product.name, description: product.description, images: [product.image] }
+      : undefined,
   };
 }
 
@@ -30,8 +35,35 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
   const product = await findProduct(params.id);
   if (!product) notFound();
 
+  const SITE = "https://chonquachuan.vn";
+  const anhDayDu = (a: string) => (a.startsWith("http") ? a : `${SITE}${a}`);
+  // Chi san pham that (co anh) moi khai Product. Khong khai "offers" vi gia la "Lien he" /
+  // khoang gia — khai gia khong dung la du lieu sai voi Google.
+  const jsonLd = product.image
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name,
+          description: product.description,
+          image: (product.images?.length ? product.images : [product.image]).map(anhDayDu),
+          brand: { "@type": "Brand", name: "Chọn Quà Chuẩn" },
+          url: `${SITE}/san-pham/${product.id}`,
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Trang chủ", item: SITE },
+            { "@type": "ListItem", position: 2, name: product.name, item: `${SITE}/san-pham/${product.id}` },
+          ],
+        },
+      ]
+    : null;
+
   return (
     <div className="flex flex-col">
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />}
       <Header />
 
       <section className="px-9 pt-6 pb-2 md:px-[72px]">
