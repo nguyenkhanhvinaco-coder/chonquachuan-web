@@ -39,13 +39,9 @@ const nextConfig = {
         destination: '/thiep-mien-phi/xem',
         permanent: true,
       },
-      // Link dep gui khach: catalogue lat trang binh/ly giu nhiet NKV (Heyzine).
-      // Tam thoi (307) de sau nay doi catalogue chi can sua destination, link gui khach giu nguyen.
-      {
-        source: '/catalogue-binh-giu-nhiet',
-        destination: 'https://heyzine.com/flip-book/9341fe2a57.html',
-        permanent: false,
-      },
+      // /catalogue-binh-giu-nhiet KHONG con la redirect (2026-09-30, chi Nga): da thanh trang that
+      // app/catalogue-binh-giu-nhiet/page.tsx, nhung catalogue Heyzine ngay tren chonquachuan.vn
+      // de khach bam tu Fanpage la vao thang website, khong nhay sang heyzine.com.
       // Bao gia lat trang binh/ly giu nhiet Lock&Lock (phan khuc cao hon) — app rieng tren Vercel.
       {
         source: '/catalogue-binh-lock-lock',

@@ -18,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/chinh-sach-giao-hang",
     "/chinh-sach-du-lieu-ca-nhan",
     "/thiep-mien-phi",
+    "/catalogue-binh-giu-nhiet",
     // Moi trang ebook lay thang tu lib/ebook.ts — them cuon moi la co o day.
     ...EBOOKS.map((b) => b.href),
   ];
