@@ -21,8 +21,11 @@ const config: Config = {
         "sage-soft": "var(--sage-soft)",
       },
       fontFamily: {
-        serif: ["var(--font-lora)", "Georgia", "serif"],
-        sans: ["var(--font-be-vietnam)", "system-ui", "sans-serif"],
+        // 2026-09-30 chi Nga chon Aptos cho ca website. Aptos la font cua Microsoft, KHONG duoc
+        // nhung file font len web — chi goi theo ten: may co san Aptos (Windows/Office moi) thi
+        // hien Aptos, may khac (dien thoai, Mac) tu roi ve Lora / Be Vietnam Pro nhu truoc.
+        serif: ["Aptos Display", "Aptos", "var(--font-lora)", "Georgia", "serif"],
+        sans: ["Aptos", "var(--font-be-vietnam)", "system-ui", "sans-serif"],
       },
     },
   },

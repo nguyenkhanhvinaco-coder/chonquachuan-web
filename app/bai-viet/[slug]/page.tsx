@@ -51,6 +51,14 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
 
   const khac = BAI_VIET.filter((b) => b.id !== bai.id).slice(0, 3);
 
+  // Muc luc cot trai (man hinh rong): cac khoi lon cua bai, bam la cuon toi.
+  const mucLuc = [
+    ...(bai.soSanh ? [{ id: "so-sanh", nhan: bai.soSanh.tieuDe }] : []),
+    ...bai.yChinh.map((y, i) => ({ id: `y-${i + 1}`, nhan: y.tieuDe })),
+    ...(bai.hoiDap?.length ? [{ id: "hoi-dap", nhan: "Câu hỏi thường gặp" }] : []),
+    { id: "tu-van", nhan: "Nhận tư vấn" },
+  ];
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -92,8 +100,71 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
 
-      <article className="px-6 sm:px-9 md:px-[72px] pt-8 md:pt-12 pb-16">
-        <div className="mx-auto w-full max-w-[760px] flex flex-col gap-6">
+      {/* 2026-09-30 (chi Nga khoanh 2 khoang trong hai ben bai tren may tinh):
+          tu 2xl (1536px) trang thanh 3 cot; xl (1280px) 2 cot: bai + cot phai — trai: muc luc + link catalogue
+          (dinh khi cuon); giua: bai; phai: khung tu van + bai khac (dinh khi
+          cuon). Duoi xl van 1 cot nhu cu, hai cot ben an di. */}
+      <div className="px-6 sm:px-9 md:px-[72px] pt-8 md:pt-12 pb-16">
+        <div className="mx-auto w-full max-w-[760px] xl:max-w-[1560px] xl:grid xl:grid-cols-[minmax(0,1fr)_320px] 2xl:grid-cols-[minmax(220px,300px)_minmax(0,820px)_minmax(280px,360px)] xl:justify-between xl:gap-10 2xl:gap-14">
+          <aside className="hidden 2xl:block">
+            <div className="sticky top-6 flex flex-col gap-5">
+              <nav
+                aria-label="Mục lục bài viết"
+                className="rounded-2xl border border-line bg-surface p-5 flex flex-col gap-3"
+              >
+                <span className="text-[12px] font-bold uppercase tracking-wide text-[#B45309]">Trong bài này</span>
+                <ol className="flex flex-col gap-2.5">
+                  {mucLuc.map((m, i) => (
+                    <li key={m.id}>
+                      <a
+                        href={`#${m.id}`}
+                        className="flex gap-2.5 text-[14px] leading-snug font-medium text-ink-soft hover:text-[#15803D]"
+                      >
+                        <span className="w-5 shrink-0 text-[#15803D] font-bold tabular-nums">{i + 1}</span>
+                        {m.nhan}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+
+              {bai.lienKet && bai.lienKet.length > 0 && (
+                <div className="flex flex-col gap-3">
+                  {bai.lienKet.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener"
+                      className="rounded-2xl border-2 border-[#15803D] bg-surface p-4 flex flex-col gap-1"
+                    >
+                      <span className="inline-flex items-center gap-2 text-[14.5px] font-bold text-[#15803D]">
+                        {l.nhan}
+                        <ArrowRightIcon size={14} color="currentColor" />
+                      </span>
+                      <span className="text-[13px] text-ink-soft">{l.moTa}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              <Link
+                href="/ebook"
+                className="rounded-2xl p-5 flex flex-col gap-1.5"
+                style={{ background: "linear-gradient(135deg, #DCFCE7, #BBF7D0)" }}
+              >
+                <span className="text-[11.5px] font-bold uppercase tracking-wide text-[#15803D]">
+                  Quà tặng miễn phí
+                </span>
+                <span className="font-serif font-semibold text-[17px] leading-snug text-[#1A1006]">
+                  Ebook &amp; thiệp tranh gửi tặng người thân
+                </span>
+                <span className="text-[13.5px] text-[#1A1006]/75">Đọc và tải miễn phí →</span>
+              </Link>
+            </div>
+          </aside>
+
+          <article className="flex flex-col gap-6 min-w-0">
           <nav className="flex flex-wrap items-center gap-1.5 text-[13px] text-ink-soft">
             <Link href="/" className="font-medium">
               Trang chủ
@@ -144,7 +215,7 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
           </div>
 
           {bai.soSanh && (
-            <section className="flex flex-col gap-3">
+            <section id="so-sanh" className="flex flex-col gap-3 scroll-mt-6">
               <h2 className="font-serif text-[22px] md:text-[24px] leading-snug">{bai.soSanh.tieuDe}</h2>
               <div className="overflow-x-auto rounded-2xl border border-line bg-surface">
                 <table className="w-full min-w-[560px] border-collapse text-[14.5px] leading-[1.55]">
@@ -185,7 +256,11 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
 
           <ol className="flex flex-col gap-4">
             {bai.yChinh.map((y, i) => (
-              <li key={y.tieuDe} className="rounded-2xl border border-line bg-surface p-5 md:p-6 flex gap-4">
+              <li
+                key={y.tieuDe}
+                id={`y-${i + 1}`}
+                className="rounded-2xl border border-line bg-surface p-5 md:p-6 flex gap-4 scroll-mt-6"
+              >
                 <span className="w-9 h-9 shrink-0 rounded-full bg-[#DCFCE7] text-[#15803D] font-bold flex items-center justify-center">
                   {i + 1}
                 </span>
@@ -218,7 +293,7 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
           )}
 
           {bai.hoiDap && bai.hoiDap.length > 0 && (
-            <section className="flex flex-col gap-3">
+            <section id="hoi-dap" className="flex flex-col gap-3 scroll-mt-6">
               <h2 className="font-serif text-[22px] md:text-[24px] leading-snug">Câu hỏi thường gặp</h2>
               <div className="flex flex-col divide-y divide-line rounded-2xl border border-line bg-surface">
                 {bai.hoiDap.map((h) => (
@@ -241,7 +316,8 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
               chu. Form dung chung LeadFormTrigger nen lead ve Supabase + Sheet
               nhu moi form khac (source "bai-viet"). */}
           <aside
-            className="rounded-[20px] p-6 md:p-8 flex flex-col gap-4"
+            id="tu-van"
+            className="rounded-[20px] p-6 md:p-8 flex flex-col gap-4 scroll-mt-6"
             style={{ background: "linear-gradient(135deg, #E3F3FF 0%, #A8D8F8 100%)" }}
           >
             <p className="font-serif text-[20px] md:text-[22px] leading-snug text-[#1A1006]">{bai.loiMoiTuVan}</p>
@@ -272,7 +348,7 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
           </aside>
 
           {khac.length > 0 && (
-            <section className="flex flex-col gap-3 pt-4">
+            <section className="flex flex-col gap-3 pt-4 xl:hidden">
               <h2 className="font-serif text-[22px]">Bài viết khác</h2>
               <ul className="flex flex-col divide-y divide-line border border-line rounded-2xl bg-surface">
                 {khac.map((b) => (
@@ -286,8 +362,72 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
               </ul>
             </section>
           )}
+          </article>
+
+          <aside className="hidden xl:block">
+            <div className="sticky top-6 flex flex-col gap-5">
+              <div
+                className="rounded-[20px] p-5 flex flex-col gap-3"
+                style={{ background: "linear-gradient(135deg, #E3F3FF 0%, #A8D8F8 100%)" }}
+              >
+                <span className="text-[11.5px] font-bold uppercase tracking-wide text-[#1A1006]/70">
+                  Tư vấn miễn phí
+                </span>
+                <p className="font-serif text-[18px] leading-snug text-[#1A1006]">
+                  Cần chọn quà cho doanh nghiệp? Để lại thông tin, Chọn Quà Chuẩn báo giá trong ngày.
+                </p>
+                <LeadFormTrigger
+                  productId={`bai-viet-${bai.id}`}
+                  productLabel={`Tư vấn từ bài viết: ${bai.title}`}
+                  triggerLabel="Nhận tư vấn ngay"
+                  source="bai-viet"
+                  triggerClassName="inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-[15px] font-bold bg-[#FFC633] text-[#1A1006] shadow-md min-h-[44px] w-full"
+                />
+                <a
+                  href={ZALO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-[15px] font-bold bg-white text-[#1A1006] min-h-[44px]"
+                >
+                  <ZaloIcon size={20} />
+                  Nhắn Zalo OA
+                </a>
+                <a
+                  href={`tel:${HOTLINE_TEL}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-[10px] px-5 py-3 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/60 min-h-[44px]"
+                >
+                  Hotline {HOTLINE}
+                </a>
+              </div>
+
+              {khac.length > 0 && (
+                <div className="flex flex-col gap-3">
+                  <span className="font-serif text-[19px]">Bài viết khác</span>
+                  {khac.map((b) => (
+                    <Link
+                      key={b.id}
+                      href={b.href}
+                      className="rounded-2xl overflow-hidden border border-line bg-surface flex flex-col"
+                    >
+                      <span className="relative block w-full" style={{ aspectRatio: `${b.anhRong} / ${b.anhCao}` }}>
+                        <Image src={b.anh} alt={b.anhAlt} fill sizes="360px" className="object-cover" />
+                      </span>
+                      <span className="p-4 flex flex-col gap-1">
+                        <span className="text-[11px] font-bold uppercase tracking-wide text-[#B45309]">
+                          {b.chuyenMuc}
+                        </span>
+                        <span className="font-serif font-semibold text-[15.5px] leading-snug text-[#1A1006]">
+                          {b.title}
+                        </span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </aside>
         </div>
-      </article>
+      </div>
 
       <footer className="px-9 py-8 md:px-[72px] border-t border-line flex items-center justify-between gap-3 flex-wrap">
         <span className="font-serif font-semibold text-[15px]">Chọn Quà Chuẩn</span>
