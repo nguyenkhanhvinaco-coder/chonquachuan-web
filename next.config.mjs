@@ -10,6 +10,19 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Ten mien phu cua Vercel -> ten mien chinh (2026-09-30): khach va Google chi thay chonquachuan.vn.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'chonquachuan-web.vercel.app' }],
+        destination: 'https://chonquachuan.vn/:path*',
+        permanent: true,
+      },
+      // Trang ket qua tim qua da bo (gom ve 1 trang /tim-qua + trang cam on).
+      {
+        source: '/tim-qua/ket-qua',
+        destination: '/tim-qua',
+        permanent: false,
+      },
       // Trang Danh muc da tat (2026-09-30, chi Nga). Link cu (Google, khach da luu) ve trang chu.
       {
         source: '/danh-muc',

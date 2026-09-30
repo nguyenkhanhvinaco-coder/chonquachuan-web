@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tìm quà tặng phù hợp",
   description:
-    "Trả lời vài câu hỏi nhanh để Chọn Quà Chuẩn gợi ý set quà phù hợp nhất cho đối tượng, dịp tặng và ngân sách của bạn.",
+    "Chọn nhanh đối tượng, dịp tặng, ngân sách và để lại số điện thoại — Chọn Quà Chuẩn liên hệ gợi ý quà tặng phù hợp kèm báo giá.",
   alternates: { canonical: "/tim-qua" },
 };
 
