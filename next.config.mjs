@@ -27,6 +27,12 @@ const nextConfig = {
         destination: 'https://heyzine.com/flip-book/9341fe2a57.html',
         permanent: false,
       },
+      // Bao gia lat trang binh/ly giu nhiet Lock&Lock (phan khuc cao hon) — app rieng tren Vercel.
+      {
+        source: '/catalogue-binh-lock-lock',
+        destination: 'https://nkv-bao-gia.vercel.app/',
+        permanent: false,
+      },
     ];
   },
 };
