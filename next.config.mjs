@@ -20,6 +20,13 @@ const nextConfig = {
         destination: '/thiep-mien-phi/xem',
         permanent: true,
       },
+      // Link dep gui khach: catalogue lat trang binh/ly giu nhiet NKV (Heyzine).
+      // Tam thoi (307) de sau nay doi catalogue chi can sua destination, link gui khach giu nguyen.
+      {
+        source: '/catalogue-binh-giu-nhiet',
+        destination: 'https://heyzine.com/flip-book/9341fe2a57.html',
+        permanent: false,
+      },
     ];
   },
 };
