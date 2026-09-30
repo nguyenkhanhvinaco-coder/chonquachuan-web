@@ -25,9 +25,116 @@ export type BaiViet = {
   yChinh: { tieuDe: string; noiDung: string }[];
   ketBai: string[];
   loiMoiTuVan: string; // câu trong khung mời tư vấn cuối bài
+  // --- Tuỳ chọn, cho bài dạng so sánh / hỏi đáp (bài cũ không cần khai) ---
+  soSanh?: { tieuDe: string; cot: string[]; dong: string[][] }; // bảng: cot[0] là cột tiêu chí
+  lienKet?: { nhan: string; moTa: string; href: string }[]; // nút dẫn sang catalogue / trang khác
+  hoiDap?: { hoi: string; dap: string }[]; // câu hỏi thường gặp — cũng xuất ra FAQPage JSON-LD
 };
 
 export const BAI_VIET: BaiViet[] = [
+  {
+    // Bài để Google / Bing / AI tìm kiếm đọc được (hai catalogue lật trang là ảnh, máy không đọc).
+    // Số liệu lấy từ bảng giá bình nhập (39 mẫu) và báo giá Lock&Lock 23/09/2026; chị Nga chốt
+    // 30/09/2026: chỉ ghi "giá từ", không ghi giá từng mẫu. NKV MUA bình Lock&Lock rồi gia công
+    // in logo — không viết thành "đại lý" hay "nhà phân phối".
+    id: "binh-giu-nhiet-in-logo-doanh-nghiep",
+    href: "/bai-viet/binh-giu-nhiet-in-logo-qua-tang-doanh-nghiep",
+    chuyenMuc: "Quà tặng doanh nghiệp",
+    title: "Bình giữ nhiệt in logo làm quà tặng doanh nghiệp: chọn hàng nhập khẩu hay Lock&Lock?",
+    tomTat:
+      "So sánh hai dòng bình giữ nhiệt in logo cho doanh nghiệp: hàng nhập khẩu giá từ 65.000 đ và Lock&Lock giá từ 250.000 đ — chất liệu, số lượng tối thiểu, thời gian giao và cách chọn theo ngân sách.",
+    ngayDang: "2026-09-30",
+    anh: "/marketing/post-binh-giu-nhiet-in-logo.jpg",
+    anhRong: 1200,
+    anhCao: 738,
+    anhAlt: "Bốn bình giữ nhiệt inox màu xanh mint, trắng, đen và hồng, nắp có quai xách bằng kim loại",
+    anhGhiChu: "Bình giữ nhiệt nhập khẩu — một trong 39 mẫu có thể in hoặc khắc logo doanh nghiệp.",
+    moDau: [
+      "Bình giữ nhiệt in logo là món quà doanh nghiệp được dùng hằng ngày: đặt trên bàn làm việc, mang theo khi đi họp, đi công tác. Mỗi lần người nhận dùng là một lần logo của doanh nghiệp xuất hiện.",
+      "Câu hỏi thường gặp nhất khi lên ngân sách là: nên chọn bình nhập khẩu giá tốt, hay bình thương hiệu Lock&Lock? Hai dòng này phục vụ hai mục đích khác nhau. Bảng dưới đây so sánh nhanh để bạn chọn đúng theo ngân sách và người nhận.",
+    ],
+    soSanh: {
+      tieuDe: "So sánh nhanh hai dòng bình giữ nhiệt in logo",
+      cot: ["Tiêu chí", "Bình nhập khẩu", "Bình Lock&Lock"],
+      dong: [
+        ["Giá tham khảo", "Từ 65.000 đ/cái (chưa VAT, chưa gồm in logo)", "Từ 250.000 đ/cái (đã gồm VAT và in logo)"],
+        ["Chất liệu", "Lòng trong inox 304, vỏ ngoài inox 201 sơn màu; một số mẫu lòng inox 316", "Hai lớp inox 304; có mẫu inox 316"],
+        ["Dung tích", "300 ml – 1.000 ml", "400 ml – 800 ml"],
+        ["Số mẫu", "39 mẫu: bình, ly giữ nhiệt, bình vỏ tre, bình thủy tinh", "10 mẫu bình Lock&Lock"],
+        ["In logo", "In hoặc khắc laser theo yêu cầu, báo giá riêng theo thiết kế", "Miễn phí in 1–2 màu hoặc khắc logo 1 vị trí"],
+        ["Số lượng đặt", "Giá tốt nhất từ 100 cái; dưới 100 cái cộng thêm 5.000 – 10.000 đ/cái", "Từ 100 cái, giá giảm dần theo mức 300 và 800 cái"],
+        ["Thời gian giao", "Hàng có sẵn; đơn in logo giao theo lịch sau khi duyệt mẫu", "5 – 10 ngày"],
+        ["Phù hợp", "Sự kiện, hội nghị, quà nhân viên, quà số lượng lớn", "Quà đối tác, khách hàng thân thiết, quà tri ân cuối năm"],
+      ],
+    },
+    yChinhDanDat: "Bốn bước chọn bình giữ nhiệt in logo đúng ngân sách:",
+    yChinh: [
+      {
+        tieuDe: "Bắt đầu từ người nhận, không bắt đầu từ mẫu bình",
+        noiDung:
+          "Quà phát rộng cho sự kiện, hội nghị, nhân viên thì ưu tiên số lượng và đồng đều — dòng nhập khẩu giá từ 65.000 đ đáp ứng tốt. Quà cho đối tác, khách hàng quan trọng thì thương hiệu bình cũng là một phần giá trị món quà — nên chọn Lock&Lock.",
+      },
+      {
+        tieuDe: "Nhìn vào chất liệu lòng bình",
+        noiDung:
+          "Lòng bình tiếp xúc trực tiếp với nước uống nên cần là inox 304 hoặc 316. Inox 316 chống ăn mòn tốt hơn, hợp với người hay đựng nước chanh, trà, nước có vị chua mặn. Vỏ ngoài inox 201 sơn màu không tiếp xúc nước uống, chủ yếu quyết định màu sắc và giá thành.",
+      },
+      {
+        tieuDe: "Chọn dung tích theo cách dùng",
+        noiDung:
+          "Bình 350 – 500 ml vừa túi xách, hợp dân văn phòng. Bình 600 – 800 ml hợp người hay di chuyển, tập thể thao. Ly giữ nhiệt 500 – 900 ml có ống hút hợp để bàn làm việc và mang theo xe.",
+      },
+      {
+        tieuDe: "Chốt vị trí và cách in logo trước khi chốt số lượng",
+        noiDung:
+          "In lụa 1–2 màu cho logo đơn giản, khắc laser cho vẻ sang và bền, in chuyển sắc cho logo nhiều màu (có phát sinh phí). Hãy yêu cầu xem mẫu in thật hoặc bản dựng trên bình trước khi sản xuất hàng loạt.",
+      },
+    ],
+    lienKet: [
+      {
+        nhan: "Xem catalogue bình nhập khẩu",
+        moTa: "39 mẫu bình và ly giữ nhiệt, giá từ 65.000 đ",
+        href: "/catalogue-binh-giu-nhiet",
+      },
+      {
+        nhan: "Xem bảng giá bình Lock&Lock",
+        moTa: "10 mẫu, giá từ 250.000 đ đã gồm in logo",
+        href: "/catalogue-binh-lock-lock",
+      },
+    ],
+    hoiDap: [
+      {
+        hoi: "In logo lên bình giữ nhiệt giá bao nhiêu?",
+        dap: "Với bình Lock&Lock, giá từ 250.000 đ/cái đã gồm VAT và miễn phí in 1–2 màu hoặc khắc logo 1 vị trí. Với bình nhập khẩu, giá bình từ 65.000 đ/cái chưa gồm VAT; phí in hoặc khắc logo được báo riêng theo thiết kế và số lượng.",
+      },
+      {
+        hoi: "Đặt bình giữ nhiệt in logo tối thiểu bao nhiêu cái?",
+        dap: "Mức giá tốt nhất áp dụng từ 100 cái. Với bình nhập khẩu, đơn 50 – 100 cái cộng thêm 5.000 đ/cái, dưới 50 cái cộng thêm 10.000 đ/cái.",
+      },
+      {
+        hoi: "Inox 304 và inox 316 khác nhau thế nào?",
+        dap: "Cả hai đều là inox dùng cho đồ đựng thực phẩm. Inox 316 có thêm molypden nên chống ăn mòn tốt hơn với muối và axit nhẹ, giá cao hơn inox 304. Với nhu cầu đựng nước uống thông thường, inox 304 là đủ.",
+      },
+      {
+        hoi: "Đặt bình giữ nhiệt in logo bao lâu có hàng?",
+        dap: "Bình Lock&Lock in logo giao trong 5 – 10 ngày. Bình nhập khẩu có sẵn hàng; đơn in logo giao theo lịch thống nhất sau khi doanh nghiệp duyệt mẫu.",
+      },
+      {
+        hoi: "Bình Lock&Lock in logo có phải hàng của hãng không?",
+        dap: "Nguyên Khánh Vina mua bình từ hãng Lock&Lock, sau đó gia công in hoặc khắc logo theo yêu cầu của doanh nghiệp.",
+      },
+      {
+        hoi: "Có xuất hóa đơn VAT và giao hàng tận nơi không?",
+        dap: "Có. Đơn hàng được xuất hóa đơn VAT bởi Công ty TNHH Nguyên Khánh Vina. Đơn Lock&Lock miễn phí giao hàng nội thành TP. Hồ Chí Minh; các khu vực khác báo phí vận chuyển theo thực tế.",
+      },
+    ],
+    ketBai: [
+      "Tóm lại: ngân sách dưới 150.000 đ/cái và số lượng lớn thì chọn bình nhập khẩu; ngân sách từ 250.000 đ/cái và người nhận là đối tác, khách hàng quan trọng thì chọn Lock&Lock. Nhiều doanh nghiệp đặt song song cả hai dòng cho hai nhóm người nhận trong cùng một dịp.",
+      "Chọn Quà Chuẩn là thương hiệu quà tặng của Công ty TNHH Nguyên Khánh Vina tại TP. Hồ Chí Minh — nhận in, khắc logo bình giữ nhiệt theo yêu cầu riêng của từng doanh nghiệp.",
+    ],
+    loiMoiTuVan:
+      "Gửi logo và số lượng dự kiến, Chọn Quà Chuẩn sẽ gợi ý mẫu bình phù hợp ngân sách và dựng thử logo lên bình cho bạn xem trước.",
+  },
   {
     // Cùng nội dung bài Fanpage hẹn giờ 07:00 16/09/2026 — bản Word ở
     // D:\ChonQuaChuan\Anh Tai lieu dang bai\2026-09-15_BAIDANG_CQC_xu-huong-qua-tet-2027.docx

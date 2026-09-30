@@ -71,6 +71,20 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
         { "@type": "ListItem", position: 2, name: bai.title, item: `${SITE_URL}${bai.href}` },
       ],
     },
+    // Cau hoi thuong gap cua bai (neu co) — giup Google/Bing/AI hieu day la hoi–dap.
+    ...(bai.hoiDap?.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: bai.hoiDap.map((h) => ({
+              "@type": "Question",
+              name: h.hoi,
+              acceptedAnswer: { "@type": "Answer", text: h.dap },
+            })),
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -127,8 +141,47 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
             {bai.moDau.map((p) => (
               <p key={p}>{p}</p>
             ))}
-            {bai.yChinhDanDat && <p className="font-semibold">{bai.yChinhDanDat}</p>}
           </div>
+
+          {bai.soSanh && (
+            <section className="flex flex-col gap-3">
+              <h2 className="font-serif text-[22px] md:text-[24px] leading-snug">{bai.soSanh.tieuDe}</h2>
+              <div className="overflow-x-auto rounded-2xl border border-line bg-surface">
+                <table className="w-full min-w-[560px] border-collapse text-[14.5px] leading-[1.55]">
+                  <thead>
+                    <tr className="bg-[#DCFCE7] text-left">
+                      {bai.soSanh.cot.map((c) => (
+                        <th key={c} scope="col" className="px-4 py-3 font-bold">
+                          {c}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bai.soSanh.dong.map((d) => (
+                      <tr key={d[0]} className="border-t border-line align-top">
+                        {d.map((o, i) =>
+                          i === 0 ? (
+                            <th key={i} scope="row" className="px-4 py-3 text-left font-semibold whitespace-nowrap">
+                              {o}
+                            </th>
+                          ) : (
+                            <td key={i} className="px-4 py-3 text-ink-soft">
+                              {o}
+                            </td>
+                          ),
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
+          {bai.yChinhDanDat && (
+            <p className="font-semibold text-[16px] md:text-[17px] leading-[1.75]">{bai.yChinhDanDat}</p>
+          )}
 
           <ol className="flex flex-col gap-4">
             {bai.yChinh.map((y, i) => (
@@ -143,6 +196,40 @@ export default function BaiVietPage({ params }: { params: { slug: string } }) {
               </li>
             ))}
           </ol>
+
+          {bai.lienKet && bai.lienKet.length > 0 && (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {bai.lienKet.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="rounded-2xl border-2 border-[#15803D] bg-surface p-5 flex flex-col gap-1.5 min-h-[44px]"
+                >
+                  <span className="inline-flex items-center gap-2 text-[16px] font-bold text-[#15803D]">
+                    {l.nhan}
+                    <ArrowRightIcon size={15} color="currentColor" />
+                  </span>
+                  <span className="text-[14px] text-ink-soft">{l.moTa}</span>
+                </a>
+              ))}
+            </div>
+          )}
+
+          {bai.hoiDap && bai.hoiDap.length > 0 && (
+            <section className="flex flex-col gap-3">
+              <h2 className="font-serif text-[22px] md:text-[24px] leading-snug">Câu hỏi thường gặp</h2>
+              <div className="flex flex-col divide-y divide-line rounded-2xl border border-line bg-surface">
+                {bai.hoiDap.map((h) => (
+                  <div key={h.hoi} className="p-5 flex flex-col gap-1.5">
+                    <h3 className="text-[16.5px] font-bold leading-snug">{h.hoi}</h3>
+                    <p className="text-[15.5px] leading-[1.7] text-ink-soft">{h.dap}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <div className="flex flex-col gap-4 text-[16px] md:text-[17px] leading-[1.75]">
             {bai.ketBai.map((p) => (
