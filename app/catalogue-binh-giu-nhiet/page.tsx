@@ -7,8 +7,8 @@ import { ZALO_URL, HOTLINE, HOTLINE_TEL } from "@/lib/contact";
 // Catalogue lat trang binh & ly giu nhiet (39 mau) — nhung tu Heyzine vao ngay trang nay.
 // 2026-09-30 (chi Nga): khach bam tu Fanpage phai vao thang chonquachuan.vn, va catalogue
 // CHI DUOC XEM, khong tai ve (Heyzine da tat nut tai + in; trang nay cung khong co link tai file).
-// Doi catalogue: thay file PDF tren Heyzine (giu nguyen ma 9341fe2a57), khong can sua code.
-const HEYZINE = "https://heyzine.com/flip-book/9341fe2a57.html";
+// Doi catalogue: thay file PDF tren Heyzine (ma hien tai b092db890a, doi 01/10/2026), khong can sua code.
+const HEYZINE = "https://heyzine.com/flip-book/b092db890a.html";
 const BAI_VIET = "/bai-viet/binh-giu-nhiet-in-logo-qua-tang-doanh-nghiep";
 // Anh ngang 1200x630 de Facebook/Zalo hien the xem truoc khi chia se link nay.
 const ANH_CHIA_SE = "/marketing/og-catalogue-binh-giu-nhiet.jpg";
