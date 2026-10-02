@@ -47,7 +47,7 @@ export default async function HomePage() {
           day sales ngay lap tuc). Thiep tranh ve chuyen xuong khu the nho o
           Hero ben duoi, video chuyen len khu the lon. */}
       {mainProduct && (
-        <section style={{ background: "linear-gradient(135deg, #E3F3FF 0%, #A8D8F8 100%)" }}>
+        <section className="nen-co-4-la">
           <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12 px-9 pt-8 pb-10 md:px-[72px] md:pt-10 md:pb-12">
             {/* Cot trai: phan gioi thieu thuong hieu da CHUYEN TU KHU HERO ben
                 duoi len day (yeu cau 2026-09-08) - truoc do cot nay chi co
@@ -59,7 +59,9 @@ export default async function HomePage() {
                 anh ben phai roi. Nhan "San pham noi bat" co nhip dap nhe
                 (.badge-noi-bat trong globals.css). */}
             <div className="flex-1 flex flex-col gap-4 items-center md:items-start text-center md:text-left max-w-[450px]">
-              <div className="inline-flex bg-white/75 px-3.5 py-1.5 rounded-full text-[13px] font-semibold text-[#8A3A12]">
+              {/* 02/10/2026: nen o dau trang doi sang trang + co 4 la, nen cac diem
+                  can bam/doc dung mau nong (cam, vang, do) cho noi len. */}
+              <div className="inline-flex px-3.5 py-1.5 rounded-full text-[13px] font-bold text-white bg-[#F26B1D] shadow-[0_3px_10px_rgba(242,107,29,0.35)]">
                 Dành cho doanh nghiệp &amp; cá nhân
               </div>
               <h1 className="font-serif leading-[1.16] text-[#1A1006]">
@@ -68,6 +70,21 @@ export default async function HomePage() {
                   — tư vấn và cung cấp quà tặng ĐỘC QUYỀN cho doanh nghiệp và cá nhân.
                 </span>
               </h1>
+              {/* Thong diep lay y tu sach "Bi mat cua may man" - cau chi Nga chon 02/10/2026. */}
+              <p className="flex items-start gap-2.5 rounded-xl bg-[#FFD84D] px-3.5 py-2.5 text-left text-[15px] md:text-[16px] font-bold leading-snug text-[#7A1F0A] shadow-[0_3px_12px_rgba(214,154,0,0.3)]">
+                <svg viewBox="-30 -30 60 68" width="22" height="25" aria-hidden="true" className="flex-none mt-px">
+                  <path d="M0,0 Q7,16 3,30" fill="none" stroke="#0F6B34" strokeWidth="3" strokeLinecap="round" />
+                  {[45, 135, 225, 315].map((a) => (
+                    <path
+                      key={a}
+                      transform={`rotate(${a})`}
+                      fill="#0F6B34"
+                      d="M0,0 C-4,-4 -12,-9 -12,-16 C-12,-21 -8,-24 -5,-24 C-2,-24 0,-22 0,-19 C0,-22 2,-24 5,-24 C8,-24 12,-21 12,-16 C12,-9 4,-4 0,0Z"
+                    />
+                  ))}
+                </svg>
+                <span>May mắn không tự đến. Món quà ý nghĩa cũng vậy.</span>
+              </p>
               <p className="text-[13px] leading-relaxed text-[#3A2410]">
                 Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối
                 tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay
@@ -78,7 +95,7 @@ export default async function HomePage() {
                 productLabel="Sản phẩm nổi bật (trang chủ)"
                 triggerLabel="Nhận tư vấn ngay"
                 source="trang-chu-spotlight"
-                triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold border-2 border-[#1A1006] text-[#1A1006] bg-white/70"
+                triggerClassName="inline-flex items-center gap-2 rounded-[10px] px-6 py-3.5 text-[15px] font-bold text-white bg-[#E5322D] hover:bg-[#C92622] shadow-[0_4px_14px_rgba(229,50,45,0.4)]"
               />
             </div>
             {/* Cac o chay luan phien (FeaturedCarousel): 3 o/lan tu man hinh md, 2 o tren dien thoai. Tat ca deu HIEN tren dien thoai
