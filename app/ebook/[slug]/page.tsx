@@ -30,7 +30,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
         url: book.href,
         title: book.title,
         description: book.description,
-        images: [{ url: book.ogImage, width: 1200, height: 630 }],
+        images: [{ url: book.ogImage, width: 2400, height: 1260 }],
       },
     }),
   };

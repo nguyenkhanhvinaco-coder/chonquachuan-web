@@ -51,7 +51,7 @@ export const EBOOKS: Ebook[] = [
     readerUrl: "/ebooks/may-man-khong-tu-den.html",
     pdfUrl: "/ebooks/may-man-khong-tu-den.pdf",
     href: "/ebook/may-man-khong-tu-den",
-    ogImage: "/ebooks/covers/may-man-khong-tu-den-og.png",
+    ogImage: "/ebooks/covers/may-man-khong-tu-den-og-v2.jpg",
   },
   {
     // Cuốn nổi bật 2026-09-13 → 10-03 — thay chỗ cuốn Chung Ju Yung.
