@@ -148,25 +148,55 @@ export default function FeaturedCarousel({ tiles }: { tiles: FeaturedTile[] }) {
         </div>
       </div>
 
+      {/* 03/10/2026: nen o dau trang da doi sang TRANG nen cham trang cu bien mat,
+          chi con 1 vach do (chi Nga bao kho dung). Doi thanh: nut lui · cac cham xam
+          bam duoc · so thu tu "2 / 7" · nut toi. */}
       {chay && (
-        <div className="flex justify-center gap-2 mt-4">
-          {tiles.map((t, k) => (
-            <button
-              key={t.key}
-              type="button"
-              aria-label={`Xem ${t.name}`}
-              aria-current={k === dangXem || undefined}
-              onClick={() => {
-                setAnim(true);
-                setIdx(k);
-              }}
-              className="h-2 rounded-full transition-all duration-300"
-              style={{
-                width: k === dangXem ? 22 : 8,
-                background: k === dangXem ? "#DC2626" : "rgba(255,255,255,0.85)",
-              }}
-            />
-          ))}
+        <div className="flex items-center justify-center gap-3 mt-4">
+          <button
+            type="button"
+            aria-label="Sản phẩm trước"
+            onClick={() => {
+              setAnim(true);
+              setIdx((dangXem - 1 + tiles.length) % tiles.length);
+            }}
+            className="w-9 h-9 rounded-full border-2 border-[#1A1006] bg-white text-[#1A1006] flex items-center justify-center text-lg font-bold leading-none hover:bg-[#FFC633] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#DC2626]"
+          >
+            ‹
+          </button>
+          <div className="flex items-center gap-1.5">
+            {tiles.map((t, k) => (
+              <button
+                key={t.key}
+                type="button"
+                aria-label={`Xem ${t.name}`}
+                aria-current={k === dangXem || undefined}
+                onClick={() => {
+                  setAnim(true);
+                  setIdx(k);
+                }}
+                className="h-2.5 rounded-full transition-all duration-300"
+                style={{
+                  width: k === dangXem ? 24 : 10,
+                  background: k === dangXem ? "#DC2626" : "#CBD5D1",
+                }}
+              />
+            ))}
+          </div>
+          <span className="text-[14px] font-bold tabular-nums text-[#1A1006] min-w-[3.2em] text-center" aria-live="polite">
+            {dangXem + 1} / {tiles.length}
+          </span>
+          <button
+            type="button"
+            aria-label="Sản phẩm tiếp theo"
+            onClick={() => {
+              setAnim(true);
+              setIdx((i) => (i >= tiles.length ? i - tiles.length + 1 : i + 1));
+            }}
+            className="w-9 h-9 rounded-full border-2 border-[#1A1006] bg-white text-[#1A1006] flex items-center justify-center text-lg font-bold leading-none hover:bg-[#FFC633] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#DC2626]"
+          >
+            ›
+          </button>
         </div>
       )}
     </div>
