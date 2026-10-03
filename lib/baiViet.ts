@@ -45,12 +45,16 @@ export const BAI_VIET: BaiViet[] = [
     id: "qua-20-10-2026",
     href: "/bai-viet/qua-tang-20-10-cho-nhan-vien-nu-va-khach-hang",
     chuyenMuc: "Quà tặng doanh nghiệp",
-    title: "Quà tặng 20/10 cho nhân viên nữ và khách hàng: gợi ý theo ngân sách, đặt kịp trước ngày lễ",
+    // Từ khóa lấy từ gợi ý tìm kiếm Google 03/10/2026 (D:\ChonQuaChuan\SEO\tu-khoa-20-10.txt):
+    // quà 20/10 cho nhân viên nữ · quà tặng 20/10 cho khách hàng nữ · quà 20/10 công ty / doanh nghiệp
+    // · set quà 20/10 cho doanh nghiệp · quà 20/10 cho đồng nghiệp nữ · quà 20/10 cho sếp nữ
+    // · quà 20/10 dưới 100k / dưới 200k · quà 20/10 rẻ mà ý nghĩa.
+    title: "Quà 20/10 cho nhân viên nữ và khách hàng nữ: gợi ý theo ngân sách, đặt kịp trước ngày lễ",
     tomTat:
-      "Gợi ý quà 20/10/2026 cho nhân viên nữ, đồng nghiệp và khách hàng theo ngân sách, cách chọn quà dùng được lâu và lịch đặt hàng để kịp in logo trước thứ Ba 20/10.",
-    tieuDeSeo: "Quà 20/10 cho nhân viên nữ, khách hàng: gợi ý theo ngân sách",
+      "Gợi ý quà tặng 20/10/2026 cho nhân viên nữ, đồng nghiệp nữ, sếp nữ và khách hàng nữ theo ngân sách từ dưới 100.000 đ, kèm set quà cho doanh nghiệp và lịch đặt hàng để kịp in logo trước thứ Ba 20/10.",
+    tieuDeSeo: "Quà 20/10 cho nhân viên nữ, khách hàng nữ theo ngân sách",
     moTaSeo:
-      "Quà 20/10/2026 cho nhân viên nữ và khách hàng: bình giữ nhiệt in logo từ 65.000 đ, Lock&Lock từ 250.000 đ, thiệp tranh miễn phí. Lịch đặt kịp lễ.",
+      "Quà 20/10 cho nhân viên nữ, khách hàng nữ: bình giữ nhiệt in logo từ 65.000 đ, Lock&Lock từ 250.000 đ, set quà doanh nghiệp, thiệp miễn phí.",
     ngayDang: "2026-10-03",
     anh: "/marketing/qua-20-10-2026.jpg",
     anhRong: 1200,
@@ -62,18 +66,23 @@ export const BAI_VIET: BaiViet[] = [
       "Bài này gợi ý quà 20/10 theo ngân sách cho nhân viên nữ, đồng nghiệp và khách hàng, cùng bốn điều giúp món quà được dùng lâu chứ không chỉ đẹp trong một ngày.",
     ],
     soSanh: {
-      tieuDe: "Gợi ý quà 20/10 theo ngân sách",
+      tieuDe: "Gợi ý quà 20/10 cho công ty theo ngân sách",
       cot: ["Ngân sách / người", "Gợi ý quà", "Phù hợp với"],
       dong: [
         [
-          "Dưới 150.000 đ",
-          "Bình hoặc ly giữ nhiệt nhập khẩu màu nhẹ (hồng, xanh mint, trắng) in logo, giá bình từ 65.000 đ/cái (chưa VAT, chưa gồm in logo)",
-          "Nhân viên nữ, quà tặng số lượng lớn",
+          "Từ 65.000 đ (quà giá rẻ mà ý nghĩa)",
+          "Bình hoặc ly giữ nhiệt nhập khẩu màu nhẹ (hồng, xanh mint, trắng), giá bình từ 65.000 đ/cái chưa VAT; phí in logo báo riêng theo thiết kế",
+          "Nhân viên nữ, công nhân viên, đồng nghiệp nữ, quà số lượng lớn",
         ],
         [
           "Từ 250.000 đ",
           "Bình Lock&Lock in hoặc khắc logo, từ 250.000 đ/cái (đã gồm VAT và in logo); hoặc cốc gốm sứ hoa sen vẽ tay, báo giá theo số lượng",
-          "Khách hàng nữ, quản lý, đối tác",
+          "Khách hàng nữ, sếp nữ, quản lý, đối tác",
+        ],
+        [
+          "Set quà cho doanh nghiệp",
+          "Bình giữ nhiệt in logo kèm cốc gốm hoa sen và thiệp lời chúc, báo giá theo số lượng",
+          "Khách hàng nữ thân thiết, đối tác quan trọng",
         ],
         [
           "Tặng kèm mọi mức",
@@ -138,6 +147,18 @@ export const BAI_VIET: BaiViet[] = [
       {
         hoi: "Đặt quà 20/10 in logo tối thiểu bao nhiêu cái?",
         dap: "Với bình giữ nhiệt, giá tốt nhất áp dụng từ 100 cái. Bình nhập khẩu vẫn nhận đơn nhỏ hơn: đơn 50 – 100 cái cộng thêm 5.000 đ/cái, dưới 50 cái cộng thêm 10.000 đ/cái.",
+      },
+      {
+        hoi: "Có quà 20/10 dưới 100.000 đ cho nhân viên nữ không?",
+        dap: "Có. Bình và ly giữ nhiệt nhập khẩu có giá từ 65.000 đ/cái (chưa VAT). Phí in logo được báo riêng theo thiết kế và số lượng, nên tổng giá mỗi phần quà có thể dưới hoặc trên 100.000 đ. Gửi logo và số lượng để nhận báo giá chính xác.",
+      },
+      {
+        hoi: "Nên tặng gì 20/10 cho đồng nghiệp nữ và sếp nữ?",
+        dap: "Với đồng nghiệp nữ, một bình giữ nhiệt màu nhẹ kèm thiệp lời chúc riêng là món quà dùng được hằng ngày. Với sếp nữ, nên chọn món có thương hiệu hoặc làm thủ công như bình Lock&Lock khắc logo hay cốc gốm sứ hoa sen vẽ tay.",
+      },
+      {
+        hoi: "Set quà 20/10 cho doanh nghiệp thường gồm những gì?",
+        dap: "Một set quà 20/10 cho doanh nghiệp thường gồm một món dùng hằng ngày in logo (bình giữ nhiệt, cốc), một món nhỏ đi kèm và thiệp lời chúc, đặt trong hộp quà. Chọn Quà Chuẩn báo giá set theo số lượng và ngân sách của từng doanh nghiệp.",
       },
       {
         hoi: "Có xuất hóa đơn VAT cho quà 20/10 không?",
