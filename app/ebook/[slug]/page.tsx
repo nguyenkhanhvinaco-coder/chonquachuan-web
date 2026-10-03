@@ -20,6 +20,19 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     title: `Ebook: ${book.title}`,
     description: book.description,
     alternates: { canonical: book.href },
+    // Cuốn nào có ảnh chia sẻ riêng thì Facebook/Zalo hiện ảnh đó; openGraph
+    // của trang thay hẳn openGraph chung nên phải ghi lại đủ các trường.
+    ...(book.ogImage && {
+      openGraph: {
+        type: "article",
+        locale: "vi_VN",
+        siteName: "Chọn Quà Chuẩn",
+        url: book.href,
+        title: book.title,
+        description: book.description,
+        images: [{ url: book.ogImage, width: 1200, height: 630 }],
+      },
+    }),
   };
 }
 

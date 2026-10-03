@@ -30,11 +30,31 @@ export type Ebook = {
   readerUrl: string;
   pdfUrl: string;
   href: string; // "/ebook/<tên sách không dấu>" — địa chỉ trang đọc
+  ogImage?: string; // ảnh 1200x630 khi chia sẻ link lên Facebook/Zalo (không có thì dùng ảnh chung của web)
 };
 
 export const EBOOKS: Ebook[] = [
   {
-    // Cuốn nổi bật từ 2026-09-13 — thay chỗ cuốn Chung Ju Yung.
+    // Cuốn nổi bật từ 2026-10-03 — gắn với câu "May mắn không tự đến" ở đầu
+    // trang chủ và ảnh bìa fanpage. Nội dung viết lại bằng lời riêng.
+    id: "may-man-khong-tu-den",
+    title: "May mắn không tự đến — 12 bài học từ Bí mật của may mắn",
+    subtitle: "Kèm bảng 7 ngày tự gieo cỏ bốn lá — lật từng trang, đọc ngay",
+    series: "Tủ sách doanh nhân",
+    intro:
+      "Hai hiệp sĩ cùng đi tìm cây cỏ bốn lá trong bảy ngày. Một người chờ may mắn, một người chuẩn bị chỗ cho nó mọc. Mười hai bài học ngắn, mỗi bài kèm một việc làm ngay hôm nay, và bảng thực hành bảy ngày. Lật từng trang ngay bên dưới, hoàn toàn miễn phí.",
+    sourceNote:
+      "Nội dung đúc kết và diễn giải lại bằng lời riêng từ sách Bí mật của may mắn của Álex Rovira và Fernando Trías de Bes — không phải trích nguyên văn. Mời bạn tìm đọc sách gốc.",
+    description:
+      "Đọc miễn phí ebook May mắn không tự đến: 12 bài học từ sách Bí mật của may mắn, kèm bảng thực hành 7 ngày tự tạo may mắn cho công việc và cuộc sống — thực hiện bởi Chọn Quà Chuẩn.",
+    cover: "/ebooks/covers/may-man-khong-tu-den.png",
+    readerUrl: "/ebooks/may-man-khong-tu-den.html",
+    pdfUrl: "/ebooks/may-man-khong-tu-den.pdf",
+    href: "/ebook/may-man-khong-tu-den",
+    ogImage: "/ebooks/covers/may-man-khong-tu-den-og.png",
+  },
+  {
+    // Cuốn nổi bật 2026-09-13 → 10-03 — thay chỗ cuốn Chung Ju Yung.
     id: "cuoc-doi-khong-den-de-ta-sua",
     title: "Cuộc đời không đến để ta sửa — mà để ta được sửa",
     subtitle: "Pháp thoại Thầy Viên Minh — lật từng trang, đọc ngay",
