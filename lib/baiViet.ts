@@ -37,6 +37,125 @@ export type BaiViet = {
 
 export const BAI_VIET: BaiViet[] = [
   {
+    // Bài SEO mùa quà Tết (đăng 03/10/2026, doanh nghiệp bắt đầu tìm quà Tết từ tháng 10).
+    // Chỉ dùng giá đã công khai trên web: bình nhập từ 65.000 đ, Lock&Lock từ 250.000 đ,
+    // túi thêu tên 250.000 – 350.000 đ. Cốc gốm hoa sen chưa có giá công khai → không ghi giá.
+    // Lịch đặt hàng là GỢI Ý, không phải cam kết thời gian giao.
+    id: "qua-tet-doanh-nghiep-2027",
+    href: "/bai-viet/qua-tet-doanh-nghiep-2027-chon-theo-ngan-sach",
+    chuyenMuc: "Quà tặng doanh nghiệp",
+    title: "Quà Tết doanh nghiệp 2027: chọn theo ngân sách và người nhận",
+    tomTat:
+      "Gợi ý quà Tết 2027 cho nhân viên, khách hàng và đối tác theo ba mức ngân sách, kèm lịch đặt hàng để kịp in logo trước Tết Đinh Mùi (6/2/2027).",
+    tieuDeSeo: "Quà Tết doanh nghiệp 2027: chọn theo ngân sách",
+    moTaSeo:
+      "Quà Tết doanh nghiệp 2027 theo ngân sách: bình giữ nhiệt in logo từ 65.000 đ, Lock&Lock từ 250.000 đ, quà cho con nhân viên. Kèm lịch đặt hàng kịp Tết.",
+    ngayDang: "2026-10-03",
+    anh: "/marketing/qua-tet-doanh-nghiep-2027.jpg",
+    anhRong: 1200,
+    anhCao: 750,
+    anhAlt: "Bình giữ nhiệt inox nhiều màu, cặp cốc gốm vẽ hoa sen và túi trống trẻ em thêu tên",
+    anhGhiChu: "Ba gợi ý quà Tết 2027: bình giữ nhiệt in logo, cốc gốm sứ hoa sen vẽ tay, túi thêu tên cho con nhân viên.",
+    moDau: [
+      "Tết Đinh Mùi 2027 rơi vào thứ Bảy, ngày 6/2/2027. Quà có in logo cần thêm thời gian duyệt mẫu và sản xuất, nên tháng 10 – 11 là lúc nên chốt danh sách người nhận và ngân sách.",
+      "Bài này chia quà Tết theo ba nhóm người nhận và ba mức ngân sách, kèm lịch đặt hàng gợi ý để doanh nghiệp không bị dồn việc vào tháng Chạp.",
+    ],
+    soSanh: {
+      tieuDe: "Gợi ý quà Tết 2027 theo ngân sách cho mỗi người nhận",
+      cot: ["Ngân sách / người", "Gợi ý quà", "Phù hợp với"],
+      dong: [
+        [
+          "Dưới 150.000 đ",
+          "Bình hoặc ly giữ nhiệt nhập khẩu in logo, giá bình từ 65.000 đ/cái (chưa VAT, chưa gồm in logo)",
+          "Nhân viên, cộng tác viên, quà phát số lượng lớn",
+        ],
+        [
+          "250.000 – 350.000 đ",
+          "Bình Lock&Lock in logo từ 250.000 đ/cái (đã gồm VAT và in logo); túi trống thêu tên bé 250.000 – 350.000 đ",
+          "Khách hàng thân thiết; quà gửi con của nhân viên",
+        ],
+        [
+          "Trên 350.000 đ",
+          "Bộ quà nhiều món: bình Lock&Lock kèm cốc gốm sứ hoa sen vẽ tay và thiệp viết tay, báo giá theo số lượng",
+          "Đối tác, khách hàng quan trọng, ban lãnh đạo",
+        ],
+      ],
+    },
+    yChinhDanDat: "Năm bước lên kế hoạch quà Tết 2027 cho doanh nghiệp:",
+    yChinh: [
+      {
+        tieuDe: "Chia người nhận thành nhóm, mỗi nhóm một mức ngân sách",
+        noiDung:
+          "Nhân viên, khách hàng và đối tác mong đợi những món quà khác nhau. Một món quà chung cho tất cả thường quá đắt với nhóm đông người hoặc quá đơn giản với đối tác quan trọng. Lập danh sách theo ba nhóm trước, rồi mới chọn quà.",
+      },
+      {
+        tieuDe: "Ưu tiên quà còn dùng được sau Tết",
+        noiDung:
+          "Bánh kẹo, giỏ quà thực phẩm hết trong vài ngày. Đồ dùng hằng ngày như bình giữ nhiệt, cốc gốm ở lại trên bàn làm việc cả năm, và logo doanh nghiệp xuất hiện mỗi lần người nhận dùng.",
+      },
+      {
+        tieuDe: "Nghĩ đến gia đình người nhận",
+        noiDung:
+          "Một món quà cho con của nhân viên, như túi trống thêu tên bé, thường tạo thiện cảm sâu hơn một món quà chỉ dành cho người nhận. Cả nhà cùng biết doanh nghiệp đã nhớ đến mình.",
+      },
+      {
+        tieuDe: "Chốt logo và mẫu in thật trước khi chốt số lượng",
+        noiDung:
+          "Gửi logo dạng file gốc (AI, PDF hoặc SVG) để in sắc nét. Yêu cầu xem bản dựng logo trên sản phẩm, và với đơn lớn thì xem mẫu in thật, trước khi sản xuất hàng loạt.",
+      },
+      {
+        tieuDe: "Đi theo lịch đặt hàng ngược từ ngày Tết",
+        noiDung:
+          "Tháng 10: chốt danh sách người nhận và ngân sách. Trước 15/11: chọn mẫu và duyệt logo. Trước 15/12: chốt số lượng, đặt sản xuất. Trước 20/1/2027: nhận hàng, đóng gói và viết thiệp, còn hơn hai tuần để trao quà trước Tết.",
+      },
+    ],
+    lienKet: [
+      {
+        nhan: "Xem catalogue bình giữ nhiệt",
+        moTa: "39 mẫu bình và ly giữ nhiệt nhập khẩu, giá từ 65.000 đ",
+        href: "/catalogue-binh-giu-nhiet",
+      },
+      {
+        nhan: "So sánh bình nhập khẩu và Lock&Lock",
+        moTa: "Chất liệu, số lượng tối thiểu, thời gian giao",
+        href: "/bai-viet/binh-giu-nhiet-in-logo-qua-tang-doanh-nghiep",
+      },
+      {
+        nhan: "Xem túi thêu tên bé",
+        moTa: "Quà cho con của nhân viên, 250.000 – 350.000 đ",
+        href: "/san-pham/tui-tre-em",
+      },
+    ],
+    hoiDap: [
+      {
+        hoi: "Tết Nguyên đán 2027 là ngày nào?",
+        dap: "Mùng 1 Tết Đinh Mùi rơi vào thứ Bảy, ngày 6/2/2027 dương lịch.",
+      },
+      {
+        hoi: "Nên đặt quà Tết có in logo trước bao lâu?",
+        dap: "Nên chốt mẫu và logo trước giữa tháng 11, đặt sản xuất trước giữa tháng 12 để nhận hàng trước ngày 20/1/2027. Bình Lock&Lock in logo giao trong 5 – 10 ngày, nhưng cuối năm các xưởng in thường kín lịch nên đặt sớm vẫn an toàn hơn.",
+      },
+      {
+        hoi: "Quà Tết cho nhân viên nên chọn mức giá nào?",
+        dap: "Với số lượng lớn, mức dưới 150.000 đ/người như bình giữ nhiệt nhập khẩu in logo là phổ biến. Doanh nghiệp muốn quà có thương hiệu rõ ràng hơn có thể chọn bình Lock&Lock từ 250.000 đ/cái đã gồm in logo.",
+      },
+      {
+        hoi: "Đặt quà Tết in logo tối thiểu bao nhiêu cái?",
+        dap: "Với bình giữ nhiệt, giá tốt nhất áp dụng từ 100 cái. Bình nhập khẩu vẫn nhận đơn nhỏ hơn: đơn 50 – 100 cái cộng thêm 5.000 đ/cái, dưới 50 cái cộng thêm 10.000 đ/cái.",
+      },
+      {
+        hoi: "Có xuất hóa đơn VAT cho quà Tết doanh nghiệp không?",
+        dap: "Có. Đơn hàng được xuất hóa đơn VAT bởi Công ty TNHH Nguyên Khánh Vina, đơn vị vận hành thương hiệu Chọn Quà Chuẩn.",
+      },
+    ],
+    ketBai: [
+      "Tóm lại: chia người nhận thành ba nhóm, chọn quà dùng được lâu sau Tết, và đặt hàng ngược từ ngày 6/2/2027. Doanh nghiệp chốt sớm trong tháng 10 – 11 sẽ có nhiều mẫu để chọn và đủ thời gian duyệt logo.",
+      "Chọn Quà Chuẩn là thương hiệu quà tặng của Công ty TNHH Nguyên Khánh Vina tại TP. Hồ Chí Minh, nhận tư vấn và in, khắc logo quà Tết theo yêu cầu riêng của từng doanh nghiệp.",
+    ],
+    loiMoiTuVan:
+      "Gửi số người nhận và ngân sách dự kiến, Chọn Quà Chuẩn sẽ gợi ý bộ quà Tết 2027 cho từng nhóm và dựng thử logo để bạn duyệt trước.",
+  },
+  {
     // Bài để Google / Bing / AI tìm kiếm đọc được (hai catalogue lật trang là ảnh, máy không đọc).
     // Số liệu lấy từ bảng giá bình nhập (39 mẫu) và báo giá Lock&Lock 23/09/2026; chị Nga chốt
     // 30/09/2026: chỉ ghi "giá từ", không ghi giá từng mẫu. NKV MUA bình Lock&Lock rồi gia công
