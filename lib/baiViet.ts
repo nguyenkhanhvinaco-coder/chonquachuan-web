@@ -177,25 +177,28 @@ export const BAI_VIET: BaiViet[] = [
     // Chỉ dùng giá đã công khai trên web: bình nhập từ 65.000 đ, Lock&Lock từ 250.000 đ,
     // túi thêu tên 250.000 – 350.000 đ. Cốc gốm hoa sen chưa có giá công khai → không ghi giá.
     // Lịch đặt hàng là GỢI Ý, không phải cam kết thời gian giao.
+    // 03/10/2026 chị Nga bảo lồng thêm quà vào bài: lấy hạng mục + NGÂN SÁCH THAM KHẢO từ bảng đề xuất
+    // quà 2027 của NKV (file trong 01_KhachHang — KHÔNG ghi tên khách, chỉ dùng phần NKV đề xuất).
+    // Giá các món này là khoảng tham khảo, chốt theo số lượng và mẫu.
     id: "qua-tet-doanh-nghiep-2027",
     href: "/bai-viet/qua-tet-doanh-nghiep-2027-chon-theo-ngan-sach",
     chuyenMuc: "Quà tặng doanh nghiệp",
     title: "Quà Tết doanh nghiệp 2027: chọn theo ngân sách và người nhận",
     tomTat:
-      "Gợi ý quà Tết 2027 cho nhân viên, khách hàng và đối tác theo ba mức ngân sách, kèm lịch đặt hàng để kịp in logo trước Tết Đinh Mùi (6/2/2027).",
+      "Gợi ý quà Tết 2027 cho nhân viên, khách hàng và đối tác theo bốn mức ngân sách, từ bình giữ nhiệt in logo đến set quà Tết cao cấp có ấm chén sứ, kèm lịch đặt hàng để kịp trước Tết Đinh Mùi (6/2/2027).",
     tieuDeSeo: "Quà Tết doanh nghiệp 2027: chọn theo ngân sách",
     moTaSeo:
-      "Quà Tết doanh nghiệp 2027 theo ngân sách: bình giữ nhiệt in logo từ 65.000 đ, Lock&Lock từ 250.000 đ, quà cho con nhân viên. Kèm lịch đặt hàng kịp Tết.",
+      "Quà Tết doanh nghiệp 2027: bình giữ nhiệt in logo từ 65.000 đ, đồ da khắc logo, set quà Tết cao cấp có ấm chén sứ in logo. Kèm lịch đặt hàng.",
     ngayDang: "2026-10-03",
     // Ảnh đồ họa Tết riêng (03/10/2026) — chị Nga nhắc không dùng lại ảnh bình của bài bên cạnh.
-    anh: "/marketing/qua-tet-doanh-nghiep-2027-v2.jpg",
+    anh: "/marketing/qua-tet-doanh-nghiep-2027-v3.jpg",
     anhRong: 1200,
     anhCao: 750,
-    anhAlt: "Nhành mai vàng trên nền đỏ, chữ Quà Tết 2027 và ba mức ngân sách dưới 150K, 250 – 350K, trên 350K",
-    anhGhiChu: "Ba mức ngân sách quà Tết 2027 cho nhân viên, khách hàng thân thiết và đối tác.",
+    anhAlt: "Nhành mai vàng trên nền đỏ, chữ Quà Tết 2027 và ba mức ngân sách: dưới 150K, 150K – 1,5 triệu, set VIP 0,8 – 2 triệu",
+    anhGhiChu: "Các mức ngân sách quà Tết 2027 cho nhân viên, khách hàng và đối tác.",
     moDau: [
       "Tết Đinh Mùi 2027 rơi vào thứ Bảy, ngày 6/2/2027. Quà có in logo cần thêm thời gian duyệt mẫu và sản xuất, nên tháng 10 – 11 là lúc nên chốt danh sách người nhận và ngân sách.",
-      "Bài này chia quà Tết theo ba nhóm người nhận và ba mức ngân sách, kèm lịch đặt hàng gợi ý để doanh nghiệp không bị dồn việc vào tháng Chạp.",
+      "Bài này chia quà Tết theo nhóm người nhận và bốn mức ngân sách, kèm lịch đặt hàng gợi ý để doanh nghiệp không bị dồn việc vào tháng Chạp. Giá các món đồ da và set quà là ngân sách tham khảo, giá chính thức chốt theo số lượng và mẫu.",
     ],
     soSanh: {
       tieuDe: "Gợi ý quà Tết 2027 theo ngân sách cho mỗi người nhận",
@@ -207,14 +210,19 @@ export const BAI_VIET: BaiViet[] = [
           "Nhân viên, cộng tác viên, quà phát số lượng lớn",
         ],
         [
-          "250.000 – 350.000 đ",
-          "Bình Lock&Lock in logo từ 250.000 đ/cái (đã gồm VAT và in logo); túi trống thêu tên bé 250.000 – 350.000 đ",
+          "150.000 – 350.000 đ",
+          "Khung ảnh da, khung gỗ, móc khóa da khắc hoặc ép chìm logo (150.000 – 300.000 đ); bình Lock&Lock in logo từ 250.000 đ/cái đã gồm VAT; túi trống thêu tên bé 250.000 – 350.000 đ",
           "Khách hàng thân thiết; quà gửi con của nhân viên",
         ],
         [
-          "Trên 350.000 đ",
-          "Bộ quà nhiều món: bình Lock&Lock kèm cốc gốm sứ hoa sen vẽ tay và thiệp viết tay, báo giá theo số lượng",
-          "Đối tác, khách hàng quan trọng, ban lãnh đạo",
+          "450.000 – 1.500.000 đ",
+          "Set sổ da đa năng có sạc dự phòng, USB và bút ký, đóng hộp (450.000 – 950.000 đ); ví hoặc túi công tác bằng da khắc logo (500.000 – 1.500.000 đ)",
+          "Quản lý, khách hàng quan trọng",
+        ],
+        [
+          "800.000 – 2.000.000 đ",
+          "Set quà Tết cao cấp: ấm chén sứ in logo, rượu vang, bút ký, linh vật năm Đinh Mùi 2027, lịch để bàn, tranh canvas sắc xuân. Ấm chén sứ in logo mua riêng: 250.000 – 759.000 đ/bộ",
+          "Đối tác chiến lược, ban lãnh đạo, khách hàng VIP",
         ],
       ],
     },
@@ -238,7 +246,7 @@ export const BAI_VIET: BaiViet[] = [
       {
         tieuDe: "Chốt logo và mẫu in thật trước khi chốt số lượng",
         noiDung:
-          "Gửi logo dạng file gốc (AI, PDF hoặc SVG) để in sắc nét. Yêu cầu xem bản dựng logo trên sản phẩm, và với đơn lớn thì xem mẫu in thật, trước khi sản xuất hàng loạt.",
+          "Gửi logo dạng file gốc (AI, PDF hoặc SVG) để in sắc nét. Yêu cầu xem bản dựng logo trên sản phẩm, và với đơn lớn thì xem mẫu in thật, trước khi sản xuất hàng loạt. Chọn luôn kiểu hộp hợp với món quà: hộp âm dương, hộp nam châm, hộp gỗ, hộp da PU hoặc hộp hai cửa.",
       },
       {
         tieuDe: "Đi theo lịch đặt hàng ngược từ ngày Tết",
@@ -267,6 +275,14 @@ export const BAI_VIET: BaiViet[] = [
       {
         hoi: "Tết Nguyên đán 2027 là ngày nào?",
         dap: "Mùng 1 Tết Đinh Mùi rơi vào thứ Bảy, ngày 6/2/2027 dương lịch.",
+      },
+      {
+        hoi: "Set quà Tết cao cấp cho doanh nghiệp gồm những gì, giá bao nhiêu?",
+        dap: "Một set quà Tết cao cấp có thể gồm ấm chén sứ in logo, rượu vang, bút ký, linh vật năm Đinh Mùi 2027, lịch để bàn và tranh canvas sắc xuân. Ngân sách tham khảo 800.000 – 2.000.000 đ/set; riêng bộ ấm chén sứ in logo 250.000 – 759.000 đ/bộ. Giá chính thức chốt theo số lượng và mẫu.",
+      },
+      {
+        hoi: "Quà Tết có những kiểu hộp nào?",
+        dap: "Tùy món quà, có thể chọn hộp âm dương, hộp nam châm, hộp gỗ, hộp da PU hoặc hộp hai cửa.",
       },
       {
         hoi: "Nên đặt quà Tết có in logo trước bao lâu?",
