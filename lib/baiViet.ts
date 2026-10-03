@@ -37,6 +37,121 @@ export type BaiViet = {
 
 export const BAI_VIET: BaiViet[] = [
   {
+    // Bài 20/10 (đăng 03/10/2026 — chị Nga nhắc 20/10 đến trước Tết, cần lên sớm).
+    // Chỉ dùng giá đã công khai: bình nhập từ 65.000 đ, Lock&Lock từ 250.000 đ (gồm VAT + in logo,
+    // giao 5 – 10 ngày). Cốc gốm hoa sen chưa có giá công khai → không ghi giá. Thiệp tranh miễn phí
+    // là trang /thiep-mien-phi có thật. Lịch đặt hàng là GỢI Ý.
+    // Sau 20/10 nên đưa bài này xuống dưới bài Tết (đổi thứ tự trong mảng).
+    id: "qua-20-10-2026",
+    href: "/bai-viet/qua-tang-20-10-cho-nhan-vien-nu-va-khach-hang",
+    chuyenMuc: "Quà tặng doanh nghiệp",
+    title: "Quà tặng 20/10 cho nhân viên nữ và khách hàng: gợi ý theo ngân sách, đặt kịp trước ngày lễ",
+    tomTat:
+      "Gợi ý quà 20/10/2026 cho nhân viên nữ, đồng nghiệp và khách hàng theo ngân sách, cách chọn quà dùng được lâu và lịch đặt hàng để kịp in logo trước thứ Ba 20/10.",
+    tieuDeSeo: "Quà 20/10 cho nhân viên nữ, khách hàng: gợi ý theo ngân sách",
+    moTaSeo:
+      "Quà 20/10/2026 cho nhân viên nữ và khách hàng: bình giữ nhiệt in logo từ 65.000 đ, Lock&Lock từ 250.000 đ, thiệp tranh miễn phí. Lịch đặt kịp lễ.",
+    ngayDang: "2026-10-03",
+    anh: "/marketing/qua-20-10-2026.jpg",
+    anhRong: 1200,
+    anhCao: 750,
+    anhAlt: "Cặp cốc gốm sứ xanh bạc hà và trắng kem vẽ hoa sen đặt trên lá sen, bên cạnh bức tranh bình hoa đỏ vẽ tay",
+    anhGhiChu: "Cốc gốm sứ hoa sen vẽ tay và một mẫu thiệp tranh vẽ — hai gợi ý quà 20/10 nhẹ nhàng cho phái nữ.",
+    moDau: [
+      "Ngày Phụ nữ Việt Nam 20/10/2026 rơi vào thứ Ba. Quà có in logo cần khoảng 5 – 10 ngày sản xuất sau khi duyệt mẫu, nên doanh nghiệp muốn trao quà đúng ngày cần chốt mẫu trước ngày 10/10.",
+      "Bài này gợi ý quà 20/10 theo ngân sách cho nhân viên nữ, đồng nghiệp và khách hàng, cùng bốn điều giúp món quà được dùng lâu chứ không chỉ đẹp trong một ngày.",
+    ],
+    soSanh: {
+      tieuDe: "Gợi ý quà 20/10 theo ngân sách",
+      cot: ["Ngân sách / người", "Gợi ý quà", "Phù hợp với"],
+      dong: [
+        [
+          "Dưới 150.000 đ",
+          "Bình hoặc ly giữ nhiệt nhập khẩu màu nhẹ (hồng, xanh mint, trắng) in logo, giá bình từ 65.000 đ/cái (chưa VAT, chưa gồm in logo)",
+          "Nhân viên nữ, quà tặng số lượng lớn",
+        ],
+        [
+          "Từ 250.000 đ",
+          "Bình Lock&Lock in hoặc khắc logo, từ 250.000 đ/cái (đã gồm VAT và in logo); hoặc cốc gốm sứ hoa sen vẽ tay, báo giá theo số lượng",
+          "Khách hàng nữ, quản lý, đối tác",
+        ],
+        [
+          "Tặng kèm mọi mức",
+          "Thiệp tranh vẽ có lời chúc riêng, tạo miễn phí trên chonquachuan.vn",
+          "Mọi người nhận, nhất là khi muốn gửi lời cảm ơn riêng",
+        ],
+      ],
+    },
+    yChinhDanDat: "Bốn điều giúp quà 20/10 được nhớ lâu:",
+    yChinh: [
+      {
+        tieuDe: "Chọn món dùng hằng ngày, đi kèm một bông hoa",
+        noiDung:
+          "Hoa đẹp nhưng héo sau vài ngày. Một món dùng hằng ngày như bình giữ nhiệt hay cốc gốm ở lại trên bàn làm việc cả năm. Nếu muốn có hoa, hãy để hoa đi kèm món quà chứ không thay cho món quà.",
+      },
+      {
+        tieuDe: "Chọn màu nhẹ, logo nhỏ và tinh tế",
+        noiDung:
+          "Màu pastel và họa tiết hoa hợp với dịp 20/10. Logo doanh nghiệp nên in nhỏ, ở vị trí kín đáo, để người nhận vui vẻ dùng cả ngoài giờ làm chứ không chỉ ở văn phòng.",
+      },
+      {
+        tieuDe: "Kèm một lời chúc viết riêng cho từng người",
+        noiDung:
+          "Một tấm thiệp gọi đúng tên và nhắc một điều cụ thể bạn trân trọng ở người nhận có giá trị hơn nhiều lời chúc chung. Thiệp tranh vẽ trên Chọn Quà Chuẩn tạo được miễn phí, ghi tên người nhận và lời chúc riêng, gửi qua Zalo kèm món quà.",
+      },
+      {
+        tieuDe: "Đặt hàng ngược từ thứ Ba 20/10",
+        noiDung:
+          "Trước 8/10: chốt danh sách người nhận và ngân sách. Trước 10/10: chọn mẫu, duyệt logo và đặt sản xuất. Ngày 17 – 19/10: nhận hàng, gói quà, viết thiệp. Thứ Ba 20/10: trao quà.",
+      },
+    ],
+    lienKet: [
+      {
+        nhan: "Xem catalogue bình giữ nhiệt",
+        moTa: "39 mẫu bình và ly giữ nhiệt nhập khẩu, giá từ 65.000 đ",
+        href: "/catalogue-binh-giu-nhiet",
+      },
+      {
+        nhan: "Xem cốc gốm sứ hoa sen",
+        moTa: "Vẽ tay, men mờ xanh bạc hà và trắng kem, nhận in logo",
+        href: "/san-pham/coc-gom-hoa-sen",
+      },
+      {
+        nhan: "Tạo thiệp tranh miễn phí",
+        moTa: "Thiệp tranh vẽ có lời chúc riêng, gửi kèm quà 20/10",
+        href: "/thiep-mien-phi",
+      },
+    ],
+    hoiDap: [
+      {
+        hoi: "Ngày 20/10/2026 là thứ mấy?",
+        dap: "Ngày Phụ nữ Việt Nam 20/10/2026 rơi vào thứ Ba.",
+      },
+      {
+        hoi: "Đặt quà 20/10 in logo trước bao lâu?",
+        dap: "Bình Lock&Lock in logo giao trong 5 – 10 ngày, nên chốt mẫu và đặt trước ngày 10/10. Bình nhập khẩu có sẵn hàng; đơn in logo giao theo lịch thống nhất sau khi duyệt mẫu, nên liên hệ càng sớm càng tốt.",
+      },
+      {
+        hoi: "Quà 20/10 cho nhân viên nữ nên chọn mức giá nào?",
+        dap: "Với số lượng lớn, mức dưới 150.000 đ/người như bình giữ nhiệt nhập khẩu in logo là phổ biến. Với khách hàng hoặc đối tác nữ, bình Lock&Lock từ 250.000 đ/cái đã gồm in logo thể hiện sự chỉn chu hơn.",
+      },
+      {
+        hoi: "Đặt quà 20/10 in logo tối thiểu bao nhiêu cái?",
+        dap: "Với bình giữ nhiệt, giá tốt nhất áp dụng từ 100 cái. Bình nhập khẩu vẫn nhận đơn nhỏ hơn: đơn 50 – 100 cái cộng thêm 5.000 đ/cái, dưới 50 cái cộng thêm 10.000 đ/cái.",
+      },
+      {
+        hoi: "Có xuất hóa đơn VAT cho quà 20/10 không?",
+        dap: "Có. Đơn hàng được xuất hóa đơn VAT bởi Công ty TNHH Nguyên Khánh Vina, đơn vị vận hành thương hiệu Chọn Quà Chuẩn.",
+      },
+    ],
+    ketBai: [
+      "Tóm lại: chọn món dùng được hằng ngày, màu nhẹ, logo nhỏ, kèm lời chúc viết riêng, và chốt mẫu trước ngày 10/10 để kịp trao quà đúng thứ Ba 20/10.",
+      "Chọn Quà Chuẩn là thương hiệu quà tặng của Công ty TNHH Nguyên Khánh Vina tại TP. Hồ Chí Minh, nhận tư vấn và in, khắc logo quà tặng theo yêu cầu riêng của từng doanh nghiệp.",
+    ],
+    loiMoiTuVan:
+      "Gửi số người nhận và ngân sách cho dịp 20/10, Chọn Quà Chuẩn sẽ gợi ý mẫu phù hợp và dựng thử logo để bạn duyệt trước khi đặt.",
+  },
+  {
     // Bài SEO mùa quà Tết (đăng 03/10/2026, doanh nghiệp bắt đầu tìm quà Tết từ tháng 10).
     // Chỉ dùng giá đã công khai trên web: bình nhập từ 65.000 đ, Lock&Lock từ 250.000 đ,
     // túi thêu tên 250.000 – 350.000 đ. Cốc gốm hoa sen chưa có giá công khai → không ghi giá.
@@ -51,11 +166,12 @@ export const BAI_VIET: BaiViet[] = [
     moTaSeo:
       "Quà Tết doanh nghiệp 2027 theo ngân sách: bình giữ nhiệt in logo từ 65.000 đ, Lock&Lock từ 250.000 đ, quà cho con nhân viên. Kèm lịch đặt hàng kịp Tết.",
     ngayDang: "2026-10-03",
-    anh: "/marketing/qua-tet-doanh-nghiep-2027.jpg",
+    // Ảnh đồ họa Tết riêng (03/10/2026) — chị Nga nhắc không dùng lại ảnh bình của bài bên cạnh.
+    anh: "/marketing/qua-tet-doanh-nghiep-2027-v2.jpg",
     anhRong: 1200,
     anhCao: 750,
-    anhAlt: "Bình giữ nhiệt inox nhiều màu, cặp cốc gốm vẽ hoa sen và túi trống trẻ em thêu tên",
-    anhGhiChu: "Ba gợi ý quà Tết 2027: bình giữ nhiệt in logo, cốc gốm sứ hoa sen vẽ tay, túi thêu tên cho con nhân viên.",
+    anhAlt: "Nhành mai vàng trên nền đỏ, chữ Quà Tết 2027 và ba mức ngân sách dưới 150K, 250 – 350K, trên 350K",
+    anhGhiChu: "Ba mức ngân sách quà Tết 2027 cho nhân viên, khách hàng thân thiết và đối tác.",
     moDau: [
       "Tết Đinh Mùi 2027 rơi vào thứ Bảy, ngày 6/2/2027. Quà có in logo cần thêm thời gian duyệt mẫu và sản xuất, nên tháng 10 – 11 là lúc nên chốt danh sách người nhận và ngân sách.",
       "Bài này chia quà Tết theo ba nhóm người nhận và ba mức ngân sách, kèm lịch đặt hàng gợi ý để doanh nghiệp không bị dồn việc vào tháng Chạp.",
