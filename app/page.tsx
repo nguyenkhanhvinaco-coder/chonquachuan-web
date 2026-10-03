@@ -87,7 +87,7 @@ export default async function HomePage() {
               </div>
               <h1 className="font-serif leading-[1.16] text-[#1A1006]">
                 <span className="block text-[32px] md:text-[44px]">Chọn Quà Chuẩn</span>
-                <span className="block text-[17px] md:text-[21px] mt-1.5 font-normal text-[#3A2410]">
+                <span className="block text-[17px] md:text-[21px] mt-1.5 font-normal text-[#1F1F1F]">
                   — tư vấn và cung cấp quà tặng ĐỘC QUYỀN cho doanh nghiệp và cá nhân.
                 </span>
               </h1>
@@ -106,7 +106,7 @@ export default async function HomePage() {
                 </svg>
                 <span>May mắn không tự đến. Món quà ý nghĩa cũng vậy.</span>
               </p>
-              <p className="text-[13px] leading-relaxed text-[#3A2410]">
+              <p className="text-[13px] leading-relaxed text-[#1F1F1F]">
                 Để lại thông tin, chúng tôi liên hệ tư vấn ngay set quà phù hợp — từ quà tri ân đối
                 tác đến quà tặng người thân, gồm cả quà vật lý thủ công lẫn quà tặng số nhận ngay
                 tức thì.

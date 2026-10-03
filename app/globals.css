@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 03/10/2026 chi Nga: nen TRANG 100% tren toan web (bo sac kem/be cua surface),
+   chu den dam hon cho tu nhien. Vien doi sang xam trung tinh de khung van tach
+   khoi nen trang. */
 :root {
-  --bg: oklch(1 0 0);
-  --surface: oklch(0.995 0.004 75);
-  --surface-2: oklch(0.945 0.02 60);
-  --line: oklch(0.88 0.02 60);
-  --ink: oklch(0.27 0.02 50);
-  --ink-soft: oklch(0.48 0.02 50);
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --line: #dcdcdc;
+  --ink: #111111;
+  --ink-soft: #333333;
   --accent: oklch(0.62 0.16 40);
   --accent-ink: oklch(0.99 0.01 40);
   --accent-soft: oklch(0.93 0.045 40);
@@ -19,6 +22,7 @@
 body {
   background: var(--bg);
   color: var(--ink);
+  font-weight: 500;
 }
 
 a {
