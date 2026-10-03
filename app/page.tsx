@@ -30,13 +30,34 @@ export default async function HomePage() {
   const mainProduct = featured[0];
 
   const coAnh = featured.filter((p) => p.image);
-  const tiles = (coAnh.length >= 3 ? coAnh : featured.slice(0, 3)).map((p) => ({
+  const productTiles = (coAnh.length >= 3 ? coAnh : featured.slice(0, 3)).map((p) => ({
     key: p.id,
     href: `/san-pham/${p.id}`,
     image: p.image,
     name: p.name,
     bg: p.color,
   }));
+  // 03/10/2026 (chị Nga): hai ô catalogue bình chen vào sau 3 sản phẩm đầu, đẩy ô
+  // Trung Thu xuống cuối. Ảnh riêng, không trùng ảnh bài viết: bình nhập lấy từ bìa
+  // catalogue v2 (đã sạch logo hãng khác); Lock&Lock là ảnh đồ họa vì ảnh bình
+  // Lock&Lock hiện có đều in logo khách cũ.
+  const CATALOGUE_TILES = [
+    {
+      key: "catalogue-binh-nhap",
+      href: "/catalogue-binh-giu-nhiet",
+      image: "/products/binh-nhap-khau-tile.jpg",
+      name: "Bình Giữ Nhiệt Nhập Khẩu In Logo",
+      bg: "oklch(0.3 0.07 262)",
+    },
+    {
+      key: "catalogue-binh-locklock",
+      href: "/catalogue-binh-lock-lock",
+      image: "/products/binh-locklock-tile.jpg",
+      name: "Bình Lock&Lock In Logo",
+      bg: "oklch(0.3 0.07 262)",
+    },
+  ];
+  const tiles = [...productTiles.slice(0, 3), ...CATALOGUE_TILES, ...productTiles.slice(3)];
 
   return (
     <div className="flex flex-col">

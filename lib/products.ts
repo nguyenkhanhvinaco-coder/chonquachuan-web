@@ -126,8 +126,9 @@ export const seedProducts: Product[] = [
   },
   {
     id: "chai-thuy-tinh",
-    name: "Chai Nước Thủy Tinh Trong Suốt",
-    description: "Chai thủy tinh nắp vặn kín, hai dung tích 300ml và 500ml, nhận in logo theo yêu cầu.",
+    // 03/10/2026 chị Nga đổi "Chai" thành "Bình" (đã sửa cả trong Supabase). Giữ id cũ để link không hỏng.
+    name: "Bình Nước Thủy Tinh Trong Suốt",
+    description: "Bình thủy tinh nắp vặn kín, hai dung tích 300ml và 500ml, nhận in logo theo yêu cầu.",
     price_display: "Liên hệ",
     // Vua la qua vat ly ca nhan (cung nhom Tui tre em), vua la qua doanh
     // nghiep - nen dat ca hai trong `categories`. `category` giu 'vat-ly'
@@ -265,7 +266,9 @@ export async function getProducts(): Promise<Product[]> {
 // bấm ở cột chữ bên trái); id thứ hai hiện ở ô nhỏ nằm ngay CẠNH ô lớn
 // (2026-09-08: thêm Chai thủy tinh vào đây theo yêu cầu, lấp khoảng trống
 // bên phải ảnh Túi trẻ em).
-export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "coc-gom-hoa-sen", "long-den-trung-thu", "van-phong-tri-an"];
+// 03/10/2026: hết mùa Trung Thu → lồng đèn xuống cuối; chỗ của nó ở trang chủ nhường cho
+// hai ô catalogue bình (khai trong CATALOGUE_TILES ở app/page.tsx, không phải sản phẩm).
+export const FEATURED_IDS = ["tui-tre-em", "chai-thuy-tinh", "coc-gom-hoa-sen", "van-phong-tri-an", "long-den-trung-thu"];
 
 export async function getFeaturedProducts(limit = 3): Promise<Product[]> {
   const all = await getProducts();
