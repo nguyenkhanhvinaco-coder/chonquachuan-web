@@ -173,6 +173,133 @@ export const BAI_VIET: BaiViet[] = [
       "Gửi số người nhận và ngân sách cho dịp 20/10, Chọn Quà Chuẩn sẽ gợi ý mẫu phù hợp và dựng thử logo để bạn duyệt trước khi đặt.",
   },
   {
+    // Bài Lịch Tết 2027 (10/10/2026). Mẫu + giá ở trang /lich-tet-2027 (lib/lichTet.ts).
+    // Giá = bảng giá NKV áp dụng 10/10/2026, đã gồm VAT 8%. KHÔNG nêu tên xưởng in.
+    id: "lich-tet-2027",
+    href: "/bai-viet/lich-tet-2027-in-logo-doanh-nghiep-mau-va-bang-gia",
+    chuyenMuc: "Quà tặng doanh nghiệp",
+    title: "Lịch Tết 2027 in logo doanh nghiệp: chọn loại lịch, xem mẫu và bảng giá",
+    tomTat:
+      "131 mẫu lịch Tết Đinh Mùi 2027 chia theo 8 loại: lịch để bàn, lịch 13 tờ, bìa lịch gắn bloc, bloc đại, bloc siêu đại có hộp quà. Giá từ 29.500 đ đã gồm VAT. Nhận thiết kế lịch Tết và bao lì xì độc quyền cho doanh nghiệp, hạn nhận đơn trước 10/11/2026.",
+    tieuDeSeo: "Lịch Tết 2027 in logo doanh nghiệp: mẫu và bảng giá",
+    moTaSeo:
+      "Lịch Tết 2027 in logo: lịch để bàn từ 29.500 đ, lịch 13 tờ, bìa gắn bloc, bloc siêu đại có hộp. 131 mẫu, giá đã gồm VAT 8%.",
+    ngayDang: "2026-10-10",
+    anh: "/lich-tet-2027/bai-viet-lich-tet-2027.jpg",
+    anhRong: 1200,
+    anhCao: 750,
+    anhAlt: "Mẫu bìa lịch Tết 2027 nền đỏ vàng, lịch để bàn bốn màu đế và lịch bloc có hộp quà",
+    anhGhiChu: "Một số mẫu lịch Tết 2027: bìa lịch gắn bloc, lịch để bàn và lịch bloc siêu đại.",
+    moDau: [
+      "Lịch Tết là món quà doanh nghiệp được dùng lâu nhất: treo hoặc đặt trên bàn suốt 12 tháng, mỗi ngày nhắc người nhận nhớ đến logo và số điện thoại của bạn. Tết Đinh Mùi 2027 rơi vào thứ Bảy, ngày 6/2/2027, nhưng lịch nên đến tay người nhận trước ngày 1/1/2027 để được dùng trọn năm.",
+      "Bài này giúp bạn chọn đúng loại lịch theo người nhận và ngân sách. Toàn bộ 131 mẫu và bảng giá chi tiết nằm ở trang Lịch Tết 2027, bấm vào từng loại để xem mẫu.",
+      "Muốn lịch và bao lì xì mang dấu ấn riêng? Chọn Quà Chuẩn nhận thiết kế và sản xuất lịch Tết, bao lì xì độc quyền theo hình ảnh và màu sắc nhận diện của doanh nghiệp. Hạn nhận đơn làm độc quyền: trước ngày 10/11/2026.",
+    ],
+    soSanh: {
+      tieuDe: "Các loại lịch Tết 2027 và giá (đã gồm VAT 8%)",
+      cot: ["Loại lịch", "Quy cách", "Giá từ", "Phù hợp với"],
+      dong: [
+        ["Lịch để bàn", "13 tờ 26 mặt, 25 x 18 cm, kèm túi; đế 4 màu", "29.500 đ", "Nhân viên, khách hàng số lượng lớn, dùng ở bàn làm việc"],
+        ["Lịch treo tường 13 tờ", "Khổ mở 37 x 70 cm, bế nổi hoặc dán nổi", "37.000 đ", "Treo ở văn phòng, cửa hàng, đại lý"],
+        [
+          "Bìa lịch gắn bloc",
+          "Bìa lò xo giữa 37 x 70 cm, bế nổi / dán nổi 3D; bloc tính riêng",
+          "37.000 đ (bìa) + bloc từ 42.000 đ",
+          "Khách hàng gia đình, đại lý — lịch bloc truyền thống ngày Tết",
+        ],
+        ["Bloc đại đặc biệt 17 x 24", "Trọn bộ bìa treo + bloc + hộp", "156.000 đ", "Khách hàng thân thiết"],
+        ["Bloc siêu đại 20 x 30 và 25 x 35", "Trọn bộ bìa treo + bloc + hộp", "187.000 đ", "Đối tác, khách hàng lớn"],
+        ["Bloc siêu đại 29 x 41 và 38 x 53", "Khổ lớn nhất, trọn bộ có hộp", "349.500 đ", "Quà biếu cao cấp"],
+      ],
+    },
+    yChinhDanDat: "Năm điều cần biết trước khi đặt lịch Tết in logo:",
+    yChinh: [
+      {
+        tieuDe: "Chọn loại lịch theo nơi người nhận sẽ dùng",
+        noiDung:
+          "Người nhận ngồi văn phòng dùng lịch để bàn nhiều nhất. Gia đình, cửa hàng và đại lý quen treo lịch bloc ngày Tết. Khách hàng và đối tác quan trọng hợp với bộ bloc siêu đại có hộp, vì vừa là lịch vừa là một món quà biếu trang trọng.",
+      },
+      {
+        tieuDe: "Thiết kế phần in quảng cáo gọn và rõ",
+        noiDung:
+          "Mỗi mẫu có sẵn ô “Phần in quảng cáo” để in logo, tên doanh nghiệp, địa chỉ và hotline. Nên giữ ít chữ, logo đủ lớn và một số điện thoại dễ nhớ, để người nhận nhìn là biết lịch của ai.",
+      },
+      {
+        tieuDe: "Hiểu cách tính giá",
+        noiDung:
+          "Giá trên web đã gồm VAT 8%. Với bìa lịch gắn bloc, giá bìa và giá bloc tính riêng: lịch hoàn chỉnh bằng giá bìa cộng giá bloc chọn gắn kèm. Các bộ bloc đại đặc biệt và siêu đại là trọn bộ gồm bìa treo, bloc và hộp. Giá bìa in sẵn trên lịch là giá bán lẻ trên thị trường; đặt tại Chọn Quà Chuẩn, quý khách tiết kiệm 36 – 48% so với giá bìa.",
+      },
+      {
+        tieuDe: "Đặt sớm để lịch đến tay trước ngày 1/1",
+        noiDung:
+          "Gợi ý: tháng 10 – 11 chốt danh sách người nhận, chọn mẫu và duyệt phần in quảng cáo; đầu tháng 12 nhận lịch; phát cho khách hàng và nhân viên trước ngày 1/1/2027. Mẫu đẹp thường hết sớm khi vào mùa cao điểm.",
+      },
+      {
+        tieuDe: "Muốn khác biệt: đặt lịch và bao lì xì độc quyền",
+        noiDung:
+          "Mẫu có sẵn nhiều doanh nghiệp cùng dùng. Nếu muốn lịch Tết và bao lì xì chỉ doanh nghiệp mình có, Chọn Quà Chuẩn nhận thiết kế riêng theo logo, màu sắc nhận diện, hình ảnh sản phẩm hoặc thông điệp năm mới của bạn, rồi sản xuất trọn gói. Thiết kế độc quyền cần thêm thời gian lên mẫu và duyệt, nên nhận đơn trước ngày 10/11/2026.",
+      },
+    ],
+    lienKet: [
+      {
+        nhan: "Đặt thiết kế lịch & bao lì xì độc quyền",
+        moTa: "Thiết kế riêng theo nhận diện doanh nghiệp — nhận đơn trước 10/11/2026",
+        href: "https://zalo.me/1501403345967916810",
+      },
+      {
+        nhan: "Xem 131 mẫu lịch Tết 2027",
+        moTa: "8 loại lịch, bảng giá đầy đủ, bấm từng mẫu để xem lớn",
+        href: "/lich-tet-2027",
+      },
+      {
+        nhan: "Lịch để bàn 2027",
+        moTa: "22 mẫu, từ 29.500 đ đã gồm VAT, kèm túi",
+        href: "/lich-tet-2027/lich-de-ban",
+      },
+      {
+        nhan: "Bìa lịch gắn bloc",
+        moTa: "32 mẫu bìa 37 x 70 cm bế nổi, dán nổi 3D",
+        href: "/lich-tet-2027/bia-lich-gan-bloc",
+      },
+    ],
+    hoiDap: [
+      {
+        hoi: "Tết 2027 là năm con gì, rơi vào ngày nào?",
+        dap: "Năm 2027 là năm Đinh Mùi (năm con Dê). Mùng 1 Tết rơi vào thứ Bảy, ngày 6/2/2027.",
+      },
+      {
+        hoi: "Giá lịch Tết 2027 trên Chọn Quà Chuẩn đã gồm VAT chưa?",
+        dap: "Đã gồm VAT 8%, áp dụng từ ngày 10/10/2026. Hóa đơn xuất từ ngày 01/01/2027 áp dụng thuế suất VAT theo quy định tại thời điểm xuất hóa đơn.",
+      },
+      {
+        hoi: "Lịch có in được logo doanh nghiệp không?",
+        dap: "Có. Mỗi mẫu có ô “Phần in quảng cáo” để in logo, tên, địa chỉ và hotline doanh nghiệp. Chi phí phần in này báo theo số lượng và số màu in.",
+      },
+      {
+        hoi: "Làm sao để chọn mẫu và nhận báo giá?",
+        dap: "Mở trang Lịch Tết 2027, chọn loại lịch, bấm vào mẫu để xem lớn và ghi lại mã MS in trên lịch (ví dụ MS PN 102). Gửi mã mẫu, số lượng và logo qua Zalo OA Chọn Quà Chuẩn để nhận báo giá.",
+      },
+      {
+        hoi: "Lịch bloc và bìa lịch được tính giá thế nào?",
+        dap: "Bìa lịch gắn bloc tính giá bìa và giá bloc riêng, ví dụ bìa bế nổi 37.000 đ cộng bloc đại 50.000 đ. Các bộ bloc đại đặc biệt và bloc siêu đại là trọn bộ gồm bìa treo, bloc và hộp quà.",
+      },
+      {
+        hoi: "Có nhận thiết kế lịch Tết và bao lì xì riêng cho doanh nghiệp không?",
+        dap: "Có. Chọn Quà Chuẩn (Công ty TNHH Nguyên Khánh Vina) nhận thiết kế và sản xuất lịch Tết, bao lì xì độc quyền theo hình ảnh, màu sắc nhận diện của doanh nghiệp. Hạn nhận đơn làm độc quyền cho Tết 2027 là trước ngày 10/11/2026. Báo giá theo số lượng và quy cách.",
+      },
+      {
+        hoi: "Có xuất hóa đơn VAT cho lịch Tết không?",
+        dap: "Có. Đơn hàng được xuất hóa đơn VAT bởi Công ty TNHH Nguyên Khánh Vina, đơn vị vận hành thương hiệu Chọn Quà Chuẩn.",
+      },
+    ],
+    ketBai: [
+      "Tóm lại: lịch để bàn cho số lượng lớn, lịch bloc cho gia đình và đại lý, bộ bloc siêu đại có hộp cho khách hàng quan trọng; chốt mẫu trong tháng 10 – 11 để lịch đến tay người nhận trước ngày 1/1/2027.",
+      "Chọn Quà Chuẩn là thương hiệu quà tặng của Công ty TNHH Nguyên Khánh Vina tại TP. Hồ Chí Minh, nhận tư vấn và in logo quà tặng, lịch Tết theo yêu cầu riêng của từng doanh nghiệp.",
+    ],
+    loiMoiTuVan:
+      "Gửi số lượng, loại lịch và logo, Chọn Quà Chuẩn sẽ gợi ý mẫu phù hợp ngân sách và dựng thử phần in quảng cáo để bạn duyệt trước khi đặt.",
+  },
+  {
     // Bài SEO mùa quà Tết (đăng 03/10/2026, doanh nghiệp bắt đầu tìm quà Tết từ tháng 10).
     // Chỉ dùng giá đã công khai trên web: bình nhập từ 65.000 đ, Lock&Lock từ 250.000 đ,
     // túi thêu tên 250.000 – 350.000 đ. Cốc gốm hoa sen chưa có giá công khai → không ghi giá.

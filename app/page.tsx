@@ -57,6 +57,8 @@ export default async function HomePage() {
       bg: "oklch(0.3 0.07 262)",
     },
   ];
+  const LICH_TET = BAI_VIET.find((b) => b.id === "lich-tet-2027");
+  const BAI = BAI_VIET.filter((b) => b.id !== "lich-tet-2027");
   const tiles = [...productTiles.slice(0, 3), ...CATALOGUE_TILES, ...productTiles.slice(3)];
 
   return (
@@ -148,44 +150,26 @@ export default async function HomePage() {
           tieu de bai viet(1) -> bai viet(2) -> FORM(3) -> tieu de qua mien
           phi(4) -> qua mien phi(5). Tu md tro len luoi la grid binh thuong,
           form nam cot trai nhu cu. */}
-      <section className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
-        <div className="order-3 md:order-none mt-8 md:mt-0 flex-1 xl:flex-none xl:w-[400px] flex flex-col gap-6">
-          {/* Phan gioi thieu thuong hieu (nhan + ten + mo ta) da chuyen len khu
-              "San pham noi bat" phia tren (2026-09-08), o day chi con form de
-              lai thong tin nen dat mot tieu de ngan cho khoi trong hoac. */}
-          <h2 className="font-serif leading-[1.16] max-w-[480px]">
-            <span className="block text-[28px] md:text-[38px]">Nhận tư vấn chọn quà</span>
-            <span className="block text-[15px] md:text-[18px] mt-2 text-ink-soft font-normal">
-              Để lại thông tin, chúng tôi liên hệ tư vấn set quà phù hợp và báo giá trong ngày.
-            </span>
-          </h2>
-          <div className="max-w-[420px] flex flex-col gap-4">
-            <InlineLeadForm />
+      <section className="flex flex-col md:flex-row md:items-start gap-4 md:gap-16 px-9 py-16 md:px-[72px] md:py-[88px]">
+        {/* 2026-10-10 (chi Nga khoanh): cot trai la bai Lich Tet 2027 (truoc la form tu van —
+            form chuyen xuong hang rieng ngay duoi section nay). 2 o bai lon ben phai giu nguyen
+            cac bai khac (BAI = BAI_VIET bo bai lich). Dien thoai: o lich dung dau khu nay. */}
+        {LICH_TET && (
+          <div className="order-0 md:order-none flex-1 xl:flex-none xl:w-[400px] flex flex-col gap-4">
             <div className="flex flex-col gap-2.5">
-              <span className="text-[12.5px] font-semibold text-ink-soft">Hoặc liên hệ trực tiếp</span>
-              <div className="flex gap-3">
-                <a
-                  href={FANPAGE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
-                >
-                  <FacebookIcon size={20} />
-                  Fanpage
-                </a>
-                <a
-                  href={ZALO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
-                >
-                  <ZaloIcon size={20} />
-                  Zalo OA
-                </a>
-              </div>
+              <span className="inline-flex self-start items-center rounded-full bg-[#C8102E] px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-white">
+                Tết Đinh Mùi 2027
+              </span>
+              <h2 className="font-serif leading-[1.16] text-[26px] lg:text-[28px] [text-wrap:balance]">
+                Lịch Tết 2027 in logo
+              </h2>
+              <p className="text-ink-soft text-[14.5px] lg:text-[15px] leading-relaxed">
+                131 mẫu lịch để bàn, lịch treo tường, lịch bloc — giá đã gồm VAT.
+              </p>
             </div>
+            <BaiVietCard bai={LICH_TET} moi={false} />
           </div>
-        </div>
+        )}
         {/* Sap xep lai 2026-09-15 theo anh chi Nga khoanh:
             - Cot TRAI "Kien thuc chon qua": o lon la bai viet moi nhat
               (BAI_VIET[0], lib/baiViet.ts); bai cu hon xep thanh danh sach
@@ -232,19 +216,19 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {BAI_VIET.length > 1 && (
-            <BaiVietCard bai={BAI_VIET[1]} moi={false} className="hidden xl:flex xl:order-3" />
+          {BAI.length > 1 && (
+            <BaiVietCard bai={BAI[1]} moi={false} className="hidden xl:flex xl:order-3" />
           )}
 
           <div className="order-2 lg:order-3 flex flex-col gap-4">
-            <BaiVietCard bai={BAI_VIET[0]} className="flex-1" />
-            {BAI_VIET.length > 1 && (
+            <BaiVietCard bai={BAI[0]} className="flex-1" />
+            {BAI.length > 1 && (
               <ul
                 className={`flex flex-col divide-y divide-line border border-line rounded-2xl bg-surface ${
-                  BAI_VIET.length <= 2 ? "xl:hidden" : ""
+                  BAI.length <= 2 ? "xl:hidden" : ""
                 }`}
               >
-                {BAI_VIET.slice(1, 4).map((b, i) => (
+                {BAI.slice(1, 4).map((b, i) => (
                   <li key={b.id} className={i === 0 ? "xl:hidden" : ""}>
                     <Link
                       href={b.href}
@@ -324,6 +308,47 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Form tu van — 2026-10-10 chuyen tu cot trai khu bai viet xuong hang rieng (cot trai thanh bai Lich Tet). */}
+      <section id="nhan-tu-van" className="px-9 pb-16 md:px-[72px] md:pb-[88px] scroll-mt-6">
+        <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-16">
+            {/* Phan gioi thieu thuong hieu (nhan + ten + mo ta) da chuyen len khu
+                "San pham noi bat" phia tren (2026-09-08), o day chi con form de
+                lai thong tin nen dat mot tieu de ngan cho khoi trong hoac. */}
+            <h2 className="font-serif leading-[1.16] max-w-[480px] md:flex-1">
+              <span className="block text-[28px] md:text-[38px]">Nhận tư vấn chọn quà</span>
+              <span className="block text-[15px] md:text-[18px] mt-2 text-ink-soft font-normal">
+                Để lại thông tin, chúng tôi liên hệ tư vấn set quà phù hợp và báo giá trong ngày.
+              </span>
+            </h2>
+            <div className="w-full max-w-[420px] md:flex-1 flex flex-col gap-4">
+              <InlineLeadForm />
+              <div className="flex flex-col gap-2.5">
+                <span className="text-[12.5px] font-semibold text-ink-soft">Hoặc liên hệ trực tiếp</span>
+                <div className="flex gap-3">
+                  <a
+                    href={FANPAGE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
+                  >
+                    <FacebookIcon size={20} />
+                    Fanpage
+                  </a>
+                  <a
+                    href={ZALO_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
+                  >
+                    <ZaloIcon size={20} />
+                    Zalo OA
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
       </section>
 
       {/* How it works */}
