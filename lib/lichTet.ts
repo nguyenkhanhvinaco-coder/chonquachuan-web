@@ -7,7 +7,8 @@
 // - Giá bán = bảng giá NKV áp dụng từ 10/10/2026, ĐÃ GỒM VAT 8%:
 //   lịch bàn / bìa / bộ 13 tờ = giá xưởng +30%; bloc = giá xưởng +20%; làm tròn lên 500 đ.
 //   BLOC (cập nhật 11/10/2026 theo file ..._Lich-va-Bloc-lich-2027_v2-tiet-kiem-30-32.pdf):
-//   giá bán = giá bìa × 0,69 làm tròn 500 đ -> khách tiết kiệm 30 – 32% so với giá bìa.
+//   giá bán = giá bìa × 0,69 làm tròn 500 đ -> khách tiết kiệm 30 – 32% so với giá bìa;
+//   riêng Bloc đại 42.000 / Bloc lỡ 39.000 (chị chốt 11/10/2026) -> tiết kiệm 44 – 51%. Chung: 30 – 51%.
 //   File gốc: D:\NKV\10.Lịch 2027\2026-10-10_BANGGIA_NKV_*.pdf. Đổi giá thì sửa ở đây.
 // - giaBia = giá bán lẻ in sẵn trên lịch = giá thị trường; nhãn "Tiết kiệm x%" = mức khách được lợi so với giá bìa.
 //   Không viết "giá tốt nhất / rẻ nhất": Luật Quảng cáo cấm dùng từ "nhất" khi không có tài liệu chứng minh.
@@ -68,8 +69,8 @@ export const LOAI_LICH: LoaiLich[] = [
       { ten: "Bìa 37 x 70 dán nổi gắn bloc", gia: 53500 },
       { ten: "Bìa đại ván MDF 3 mm", gia: 37000 },
       { ten: "Bìa khung vàng", gia: 84500 },
-      { ten: "Bloc đại 14,5 x 20,5 cm (mua lẻ)", giaBia: 85000, gia: 58500 },
-      { ten: "Bloc lỡ 13 x 19 cm (mua lẻ)", giaBia: 70000, gia: 48500 },
+      { ten: "Bloc đại 14,5 x 20,5 cm (mua lẻ)", giaBia: 85000, gia: 42000 },
+      { ten: "Bloc lỡ 13 x 19 cm (mua lẻ)", giaBia: 70000, gia: 39000 },
     ],
     ghiChuGia: "Giá bìa lịch chưa gồm bloc. Lịch hoàn chỉnh = giá bìa lịch + giá bloc.",
     soMau: 32,
@@ -111,8 +112,8 @@ export const LOAI_LICH: LoaiLich[] = [
       "Gắn vào bìa lịch treo tường (xem mục Bìa lịch gắn bloc)",
     ],
     gia: [
-      { ten: "Bloc đại 14,5 x 20,5 cm (mua lẻ)", giaBia: 85000, gia: 58500 },
-      { ten: "Bloc lỡ 13 x 19 cm (mua lẻ)", giaBia: 70000, gia: 48500 },
+      { ten: "Bloc đại 14,5 x 20,5 cm (mua lẻ)", giaBia: 85000, gia: 42000 },
+      { ten: "Bloc lỡ 13 x 19 cm (mua lẻ)", giaBia: 70000, gia: 39000 },
     ],
     soMau: 8,
     anhRong: 2400,
@@ -201,7 +202,8 @@ export const GIA_KHAC: DongGia[] = [{ ten: "Lịch 52 tuần", giaBia: 300000, g
 
 export const GHI_CHU_GIA = [
   "Đơn giá đã gồm VAT 8%, áp dụng từ ngày 10/10/2026 cho đến khi có thông báo mới.",
-  "Giá bìa là giá bán lẻ in sẵn trên lịch, cũng là giá bán trên thị trường. Đặt lịch tại Chọn Quà Chuẩn, quý khách tiết kiệm 30 – 32% so với giá bìa (xem nhãn “Tiết kiệm” ở từng dòng).",
+  "Giá bìa là giá bán lẻ in sẵn trên lịch, cũng là giá bán trên thị trường. Đặt lịch tại Chọn Quà Chuẩn, quý khách tiết kiệm 30 – 51% so với giá bìa (xem nhãn “Tiết kiệm” ở từng dòng).",
+  "Hỗ trợ giao hàng MIỄN PHÍ toàn quốc.",
   "Đơn giá có thể thay đổi vào thời điểm cao điểm (thường từ giữa tháng 11/2026 đến 30/12/2026).",
   "Phần in quảng cáo (logo, tên, địa chỉ doanh nghiệp) báo giá theo số lượng và số màu in.",
   "Hóa đơn xuất từ ngày 01/01/2027 áp dụng thuế suất VAT theo quy định tại thời điểm xuất hóa đơn.",
