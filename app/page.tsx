@@ -1,15 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import { ArrowRightIcon, FacebookIcon, ZaloIcon } from "@/components/icons";
-import InlineLeadForm from "@/components/InlineLeadForm";
+import { ArrowRightIcon } from "@/components/icons";
 import LeadFormTrigger from "@/components/LeadForm";
 import BaiVietCard from "@/components/BaiVietCard";
 import { getFeaturedProducts } from "@/lib/products";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import { EBOOKS } from "@/lib/ebook";
 import { BAI_VIET } from "@/lib/baiViet";
-import { ZALO_URL, FANPAGE_URL } from "@/lib/contact";
 
 // Cho phep trang lam moi du lieu san pham (tu Supabase) toi da moi 60 giay
 // mot lan, thay vi dong bang vinh vien luc build - de sua san pham truc
@@ -310,46 +308,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Form tu van — 2026-10-10 chuyen tu cot trai khu bai viet xuong hang rieng (cot trai thanh bai Lich Tet). */}
-      <section id="nhan-tu-van" className="px-9 pb-16 md:px-[72px] md:pb-[88px] scroll-mt-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-16">
-            {/* Phan gioi thieu thuong hieu (nhan + ten + mo ta) da chuyen len khu
-                "San pham noi bat" phia tren (2026-09-08), o day chi con form de
-                lai thong tin nen dat mot tieu de ngan cho khoi trong hoac. */}
-            <h2 className="font-serif leading-[1.16] max-w-[480px] md:flex-1">
-              <span className="block text-[28px] md:text-[38px]">Nhận tư vấn chọn quà</span>
-              <span className="block text-[15px] md:text-[18px] mt-2 text-ink-soft font-normal">
-                Để lại thông tin, chúng tôi liên hệ tư vấn set quà phù hợp và báo giá trong ngày.
-              </span>
-            </h2>
-            <div className="w-full max-w-[420px] md:flex-1 flex flex-col gap-4">
-              <InlineLeadForm />
-              <div className="flex flex-col gap-2.5">
-                <span className="text-[12.5px] font-semibold text-ink-soft">Hoặc liên hệ trực tiếp</span>
-                <div className="flex gap-3">
-                  <a
-                    href={FANPAGE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
-                  >
-                    <FacebookIcon size={20} />
-                    Fanpage
-                  </a>
-                  <a
-                    href={ZALO_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 border border-line rounded-[10px] py-3 text-[14px] font-semibold min-h-[44px]"
-                  >
-                    <ZaloIcon size={20} />
-                    Zalo OA
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-      </section>
+      {/* Form tu van "Nhan tu van chon qua" — chi bo khoi nay khoi trang chu 2026-10-11. */}
 
       {/* How it works */}
       <section id="cach-hoat-dong" className="px-9 py-20 md:px-[72px] flex flex-col gap-11">
