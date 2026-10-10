@@ -204,12 +204,12 @@ export const BAI_VIET: BaiViet[] = [
         [
           "Bìa lịch gắn bloc",
           "Bìa lò xo giữa 37 x 70 cm, bế nổi / dán nổi 3D; bloc tính riêng",
-          "37.000 đ (bìa) + bloc từ 42.000 đ",
+          "37.000 đ (bìa) + bloc từ 48.500 đ",
           "Khách hàng gia đình, đại lý — lịch bloc truyền thống ngày Tết",
         ],
-        ["Bloc đại đặc biệt 17 x 24", "Trọn bộ bìa treo + bloc + hộp", "156.000 đ", "Khách hàng thân thiết"],
-        ["Bloc siêu đại 20 x 30 và 25 x 35", "Trọn bộ bìa treo + bloc + hộp", "187.000 đ", "Đối tác, khách hàng lớn"],
-        ["Bloc siêu đại 29 x 41 và 38 x 53", "Khổ lớn nhất, trọn bộ có hộp", "349.500 đ", "Quà biếu cao cấp"],
+        ["Bloc đại đặc biệt 17 x 24", "Trọn bộ bìa treo + bloc + hộp", "172.500 đ", "Khách hàng thân thiết"],
+        ["Bloc siêu đại 20 x 30 và 25 x 35", "Trọn bộ bìa treo + bloc + hộp", "207.000 đ", "Đối tác, khách hàng lớn"],
+        ["Bloc siêu đại 29 x 41 và 38 x 53", "Khổ lớn nhất, trọn bộ có hộp", "379.500 đ", "Quà biếu cao cấp"],
       ],
     },
     yChinhDanDat: "Năm điều cần biết trước khi đặt lịch Tết in logo:",
@@ -227,7 +227,7 @@ export const BAI_VIET: BaiViet[] = [
       {
         tieuDe: "Hiểu cách tính giá",
         noiDung:
-          "Giá trên web đã gồm VAT 8%. Với bìa lịch gắn bloc, giá bìa và giá bloc tính riêng: lịch hoàn chỉnh bằng giá bìa cộng giá bloc chọn gắn kèm. Các bộ bloc đại đặc biệt và siêu đại là trọn bộ gồm bìa treo, bloc và hộp. Giá bìa in sẵn trên lịch là giá bán lẻ trên thị trường; đặt tại Chọn Quà Chuẩn, quý khách tiết kiệm 36 – 48% so với giá bìa.",
+          "Giá trên web đã gồm VAT 8%. Với bìa lịch gắn bloc, giá bìa và giá bloc tính riêng: lịch hoàn chỉnh bằng giá bìa cộng giá bloc chọn gắn kèm. Các bộ bloc đại đặc biệt và siêu đại là trọn bộ gồm bìa treo, bloc và hộp. Giá bìa in sẵn trên lịch là giá bán lẻ trên thị trường; đặt tại Chọn Quà Chuẩn, quý khách tiết kiệm 30 – 32% so với giá bìa.",
       },
       {
         tieuDe: "Đặt sớm để lịch đến tay trước ngày 1/1",
@@ -281,7 +281,7 @@ export const BAI_VIET: BaiViet[] = [
       },
       {
         hoi: "Lịch bloc và bìa lịch được tính giá thế nào?",
-        dap: "Bìa lịch gắn bloc tính giá bìa và giá bloc riêng, ví dụ bìa bế nổi 37.000 đ cộng bloc đại 50.000 đ. Các bộ bloc đại đặc biệt và bloc siêu đại là trọn bộ gồm bìa treo, bloc và hộp quà.",
+        dap: "Bìa lịch gắn bloc tính giá bìa và giá bloc riêng, ví dụ bìa bế nổi 37.000 đ cộng bloc đại 58.500 đ. Các bộ bloc đại đặc biệt và bloc siêu đại là trọn bộ gồm bìa treo, bloc và hộp quà.",
       },
       {
         hoi: "Có nhận thiết kế lịch Tết và bao lì xì riêng cho doanh nghiệp không?",
