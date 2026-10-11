@@ -42,6 +42,20 @@ export default function LoaiLichPage({ params }: { params: { loai: string } }) {
   if (!l) notFound();
   const so = Array.from({ length: l.soMau }, (_, i) => i + 1);
   const khac = LOAI_LICH.filter((x) => x.slug !== l.slug);
+  const loaiKhac = (
+    // Điện thoại: 1 hàng vuốt ngang (đỡ đẩy phần mẫu xuống xa); máy tính: xuống dòng bình thường.
+    <div className="flex flex-nowrap md:flex-wrap gap-2 overflow-x-auto md:overflow-visible -mx-5 px-5 md:mx-0 md:px-0 pb-1">
+      {khac.map((x) => (
+        <Link
+          key={x.slug}
+          href={`/lich-tet-2027/${x.slug}`}
+          className="shrink-0 whitespace-nowrap rounded-full bg-[#C8102E] px-4 py-2 text-[14px] font-bold !text-white shadow-[0_3px_10px_rgba(200,16,46,0.3)] hover:bg-[#A50D26]"
+        >
+          {x.ten} · {x.soMau} mẫu
+        </Link>
+      ))}
+    </div>
+  );
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -65,8 +79,10 @@ export default function LoaiLichPage({ params }: { params: { loai: string } }) {
         › <span className="text-ink">{l.ten}</span>
       </nav>
 
+      {/* 11/10/2026 (chị khoanh ô trống dưới nút Zalo): "Xem loại lịch khác" đưa lên đó. Lưới 2 cột từ lg:
+          cột trái = mô tả + loại khác, cột phải = bảng giá. Điện thoại xếp: mô tả -> bảng giá -> loại khác. */}
       <section className="px-5 pt-3 pb-6 md:px-[72px] grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_420px] items-start">
-        <div className="flex flex-col gap-3 min-w-0">
+        <div className="flex flex-col gap-3 min-w-0 lg:col-start-1 lg:row-start-1">
           <h1 className="font-serif text-[26px] md:text-[34px] leading-tight">{l.ten} 2027</h1>
           <p className="text-ink-soft text-[15px] leading-relaxed">{l.moTa}</p>
           <ul className="text-[14.5px] leading-relaxed list-disc pl-5">
@@ -84,13 +100,18 @@ export default function LoaiLichPage({ params }: { params: { loai: string } }) {
             Nhận báo giá in logo qua Zalo
           </a>
         </div>
-        <div className="flex flex-col gap-2 min-w-0">
+        <div className="flex flex-col gap-2 min-w-0 lg:col-start-2 lg:row-start-1 lg:row-span-2">
           <BangGiaLich tieuDe="Bảng giá (đã gồm VAT 8%)" dong={l.gia} />
           {l.ghiChuGia && <p className="text-[13.5px] text-ink-soft">{l.ghiChuGia}</p>}
         </div>
+        <div className="flex flex-col gap-2.5 min-w-0 lg:col-start-1 lg:row-start-2">
+          <h2 className="font-serif text-[19px] md:text-[21px]">Xem loại lịch khác</h2>
+          {loaiKhac}
+        </div>
       </section>
 
-      <section className="px-5 pb-6 md:px-[72px]">
+      {/* điện thoại: khối độc quyền xuống dưới lưới mẫu (max-md:order-1) để khách thấy mẫu sớm */}
+      <section className="px-5 pb-6 md:px-[72px] max-md:order-1">
         <BannerDocQuyen gon />
       </section>
 
@@ -113,27 +134,17 @@ export default function LoaiLichPage({ params }: { params: { loai: string } }) {
         </ul>
       </section>
 
-      <section className="px-5 pb-10 md:px-[72px] flex flex-col gap-3">
+      <section className="px-5 pb-10 md:px-[72px] flex flex-col gap-3 max-md:order-2">
         <h2 className="font-serif text-[20px] md:text-[22px]">Xem loại lịch khác</h2>
-        <div className="flex flex-wrap gap-2">
-          {khac.map((x) => (
-            <Link
-              key={x.slug}
-              href={`/lich-tet-2027/${x.slug}`}
-              className="rounded-full bg-[#C8102E] px-4 py-2 text-[14px] font-bold !text-white shadow-[0_3px_10px_rgba(200,16,46,0.3)] hover:bg-[#A50D26]"
-            >
-              {x.ten} · {x.soMau} mẫu
-            </Link>
-          ))}
-        </div>
+        {loaiKhac}
         <p className="text-[14px] text-ink-soft">
           Hotline / Zalo{" "}
           <a href={`tel:${HOTLINE_TEL}`} className="font-semibold !text-ink">
             {HOTLINE}
           </a>
           {" · "}
-          <Link href="/lich-tet-2027#bang-gia" className="font-semibold !text-ink underline">
-            Bảng giá tất cả các loại lịch
+          <Link href="/lich-tet-2027" className="font-semibold !text-ink underline">
+            Tất cả các loại lịch Tết 2027
           </Link>
         </p>
       </section>
