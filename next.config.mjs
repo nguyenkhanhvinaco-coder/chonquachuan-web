@@ -23,11 +23,6 @@ const nextConfig = {
         destination: '/lich-go-2027#lich-tet-2027',
         permanent: false,
       },
-      {
-        source: '/bai-viet/lich-tet-2027-in-logo-doanh-nghiep-mau-va-bang-gia',
-        destination: '/lich-go-2027#lich-tet-2027',
-        permanent: false,
-      },
       // Trang ket qua tim qua da bo (gom ve 1 trang /tim-qua + trang cam on).
       {
         source: '/tim-qua/ket-qua',

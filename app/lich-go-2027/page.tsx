@@ -56,14 +56,13 @@ const jsonLd = [
 ];
 
 export default function LichGoPage() {
-  const hero = LICH_GO.anh[0];
   return (
     <div className="flex flex-col">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
 
       {/* ---------- 1. Lịch gỗ để bàn 2027 (sản phẩm độc quyền) ---------- */}
-      <section className="px-5 pt-6 pb-8 md:px-[72px] md:pt-10 flex flex-col md:flex-row gap-8 md:gap-14 md:items-start">
+      <section className="px-5 pt-6 pb-8 md:px-[72px] md:pt-10 flex flex-col md:flex-row gap-8 md:gap-10 md:items-start md:justify-start">
         <div className="flex justify-center md:order-2 md:shrink-0">
           <video
             className="rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.25)] h-[480px] md:h-[640px] w-auto aspect-[9/16] bg-black"
@@ -78,7 +77,7 @@ export default function LichGoPage() {
             aria-label="Video lịch gỗ để bàn 2027 — hình ảnh mô phỏng 3D"
           />
         </div>
-        <div className="flex-1 flex flex-col gap-4 md:order-1">
+        <div className="flex flex-col gap-4 md:order-1 md:max-w-[620px]">
           <span className="inline-flex self-start px-3 py-1 rounded-full text-[12.5px] font-bold text-white bg-[#C8102E]">
             Tết Đinh Mùi 2027
           </span>
@@ -117,14 +116,6 @@ export default function LichGoPage() {
               Xem thêm {TONG_MAU} mẫu lịch Tết <ArrowRightIcon size={18} color="currentColor" />
             </a>
           </div>
-          <Image
-            unoptimized
-            src={hero.src}
-            alt={hero.alt}
-            width={hero.w}
-            height={hero.h}
-            className="w-full max-w-[300px] h-auto rounded-xl mt-2 hidden md:block"
-          />
           <p className="text-[13px] text-ink-soft italic">Hình ảnh mô phỏng 3D.</p>
         </div>
       </section>

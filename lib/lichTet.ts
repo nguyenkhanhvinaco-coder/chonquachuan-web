@@ -19,6 +19,8 @@ export const HIEN_LICH_TET = false;
 // 12/10/2026: noi dung bai lich Tet 131 mau GOP vao trang /lich-go-2027 (muc #lich-tet-2027).
 // /lich-tet-2027 va link bai cu chuyen huong ve do (next.config.mjs); cac trang LOAI van mo de khach xem mau.
 export const HIEN_TRANG_LOAI = true;
+// 13/10/2026 (chị Nga): bài viết lịch Tết 2027 hiện lại ĐÚNG VỊ TRÍ CŨ trên trang chủ (cột trái khu bài viết).
+export const HIEN_BAI_LICH_TET = true;
 
 export type DongGia = { ten: string; giaBia?: number; gia: number };
 

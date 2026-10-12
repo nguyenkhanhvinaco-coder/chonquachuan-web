@@ -1,4 +1,4 @@
-import { HIEN_LICH_TET } from "@/lib/lichTet";
+import { HIEN_BAI_LICH_TET } from "@/lib/lichTet";
 // Bài viết "Kiến thức chọn quà" — xu hướng, mẹo và kinh nghiệm chọn quà.
 //
 // - Mỗi bài có trang riêng ở href = "/bai-viet/<tiêu đề viết không dấu>"
@@ -593,7 +593,7 @@ const TAT_CA_BAI_VIET: BaiViet[] = [
 export const BAI_LICH_TET = TAT_CA_BAI_VIET.find((b) => b.id === "lich-tet-2027")!;
 
 // Bai lich Tet an/hien theo HIEN_LICH_TET (lib/lichTet.ts).
-export const BAI_VIET: BaiViet[] = TAT_CA_BAI_VIET.filter((b) => HIEN_LICH_TET || b.id !== "lich-tet-2027");
+export const BAI_VIET: BaiViet[] = TAT_CA_BAI_VIET.filter((b) => HIEN_BAI_LICH_TET || b.id !== "lich-tet-2027");
 
 
 // Phần cuối của href — là tham số [slug] của trang bài viết.
