@@ -62,12 +62,13 @@ export default function LichGoPage() {
       <Header />
 
       {/* ---------- 1. Lịch gỗ để bàn 2027 (sản phẩm độc quyền) ---------- */}
-      <section className="px-5 pt-6 pb-8 md:px-[72px] md:pt-10 flex flex-col md:flex-row gap-8 md:gap-10 md:items-start md:justify-start">
-        <div className="flex justify-center md:order-2 md:shrink-0">
+      {/* 12/10/2026 (chị Nga): video NGANG đặt sát phần chữ (máy tính: chữ trái, video phải; điện thoại: video trên). */}
+      <section className="px-5 pt-6 pb-8 md:px-[72px] md:pt-10 flex flex-col lg:flex-row gap-6 lg:gap-10 lg:items-center">
+        <div className="lg:order-2 lg:flex-1 min-w-0">
           <video
-            className="rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.25)] h-[480px] md:h-[640px] w-auto aspect-[9/16] bg-black"
-            src={LICH_GO.video}
-            poster={LICH_GO.poster}
+            className="w-full h-auto aspect-video rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.25)] bg-black"
+            src={LICH_GO.videoNgang}
+            poster={LICH_GO.posterNgang}
             autoPlay
             muted
             loop
@@ -77,7 +78,7 @@ export default function LichGoPage() {
             aria-label="Video lịch gỗ để bàn 2027 — hình ảnh mô phỏng 3D"
           />
         </div>
-        <div className="flex flex-col gap-4 md:order-1 md:max-w-[620px]">
+        <div className="flex flex-col gap-4 lg:order-1 lg:w-[520px] lg:shrink-0">
           <span className="inline-flex self-start px-3 py-1 rounded-full text-[12.5px] font-bold text-white bg-[#C8102E]">
             Tết Đinh Mùi 2027
           </span>

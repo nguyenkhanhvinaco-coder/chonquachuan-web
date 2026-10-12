@@ -16,6 +16,9 @@ export const LICH_GO = {
   ],
   video: "/lich-go-2027/reel-lich-go-2027.mp4",
   poster: "/lich-go-2027/poster.webp",
+  // 12/10/2026: bản NGANG 1920x1080 cho trang web (dựng lại 3D khổ ngang — _nguon-dung-3D/dung_video_ngang.py)
+  videoNgang: "/lich-go-2027/video-ngang-lich-go-2027.mp4",
+  posterNgang: "/lich-go-2027/poster-ngang.jpg",
   anh: [
     { src: "/lich-go-2027/hero.webp", w: 1188, h: 2112, alt: "Lịch gỗ để bàn 2027 trên bàn làm việc" },
   ],
