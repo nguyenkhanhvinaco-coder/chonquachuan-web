@@ -3,7 +3,8 @@
 // Ảnh/video: public/lich-go-2027/ (nguồn dựng 3D ở D:\ChonQuaChuan\marketing\lich-go-2027\).
 // Không viết "duy nhất / tốt nhất": Luật Quảng cáo cấm khi không có tài liệu chứng minh.
 export const LICH_GO = {
-  href: "/lich-go-2027",
+  // 12/10/2026 (chị Nga): link đổi thành /lich-tet-2027/lich-go-2027 (link cũ /lich-go-2027 chuyển hướng 308).
+  href: "/lich-tet-2027/lich-go-2027",
   tieuDe: "Lịch gỗ để bàn 2027",
   phuDe: "Thiết kế độc quyền Chọn Quà Chuẩn — kèm hộp cắm bút khắc logo doanh nghiệp",
   moDau:

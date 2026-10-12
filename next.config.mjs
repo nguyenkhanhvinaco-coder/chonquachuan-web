@@ -20,9 +20,11 @@ const nextConfig = {
       // 12/10/2026: trang tong + bai Lich Tet 2027 gop vao trang Lich go de ban 2027.
       {
         source: '/lich-tet-2027',
-        destination: '/lich-go-2027#lich-tet-2027',
+        destination: '/lich-tet-2027/lich-go-2027#lich-tet-2027',
         permanent: false,
       },
+      // 12/10/2026: trang lich go doi link -> /lich-tet-2027/lich-go-2027 (bai fanpage dang tro /lich-go-2027).
+      { source: '/lich-go-2027', destination: '/lich-tet-2027/lich-go-2027', permanent: true },
       // Trang ket qua tim qua da bo (gom ve 1 trang /tim-qua + trang cam on).
       {
         source: '/tim-qua/ket-qua',
