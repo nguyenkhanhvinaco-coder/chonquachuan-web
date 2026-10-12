@@ -71,6 +71,7 @@ export const EBOOKS: Ebook[] = [
     readerUrl: "/ebooks/cuoc-doi-khong-den-de-ta-sua.html",
     pdfUrl: "/ebooks/cuoc-doi-khong-den-de-ta-sua.pdf",
     href: "/ebook/cuoc-doi-khong-den-de-ta-sua-ma-de-ta-duoc-sua",
+    ogImage: "/ebooks/covers/cuoc-doi-khong-den-de-ta-sua-og.jpg", // ảnh chia sẻ ngang 2400x1260 (12/10/2026)
   },
   {
     // Từng là cuốn nổi bật ở /ebook (2026-09-08 → 09-13).
@@ -86,6 +87,7 @@ export const EBOOKS: Ebook[] = [
     readerUrl: "/ebooks/chung-ju-yung-10-bai-hoc.html",
     pdfUrl: "/ebooks/10-bai-hoc-chung-ju-yung.pdf",
     href: "/ebook/chung-ju-yung",
+    ogImage: "/ebooks/covers/chung-ju-yung-og.jpg", // ảnh chia sẻ ngang 2400x1260 (12/10/2026)
   },
   {
     id: "khong-diet-khong-sinh",
@@ -102,6 +104,7 @@ export const EBOOKS: Ebook[] = [
     readerUrl: "/ebooks/khong-diet-khong-sinh.html",
     pdfUrl: "/ebooks/khong-diet-khong-sinh-dung-so-hai.pdf",
     href: "/ebook/khong-diet-khong-sinh",
+    ogImage: "/ebooks/covers/khong-diet-khong-sinh-og.jpg", // ảnh chia sẻ ngang 2400x1260 (12/10/2026)
   },
 ];
 

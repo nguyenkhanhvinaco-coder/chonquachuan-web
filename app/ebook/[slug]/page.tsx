@@ -20,19 +20,18 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     title: `Ebook: ${book.title}`,
     description: book.description,
     alternates: { canonical: book.href },
-    // Cuốn nào có ảnh chia sẻ riêng thì Facebook/Zalo hiện ảnh đó; openGraph
-    // của trang thay hẳn openGraph chung nên phải ghi lại đủ các trường.
-    ...(book.ogImage && {
-      openGraph: {
-        type: "article",
-        locale: "vi_VN",
-        siteName: "Chọn Quà Chuẩn",
-        url: book.href,
-        title: book.title,
-        description: book.description,
-        images: [{ url: book.ogImage, width: 2400, height: 1260 }],
-      },
-    }),
+    // 12/10/2026: MỌI cuốn đều có openGraph riêng (trước đây cuốn chưa có ogImage rơi về
+    // tiêu đề + ảnh chung của site -> link chia sẻ Facebook hiện sai nội dung, bị coi là
+    // xem trước không khớp). Chưa có ảnh ngang thì dùng ảnh bìa.
+    openGraph: {
+      type: "article",
+      locale: "vi_VN",
+      siteName: "Chọn Quà Chuẩn",
+      url: book.href,
+      title: book.title,
+      description: book.description,
+      images: book.ogImage ? [{ url: book.ogImage, width: 2400, height: 1260 }] : [{ url: book.cover }],
+    },
   };
 }
 
