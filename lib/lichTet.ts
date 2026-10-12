@@ -12,6 +12,11 @@
 //   File gốc: D:\NKV\10.Lịch 2027\2026-10-10_BANGGIA_NKV_*.pdf. Đổi giá thì sửa ở đây.
 // - giaBia = giá bán lẻ in sẵn trên lịch = giá thị trường; nhãn "Tiết kiệm x%" = mức khách được lợi so với giá bìa.
 //   Không viết "giá tốt nhất / rẻ nhất": Luật Quảng cáo cấm dùng từ "nhất" khi không có tài liệu chứng minh.
+// AN/HIEN trang Lich Tet 2027 (12/10/2026 chi Nga: AN — cho hinh + video mau lich dat moi dua len lai).
+// false: /lich-tet-2027, /lich-tet-2027/<loai> va bai viet lich tra 404, khong co trong sitemap/trang chu.
+// Dua len lai: doi thanh true roi push.
+export const HIEN_LICH_TET = false;
+
 export type DongGia = { ten: string; giaBia?: number; gia: number };
 
 export type LoaiLich = {

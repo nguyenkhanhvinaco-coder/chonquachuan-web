@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import BannerDocQuyen from "@/components/BannerDocQuyen";
 import { ArrowRightIcon, ZaloIcon } from "@/components/icons";
 import { ZALO_URL, HOTLINE, HOTLINE_TEL } from "@/lib/contact";
-import { LOAI_LICH, GHI_CHU_GIA, NGAY_AP_DUNG, anhNho, giaTu, vnd } from "@/lib/lichTet";
+import { notFound } from "next/navigation";
+import { HIEN_LICH_TET, LOAI_LICH, GHI_CHU_GIA, NGAY_AP_DUNG, anhNho, giaTu, vnd } from "@/lib/lichTet";
 
 // Trang tổng Lịch Tết 2027: chọn LOẠI lịch -> /lich-tet-2027/<loại> xem các mẫu của loại đó.
 // Dữ liệu loại lịch + giá ở lib/lichTet.ts.
@@ -40,6 +41,7 @@ const breadcrumbJsonLd = {
 };
 
 export default function LichTetPage() {
+  if (!HIEN_LICH_TET) notFound();
   return (
     <div className="flex flex-col">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />

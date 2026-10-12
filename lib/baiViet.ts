@@ -1,3 +1,4 @@
+import { HIEN_LICH_TET } from "@/lib/lichTet";
 // Bài viết "Kiến thức chọn quà" — xu hướng, mẹo và kinh nghiệm chọn quà.
 //
 // - Mỗi bài có trang riêng ở href = "/bai-viet/<tiêu đề viết không dấu>"
@@ -35,7 +36,7 @@ export type BaiViet = {
   ngayCapNhat?: string; // YYYY-MM-DD — lần sửa nội dung gần nhất
 };
 
-export const BAI_VIET: BaiViet[] = [
+const TAT_CA_BAI_VIET: BaiViet[] = [
   {
     // Bài 20/10 (đăng 03/10/2026 — chị Nga nhắc 20/10 đến trước Tết, cần lên sớm).
     // Chỉ dùng giá đã công khai: bình nhập từ 65.000 đ, Lock&Lock từ 250.000 đ (gồm VAT + in logo,
@@ -587,6 +588,10 @@ export const BAI_VIET: BaiViet[] = [
       "Liên hệ ngay với Chọn Quà Chuẩn để nhận tư vấn giải pháp quà tặng Tết 2027 độc đáo cho doanh nghiệp của bạn!",
   },
 ];
+
+// Bai lich Tet an/hien theo HIEN_LICH_TET (lib/lichTet.ts).
+export const BAI_VIET: BaiViet[] = TAT_CA_BAI_VIET.filter((b) => HIEN_LICH_TET || b.id !== "lich-tet-2027");
+
 
 // Phần cuối của href — là tham số [slug] của trang bài viết.
 export const baiVietSlug = (bai: BaiViet) => bai.href.replace(/^\/bai-viet\//, "");
