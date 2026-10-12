@@ -20,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/chinh-sach-du-lieu-ca-nhan",
     "/thiep-mien-phi",
     "/catalogue-binh-giu-nhiet",
+    "/lich-go-2027",
     ...(HIEN_LICH_TET ? ["/lich-tet-2027", ...LOAI_LICH.map((l) => `/lich-tet-2027/${l.slug}`)] : []),
     // Moi trang ebook lay thang tu lib/ebook.ts — them cuon moi la co o day.
     ...EBOOKS.map((b) => b.href),

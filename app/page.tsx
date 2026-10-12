@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { ArrowRightIcon } from "@/components/icons";
 import LeadFormTrigger from "@/components/LeadForm";
 import BaiVietCard from "@/components/BaiVietCard";
+import LichGoNoiBat from "@/components/LichGoNoiBat";
 import { getFeaturedProducts } from "@/lib/products";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import { EBOOKS } from "@/lib/ebook";
@@ -62,6 +63,9 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col">
       <Header />
+
+      {/* 12/10/2026 chi Nga: Lich go de ban 2027 o vi tri trung tam, mo web/dien thoai thay ngay. */}
+      <LichGoNoiBat />
 
       {/* San pham noi bat — vi tri tren cung, thay cho banner Thiep tranh ve
           cu (2026-09: doi cho theo yeu cau, mo trang phai thay san pham can
