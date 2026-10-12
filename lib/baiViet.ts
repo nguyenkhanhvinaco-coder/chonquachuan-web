@@ -196,23 +196,7 @@ const TAT_CA_BAI_VIET: BaiViet[] = [
       "Bài này giúp bạn chọn đúng loại lịch theo người nhận và ngân sách. Toàn bộ 131 mẫu và bảng giá chi tiết nằm ở trang Lịch Tết 2027, bấm vào từng loại để xem mẫu.",
       "Muốn lịch và bao lì xì mang dấu ấn riêng? Chọn Quà Chuẩn nhận thiết kế và sản xuất lịch Tết, bao lì xì độc quyền theo hình ảnh và màu sắc nhận diện của doanh nghiệp. Hạn nhận đơn làm độc quyền: trước ngày 10/11/2026.",
     ],
-    soSanh: {
-      tieuDe: "Các loại lịch Tết 2027 và giá (đã gồm VAT 8%)",
-      cot: ["Loại lịch", "Quy cách", "Giá từ", "Phù hợp với"],
-      dong: [
-        ["Lịch để bàn", "13 tờ 26 mặt, 25 x 18 cm, kèm túi; đế 4 màu", "29.500 đ", "Nhân viên, khách hàng số lượng lớn, dùng ở bàn làm việc"],
-        ["Lịch treo tường 13 tờ", "Khổ mở 37 x 70 cm, bế nổi hoặc dán nổi", "37.000 đ", "Treo ở văn phòng, cửa hàng, đại lý"],
-        [
-          "Bìa lịch gắn bloc",
-          "Bìa lò xo giữa 37 x 70 cm, bế nổi / dán nổi 3D; bloc tính riêng",
-          "37.000 đ (bìa) + bloc từ 39.000 đ",
-          "Khách hàng gia đình, đại lý — lịch bloc truyền thống ngày Tết",
-        ],
-        ["Bloc đại đặc biệt 17 x 24", "Trọn bộ bìa treo + bloc + hộp", "172.500 đ", "Khách hàng thân thiết"],
-        ["Bloc siêu đại 20 x 30 và 25 x 35", "Trọn bộ bìa treo + bloc + hộp", "207.000 đ", "Đối tác, khách hàng lớn"],
-        ["Bloc siêu đại 29 x 41 và 38 x 53", "Khổ lớn nhất, trọn bộ có hộp", "379.500 đ", "Quà biếu cao cấp"],
-      ],
-    },
+    // 12/10/2026 (chị Nga): gỡ bảng "Các loại lịch Tết 2027 và giá" — không hiện giá ở đoạn này.
     yChinhDanDat: "Năm điều cần biết trước khi đặt lịch Tết in logo:",
     yChinh: [
       {
