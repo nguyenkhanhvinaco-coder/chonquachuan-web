@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   verification: {
     other: {
       "msvalidate.01": "486B6DBD9D39EA3636BB7C01F5F4E273",
+      // Xác minh tên miền với Meta Business (doanh nghiệp Chọn Quà Chuẩn, 12/10/2026) — KHÔNG xoá.
+      "facebook-domain-verification": "pw13b78m4n2tqak0p1lp9v9v7erb9k",
     },
   },
   openGraph: {
