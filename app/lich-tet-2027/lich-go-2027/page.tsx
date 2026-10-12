@@ -197,7 +197,9 @@ export default function LichGoPage() {
         <BannerDocQuyen />
       </section>
 
-      <section className="px-5 pb-8 md:px-[72px] flex flex-col gap-4 max-w-[980px]">
+      {/* 12/10/2026 (chị Nga): máy tính chia 2 cột — trái "Năm điều cần biết", phải "Câu hỏi thường gặp" (hết khoảng trống bên phải). */}
+      <div className="px-5 pb-8 md:px-[72px] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <section className="flex flex-col gap-4">
         <h3 className="font-serif text-[22px] md:text-[26px]">{B.yChinhDanDat ?? "Cần biết trước khi đặt lịch Tết"}</h3>
         <ol className="flex flex-col gap-4">
           {B.yChinh.map((y, i) => (
@@ -213,7 +215,7 @@ export default function LichGoPage() {
       </section>
 
       {B.hoiDap && (
-        <section className="px-5 pb-8 md:px-[72px] flex flex-col gap-3 max-w-[980px]">
+        <section className="flex flex-col gap-3">
           <h3 className="font-serif text-[22px] md:text-[26px]">Câu hỏi thường gặp</h3>
           {B.hoiDap.map((q) => (
             <details key={q.hoi} className="rounded-xl border border-line px-4 py-3 bg-surface">
@@ -223,6 +225,7 @@ export default function LichGoPage() {
           ))}
         </section>
       )}
+      </div>
 
       <section className="px-5 pb-12 md:px-[72px] flex flex-col gap-3 max-w-[980px]">
         <ul className="text-[14px] text-ink-soft leading-relaxed list-disc pl-5">
