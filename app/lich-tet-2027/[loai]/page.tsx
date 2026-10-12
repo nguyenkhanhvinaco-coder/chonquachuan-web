@@ -7,7 +7,7 @@ import MauLichGallery from "@/components/MauLichGallery";
 import BannerDocQuyen from "@/components/BannerDocQuyen";
 import { ZaloIcon } from "@/components/icons";
 import { ZALO_URL, HOTLINE, HOTLINE_TEL } from "@/lib/contact";
-import { HIEN_LICH_TET, LOAI_LICH, GHI_CHU_GIA, loaiTheoSlug, anhLon, anhNho, anhChiaSe, giaTu, vnd } from "@/lib/lichTet";
+import { HIEN_TRANG_LOAI, LOAI_LICH, GHI_CHU_GIA, loaiTheoSlug, anhLon, anhNho, anhChiaSe, giaTu, vnd } from "@/lib/lichTet";
 
 // Trang 1 loại lịch: bảng giá + quy cách + lưới các mẫu (bấm xem lớn, ảnh lớn có QR web + Zalo OA).
 const SITE_URL = "https://chonquachuan.vn";
@@ -39,7 +39,7 @@ export function generateMetadata({ params }: { params: { loai: string } }): Meta
 
 export default function LoaiLichPage({ params }: { params: { loai: string } }) {
   const l = loaiTheoSlug(params.loai);
-  if (!l || !HIEN_LICH_TET) notFound();
+  if (!l || !HIEN_TRANG_LOAI) notFound();
   const so = Array.from({ length: l.soMau }, (_, i) => i + 1);
   const khac = LOAI_LICH.filter((x) => x.slug !== l.slug);
   const loaiKhac = (

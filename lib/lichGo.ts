@@ -1,5 +1,5 @@
 // Lịch gỗ để bàn 2027 — sản phẩm thiết kế độc quyền Chọn Quà Chuẩn (12/10/2026, chị Nga duyệt video 3D).
-// Trang /lich-go-2027 + khối nổi bật đầu trang chủ (components/LichGoNoiBat.tsx) dùng chung nội dung ở đây.
+// Trang /lich-go-2027 + ô đầu tiên dãy sản phẩm nổi bật trang chủ (app/page.tsx, LICH_GO_TILE) dùng nội dung ở đây.
 // Ảnh/video: public/lich-go-2027/ (nguồn dựng 3D ở D:\ChonQuaChuan\marketing\lich-go-2027\).
 // Không viết "duy nhất / tốt nhất": Luật Quảng cáo cấm khi không có tài liệu chứng minh.
 export const LICH_GO = {
@@ -17,9 +17,6 @@ export const LICH_GO = {
   video: "/lich-go-2027/reel-lich-go-2027.mp4",
   poster: "/lich-go-2027/poster.webp",
   anh: [
-    { src: "/lich-go-2027/ngang.webp", w: 2000, h: 1250, alt: "Lịch gỗ để bàn 2027 kèm hộp cắm bút khắc logo" },
-    { src: "/lich-go-2027/khac.webp", w: 1188, h: 2112, alt: "Hộp cắm bút khắc laser logo doanh nghiệp" },
-    { src: "/lich-go-2027/to-lich.webp", w: 1188, h: 2112, alt: "Tờ lịch 2027 in riêng theo thương hiệu, có âm lịch" },
     { src: "/lich-go-2027/hero.webp", w: 1188, h: 2112, alt: "Lịch gỗ để bàn 2027 trên bàn làm việc" },
   ],
   anhChiaSe: "/lich-go-2027/og.jpg",

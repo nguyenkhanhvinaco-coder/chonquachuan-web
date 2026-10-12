@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import { ArrowRightIcon } from "@/components/icons";
 import LeadFormTrigger from "@/components/LeadForm";
 import BaiVietCard from "@/components/BaiVietCard";
-import LichGoNoiBat from "@/components/LichGoNoiBat";
+import { LICH_GO } from "@/lib/lichGo";
 import { getFeaturedProducts } from "@/lib/products";
 import FeaturedCarousel from "@/components/FeaturedCarousel";
 import { EBOOKS } from "@/lib/ebook";
@@ -58,14 +58,20 @@ export default async function HomePage() {
   ];
   const LICH_TET = BAI_VIET.find((b) => b.id === "lich-tet-2027");
   const BAI = BAI_VIET.filter((b) => b.id !== "lich-tet-2027");
-  const tiles = [...productTiles.slice(0, 3), ...CATALOGUE_TILES, ...productTiles.slice(3)];
+  // 12/10/2026 (chị Nga): Lịch gỗ để bàn 2027 là Ô ĐẦU TIÊN của dãy nổi bật (thay khối nền tối riêng
+  // phía trên — chị chê xấu). Trang chi tiết /lich-go-2027 đã gộp cả 131 mẫu lịch Tết.
+  const LICH_GO_TILE = {
+    key: "lich-go-2027",
+    href: LICH_GO.href,
+    image: "/lich-go-2027/tile.jpg",
+    name: "Lịch Gỗ Để Bàn 2027 Khắc Logo",
+    bg: "oklch(0.3 0.07 262)",
+  };
+  const tiles = [LICH_GO_TILE, ...productTiles.slice(0, 3), ...CATALOGUE_TILES, ...productTiles.slice(3)];
 
   return (
     <div className="flex flex-col">
       <Header />
-
-      {/* 12/10/2026 chi Nga: Lich go de ban 2027 o vi tri trung tam, mo web/dien thoai thay ngay. */}
-      <LichGoNoiBat />
 
       {/* San pham noi bat — vi tri tren cung, thay cho banner Thiep tranh ve
           cu (2026-09: doi cho theo yeu cau, mo trang phai thay san pham can

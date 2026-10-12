@@ -589,6 +589,9 @@ const TAT_CA_BAI_VIET: BaiViet[] = [
   },
 ];
 
+// Noi dung bai lich Tet 131 mau — dung o trang /lich-go-2027 (gop 12/10/2026).
+export const BAI_LICH_TET = TAT_CA_BAI_VIET.find((b) => b.id === "lich-tet-2027")!;
+
 // Bai lich Tet an/hien theo HIEN_LICH_TET (lib/lichTet.ts).
 export const BAI_VIET: BaiViet[] = TAT_CA_BAI_VIET.filter((b) => HIEN_LICH_TET || b.id !== "lich-tet-2027");
 

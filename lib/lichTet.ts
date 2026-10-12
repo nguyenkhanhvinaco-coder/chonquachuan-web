@@ -16,6 +16,9 @@
 // false: /lich-tet-2027, /lich-tet-2027/<loai> va bai viet lich tra 404, khong co trong sitemap/trang chu.
 // Dua len lai: doi thanh true roi push.
 export const HIEN_LICH_TET = false;
+// 12/10/2026: noi dung bai lich Tet 131 mau GOP vao trang /lich-go-2027 (muc #lich-tet-2027).
+// /lich-tet-2027 va link bai cu chuyen huong ve do (next.config.mjs); cac trang LOAI van mo de khach xem mau.
+export const HIEN_TRANG_LOAI = true;
 
 export type DongGia = { ten: string; giaBia?: number; gia: number };
 
