@@ -51,9 +51,16 @@ const nextConfig = {
       // app/catalogue-binh-giu-nhiet/page.tsx, nhung catalogue Heyzine ngay tren chonquachuan.vn
       // de khach bam tu Fanpage la vao thang website, khong nhay sang heyzine.com.
       // Bao gia lat trang binh/ly giu nhiet Lock&Lock (phan khuc cao hon) — app rieng tren Vercel.
+      // 2026-11-17 (chi Nga): 2 catalogue chuyen sang trinh xem moi nkv-catalogue.vercel.app (moi lan 1 trang to,
+      // chu de doc). Trang app/catalogue-binh-giu-nhiet/page.tsx van con nhung redirect nay chay truoc.
       {
         source: '/catalogue-binh-lock-lock',
-        destination: 'https://nkv-bao-gia.vercel.app/',
+        destination: 'https://nkv-catalogue.vercel.app/catalogue-binh-lock-lock',
+        permanent: false,
+      },
+      {
+        source: '/catalogue-binh-giu-nhiet',
+        destination: 'https://nkv-catalogue.vercel.app/catalogue-binh-giu-nhiet',
         permanent: false,
       },
     ];
